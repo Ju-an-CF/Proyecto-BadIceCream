@@ -72,7 +72,7 @@ public class Jugador extends Entidad {
             colisiónActiva = false;
             tablero.checkColisión.verificarBloque(this);
             //if colision=false, jugador se mueve
-            if (colisiónActiva == false) {
+            if (!colisiónActiva) {
                 switch (dirección) {
                     case ("arriba"):
                         y -= velocidad;
@@ -164,8 +164,8 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
+        g2.drawRect(x + áreaSólida.x, y + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         g2.drawImage(imagen, x, y, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
-        g2.drawRect(84, 84, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
 
     }

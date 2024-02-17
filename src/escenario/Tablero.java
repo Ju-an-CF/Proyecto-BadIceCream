@@ -17,7 +17,7 @@ public class Tablero extends JPanel implements Runnable {
     public final int ANCHO = TAMANIO_DE_BLOQUE * FILAS_MAX;
 
     //FPS
-    int FPS = 60;
+    public static final int FPS = 60;
 
     Control control = new Control();
     Thread hiloDeJuego;
