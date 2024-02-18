@@ -15,7 +15,7 @@ public class AdministradorDeBloque {
     public AdministradorDeBloque(Tablero tablero) {
         this.tablero = tablero;
         bloques = new Bloque[100];
-        mapa = new int[tablero.COLUMNAS_MAX][tablero.FILAS_MAX];
+        mapa = new int[tablero.maxColDeMundo][tablero.maxFilasDeMundo];
         obtenerImagenDeBloque();
         cargarMapa("/escenario/mapa.txt");
     }
@@ -62,10 +62,10 @@ public class AdministradorDeBloque {
             int columna = 0;
             int fila = 0;
 
-            while (columna < tablero.COLUMNAS_MAX && fila < tablero.FILAS_MAX) {
+            while (columna < tablero.maxColDeMundo && fila < tablero.maxFilasDeMundo) {
                 String line = br.readLine();
 
-                while (columna < tablero.COLUMNAS_MAX) {
+                while (columna < tablero.maxColDeMundo) {
                     String numeros[] = line.split(" ");
 
                     int numero = Integer.parseInt(numeros[columna]);
@@ -73,7 +73,7 @@ public class AdministradorDeBloque {
                     mapa[columna][fila] = numero;
                     columna++;
                 }
-                if (columna == tablero.COLUMNAS_MAX) {
+                if (columna == tablero.maxColDeMundo) {
                     columna = 0;
                     fila++;
                 }
@@ -86,24 +86,33 @@ public class AdministradorDeBloque {
     }
 
     public void dibujar(Graphics2D g2) {
-        int columnas = 0;
-        int filas = 0;
-        int x = 0;
-        int y = 0;
+        int columnasDeMundo = 0;
+        int filasDeMundo = 0;
 
-        while (columnas < tablero.COLUMNAS_MAX && filas < tablero.FILAS_MAX) {
+        while (columnasDeMundo < tablero.maxColDeMundo && filasDeMundo < tablero.maxFilasDeMundo) {
 
-            int numBloque = mapa[columnas][filas];
-            g2.drawImage(bloques[numBloque].imagen, x, y, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
-            columnas++;
-            x += tablero.TAMANIO_DE_BLOQUE;
+            int numBloque = mapa[columnasDeMundo][filasDeMundo];
+            int mundoX = columnasDeMundo * tablero.TAMANIO_DE_BLOQUE;
+            int mundoY = filasDeMundo * tablero.TAMANIO_DE_BLOQUE;
+            int ventanaX = mundoX - tablero.jugador.mundoX + tablero.jugador.ventanaX;
+            int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
 
-            if (columnas == tablero.COLUMNAS_MAX) {
-                columnas = 0;
-                x = 0;
-                filas++;
-                y += tablero.TAMANIO_DE_BLOQUE;
+            if(jugadorEstáEnPantalla(mundoX, mundoY)) {
+                g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+            }
+            columnasDeMundo++;
+
+            if (columnasDeMundo == tablero.maxColDeMundo) {
+                columnasDeMundo = 0;
+                filasDeMundo++;
             }
         }
+    }
+
+    private boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
+        return mundoX + tablero.TAMANIO_DE_BLOQUE*11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
+                mundoX - tablero.TAMANIO_DE_BLOQUE*12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
+                mundoY + (tablero.TAMANIO_DE_BLOQUE*2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
+                mundoY - (tablero.TAMANIO_DE_BLOQUE*2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
     }
 }

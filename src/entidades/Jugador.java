@@ -11,6 +11,8 @@ import java.io.IOException;
 public class Jugador extends Entidad {
     Tablero tablero;
     Control control;
+    public final int ventanaX;
+    public final int ventanaY;
 
     public Jugador(Tablero tablero, Control control) {
         this.tablero = tablero;
@@ -20,14 +22,16 @@ public class Jugador extends Entidad {
         áreaSólida.y = 14;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
+        ventanaX = tablero.TAMANIO_DE_BLOQUE*7; //
+        ventanaY = tablero.TAMANIO_DE_BLOQUE*5; //
 
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
     }
 
     public void establecerValoresPredeterminados() {
-        x = 84;
-        y = 74;
+        mundoX = 336;
+        mundoY = 294;
         velocidad = 6;
         dirección = "abajo";
 
@@ -75,16 +79,16 @@ public class Jugador extends Entidad {
             if (!colisiónActiva) {
                 switch (dirección) {
                     case ("arriba"):
-                        y -= velocidad;
+                        mundoY -= velocidad;
                         break;
                     case ("abajo"):
-                        y += velocidad;
+                        mundoY += velocidad;
                         break;
                     case ("izquierda"):
-                        x -= velocidad;
+                        mundoX -= velocidad;
                         break;
                     case ("derecha"):
-                        x += velocidad;
+                        mundoX += velocidad;
                         break;
                 }
             }
@@ -164,8 +168,8 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        g2.drawRect(x + áreaSólida.x, y + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
-        g2.drawImage(imagen, x, y, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+        g2.drawImage(imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+        g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
 
     }

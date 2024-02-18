@@ -12,10 +12,10 @@ public class VerificadorDeColisión {
     }
 
     public void verificarBloque(Entidad entidad) {
-        int entidadDimIzquierdaX = entidad.x + entidad.áreaSólida.x;
-        int entidadDimDerechaX = entidad.x + entidad.áreaSólida.x + entidad.áreaSólida.width;
-        int entidadDimSuperiorY = entidad.y + entidad.áreaSólida.y;
-        int entidadDimInferiorY = entidad.y + entidad.áreaSólida.y + entidad.áreaSólida.height;
+        int entidadDimIzquierdaX = entidad.mundoX + entidad.áreaSólida.x;
+        int entidadDimDerechaX = entidad.mundoX + entidad.áreaSólida.x + entidad.áreaSólida.width;
+        int entidadDimSuperiorY = entidad.mundoY + entidad.áreaSólida.y;
+        int entidadDimInferiorY = entidad.mundoY + entidad.áreaSólida.y + entidad.áreaSólida.height;
 
         int columnaIzquierdaDeEntidad = entidadDimIzquierdaX / tablero.TAMANIO_DE_BLOQUE;
         int columnaDerechaDeEntidad = entidadDimDerechaX / tablero.TAMANIO_DE_BLOQUE;

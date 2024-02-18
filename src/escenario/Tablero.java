@@ -10,11 +10,17 @@ import mecánicas.VerificadorDeColisión;
 public class Tablero extends JPanel implements Runnable {
     public final int TAMANIO_BLOQUE_ORIGINAL = 14;
     public final int ESCALA = 3;
-    public final int TAMANIO_DE_BLOQUE = TAMANIO_BLOQUE_ORIGINAL * ESCALA;
-    public final int COLUMNAS_MAX = 20;
-    public final int FILAS_MAX = 18;
-    public final int ALTO = TAMANIO_DE_BLOQUE * COLUMNAS_MAX;
-    public final int ANCHO = TAMANIO_DE_BLOQUE * FILAS_MAX;
+    public final int TAMANIO_DE_BLOQUE = TAMANIO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
+    public final int COLUMNAS_MAX = 16;
+    public final int FILAS_MAX = 12;
+    public final int ALTO = TAMANIO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
+    public final int ANCHO = TAMANIO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
+
+    //Configuración del mundo
+    public final int maxColDeMundo = 31;
+    public final int maxFilasDeMundo = 28;
+    public final int anchoDeMundo = TAMANIO_DE_BLOQUE * maxColDeMundo;
+    public final int altoDeMundo = TAMANIO_DE_BLOQUE * maxFilasDeMundo;
 
     //FPS
     public static final int FPS = 60;
