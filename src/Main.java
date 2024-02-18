@@ -6,12 +6,12 @@ import javax.swing.*;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        JFrame ventana = new JFrame();
+        JFrame ventana=new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("Bad Ice Cream");
 
-        Tablero tablero = new Tablero();
+        Tablero tablero=new Tablero();
         ventana.add(tablero);
 
         ventana.pack();
@@ -19,7 +19,7 @@ public class Main {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
 
-        tablero.iniciarHiloDeJuego();
+        tablero.iniciarHiloDeJuego();;
 
     }
 }
