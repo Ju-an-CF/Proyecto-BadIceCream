@@ -19,7 +19,8 @@ public class Main {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
 
-        tablero.iniciarHiloDeJuego();;
+        tablero.iniciarHiloDeJuego();
+        System.out.println("Hola");
 
     }
 }
