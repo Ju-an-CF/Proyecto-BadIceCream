@@ -27,9 +27,9 @@ public class Jugador extends Entidad {
 
     public void establecerValoresPredeterminados() {
         x = 84;
-        y = 84;
-        velocidad = 3;
-        dirección = "arriba";
+        y = 74;
+        velocidad = 6;
+        dirección = "abajo";
 
     }
 

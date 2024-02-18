@@ -15,32 +15,33 @@ public class Control implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int código = e.getKeyCode();
         if (código == KeyEvent.VK_W) {
-            arribaPresionado=true;
+            arribaPresionado = true;
         }
         if (código == KeyEvent.VK_S) {
-            abajoPresionado=true;
+            abajoPresionado = true;
         }
         if (código == KeyEvent.VK_A) {
-            izquierdaPresionado=true;
+            izquierdaPresionado = true;
         }
         if (código == KeyEvent.VK_D) {
-            derechaPresionado=true;
+            derechaPresionado = true;
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
         int código = e.getKeyCode();
         if (código == KeyEvent.VK_W) {
-            arribaPresionado=false;
+            arribaPresionado = false;
         }
         if (código == KeyEvent.VK_S) {
-            abajoPresionado=false;
+            abajoPresionado = false;
         }
         if (código == KeyEvent.VK_A) {
-            izquierdaPresionado=false;
+            izquierdaPresionado = false;
         }
         if (código == KeyEvent.VK_D) {
-            derechaPresionado=false;
+            derechaPresionado = false;
         }
 
     }
