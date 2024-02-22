@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -13,34 +13,42 @@ public class Control implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int código = e.getKeyCode();
-        if (código == KeyEvent.VK_W) {
+        int tecla = e.getKeyCode();
+        if (tecla == KeyEvent.VK_W) {
             arribaPresionado = true;
         }
-        if (código == KeyEvent.VK_S) {
+        if (tecla == KeyEvent.VK_S) {
             abajoPresionado = true;
         }
-        if (código == KeyEvent.VK_A) {
+        if (tecla == KeyEvent.VK_A) {
             izquierdaPresionado = true;
         }
-        if (código == KeyEvent.VK_D) {
+        if (tecla == KeyEvent.VK_D) {
             derechaPresionado = true;
         }
+        if (tecla == KeyEvent.VK_ESCAPE){
+            sePuedeRomper = true;
+        }
+
+    }
+
+    private void romperBloque() {
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        int código = e.getKeyCode();
-        if (código == KeyEvent.VK_W) {
+        int tecla = e.getKeyCode();
+        if (tecla == KeyEvent.VK_W) {
             arribaPresionado = false;
         }
-        if (código == KeyEvent.VK_S) {
+        if (tecla == KeyEvent.VK_S) {
             abajoPresionado = false;
         }
-        if (código == KeyEvent.VK_A) {
+        if (tecla == KeyEvent.VK_A) {
             izquierdaPresionado = false;
         }
-        if (código == KeyEvent.VK_D) {
+        if (tecla == KeyEvent.VK_D) {
             derechaPresionado = false;
         }
 

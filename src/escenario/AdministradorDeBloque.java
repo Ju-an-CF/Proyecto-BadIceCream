@@ -115,4 +115,8 @@ public class AdministradorDeBloque {
                 mundoY + (tablero.TAMANIO_DE_BLOQUE*2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
                 mundoY - (tablero.TAMANIO_DE_BLOQUE*2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
     }
+
+    public void romperBloque() {
+
+    }
 }
