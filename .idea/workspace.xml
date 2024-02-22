@@ -4,48 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/mapa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/mapa.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/bolaNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/bolaNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquina1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquina12.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquina2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquina3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquina4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquinas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquinas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/esquinas34.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquinas34.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/florNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/florNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/hielo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/hielo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/muro.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/muro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/nieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/nieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/shadow_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/shadow_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/shadow_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/shadow_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/tile_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/tile_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/bloque/wall_crack_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/wall_crack_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_abajo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_abajo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_abajo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_abajo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_abajo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_abajo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_abajo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_abajo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_arriba1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_arriba1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_arriba2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_arriba2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_arriba3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_arriba3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_arriba4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_arriba4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_derecha1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_derecha1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_derecha2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_derecha2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_derecha3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_derecha3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_derecha4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_derecha4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_izquierda1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_izquierda1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_izquierda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_izquierda2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_izquierda3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_izquierda3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/jugador_izquierda4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_izquierda4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/player_spritesheet..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/player_spritesheet..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gráficos/jugador/player_spritesheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/player_spritesheet.png" afterDir="false" />
-    </list>
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Se añadió clase sonido al juego" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_COMMON_BRANCH" value="main" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
@@ -78,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "sound-branch",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Actividades en Clase POO/JUEGOPRO",
     "node.js.detected.package.eslint": "true",
@@ -112,6 +76,7 @@
       <workItem from="1708111128298" duration="10727000" />
       <workItem from="1708213532759" duration="347000" />
       <workItem from="1708629570125" duration="4434000" />
+      <workItem from="1708637614212" duration="188000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -137,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708140046339</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Se añadió clase sonido al juego">
+      <option name="closed" value="true" />
+      <created>1708637678241</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708637678241</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +120,7 @@
     <MESSAGE value="Versión 2" />
     <MESSAGE value="Añadiendo Bloques estáticos, corrigiendo el VerificadorDeColisión, y solucionando hitbox del jugador" />
     <MESSAGE value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
-    <option name="LAST_COMMIT_MESSAGE" value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
+    <MESSAGE value="Se añadió clase sonido al juego" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se añadió clase sonido al juego" />
   </component>
 </project>
