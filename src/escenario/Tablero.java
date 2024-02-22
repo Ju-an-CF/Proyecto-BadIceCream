@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import entidades.Jugador;
+import sonido.Sonido;
 import mecánicas.Control;
 import mecánicas.VerificadorDeColisión;
 
@@ -24,10 +25,13 @@ public class Tablero extends JPanel implements Runnable {
 
     //FPS
     public static final int FPS = 60;
-
+//
     Control control = new Control();
     Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
+  //
+    Sonido música=new Sonido();
+    Sonido se=new Sonido();
     Jugador jugador = new Jugador(this, control);
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
 
@@ -37,11 +41,13 @@ public class Tablero extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(control);
         this.setFocusable(true);
+
     }
 
     public void iniciarHiloDeJuego() {
         hiloDeJuego = new Thread(this);
         hiloDeJuego.start();
+        reproducirMúsica(2);
     }
 
     @Override
@@ -89,5 +95,19 @@ public class Tablero extends JPanel implements Runnable {
         adminBlock.dibujar(g2);
         jugador.dibujar(g2);
         g2.dispose();
+    }
+
+    public void reproducirMúsica(int i){
+        música.colocarArchivo(i);
+        música.reproducir();
+        música.entrarEnBucle();
+    }
+
+    public void pararMúsica(){
+        música.parar();
+    }
+    public void reproducirSE(int i){
+        se.colocarArchivo(i);
+        se.reproducir();
     }
 }

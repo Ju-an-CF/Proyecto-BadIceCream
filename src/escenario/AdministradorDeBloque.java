@@ -23,31 +23,31 @@ public class AdministradorDeBloque {
     public void obtenerImagenDeBloque() {
         try {
             bloques[0] = new Bloque();
-            bloques[0].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/nieve.png"));
+            bloques[0].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/nieve.png"));
 
             bloques[1] = new BloqueEstático();
-            bloques[1].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/esquina1.png"));
+            bloques[1].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina1.png"));
 
             bloques[2] = new BloqueEstático();
-            bloques[2].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/esquina2.png"));
+            bloques[2].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina2.png"));
 
             bloques[3] = new BloqueEstático();
-            bloques[3].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/esquina3.png"));
+            bloques[3].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina3.png"));
 
             bloques[4] = new BloqueEstático();
-            bloques[4].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/esquina4.png"));
+            bloques[4].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina4.png"));
 
             bloques[5] = new BloqueEstático();
-            bloques[5].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/muro.png"));
+            bloques[5].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/muro.png"));
 
             bloques[6] = new Bloque();
-            bloques[6].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/bolaNieve.png"));
+            bloques[6].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/bolaNieve.png"));
 
             bloques[7] = new Bloque();
-            bloques[7].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/florNieve.png"));
+            bloques[7].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/florNieve.png"));
 
             bloques[8] = new BloqueEstático();
-            bloques[8].imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/bloque/hielo.png"));
+            bloques[8].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/hielo.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

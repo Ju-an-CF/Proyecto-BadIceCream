@@ -39,22 +39,22 @@ public class Jugador extends Entidad {
 
     public void obtenerImagenDeJugador() {
         try {
-            arriba1 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_arriba1.png"));
-            arriba2 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_arriba2.png"));
-            arriba3 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_arriba3.png"));
-            arriba4 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_arriba4.png"));
-            abajo1 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_abajo1.png"));
-            abajo2 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_abajo2.png"));
-            abajo3 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_abajo3.png"));
-            abajo4 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_abajo4.png"));
-            izquierda1 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_izquierda1.png"));
-            izquierda2 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_izquierda2.png"));
-            izquierda3 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_izquierda3.png"));
-            izquierda4 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_izquierda4.png"));
-            derecha1 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_derecha1.png"));
-            derecha2 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_derecha2.png"));
-            derecha3 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_derecha3.png"));
-            derecha4 = ImageIO.read(getClass().getResourceAsStream("/gráficos/jugador/jugador_derecha4.png"));
+            arriba1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba1.png"));
+            arriba2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba2.png"));
+            arriba3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba3.png"));
+            arriba4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba4.png"));
+            abajo1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo1.png"));
+            abajo2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo2.png"));
+            abajo3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo3.png"));
+            abajo4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo4.png"));
+            izquierda1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda1.png"));
+            izquierda2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda2.png"));
+            izquierda3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda3.png"));
+            izquierda4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda4.png"));
+            derecha1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha1.png"));
+            derecha2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha2.png"));
+            derecha3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha3.png"));
+            derecha4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha4.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
