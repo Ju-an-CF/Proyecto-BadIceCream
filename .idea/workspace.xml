@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
-    </list>
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Se añadió clase sonido al juego" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_COMMON_BRANCH" value="main" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
@@ -41,8 +41,10 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "rama-1",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "sound-branch",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Actividades en Clase POO/JUEGOPRO",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,6 +75,8 @@
       <updated>1708111125945</updated>
       <workItem from="1708111128298" duration="10727000" />
       <workItem from="1708213532759" duration="347000" />
+      <workItem from="1708629570125" duration="4434000" />
+      <workItem from="1708637614212" duration="188000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -98,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708140046339</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Se añadió clase sonido al juego">
+      <option name="closed" value="true" />
+      <created>1708637678241</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708637678241</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,6 +120,7 @@
     <MESSAGE value="Versión 2" />
     <MESSAGE value="Añadiendo Bloques estáticos, corrigiendo el VerificadorDeColisión, y solucionando hitbox del jugador" />
     <MESSAGE value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
-    <option name="LAST_COMMIT_MESSAGE" value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
+    <MESSAGE value="Se añadió clase sonido al juego" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se añadió clase sonido al juego" />
   </component>
 </project>
