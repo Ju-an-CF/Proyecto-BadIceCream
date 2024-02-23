@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Añadiendo cambios rama 1 en main">
-      <change afterPath="$PROJECT_DIR$/src/frutas/Mora.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frutas/SuperObjeto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gráficos/frutas/mora.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="cambiando la ruta de imagenes de la fruta, a **fuente**">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Mora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +53,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\fuentes\frutas" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src" />
     </key>
   </component>
@@ -82,7 +75,7 @@
       <updated>1708111125945</updated>
       <workItem from="1708111128298" duration="10727000" />
       <workItem from="1708213532759" duration="347000" />
-      <workItem from="1708648814578" duration="2117000" />
+      <workItem from="1708648814578" duration="2961000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -116,7 +109,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708629197580</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Añadiendo Objetos que interactuan con el jugador como una mora, ojo aun no funciona correctamente">
+      <option name="closed" value="true" />
+      <created>1708661518689</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708661518690</updated>
+    </task>
+    <task id="LOCAL-00006" summary="cambiando la ruta de imagenes de la fruta, a **fuente**">
+      <option name="closed" value="true" />
+      <created>1708661720339</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708661720339</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +147,8 @@
     <MESSAGE value="Añadiendo Bloques estáticos, corrigiendo el VerificadorDeColisión, y solucionando hitbox del jugador" />
     <MESSAGE value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
     <MESSAGE value="Añadiendo cambios rama 1 en main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadiendo cambios rama 1 en main" />
+    <MESSAGE value="Añadiendo Objetos que interactuan con el jugador como una mora, ojo aun no funciona correctamente" />
+    <MESSAGE value="cambiando la ruta de imagenes de la fruta, a **fuente**" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambiando la ruta de imagenes de la fruta, a **fuente**" />
   </component>
 </project>

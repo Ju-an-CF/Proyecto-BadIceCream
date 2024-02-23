@@ -11,6 +11,5 @@ public class Mora extends SuperObjeto {
         }catch (IOException e){
             e.printStackTrace();
         }
-        colisión = true;
     }
 }

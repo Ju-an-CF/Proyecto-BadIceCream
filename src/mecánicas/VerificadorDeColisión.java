@@ -66,8 +66,8 @@ public class VerificadorDeColisión {
             if (tablero.frutas[i] != null) {
                 entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
                 entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
-                tablero.frutas[i].áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
-                tablero.frutas[i].áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].mundoX + tablero.frutas[i].áreaSólida.x;
+                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].mundoY + tablero.frutas[i].áreaSólida.y;
                 switch (entidad.dirección) {
                     case "arriba":
                         entidad.áreaSólida.y -= entidad.velocidad;
