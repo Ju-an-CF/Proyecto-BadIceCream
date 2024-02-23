@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 import entidades.Jugador;
-import sonido.Sonido;
+import frutas.SuperObjeto;
+import mecánicas.ColocadorDeObjetos;
 import mecánicas.Control;
 import mecánicas.VerificadorDeColisión;
+import sonido.Sonido;
 
 public class Tablero extends JPanel implements Runnable {
     public final int TAMANIO_BLOQUE_ORIGINAL = 14;
@@ -25,15 +27,17 @@ public class Tablero extends JPanel implements Runnable {
 
     //FPS
     public static final int FPS = 60;
-//
+
     Control control = new Control();
     Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
-  //
     Sonido música=new Sonido();
     Sonido se=new Sonido();
-    Jugador jugador = new Jugador(this, control);
+    public Jugador jugador = new Jugador(this, control);
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
+    public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
+    public SuperObjeto[] frutas = new SuperObjeto[10];
+
 
     public Tablero() {
         this.setPreferredSize(new Dimension(ALTO, ANCHO));
@@ -41,7 +45,10 @@ public class Tablero extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(control);
         this.setFocusable(true);
+    }
 
+    public void configurarJuego() {
+        colocador.colocarObjeto();
     }
 
     public void iniciarHiloDeJuego() {
@@ -91,12 +98,18 @@ public class Tablero extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-
+        //Bloques
         adminBlock.dibujar(g2);
+        //Frutas
+        for (int i = 0; i < frutas.length; i++) {
+            if (frutas[i] != null) {
+                frutas[i].dibujar(g2, this);
+            }
+        }
+        //Jugador
         jugador.dibujar(g2);
         g2.dispose();
     }
-
     public void reproducirMúsica(int i){
         música.colocarArchivo(i);
         música.reproducir();

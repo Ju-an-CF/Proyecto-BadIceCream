@@ -59,4 +59,72 @@ public class VerificadorDeColisión {
                 break;
         }
     }
+
+    public int verificarObjeto(Entidad entidad, boolean esJugador) {
+        int index = 999;
+        for (int i = 0; i < tablero.frutas.length; i++) {
+            if (tablero.frutas[i] != null) {
+                entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+                entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                tablero.frutas[i].áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+                tablero.frutas[i].áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                switch (entidad.dirección) {
+                    case "arriba":
+                        entidad.áreaSólida.y -= entidad.velocidad;
+                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                            System.out.println("arriba colisión");
+                            if(tablero.frutas[i].colisión){
+                                entidad.colisiónActiva = true;
+                            }
+                            if(esJugador){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "abajo":
+                        entidad.áreaSólida.y += entidad.velocidad;
+                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                            System.out.println("abajo colisión");
+                            if(tablero.frutas[i].colisión){
+                                entidad.colisiónActiva = true;
+                            }
+                            if(esJugador){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "izquierda":
+                        entidad.áreaSólida.x -= entidad.velocidad;
+                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                            System.out.println("izquierda colisión");
+                            if(tablero.frutas[i].colisión){
+                                entidad.colisiónActiva = true;
+                            }
+                            if(esJugador){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "derecha":
+                        entidad.áreaSólida.x += entidad.velocidad;
+                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                            System.out.println("derecha colisión");
+                            if(tablero.frutas[i].colisión){
+                                entidad.colisiónActiva = true;
+                            }
+                            if(esJugador){
+                                index = i;
+                            }
+                        }
+                        break;
+                }
+                entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+                entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
+                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
+            }
+
+        }
+        return index;
+    }
 }

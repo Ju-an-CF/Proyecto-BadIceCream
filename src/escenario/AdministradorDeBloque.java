@@ -109,7 +109,7 @@ public class AdministradorDeBloque {
         }
     }
 
-    private boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
+    public boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
         return mundoX + tablero.TAMANIO_DE_BLOQUE*11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
                 mundoX - tablero.TAMANIO_DE_BLOQUE*12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
                 mundoY + (tablero.TAMANIO_DE_BLOQUE*2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&

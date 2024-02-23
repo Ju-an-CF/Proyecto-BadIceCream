@@ -20,6 +20,8 @@ public class Jugador extends Entidad {
         áreaSólida = new Rectangle();
         áreaSólida.x = 4;
         áreaSólida.y = 14;
+        áreaSólidaPorDefectoX = áreaSólida.x;
+        áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
         ventanaX = tablero.TAMANIO_DE_BLOQUE*7; //
@@ -72,9 +74,11 @@ public class Jugador extends Entidad {
             } else if (control.derechaPresionado) {
                 dirección = "derecha";
             }
-            //verifica Colisión
+            //verifica Colisión de bloque
             colisiónActiva = false;
             tablero.checkColisión.verificarBloque(this);
+            //verificar colisión de objetos
+            int index = tablero.checkColisión.verificarObjeto(this, true);
             //if colision=false, jugador se mueve
             if (!colisiónActiva) {
                 switch (dirección) {
@@ -170,7 +174,7 @@ public class Jugador extends Entidad {
         }
         g2.drawImage(imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
-        g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
+        //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }
 
 }

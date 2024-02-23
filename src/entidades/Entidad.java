@@ -13,6 +13,7 @@ public class Entidad {
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
     public Rectangle áreaSólida;
+    public int áreaSólidaPorDefectoX, áreaSólidaPorDefectoY;
     public boolean colisiónActiva = false;
 
 }
