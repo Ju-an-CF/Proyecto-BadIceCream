@@ -7,7 +7,7 @@ public class Mora extends SuperObjeto {
     public Mora() {
         nombre = "Mora";
         try{
-            imagen = ImageIO.read(getClass().getResourceAsStream("/gráficos/frutas/mora.png"));
+            imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/frutas/mora.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
