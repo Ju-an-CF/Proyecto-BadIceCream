@@ -36,7 +36,7 @@ public class Tablero extends JPanel implements Runnable {
     public Jugador jugador = new Jugador(this, control);
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    public SuperObjeto[] frutas = new SuperObjeto[10];
+    public SuperObjeto[] frutas = new SuperObjeto[20];
 
 
     public Tablero() {

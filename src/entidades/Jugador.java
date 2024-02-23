@@ -13,6 +13,7 @@ public class Jugador extends Entidad {
     Control control;
     public final int ventanaX;
     public final int ventanaY;
+    public int númeroDeFrutas;
 
     public Jugador(Tablero tablero, Control control) {
         this.tablero = tablero;
@@ -24,8 +25,9 @@ public class Jugador extends Entidad {
         áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
-        ventanaX = tablero.TAMANIO_DE_BLOQUE*7; //
-        ventanaY = tablero.TAMANIO_DE_BLOQUE*5; //
+        ventanaX = tablero.TAMANIO_DE_BLOQUE * 7; //
+        ventanaY = tablero.TAMANIO_DE_BLOQUE * 5; //
+        númeroDeFrutas = 0;
 
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
@@ -79,6 +81,7 @@ public class Jugador extends Entidad {
             tablero.checkColisión.verificarBloque(this);
             //verificar colisión de objetos
             int index = tablero.checkColisión.verificarObjeto(this, true);
+            recogerFrutas(index);
             //if colision=false, jugador se mueve
             if (!colisiónActiva) {
                 switch (dirección) {
@@ -109,6 +112,14 @@ public class Jugador extends Entidad {
                 }
                 contadorMovimiento = 0;
             }
+        }
+    }
+
+    public void recogerFrutas(int index) {
+        if (index != 999) {
+            tablero.frutas[index] = null;
+            númeroDeFrutas++;
+            System.out.println("Frutas recolectadas: " + númeroDeFrutas);
         }
     }
 
