@@ -59,14 +59,24 @@ public class Jugador extends Entidad {
             derecha2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha2.png"));
             derecha3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha3.png"));
             derecha4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha4.png"));
+            jugadorRomper1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper1.png"));
+            jugadorRomper2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper2.png"));
+            jugadorRomper3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper3.png"));
+            jugadorRomper4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper2.png"));
+            jugadorRomper5 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper1.png"));
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     public void actualizar() {
-        if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado) {
+        if (rompiendo == true) {
+            rompiendo ();
+        }
+        if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado || control.espacioPresionado) {
             if (control.arribaPresionado) {
                 dirección = "arriba";
             } else if (control.abajoPresionado) {
@@ -76,14 +86,18 @@ public class Jugador extends Entidad {
             } else if (control.derechaPresionado) {
                 dirección = "derecha";
             }
+
             //verifica Colisión de bloque
             colisiónActiva = false;
             tablero.checkColisión.verificarBloque(this);
             //verificar colisión de objetos
             int index = tablero.checkColisión.verificarObjeto(this, true);
             recogerFrutas(index);
+
+            activarRompiendo(index);
+
             //if colision=false, jugador se mueve
-            if (!colisiónActiva) {
+            if (colisiónActiva == false) {
                 switch (dirección) {
                     case ("arriba"):
                         mundoY -= velocidad;
@@ -98,6 +112,8 @@ public class Jugador extends Entidad {
                         mundoX += velocidad;
                         break;
                 }
+
+                control.espacioPresionado = false;
             }
             contadorMovimiento++;
             if (contadorMovimiento > 10) {
@@ -115,6 +131,27 @@ public class Jugador extends Entidad {
         }
     }
 
+    public void activarRompiendo (int i) {
+        if (control.espacioPresionado == true) {
+            rompiendo = true;
+        }
+    }
+    private void rompiendo() {
+        contadorMovimiento++;
+        if(contadorMovimiento <= 1) {
+            numeroDeMovimiento = 2;
+        }
+        if(contadorMovimiento > 5 && contadorMovimiento <= 25) {
+            numeroDeMovimiento = 2;
+        }
+        if(contadorMovimiento > 25) {
+            numeroDeMovimiento = 1;
+            contadorMovimiento = 0;
+            rompiendo = false;
+        }
+    }
+
+
     public void recogerFrutas(int index) {
         if (index != 999) {
             tablero.frutas[index] = null;
@@ -127,59 +164,138 @@ public class Jugador extends Entidad {
         BufferedImage imagen = null;
         switch (dirección) {
             case "arriba":
-                if (numeroDeMovimiento == 1) {
-                    imagen = arriba1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = arriba1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = arriba2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = arriba3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = arriba4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = arriba2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = arriba3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = arriba4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
                 }
                 break;
+
             case "abajo":
-                if (numeroDeMovimiento == 1) {
-                    imagen = abajo1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = abajo1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = abajo2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = abajo3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = abajo4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = abajo2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = abajo3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = abajo4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
                 }
                 break;
+
             case "izquierda":
-                if (numeroDeMovimiento == 1) {
-                    imagen = izquierda1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = izquierda1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = izquierda2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = izquierda3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = izquierda4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = izquierda2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = izquierda3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = izquierda4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
                 }
                 break;
+
             case "derecha":
-                if (numeroDeMovimiento == 1) {
-                    imagen = derecha1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = derecha1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = derecha2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = derecha3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = derecha4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = derecha2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = derecha3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = derecha4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
                 }
                 break;
         }

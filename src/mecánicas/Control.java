@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, espacioPresionado, sePuedeRomper;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -25,6 +25,9 @@ public class Control implements KeyListener {
         }
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = true;
+        }
+        if (tecla == KeyEvent.VK_SPACE) {
+            espacioPresionado = true;
         }
         if (tecla == KeyEvent.VK_ESCAPE){
             sePuedeRomper = true;
