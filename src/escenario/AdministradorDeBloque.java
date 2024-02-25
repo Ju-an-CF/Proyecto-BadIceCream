@@ -53,7 +53,6 @@ public class AdministradorDeBloque {
             e.printStackTrace();
         }
     }
-
     public void cargarMapa(String direcciónArchivo) {
         try {
             InputStream mapaDeEntrada = getClass().getResourceAsStream(direcciónArchivo);
@@ -119,4 +118,5 @@ public class AdministradorDeBloque {
     public void romperBloque() {
 
     }
+
 }

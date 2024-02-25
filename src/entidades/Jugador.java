@@ -15,8 +15,12 @@ public class Jugador extends Entidad {
     public final int ventanaY;
     public int númeroDeFrutas;
 
+    //estadisticas personaje
+    public int máximoVidas;
+    public int vida;
+
     public Jugador(Tablero tablero, Control control) {
-        this.tablero = tablero;
+        this.tablero=tablero;
         this.control = control;
         áreaSólida = new Rectangle();
         áreaSólida.x = 4;
@@ -25,7 +29,7 @@ public class Jugador extends Entidad {
         áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
-        ventanaX = tablero.TAMANIO_DE_BLOQUE * 7; //
+        ventanaX = tablero.TAMANIO_DE_BLOQUE * 6; //
         ventanaY = tablero.TAMANIO_DE_BLOQUE * 5; //
         númeroDeFrutas = 0;
 
@@ -38,6 +42,9 @@ public class Jugador extends Entidad {
         mundoY = 294;
         velocidad = 6;
         dirección = "abajo";
+        //estadisticas
+        máximoVidas=3;
+        vida=máximoVidas;
 
     }
 
@@ -119,7 +126,14 @@ public class Jugador extends Entidad {
         if (index != 999) {
             tablero.frutas[index] = null;
             númeroDeFrutas++;
+            tablero.reproducirSE(1);
+          //  tablero.
             System.out.println("Frutas recolectadas: " + númeroDeFrutas);
+        }
+        if(númeroDeFrutas==11){
+            tablero.iu.juegoTerminado=true;
+            tablero.pararMúsica();
+            tablero.reproducirSE(6);
         }
     }
 
@@ -183,7 +197,7 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        g2.drawImage(imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+        g2.drawImage(imagen, ventanaX, ventanaY, 50, 64, null);
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }
