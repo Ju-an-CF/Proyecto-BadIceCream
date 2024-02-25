@@ -62,10 +62,6 @@ public class Jugador extends Entidad {
             jugadorRomper1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper1.png"));
             jugadorRomper2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper2.png"));
             jugadorRomper3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper3.png"));
-            jugadorRomper4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper2.png"));
-            jugadorRomper5 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper1.png"));
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,13 +134,19 @@ public class Jugador extends Entidad {
     }
     private void rompiendo() {
         contadorMovimiento++;
-        if(contadorMovimiento <= 1) {
+        if(contadorMovimiento <= 5) {
+            numeroDeMovimiento = 1;
+        }
+        if(contadorMovimiento > 5 && contadorMovimiento <= 15) {
             numeroDeMovimiento = 2;
         }
-        if(contadorMovimiento > 5 && contadorMovimiento <= 25) {
+        if(contadorMovimiento > 15 && contadorMovimiento <= 25) {
+            numeroDeMovimiento = 3;
+        }
+        if(contadorMovimiento > 25 && contadorMovimiento <= 30) {
             numeroDeMovimiento = 2;
         }
-        if(contadorMovimiento > 25) {
+        if(contadorMovimiento > 30) {
             numeroDeMovimiento = 1;
             contadorMovimiento = 0;
             rompiendo = false;
@@ -188,12 +190,6 @@ public class Jugador extends Entidad {
                     if (numeroDeMovimiento == 3) {
                         imagen = jugadorRomper3;
                     }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
                 }
                 break;
 
@@ -221,12 +217,6 @@ public class Jugador extends Entidad {
                     }
                     if (numeroDeMovimiento == 3) {
                         imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
                     }
                 }
                 break;
@@ -256,12 +246,6 @@ public class Jugador extends Entidad {
                     if (numeroDeMovimiento == 3) {
                         imagen = jugadorRomper3;
                     }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
                 }
                 break;
 
@@ -289,12 +273,6 @@ public class Jugador extends Entidad {
                     }
                     if (numeroDeMovimiento == 3) {
                         imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
                     }
                 }
                 break;
