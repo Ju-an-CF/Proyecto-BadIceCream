@@ -62,6 +62,9 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = true;
         }
+        if (tecla == KeyEvent.VK_SPACE) {
+            espacioPresionado = true;
+        }
         if (tecla == KeyEvent.VK_ESCAPE){
             sePuedeRomper = true;
         }

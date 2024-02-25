@@ -76,6 +76,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -191,6 +193,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../.." />
+    </ignored-roots>
     <MESSAGE value="Versión 2" />
     <MESSAGE value="Añadiendo Bloques estáticos, corrigiendo el VerificadorDeColisión, y solucionando hitbox del jugador" />
     <MESSAGE value="En jugador se añadió un rectangulo que representa la hitbox del jugador para que se pueda apreciar mejor" />
