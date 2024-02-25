@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="solucionando problema de colisión de frutas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper3.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +82,7 @@
       <workItem from="1708648814578" duration="4029000" />
       <workItem from="1708665289956" duration="1891000" />
       <workItem from="1708726624051" duration="291000" />
-      <workItem from="1708796621063" duration="19720000" />
+      <workItem from="1708796621063" duration="23833000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
