@@ -3,8 +3,9 @@ package escenario;
 import javax.swing.*;
 import java.awt.*;
 
-import entidades.Jugador;
+import entidades.*;
 import frutas.SuperObjeto;
+import interfazDeUsuario.IU;
 import mecánicas.ColocadorDeObjetos;
 import mecánicas.Control;
 import mecánicas.VerificadorDeColisión;
@@ -16,27 +17,37 @@ public class Tablero extends JPanel implements Runnable {
     public final int TAMANIO_DE_BLOQUE = TAMANIO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
     public final int COLUMNAS_MAX = 16;
     public final int FILAS_MAX = 12;
+
     public final int ALTO = TAMANIO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
     public final int ANCHO = TAMANIO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
 
     //Configuración del mundo
     public final int maxColDeMundo = 31;
     public final int maxFilasDeMundo = 28;
-    public final int anchoDeMundo = TAMANIO_DE_BLOQUE * maxColDeMundo;
-    public final int altoDeMundo = TAMANIO_DE_BLOQUE * maxFilasDeMundo;
+
 
     //FPS
     public static final int FPS = 60;
 
-    Control control = new Control();
-    Thread hiloDeJuego;
+    Control control = new Control(this);
+    public Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
+    public IU iu=new IU(this);
     Sonido música=new Sonido();
     Sonido se=new Sonido();
-    public Jugador jugador = new Jugador(this, control);
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
+   //jugador y entidades
+    public Jugador jugador = new Jugador(this, control);
     public SuperObjeto[] frutas = new SuperObjeto[20];
+    public Entidad[] enemigos=new Entidad[10];
+
+
+    // estado de juego
+    public int estadoActualDeJuego;
+    public final int ESTADO_DE_JUEGO=1;
+    public final int ESTADO_DE_PAUSA=2;
+    public final int ESTADO_DE_TITULO=0;
 
 
     public Tablero() {
@@ -49,12 +60,13 @@ public class Tablero extends JPanel implements Runnable {
 
     public void configurarJuego() {
         colocador.colocarObjeto();
+        reproducirMúsica(5);
+        estadoActualDeJuego=ESTADO_DE_TITULO;
     }
 
     public void iniciarHiloDeJuego() {
         hiloDeJuego = new Thread(this);
         hiloDeJuego.start();
-        reproducirMúsica(2);
     }
 
     @Override
@@ -91,24 +103,42 @@ public class Tablero extends JPanel implements Runnable {
     }
 
     public void actualizar() {
-        jugador.actualizar();
+        if(estadoActualDeJuego==ESTADO_DE_JUEGO){
+            jugador.actualizar();
+        }
+        if(estadoActualDeJuego==ESTADO_DE_PAUSA){
+
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        //Bloques
-        adminBlock.dibujar(g2);
-        //Frutas
-        for (int i = 0; i < frutas.length; i++) {
-            if (frutas[i] != null) {
-                frutas[i].dibujar(g2, this);
+        //Titulo estado
+        if(estadoActualDeJuego==ESTADO_DE_TITULO){
+            iu.dibujar(g2);
+
+        } else{
+            //Bloques
+            adminBlock.dibujar(g2);
+            //Frutas
+            for (int i = 0; i < frutas.length; i++) {
+                if (frutas[i] != null) {
+                    frutas[i].dibujar(g2, this);
+                }
             }
+            //Jugador
+            jugador.dibujar(g2);
+            //IU
+            iu.dibujar(g2);
+            g2.dispose();
+
         }
-        //Jugador
-        jugador.dibujar(g2);
-        g2.dispose();
+        //otros
+
+
+
     }
     public void reproducirMúsica(int i){
         música.colocarArchivo(i);

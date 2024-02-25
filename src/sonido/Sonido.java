@@ -39,8 +39,4 @@ public class Sonido {
         clip.stop();
     }
 
-    public void bucle(){
-
-    }
-
 }

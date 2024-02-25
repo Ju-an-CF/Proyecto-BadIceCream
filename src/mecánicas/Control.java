@@ -1,19 +1,55 @@
 package mecánicas;
 
+import escenario.Tablero;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, espacioPresionado, sePuedeRomper;
+    Tablero tablero;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
+
+
+    public Control(Tablero tablero) {
+       this.tablero=tablero;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
+        //Menu estado
+        if(tablero.estadoActualDeJuego == tablero.ESTADO_DE_TITULO){
+            if(tecla == KeyEvent.VK_W){
+                tablero.iu.comandoNum--;
+                if(tablero.iu.comandoNum<0){
+                    tablero.iu.comandoNum=2;
+                }
+            }
+            if(tecla == KeyEvent.VK_S){
+                tablero.iu.comandoNum++;
+                if(tablero.iu.comandoNum>2){
+                    tablero.iu.comandoNum=0;
+                }
+            }
+        }
+        if(tecla==KeyEvent.VK_ENTER){
+            if(tablero.iu.comandoNum==0){
+                tablero.estadoActualDeJuego=tablero.ESTADO_DE_JUEGO;
+                tablero.pararMúsica();
+                tablero.reproducirSE(2);
+            }
+            if(tablero.iu.comandoNum==1){
+                //add later
+            }
+            if(tablero.iu.comandoNum==2){
+                System.exit(0);
+            }
+        }
+        //jugador estado
         if (tecla == KeyEvent.VK_W) {
             arribaPresionado = true;
         }
@@ -31,6 +67,13 @@ public class Control implements KeyListener {
         }
         if (tecla == KeyEvent.VK_ESCAPE){
             sePuedeRomper = true;
+        }
+        if (tecla == KeyEvent.VK_P){
+            if(tablero.estadoActualDeJuego== tablero.ESTADO_DE_JUEGO){
+                tablero.estadoActualDeJuego=tablero.ESTADO_DE_PAUSA;
+            } else if (tablero.estadoActualDeJuego==tablero.ESTADO_DE_PAUSA) {
+                tablero.estadoActualDeJuego=tablero.ESTADO_DE_JUEGO;
+            }
         }
 
     }
@@ -55,5 +98,10 @@ public class Control implements KeyListener {
             derechaPresionado = false;
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

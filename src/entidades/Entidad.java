@@ -2,10 +2,13 @@ package entidades;
 
 import escenario.Tablero;
 
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 
 public class Entidad {
+    public Tablero tablero;
     public int mundoX, mundoY;
     public int velocidad;
 
@@ -15,7 +18,7 @@ public class Entidad {
 
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
-    public Rectangle áreaSólida;
+    public Rectangle áreaSólida=new Rectangle(0,0,42,42);
     public int áreaSólidaPorDefectoX, áreaSólidaPorDefectoY;
     public boolean colisiónActiva = false;
     public boolean rompiendo = false;
