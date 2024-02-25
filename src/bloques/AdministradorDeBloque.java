@@ -1,4 +1,6 @@
-package escenario;
+package bloques;
+
+import escenario.Tablero;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -3,6 +3,7 @@ package escenario;
 import javax.swing.*;
 import java.awt.*;
 
+import bloques.AdministradorDeBloque;
 import entidades.*;
 import frutas.SuperObjeto;
 import interfazDeUsuario.IU;
@@ -32,22 +33,22 @@ public class Tablero extends JPanel implements Runnable {
     Control control = new Control(this);
     public Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
-    public IU iu=new IU(this);
-    Sonido música=new Sonido();
-    Sonido se=new Sonido();
+    public IU iu = new IU(this);
+    Sonido música = new Sonido();
+    Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-   //jugador y entidades
+    //jugador y entidades
     public Jugador jugador = new Jugador(this, control);
     public SuperObjeto[] frutas = new SuperObjeto[20];
-    public Entidad[] enemigos=new Entidad[10];
+    public Entidad[] enemigos = new Entidad[10];
 
 
     // estado de juego
     public int estadoActualDeJuego;
-    public final int ESTADO_DE_JUEGO=1;
-    public final int ESTADO_DE_PAUSA=2;
-    public final int ESTADO_DE_TITULO=0;
+    public final int ESTADO_DE_JUEGO = 1;
+    public final int ESTADO_DE_PAUSA = 2;
+    public final int ESTADO_DE_TITULO = 0;
 
 
     public Tablero() {
@@ -61,7 +62,7 @@ public class Tablero extends JPanel implements Runnable {
     public void configurarJuego() {
         colocador.colocarObjeto();
         reproducirMúsica(5);
-        estadoActualDeJuego=ESTADO_DE_TITULO;
+        estadoActualDeJuego = ESTADO_DE_TITULO;
     }
 
     public void iniciarHiloDeJuego() {
@@ -103,10 +104,10 @@ public class Tablero extends JPanel implements Runnable {
     }
 
     public void actualizar() {
-        if(estadoActualDeJuego==ESTADO_DE_JUEGO){
+        if (estadoActualDeJuego == ESTADO_DE_JUEGO) {
             jugador.actualizar();
         }
-        if(estadoActualDeJuego==ESTADO_DE_PAUSA){
+        if (estadoActualDeJuego == ESTADO_DE_PAUSA) {
 
         }
     }
@@ -116,10 +117,10 @@ public class Tablero extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         //Titulo estado
-        if(estadoActualDeJuego==ESTADO_DE_TITULO){
+        if (estadoActualDeJuego == ESTADO_DE_TITULO) {
             iu.dibujar(g2);
 
-        } else{
+        } else {
             //Bloques
             adminBlock.dibujar(g2);
             //Frutas
@@ -135,21 +136,19 @@ public class Tablero extends JPanel implements Runnable {
             g2.dispose();
 
         }
-        //otros
-
-
-
     }
-    public void reproducirMúsica(int i){
+
+    public void reproducirMúsica(int i) {
         música.colocarArchivo(i);
         música.reproducir();
         música.entrarEnBucle();
     }
 
-    public void pararMúsica(){
+    public void pararMúsica() {
         música.parar();
     }
-    public void reproducirSE(int i){
+
+    public void reproducirSE(int i) {
         se.colocarArchivo(i);
         se.reproducir();
     }

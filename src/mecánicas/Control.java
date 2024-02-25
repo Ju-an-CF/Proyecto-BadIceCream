@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
     Tablero tablero;
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper, espacioPresionado;
 
 
     public Control(Tablero tablero) {

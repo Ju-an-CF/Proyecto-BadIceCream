@@ -1,4 +1,4 @@
-package escenario;
+package bloques;
 
 
 import java.awt.image.BufferedImage;

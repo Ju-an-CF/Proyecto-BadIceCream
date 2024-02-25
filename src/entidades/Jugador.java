@@ -20,7 +20,7 @@ public class Jugador extends Entidad {
     public int vida;
 
     public Jugador(Tablero tablero, Control control) {
-        this.tablero=tablero;
+        this.tablero = tablero;
         this.control = control;
         áreaSólida = new Rectangle();
         áreaSólida.x = 4;
@@ -43,8 +43,8 @@ public class Jugador extends Entidad {
         velocidad = 6;
         dirección = "abajo";
         //estadisticas
-        máximoVidas=3;
-        vida=máximoVidas;
+        máximoVidas = 3;
+        vida = máximoVidas;
 
     }
 
@@ -80,7 +80,7 @@ public class Jugador extends Entidad {
 
     public void actualizar() {
         if (rompiendo == true) {
-            rompiendo ();
+            rompiendo();
         }
         if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado || control.espacioPresionado) {
             if (control.arribaPresionado) {
@@ -139,32 +139,33 @@ public class Jugador extends Entidad {
         }
     }
 
-    public void activarRompiendo (int i) {
+    public void activarRompiendo(int i) {
         if (control.espacioPresionado == true) {
             rompiendo = true;
         }
     }
+
     private void rompiendo() {
         contadorMovimiento++;
-        if(contadorMovimiento <= 1) {
+        if (contadorMovimiento <= 1) {
             numeroDeMovimiento = 1;
         }
-        if(contadorMovimiento > 1 && contadorMovimiento <= 2) {
+        if (contadorMovimiento > 1 && contadorMovimiento <= 2) {
             numeroDeMovimiento = 2;
         }
-        if(contadorMovimiento > 2 && contadorMovimiento <= 4) {
+        if (contadorMovimiento > 2 && contadorMovimiento <= 4) {
             numeroDeMovimiento = 3;
         }
-        if(contadorMovimiento > 4 && contadorMovimiento <= 5) {
+        if (contadorMovimiento > 4 && contadorMovimiento <= 5) {
             numeroDeMovimiento = 4;
         }
-        if(contadorMovimiento > 5 && contadorMovimiento <= 7) {
+        if (contadorMovimiento > 5 && contadorMovimiento <= 7) {
             numeroDeMovimiento = 5;
         }
-        if(contadorMovimiento > 7 && contadorMovimiento <= 8) {
+        if (contadorMovimiento > 7 && contadorMovimiento <= 8) {
             numeroDeMovimiento = 6;
         }
-        if(contadorMovimiento > 10) {
+        if (contadorMovimiento > 10) {
             numeroDeMovimiento = 1;
             contadorMovimiento = 0;
             rompiendo = false;
@@ -177,11 +178,11 @@ public class Jugador extends Entidad {
             tablero.frutas[index] = null;
             númeroDeFrutas++;
             tablero.reproducirSE(1);
-          //  tablero.
+            //  tablero.
             System.out.println("Frutas recolectadas: " + númeroDeFrutas);
         }
-        if(númeroDeFrutas==11){
-            tablero.iu.juegoTerminado=true;
+        if (númeroDeFrutas == 11) {
+            tablero.iu.juegoTerminado = true;
             tablero.pararMúsica();
             tablero.reproducirSE(6);
         }
@@ -338,7 +339,7 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        g2.drawImage(imagen, ventanaX, ventanaY, 50, 64, null);
+        g2.drawImage(imagen, (ventanaX - 8), (ventanaY - 14), 50, 64, null);
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }

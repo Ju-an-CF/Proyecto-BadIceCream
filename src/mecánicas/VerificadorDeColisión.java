@@ -1,7 +1,7 @@
 package mecánicas;
 
 import entidades.Entidad;
-import escenario.BloqueEstático;
+import bloques.BloqueEstático;
 import escenario.Tablero;
 
 public class VerificadorDeColisión {
@@ -72,7 +72,6 @@ public class VerificadorDeColisión {
                     case "arriba":
                         entidad.áreaSólida.y -= entidad.velocidad;
                         if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            System.out.println("arriba colisión");
                             if(tablero.frutas[i].colisión){
                                 entidad.colisiónActiva = true;
                             }
@@ -84,7 +83,6 @@ public class VerificadorDeColisión {
                     case "abajo":
                         entidad.áreaSólida.y += entidad.velocidad;
                         if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            System.out.println("abajo colisión");
                             if(tablero.frutas[i].colisión){
                                 entidad.colisiónActiva = true;
                             }
@@ -96,7 +94,6 @@ public class VerificadorDeColisión {
                     case "izquierda":
                         entidad.áreaSólida.x -= entidad.velocidad;
                         if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            System.out.println("izquierda colisión");
                             if(tablero.frutas[i].colisión){
                                 entidad.colisiónActiva = true;
                             }
@@ -108,7 +105,6 @@ public class VerificadorDeColisión {
                     case "derecha":
                         entidad.áreaSólida.x += entidad.velocidad;
                         if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            System.out.println("derecha colisión");
                             if(tablero.frutas[i].colisión){
                                 entidad.colisiónActiva = true;
                             }
