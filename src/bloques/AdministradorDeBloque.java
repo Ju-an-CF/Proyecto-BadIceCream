@@ -1,6 +1,7 @@
 package bloques;
 
 import escenario.Tablero;
+import mecánicas.HerramientaUtilidad;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,38 +24,32 @@ public class AdministradorDeBloque {
     }
 
     public void obtenerImagenDeBloque() {
-        try {
-            bloques[0] = new Bloque();
-            bloques[0].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/nieve.png"));
+        configurar(0, "nieve", false);
+        configurar(1, "esquina1", true);
+        configurar(2, "esquina2", true);
+        configurar(3, "esquina3", true);
+        configurar(4, "esquina4", true);
+        configurar(5, "muro", true);
+        configurar(6, "bolaNieve", false);
+        configurar(7, "florNieve", false);
+        configurar(8, "hielo", true);
+    }
 
-            bloques[1] = new BloqueEstático();
-            bloques[1].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina1.png"));
+    public void configurar(int índice, String nombreImagen, boolean colisión){
+        HerramientaUtilidad ut = new HerramientaUtilidad();
 
-            bloques[2] = new BloqueEstático();
-            bloques[2].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina2.png"));
-
-            bloques[3] = new BloqueEstático();
-            bloques[3].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina3.png"));
-
-            bloques[4] = new BloqueEstático();
-            bloques[4].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina4.png"));
-
-            bloques[5] = new BloqueEstático();
-            bloques[5].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/muro.png"));
-
-            bloques[6] = new Bloque();
-            bloques[6].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/bolaNieve.png"));
-
-            bloques[7] = new Bloque();
-            bloques[7].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/florNieve.png"));
-
-            bloques[8] = new BloqueEstático();
-            bloques[8].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/hielo.png"));
-
-        } catch (IOException e) {
+        try{
+            if(colisión){
+                bloques[índice] = new BloqueEstático();
+            }else {
+                bloques[índice] = new Bloque();
+            }
+            bloques[índice].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/" + nombreImagen + ".png"));
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
+
     public void cargarMapa(String direcciónArchivo) {
         try {
             InputStream mapaDeEntrada = getClass().getResourceAsStream(direcciónArchivo);
