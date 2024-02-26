@@ -49,39 +49,40 @@ public class Jugador extends Entidad {
     }
 
     public void obtenerImagenDeJugador() {
-        try {
-            arriba1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba1.png"));
-            arriba2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba2.png"));
-            arriba3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba3.png"));
-            arriba4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba4.png"));
-            abajo1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo1.png"));
-            abajo2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo2.png"));
-            abajo3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo3.png"));
-            abajo4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo4.png"));
-            izquierda1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda1.png"));
-            izquierda2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda2.png"));
-            izquierda3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda3.png"));
-            izquierda4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda4.png"));
-            derecha1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha1.png"));
-            derecha2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha2.png"));
-            derecha3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha3.png"));
-            derecha4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha4.png"));
-            jugadorRomper1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper1.png"));
-            jugadorRomper2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper2.png"));
-            jugadorRomper3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper3.png"));
-            jugadorRomper4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper4.png"));
-            jugadorRomper5 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper5.png"));
-            jugadorRomper6 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_romper6.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        arriba1 = ut.configurar("jugador_arriba1", tablero.TAMANIO_DE_BLOQUE);
+        arriba2 = ut.configurar("jugador_arriba2", tablero.TAMANIO_DE_BLOQUE);
+        arriba3 = ut.configurar("jugador_arriba3", tablero.TAMANIO_DE_BLOQUE);
+        arriba4 = ut.configurar("jugador_arriba4", tablero.TAMANIO_DE_BLOQUE);
+
+        abajo1 = ut.configurar("jugador_abajo1", tablero.TAMANIO_DE_BLOQUE);
+        abajo2 = ut.configurar("jugador_abajo2", tablero.TAMANIO_DE_BLOQUE);
+        abajo3 = ut.configurar("jugador_abajo3", tablero.TAMANIO_DE_BLOQUE);
+        abajo4 = ut.configurar("jugador_abajo4", tablero.TAMANIO_DE_BLOQUE);
+
+        izquierda1 = ut.configurar("jugador_izquierda1", tablero.TAMANIO_DE_BLOQUE);
+        izquierda2 = ut.configurar("jugador_izquierda2", tablero.TAMANIO_DE_BLOQUE);
+        izquierda3 = ut.configurar("jugador_izquierda3", tablero.TAMANIO_DE_BLOQUE);
+        izquierda4 = ut.configurar("jugador_izquierda4", tablero.TAMANIO_DE_BLOQUE);
+
+        derecha1 = ut.configurar("jugador_derecha1", tablero.TAMANIO_DE_BLOQUE);
+        derecha2 = ut.configurar("jugador_derecha2", tablero.TAMANIO_DE_BLOQUE);
+        derecha3 = ut.configurar("jugador_derecha3", tablero.TAMANIO_DE_BLOQUE);
+        derecha4 = ut.configurar("jugador_derecha4", tablero.TAMANIO_DE_BLOQUE);
+
+        jugadorRomper1 = ut.configurar("jugador_romper1", tablero.TAMANIO_DE_BLOQUE);
+        jugadorRomper2 = ut.configurar("jugador_romper2", tablero.TAMANIO_DE_BLOQUE);
+        jugadorRomper3 = ut.configurar("jugador_romper3", tablero.TAMANIO_DE_BLOQUE);
+        jugadorRomper4 = ut.configurar("jugador_romper4", tablero.TAMANIO_DE_BLOQUE);
+        jugadorRomper5 = ut.configurar("jugador_romper5", tablero.TAMANIO_DE_BLOQUE);
+        jugadorRomper6 = ut.configurar("jugador_romper6", tablero.TAMANIO_DE_BLOQUE);
     }
 
-
     public void actualizar() {
-        if (rompiendo == true) {
+
+        if (rompiendo) {
             rompiendo();
         }
+
         if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado || control.espacioPresionado) {
             if (control.arribaPresionado) {
                 dirección = "arriba";
@@ -103,25 +104,14 @@ public class Jugador extends Entidad {
             activarRompiendo(index);
             control.espacioPresionado = false;
             //if colision=false, jugador se mueve
-            if (colisiónActiva == false) {
+            if (!colisiónActiva) {
                 switch (dirección) {
-                    case ("arriba"):
-                        mundoY -= velocidad;
-                        break;
-                    case ("abajo"):
-                        mundoY += velocidad;
-                        break;
-                    case ("izquierda"):
-                        mundoX -= velocidad;
-                        break;
-                    case ("derecha"):
-                        mundoX += velocidad;
-                        break;
+                    case "arriba": mundoY -= velocidad; break;
+                    case "abajo": mundoY += velocidad; break;
+                    case "izquierda": mundoX -= velocidad; break;
+                    case "derecha": mundoX += velocidad; break;
                 }
-
-
             }
-
 
             contadorMovimiento++;
             if (contadorMovimiento > 10) {
@@ -140,7 +130,7 @@ public class Jugador extends Entidad {
     }
 
     public void activarRompiendo(int i) {
-        if (control.espacioPresionado == true) {
+        if (control.espacioPresionado) {
             rompiendo = true;
         }
     }
@@ -192,7 +182,7 @@ public class Jugador extends Entidad {
         BufferedImage imagen = null;
         switch (dirección) {
             case "arriba":
-                if (rompiendo == false) {
+                if (!rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = arriba1;
                     }
@@ -206,7 +196,7 @@ public class Jugador extends Entidad {
                         imagen = arriba4;
                     }
                 }
-                if (rompiendo == true) {
+                if (rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = jugadorRomper1;
                     }
@@ -229,7 +219,7 @@ public class Jugador extends Entidad {
                 break;
 
             case "abajo":
-                if (rompiendo == false) {
+                if (!rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = abajo1;
                     }
@@ -243,7 +233,7 @@ public class Jugador extends Entidad {
                         imagen = abajo4;
                     }
                 }
-                if (rompiendo == true) {
+                if (rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = jugadorRomper1;
                     }
@@ -266,7 +256,7 @@ public class Jugador extends Entidad {
                 break;
 
             case "izquierda":
-                if (rompiendo == false) {
+                if (!rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = izquierda1;
                     }
@@ -280,7 +270,7 @@ public class Jugador extends Entidad {
                         imagen = izquierda4;
                     }
                 }
-                if (rompiendo == true) {
+                if (rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = jugadorRomper1;
                     }
@@ -303,7 +293,7 @@ public class Jugador extends Entidad {
                 break;
 
             case "derecha":
-                if (rompiendo == false) {
+                if (!rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = derecha1;
                     }
@@ -317,7 +307,7 @@ public class Jugador extends Entidad {
                         imagen = derecha4;
                     }
                 }
-                if (rompiendo == true) {
+                if (rompiendo) {
                     if (numeroDeMovimiento == 1) {
                         imagen = jugadorRomper1;
                     }

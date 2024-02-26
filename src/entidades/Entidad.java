@@ -1,6 +1,7 @@
 package entidades;
 
 import escenario.Tablero;
+import mecánicas.HerramientaUtilidad;
 
 
 import javax.imageio.ImageIO;
@@ -22,5 +23,8 @@ public class Entidad {
     public int áreaSólidaPorDefectoX, áreaSólidaPorDefectoY;
     public boolean colisiónActiva = false;
     public boolean rompiendo = false;
+
+    //Configuración de imagen
+    public HerramientaUtilidad ut = new HerramientaUtilidad();
 
 }
