@@ -1,7 +1,4 @@
-package bloques;
-
-import escenario.Tablero;
-import mecánicas.HerramientaUtilidad;
+package escenario;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,28 +21,40 @@ public class AdministradorDeBloque {
     }
 
     public void obtenerImagenDeBloque() {
-        configurar(0, "nieve", false);
-        configurar(1, "esquina1", true);
-        configurar(2, "esquina2", true);
-        configurar(3, "esquina3", true);
-        configurar(4, "esquina4", true);
-        configurar(5, "muro", true);
-        configurar(6, "bolaNieve", false);
-        configurar(7, "florNieve", false);
-        configurar(8, "hielo", true);
+            setUp(0,"nieve","bloque");
+            setUp(1,"esquina1","bloque");
+            setUp(2,"esquina2","bloqueEstático");
+            setUp(3,"esquina3","bloqueEstático");
+            setUp(4,"esquina4","bloqueEstático");
+            setUp(5,"muro","bloqueEstático");
+            setUp(6,"bolaNieve","bloque");
+            setUp(7,"florNieve","bloque");
+            setUp(8,"hielo","bloqueHielo");
     }
 
-    public void configurar(int índice, String nombreImagen, boolean colisión){
-        HerramientaUtilidad ut = new HerramientaUtilidad();
+    public void setUp(int index, String direccionImagen,String tipoBloque) {
+        UtilityTool uTool = new UtilityTool();
+        try {
+            Bloque bloque = null; // Variable genérica para el bloque
 
-        try{
-            if(colisión){
-                bloques[índice] = new BloqueEstático();
-            }else {
-                bloques[índice] = new Bloque();
+            // Determinar el tipo de bloque a instanciar
+            switch (tipoBloque) {
+                case "bloqueEstático":
+                    bloque = new BloqueEstático();
+                    break;
+                case "bloqueHielo":
+                    bloque=new BloqueDeHielo();
+                    break;
+                default:
+                    bloque = new Bloque();
+                    break;
             }
-            bloques[índice].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/" + nombreImagen + ".png"));
-        }catch (IOException e){
+
+            bloque.imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/" + direccionImagen + ".png"));
+            bloque.imagen = uTool.scaledImage(bloque.imagen, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE);
+
+            bloques[index] = bloque; // Asignar el bloque instanciado al array
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -94,7 +103,7 @@ public class AdministradorDeBloque {
             int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
 
             if(jugadorEstáEnPantalla(mundoX, mundoY)) {
-                g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+                g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, null);
             }
             columnasDeMundo++;
 
@@ -112,8 +121,6 @@ public class AdministradorDeBloque {
                 mundoY - (tablero.TAMANIO_DE_BLOQUE*2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
     }
 
-    public void romperBloque() {
 
-    }
 
 }

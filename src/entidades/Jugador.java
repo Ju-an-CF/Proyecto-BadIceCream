@@ -1,6 +1,7 @@
 package entidades;
 
 import escenario.Tablero;
+import escenario.UtilityTool;
 import mecánicas.Control;
 
 import javax.imageio.ImageIO;
@@ -9,18 +10,17 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Jugador extends Entidad {
-    Tablero tablero;
     Control control;
     public final int ventanaX;
     public final int ventanaY;
     public int númeroDeFrutas;
-
     //estadisticas personaje
     public int máximoVidas;
     public int vida;
-
+    public int tiempoDeInvencibilidad=0;
+    public boolean invencible=false;
     public Jugador(Tablero tablero, Control control) {
-        this.tablero = tablero;
+        super(tablero);
         this.control = control;
         áreaSólida = new Rectangle();
         áreaSólida.x = 4;
@@ -43,47 +43,32 @@ public class Jugador extends Entidad {
         velocidad = 6;
         dirección = "abajo";
         //estadisticas
-        máximoVidas = 3;
-        vida = máximoVidas;
+        máximoVidas=3;
+        vida=máximoVidas;
 
     }
-
     public void obtenerImagenDeJugador() {
-        arriba1 = ut.configurar("jugador_arriba1", tablero.TAMANIO_DE_BLOQUE);
-        arriba2 = ut.configurar("jugador_arriba2", tablero.TAMANIO_DE_BLOQUE);
-        arriba3 = ut.configurar("jugador_arriba3", tablero.TAMANIO_DE_BLOQUE);
-        arriba4 = ut.configurar("jugador_arriba4", tablero.TAMANIO_DE_BLOQUE);
 
-        abajo1 = ut.configurar("jugador_abajo1", tablero.TAMANIO_DE_BLOQUE);
-        abajo2 = ut.configurar("jugador_abajo2", tablero.TAMANIO_DE_BLOQUE);
-        abajo3 = ut.configurar("jugador_abajo3", tablero.TAMANIO_DE_BLOQUE);
-        abajo4 = ut.configurar("jugador_abajo4", tablero.TAMANIO_DE_BLOQUE);
-
-        izquierda1 = ut.configurar("jugador_izquierda1", tablero.TAMANIO_DE_BLOQUE);
-        izquierda2 = ut.configurar("jugador_izquierda2", tablero.TAMANIO_DE_BLOQUE);
-        izquierda3 = ut.configurar("jugador_izquierda3", tablero.TAMANIO_DE_BLOQUE);
-        izquierda4 = ut.configurar("jugador_izquierda4", tablero.TAMANIO_DE_BLOQUE);
-
-        derecha1 = ut.configurar("jugador_derecha1", tablero.TAMANIO_DE_BLOQUE);
-        derecha2 = ut.configurar("jugador_derecha2", tablero.TAMANIO_DE_BLOQUE);
-        derecha3 = ut.configurar("jugador_derecha3", tablero.TAMANIO_DE_BLOQUE);
-        derecha4 = ut.configurar("jugador_derecha4", tablero.TAMANIO_DE_BLOQUE);
-
-        jugadorRomper1 = ut.configurar("jugador_romper1", tablero.TAMANIO_DE_BLOQUE);
-        jugadorRomper2 = ut.configurar("jugador_romper2", tablero.TAMANIO_DE_BLOQUE);
-        jugadorRomper3 = ut.configurar("jugador_romper3", tablero.TAMANIO_DE_BLOQUE);
-        jugadorRomper4 = ut.configurar("jugador_romper4", tablero.TAMANIO_DE_BLOQUE);
-        jugadorRomper5 = ut.configurar("jugador_romper5", tablero.TAMANIO_DE_BLOQUE);
-        jugadorRomper6 = ut.configurar("jugador_romper6", tablero.TAMANIO_DE_BLOQUE);
+        arriba1 = setUp("/fuentes/jugador/jugador_arriba1");
+        arriba2 = setUp("/fuentes/jugador/jugador_arriba2");
+        arriba3 = setUp("/fuentes/jugador/jugador_arriba3");
+        arriba4 = setUp("/fuentes/jugador/jugador_arriba4");
+        abajo1 = setUp("/fuentes/jugador/jugador_abajo1");
+        abajo2 = setUp("/fuentes/jugador/jugador_abajo2");
+        abajo3 = setUp("/fuentes/jugador/jugador_abajo3");
+        abajo4 = setUp("/fuentes/jugador/jugador_abajo4");
+        izquierda1 = setUp("/fuentes/jugador/jugador_izquierda1");
+        izquierda2 = setUp("/fuentes/jugador/jugador_izquierda2");
+        izquierda3 = setUp("/fuentes/jugador/jugador_izquierda3");
+        izquierda4 = setUp("/fuentes/jugador/jugador_izquierda4");
+        derecha1 = setUp("/fuentes/jugador/jugador_derecha1");
+        derecha2 = setUp("/fuentes/jugador/jugador_derecha2");
+        derecha3 = setUp("/fuentes/jugador/jugador_derecha3");
+        derecha4 = setUp("/fuentes/jugador/jugador_derecha4");
     }
 
     public void actualizar() {
-
-        if (rompiendo) {
-            rompiendo();
-        }
-
-        if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado || control.espacioPresionado) {
+        if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado) {
             if (control.arribaPresionado) {
                 dirección = "arriba";
             } else if (control.abajoPresionado) {
@@ -93,26 +78,31 @@ public class Jugador extends Entidad {
             } else if (control.derechaPresionado) {
                 dirección = "derecha";
             }
-
             //verifica Colisión de bloque
             colisiónActiva = false;
             tablero.checkColisión.verificarBloque(this);
             //verificar colisión de objetos
             int index = tablero.checkColisión.verificarObjeto(this, true);
+            int enemigoIndex=tablero.checkColisión.verificarEntidad(this,tablero.enemigos);
+            contactoConEnemigo(enemigoIndex);
             recogerFrutas(index);
-
-            activarRompiendo(index);
-            control.espacioPresionado = false;
             //if colision=false, jugador se mueve
             if (!colisiónActiva) {
                 switch (dirección) {
-                    case "arriba": mundoY -= velocidad; break;
-                    case "abajo": mundoY += velocidad; break;
-                    case "izquierda": mundoX -= velocidad; break;
-                    case "derecha": mundoX += velocidad; break;
+                    case ("arriba"):
+                        mundoY -= velocidad;
+                        break;
+                    case ("abajo"):
+                        mundoY += velocidad;
+                        break;
+                    case ("izquierda"):
+                        mundoX -= velocidad;
+                        break;
+                    case ("derecha"):
+                        mundoX += velocidad;
+                        break;
                 }
             }
-
             contadorMovimiento++;
             if (contadorMovimiento > 10) {
                 if (numeroDeMovimiento == 1) {
@@ -127,52 +117,34 @@ public class Jugador extends Entidad {
                 contadorMovimiento = 0;
             }
         }
-    }
-
-    public void activarRompiendo(int i) {
-        if (control.espacioPresionado) {
-            rompiendo = true;
+        if(invencible==true){
+            tiempoDeInvencibilidad++;
+            if(tiempoDeInvencibilidad>60){
+                invencible=false;
+                tiempoDeInvencibilidad=0;
+            }
         }
     }
 
-    private void rompiendo() {
-        contadorMovimiento++;
-        if (contadorMovimiento <= 1) {
-            numeroDeMovimiento = 1;
-        }
-        if (contadorMovimiento > 1 && contadorMovimiento <= 2) {
-            numeroDeMovimiento = 2;
-        }
-        if (contadorMovimiento > 2 && contadorMovimiento <= 4) {
-            numeroDeMovimiento = 3;
-        }
-        if (contadorMovimiento > 4 && contadorMovimiento <= 5) {
-            numeroDeMovimiento = 4;
-        }
-        if (contadorMovimiento > 5 && contadorMovimiento <= 7) {
-            numeroDeMovimiento = 5;
-        }
-        if (contadorMovimiento > 7 && contadorMovimiento <= 8) {
-            numeroDeMovimiento = 6;
-        }
-        if (contadorMovimiento > 10) {
-            numeroDeMovimiento = 1;
-            contadorMovimiento = 0;
-            rompiendo = false;
+    private void contactoConEnemigo(int i) {
+        if(i!=999){
+            if(invencible==false) {
+                vida -= 1;
+                invencible=true;
+            }
         }
     }
-
 
     public void recogerFrutas(int index) {
         if (index != 999) {
             tablero.frutas[index] = null;
             númeroDeFrutas++;
             tablero.reproducirSE(1);
-            //  tablero.
+          //  tablero.
             System.out.println("Frutas recolectadas: " + númeroDeFrutas);
         }
-        if (númeroDeFrutas == 11) {
-            tablero.iu.juegoTerminado = true;
+        if(númeroDeFrutas==11){
+            tablero.iu.juegoTerminado=true;
             tablero.pararMúsica();
             tablero.reproducirSE(6);
         }
@@ -182,154 +154,70 @@ public class Jugador extends Entidad {
         BufferedImage imagen = null;
         switch (dirección) {
             case "arriba":
-                if (!rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = arriba1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = arriba2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = arriba3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = arriba4;
-                    }
+                if (numeroDeMovimiento == 1) {
+                    imagen = arriba1;
                 }
-                if (rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = jugadorRomper1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = jugadorRomper2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
-                    if (numeroDeMovimiento == 6) {
-                        imagen = jugadorRomper6;
-                    }
+                if (numeroDeMovimiento == 2) {
+                    imagen = arriba2;
+                }
+                if (numeroDeMovimiento == 3) {
+                    imagen = arriba3;
+                }
+                if (numeroDeMovimiento == 4) {
+                    imagen = arriba4;
                 }
                 break;
-
             case "abajo":
-                if (!rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = abajo1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = abajo2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = abajo3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = abajo4;
-                    }
+                if (numeroDeMovimiento == 1) {
+                    imagen = abajo1;
                 }
-                if (rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = jugadorRomper1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = jugadorRomper2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
-                    if (numeroDeMovimiento == 6) {
-                        imagen = jugadorRomper6;
-                    }
+                if (numeroDeMovimiento == 2) {
+                    imagen = abajo2;
+                }
+                if (numeroDeMovimiento == 3) {
+                    imagen = abajo3;
+                }
+                if (numeroDeMovimiento == 4) {
+                    imagen = abajo4;
                 }
                 break;
-
             case "izquierda":
-                if (!rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = izquierda1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = izquierda2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = izquierda3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = izquierda4;
-                    }
+                if (numeroDeMovimiento == 1) {
+                    imagen = izquierda1;
                 }
-                if (rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = jugadorRomper1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = jugadorRomper2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
-                    if (numeroDeMovimiento == 6) {
-                        imagen = jugadorRomper6;
-                    }
+                if (numeroDeMovimiento == 2) {
+                    imagen = izquierda2;
+                }
+                if (numeroDeMovimiento == 3) {
+                    imagen = izquierda3;
+                }
+                if (numeroDeMovimiento == 4) {
+                    imagen = izquierda4;
                 }
                 break;
-
             case "derecha":
-                if (!rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = derecha1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = derecha2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = derecha3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = derecha4;
-                    }
+                if (numeroDeMovimiento == 1) {
+                    imagen = derecha1;
                 }
-                if (rompiendo) {
-                    if (numeroDeMovimiento == 1) {
-                        imagen = jugadorRomper1;
-                    }
-                    if (numeroDeMovimiento == 2) {
-                        imagen = jugadorRomper2;
-                    }
-                    if (numeroDeMovimiento == 3) {
-                        imagen = jugadorRomper3;
-                    }
-                    if (numeroDeMovimiento == 4) {
-                        imagen = jugadorRomper4;
-                    }
-                    if (numeroDeMovimiento == 5) {
-                        imagen = jugadorRomper5;
-                    }
-                    if (numeroDeMovimiento == 6) {
-                        imagen = jugadorRomper6;
-                    }
+                if (numeroDeMovimiento == 2) {
+                    imagen = derecha2;
+                }
+                if (numeroDeMovimiento == 3) {
+                    imagen = derecha3;
+                }
+                if (numeroDeMovimiento == 4) {
+                    imagen = derecha4;
                 }
                 break;
         }
-        g2.drawImage(imagen, (ventanaX - 8), (ventanaY - 14), 50, 64, null);
+        if(invencible){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.3f));
+        }
+
+        g2.drawImage(imagen, ventanaX, ventanaY, null);
+        //reseteo
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f));
+
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }

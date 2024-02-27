@@ -1,20 +1,15 @@
 package frutas;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import entidades.Entidad;
 import escenario.Tablero;
 
-public class Corazón extends SuperObjeto{
-
-    public Corazón() {
+public class Corazón extends Entidad {
+    public Corazón(Tablero tablero) {
+    super(tablero);
 
         nombre = "Corazón";
-        try{
-            imagen1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/corazón1.png"));
-            imagen2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/corazón2.png"));
-            imagen3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/corazón3.png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+            imagen1 = setUp("/fuentes/IU/corazón1");
+            imagen2 = setUp("/fuentes/IU/corazón2");
+            imagen3 = setUp("/fuentes/IU/corazón3");
     }
 }

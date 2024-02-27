@@ -1,7 +1,7 @@
 package mecánicas;
 
 import entidades.Entidad;
-import bloques.BloqueEstático;
+import escenario.BloqueEstático;
 import escenario.Tablero;
 
 public class VerificadorDeColisión {
@@ -71,56 +71,97 @@ public class VerificadorDeColisión {
                 switch (entidad.dirección) {
                     case "arriba":
                         entidad.áreaSólida.y -= entidad.velocidad;
-                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            if(tablero.frutas[i].colisión){
-                                entidad.colisiónActiva = true;
-                            }
-                            if(esJugador){
-                                index = i;
-                            }
-                        }
                         break;
                     case "abajo":
                         entidad.áreaSólida.y += entidad.velocidad;
-                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            if(tablero.frutas[i].colisión){
-                                entidad.colisiónActiva = true;
-                            }
-                            if(esJugador){
-                                index = i;
-                            }
-                        }
                         break;
                     case "izquierda":
                         entidad.áreaSólida.x -= entidad.velocidad;
-                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            if(tablero.frutas[i].colisión){
-                                entidad.colisiónActiva = true;
-                            }
-                            if(esJugador){
-                                index = i;
-                            }
-                        }
                         break;
                     case "derecha":
                         entidad.áreaSólida.x += entidad.velocidad;
-                        if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
-                            if(tablero.frutas[i].colisión){
-                                entidad.colisiónActiva = true;
-                            }
-                            if(esJugador){
-                                index = i;
-                            }
-                        }
                         break;
+                }
+                if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                    System.out.println("arriba colisión");
+                    if (tablero.frutas[i].colisión) {
+                        entidad.colisiónActiva = true;
+                    }
+                    if (esJugador) {
+                        index = i;
+                    }
+                }
+                    entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+                    entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+                    tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
+                    tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
+                }
+
+            }
+            return index;
+        }
+    public int verificarEntidad(Entidad entidad, Entidad[] objetivo){
+        int index = 999;
+        for (int i = 0; i < objetivo.length; i++) {
+            if (objetivo[i] != null) {
+                entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+                entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                objetivo[i].áreaSólida.x = objetivo[i].mundoX + objetivo[i].áreaSólida.x;
+                objetivo[i].áreaSólida.y = objetivo[i].mundoY + objetivo[i].áreaSólida.y;
+                switch (entidad.dirección) {
+                    case "arriba":
+                        entidad.áreaSólida.y -= entidad.velocidad; break;
+                    case "abajo":
+                        entidad.áreaSólida.y += entidad.velocidad; break;
+                    case "izquierda":
+                        entidad.áreaSólida.x -= entidad.velocidad; break;
+                    case "derecha":
+                        entidad.áreaSólida.x += entidad.velocidad;break;
+                }
+                if(entidad.áreaSólida.intersects(objetivo[i].áreaSólida)){
+                    if(objetivo[i]!=entidad) {
+                        entidad.colisiónActiva = true;
+                        index = i;
+                    }
                 }
                 entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
                 entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
-                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
-                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
+                objetivo[i].áreaSólida.x = objetivo[i].áreaSólidaPorDefectoX;
+                objetivo[i].áreaSólida.y = objetivo[i].áreaSólidaPorDefectoY;
             }
 
         }
         return index;
     }
+    public boolean verificarJugador(Entidad entidad){
+        boolean contactoConJugador=false;
+        entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+        entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+        tablero.jugador.áreaSólida.x = tablero.jugador.mundoX + tablero.jugador.áreaSólida.x;
+        tablero.jugador.áreaSólida.y = tablero.jugador.mundoY + tablero.jugador.áreaSólida.y;
+        switch (entidad.dirección) {
+            case "arriba":
+                entidad.áreaSólida.y -= entidad.velocidad;
+                break;
+            case "abajo":
+                entidad.áreaSólida.y += entidad.velocidad;
+                break;
+            case "izquierda":
+                entidad.áreaSólida.x -= entidad.velocidad;
+                break;
+            case "derecha":
+                entidad.áreaSólida.x += entidad.velocidad;
+                break;
+        }
+        if (entidad.áreaSólida.intersects(tablero.jugador.áreaSólida)) {
+            entidad.colisiónActiva = true;
+            contactoConJugador=true;
+        }
+        entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+        entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+        tablero.jugador.áreaSólida.x = tablero.jugador.áreaSólidaPorDefectoX;
+        tablero.jugador.áreaSólida.y = tablero.jugador.áreaSólidaPorDefectoY;
+        return contactoConJugador;
+    }
+
 }
