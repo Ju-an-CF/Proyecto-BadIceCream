@@ -17,7 +17,6 @@ public class Main {
         ventana.add(tablero);
 
         ventana.pack();
-
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
 
