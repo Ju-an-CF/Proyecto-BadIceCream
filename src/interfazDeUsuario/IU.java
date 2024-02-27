@@ -1,4 +1,5 @@
 package interfazDeUsuario;
+import entidades.Entidad;
 import escenario.*;
 
 import java.awt.*;
@@ -29,11 +30,11 @@ public class IU{
         importarFont();
 
         //objetos
-        Corazón corazón=new Corazón();
+        Entidad corazón=new Corazón(tablero);
         corazónFull=corazón.imagen1;
         medioCorazón=corazón.imagen2;
         corazónVacío=corazón.imagen3;
-        Mora mora=new Mora();
+        Entidad mora=new Mora(tablero);
         moraImagen=mora.imagen1;
 
     }
@@ -78,7 +79,6 @@ public class IU{
     }
 
    private void dibujarVidaJugador() {
-        tablero.jugador.vida=2;
         int x=tablero.TAMANIO_DE_BLOQUE/2;
         int y=tablero.TAMANIO_DE_BLOQUE*8;
         int i=0;

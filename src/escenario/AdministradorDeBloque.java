@@ -21,38 +21,44 @@ public class AdministradorDeBloque {
     }
 
     public void obtenerImagenDeBloque() {
+            setUp(0,"nieve","bloque");
+            setUp(1,"esquina1","bloque");
+            setUp(2,"esquina2","bloqueEstático");
+            setUp(3,"esquina3","bloqueEstático");
+            setUp(4,"esquina4","bloqueEstático");
+            setUp(5,"muro","bloqueEstático");
+            setUp(6,"bolaNieve","bloque");
+            setUp(7,"florNieve","bloque");
+            setUp(8,"hielo","bloqueHielo");
+    }
+
+    public void setUp(int index, String direccionImagen,String tipoBloque) {
+        UtilityTool uTool = new UtilityTool();
         try {
-            bloques[0] = new Bloque();
-            bloques[0].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/nieve.png"));
+            Bloque bloque = null; // Variable genérica para el bloque
 
-            bloques[1] = new BloqueEstático();
-            bloques[1].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina1.png"));
+            // Determinar el tipo de bloque a instanciar
+            switch (tipoBloque) {
+                case "bloqueEstático":
+                    bloque = new BloqueEstático();
+                    break;
+                case "bloqueHielo":
+                    bloque=new BloqueDeHielo();
+                    break;
+                default:
+                    bloque = new Bloque();
+                    break;
+            }
 
-            bloques[2] = new BloqueEstático();
-            bloques[2].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina2.png"));
+            bloque.imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/" + direccionImagen + ".png"));
+            bloque.imagen = uTool.scaledImage(bloque.imagen, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE);
 
-            bloques[3] = new BloqueEstático();
-            bloques[3].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina3.png"));
-
-            bloques[4] = new BloqueEstático();
-            bloques[4].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/esquina4.png"));
-
-            bloques[5] = new BloqueEstático();
-            bloques[5].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/muro.png"));
-
-            bloques[6] = new Bloque();
-            bloques[6].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/bolaNieve.png"));
-
-            bloques[7] = new Bloque();
-            bloques[7].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/florNieve.png"));
-
-            bloques[8] = new BloqueEstático();
-            bloques[8].imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/hielo.png"));
-
+            bloques[index] = bloque; // Asignar el bloque instanciado al array
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public void cargarMapa(String direcciónArchivo) {
         try {
             InputStream mapaDeEntrada = getClass().getResourceAsStream(direcciónArchivo);
@@ -97,7 +103,7 @@ public class AdministradorDeBloque {
             int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
 
             if(jugadorEstáEnPantalla(mundoX, mundoY)) {
-                g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE, null);
+                g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, null);
             }
             columnasDeMundo++;
 
@@ -115,8 +121,6 @@ public class AdministradorDeBloque {
                 mundoY - (tablero.TAMANIO_DE_BLOQUE*2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
     }
 
-    public void romperBloque() {
 
-    }
 
 }

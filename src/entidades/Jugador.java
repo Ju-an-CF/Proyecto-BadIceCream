@@ -1,6 +1,7 @@
 package entidades;
 
 import escenario.Tablero;
+import escenario.UtilityTool;
 import mecánicas.Control;
 
 import javax.imageio.ImageIO;
@@ -9,18 +10,17 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Jugador extends Entidad {
-    Tablero tablero;
     Control control;
     public final int ventanaX;
     public final int ventanaY;
     public int númeroDeFrutas;
-
     //estadisticas personaje
     public int máximoVidas;
     public int vida;
-
+    public int tiempoDeInvencibilidad=0;
+    public boolean invencible=false;
     public Jugador(Tablero tablero, Control control) {
-        this.tablero=tablero;
+        super(tablero);
         this.control = control;
         áreaSólida = new Rectangle();
         áreaSólida.x = 4;
@@ -47,29 +47,24 @@ public class Jugador extends Entidad {
         vida=máximoVidas;
 
     }
-
     public void obtenerImagenDeJugador() {
-        try {
-            arriba1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba1.png"));
-            arriba2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba2.png"));
-            arriba3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba3.png"));
-            arriba4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_arriba4.png"));
-            abajo1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo1.png"));
-            abajo2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo2.png"));
-            abajo3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo3.png"));
-            abajo4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_abajo4.png"));
-            izquierda1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda1.png"));
-            izquierda2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda2.png"));
-            izquierda3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda3.png"));
-            izquierda4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_izquierda4.png"));
-            derecha1 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha1.png"));
-            derecha2 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha2.png"));
-            derecha3 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha3.png"));
-            derecha4 = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/jugador_derecha4.png"));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        arriba1 = setUp("/fuentes/jugador/jugador_arriba1");
+        arriba2 = setUp("/fuentes/jugador/jugador_arriba2");
+        arriba3 = setUp("/fuentes/jugador/jugador_arriba3");
+        arriba4 = setUp("/fuentes/jugador/jugador_arriba4");
+        abajo1 = setUp("/fuentes/jugador/jugador_abajo1");
+        abajo2 = setUp("/fuentes/jugador/jugador_abajo2");
+        abajo3 = setUp("/fuentes/jugador/jugador_abajo3");
+        abajo4 = setUp("/fuentes/jugador/jugador_abajo4");
+        izquierda1 = setUp("/fuentes/jugador/jugador_izquierda1");
+        izquierda2 = setUp("/fuentes/jugador/jugador_izquierda2");
+        izquierda3 = setUp("/fuentes/jugador/jugador_izquierda3");
+        izquierda4 = setUp("/fuentes/jugador/jugador_izquierda4");
+        derecha1 = setUp("/fuentes/jugador/jugador_derecha1");
+        derecha2 = setUp("/fuentes/jugador/jugador_derecha2");
+        derecha3 = setUp("/fuentes/jugador/jugador_derecha3");
+        derecha4 = setUp("/fuentes/jugador/jugador_derecha4");
     }
 
     public void actualizar() {
@@ -88,6 +83,8 @@ public class Jugador extends Entidad {
             tablero.checkColisión.verificarBloque(this);
             //verificar colisión de objetos
             int index = tablero.checkColisión.verificarObjeto(this, true);
+            int enemigoIndex=tablero.checkColisión.verificarEntidad(this,tablero.enemigos);
+            contactoConEnemigo(enemigoIndex);
             recogerFrutas(index);
             //if colision=false, jugador se mueve
             if (!colisiónActiva) {
@@ -118,6 +115,22 @@ public class Jugador extends Entidad {
                     numeroDeMovimiento = 3;
                 }
                 contadorMovimiento = 0;
+            }
+        }
+        if(invencible==true){
+            tiempoDeInvencibilidad++;
+            if(tiempoDeInvencibilidad>60){
+                invencible=false;
+                tiempoDeInvencibilidad=0;
+            }
+        }
+    }
+
+    private void contactoConEnemigo(int i) {
+        if(i!=999){
+            if(invencible==false) {
+                vida -= 1;
+                invencible=true;
             }
         }
     }
@@ -197,7 +210,14 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        g2.drawImage(imagen, ventanaX, ventanaY, 50, 64, null);
+        if(invencible){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.3f));
+        }
+
+        g2.drawImage(imagen, ventanaX, ventanaY, null);
+        //reseteo
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f));
+
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }
