@@ -29,7 +29,7 @@ public class Jugador extends Entidad {
         áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
-        ventanaX = tablero.TAMANIO_DE_BLOQUE * 6; //
+        ventanaX = tablero.TAMANIO_DE_BLOQUE * 7; //
         ventanaY = tablero.TAMANIO_DE_BLOQUE * 5; //
         númeroDeFrutas = 0;
 

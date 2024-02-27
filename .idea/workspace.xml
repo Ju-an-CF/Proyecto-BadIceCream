@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa">
-      <change afterPath="$PROJECT_DIR$/src/entidades/Enemigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bloques/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bloques/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Bloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bloques/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueEstático.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bloques/BloqueInteractivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueInteractivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bloques/HieloDestructible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/HieloDestructible.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Corazón.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Mora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/SuperObjeto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/SuperObjeto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "IU",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
     "node.js.detected.package.eslint": "true",
