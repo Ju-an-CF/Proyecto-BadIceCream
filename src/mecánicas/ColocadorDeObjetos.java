@@ -66,6 +66,5 @@ public class ColocadorDeObjetos {
         gp.enemigos[1] = new Enemigo(gp);
         gp.enemigos[1].mundoX = gp.TAMANIO_DE_BLOQUE * 8;
         gp.enemigos[1].mundoY = gp.TAMANIO_DE_BLOQUE * 8;
-
     }
 }

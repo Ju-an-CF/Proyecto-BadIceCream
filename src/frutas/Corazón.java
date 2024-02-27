@@ -8,8 +8,8 @@ public class Corazón extends Entidad {
         super(tablero);
 
         nombre = "Corazón";
-        imagen1 = setUp("/fuentes/IU/corazón1");
-        imagen2 = setUp("/fuentes/IU/corazón2");
-        imagen3 = setUp("/fuentes/IU/corazón3");
+        imagen1 = configurarImagen("/fuentes/IU/corazón1");
+        imagen2 = configurarImagen("/fuentes/IU/corazón2");
+        imagen3 = configurarImagen("/fuentes/IU/corazón3");
     }
 }

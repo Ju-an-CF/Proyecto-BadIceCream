@@ -21,28 +21,28 @@ public class AdministradorDeBloque {
     }
 
     public void obtenerImagenDeBloque() {
-        setUp(0, "nieve", "bloque");
-        setUp(1, "esquina1", "bloque");
-        setUp(2, "esquina2", "bloqueEstático");
-        setUp(3, "esquina3", "bloqueEstático");
-        setUp(4, "esquina4", "bloqueEstático");
-        setUp(5, "muro", "bloqueEstático");
-        setUp(6, "bolaNieve", "bloque");
-        setUp(7, "florNieve", "bloque");
-        setUp(8, "hielo", "bloqueHielo");
+        configurarBloque(0, "nieve", TipoBloque.NORMAL);
+        configurarBloque(1, "esquina1", TipoBloque.NORMAL);
+        configurarBloque(2, "esquina2", TipoBloque.ESTÁTICO);
+        configurarBloque(3, "esquina3", TipoBloque.ESTÁTICO);
+        configurarBloque(4, "esquina4", TipoBloque.ESTÁTICO);
+        configurarBloque(5, "muro", TipoBloque.ESTÁTICO);
+        configurarBloque(6, "bolaNieve", TipoBloque.NORMAL);
+        configurarBloque(7, "florNieve", TipoBloque.NORMAL);
+        configurarBloque(8, "hielo", TipoBloque.HIELO);
     }
 
-    public void setUp(int index, String direccionImagen, String tipoBloque) {
+    public void configurarBloque(int index, String direccionImagen, TipoBloque tipoBloque) {
         UtilityTool uTool = new UtilityTool();
         try {
             Bloque bloque = null; // Variable genérica para el bloque
 
             // Determinar el tipo de bloque a instanciar
             switch (tipoBloque) {
-                case "bloqueEstático":
+                case ESTÁTICO:
                     bloque = new BloqueEstático();
                     break;
-                case "bloqueHielo":
+                case HIELO:
                     bloque = new BloqueDeHielo();
                     break;
                 default:

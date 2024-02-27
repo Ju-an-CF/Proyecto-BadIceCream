@@ -14,11 +14,11 @@ public class Mora extends Entidad {
     public Mora(Tablero tablero) {
         super(tablero);
         nombre = "Mora";
-        imagen1 = setUp("/fuentes/frutas/mora1");
-        imagen2 = setUp("/fuentes/frutas/mora2");
-        imagen3 = setUp("/fuentes/frutas/mora3");
-        imagen4 = setUp("/fuentes/frutas/mora4");
-        imagen5 = setUp("/fuentes/frutas/mora5");
+        imagen1 = configurarImagen("/fuentes/frutas/mora1");
+        imagen2 = configurarImagen("/fuentes/frutas/mora2");
+        imagen3 = configurarImagen("/fuentes/frutas/mora3");
+        imagen4 = configurarImagen("/fuentes/frutas/mora4");
+        imagen5 = configurarImagen("/fuentes/frutas/mora5");
     }
 
     public void dibujar(Graphics2D g2) {

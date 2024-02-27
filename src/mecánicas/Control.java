@@ -78,10 +78,6 @@ public class Control implements KeyListener {
 
     }
 
-    private void romperBloque() {
-
-    }
-
     @Override
     public void keyReleased(KeyEvent e) {
         int tecla = e.getKeyCode();
@@ -104,4 +100,5 @@ public class Control implements KeyListener {
     public String toString() {
         return super.toString();
     }
+
 }

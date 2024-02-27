@@ -1,13 +1,10 @@
 package entidades;
 
 import escenario.Tablero;
-import escenario.UtilityTool;
 import mecánicas.Control;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Jugador extends Entidad {
     Control control;
@@ -19,6 +16,8 @@ public class Jugador extends Entidad {
     public int vida;
     public int tiempoDeInvencibilidad = 0;
     public boolean invencible = false;
+    private int mundoXOriginal;
+    private int mundoYOriginal;
 
     public Jugador(Tablero tablero, Control control, int posiciónX, int posiciónY) {
         super(tablero);
@@ -51,72 +50,84 @@ public class Jugador extends Entidad {
 
     public void obtenerImagenDeJugador() {
 
-        arriba1 = setUp("/fuentes/jugador/jugador_arriba1");
-        arriba2 = setUp("/fuentes/jugador/jugador_arriba2");
-        arriba3 = setUp("/fuentes/jugador/jugador_arriba3");
-        arriba4 = setUp("/fuentes/jugador/jugador_arriba4");
-        abajo1 = setUp("/fuentes/jugador/jugador_abajo1");
-        abajo2 = setUp("/fuentes/jugador/jugador_abajo2");
-        abajo3 = setUp("/fuentes/jugador/jugador_abajo3");
-        abajo4 = setUp("/fuentes/jugador/jugador_abajo4");
-        izquierda1 = setUp("/fuentes/jugador/jugador_izquierda1");
-        izquierda2 = setUp("/fuentes/jugador/jugador_izquierda2");
-        izquierda3 = setUp("/fuentes/jugador/jugador_izquierda3");
-        izquierda4 = setUp("/fuentes/jugador/jugador_izquierda4");
-        derecha1 = setUp("/fuentes/jugador/jugador_derecha1");
-        derecha2 = setUp("/fuentes/jugador/jugador_derecha2");
-        derecha3 = setUp("/fuentes/jugador/jugador_derecha3");
-        derecha4 = setUp("/fuentes/jugador/jugador_derecha4");
+        arriba1 = configurarImagen("/fuentes/jugador/jugador_arriba1");
+        arriba2 = configurarImagen("/fuentes/jugador/jugador_arriba2");
+        arriba3 = configurarImagen("/fuentes/jugador/jugador_arriba3");
+        arriba4 = configurarImagen("/fuentes/jugador/jugador_arriba4");
+        abajo1 = configurarImagen("/fuentes/jugador/jugador_abajo1");
+        abajo2 = configurarImagen("/fuentes/jugador/jugador_abajo2");
+        abajo3 = configurarImagen("/fuentes/jugador/jugador_abajo3");
+        abajo4 = configurarImagen("/fuentes/jugador/jugador_abajo4");
+        izquierda1 = configurarImagen("/fuentes/jugador/jugador_izquierda1");
+        izquierda2 = configurarImagen("/fuentes/jugador/jugador_izquierda2");
+        izquierda3 = configurarImagen("/fuentes/jugador/jugador_izquierda3");
+        izquierda4 = configurarImagen("/fuentes/jugador/jugador_izquierda4");
+        derecha1 = configurarImagen("/fuentes/jugador/jugador_derecha1");
+        derecha2 = configurarImagen("/fuentes/jugador/jugador_derecha2");
+        derecha3 = configurarImagen("/fuentes/jugador/jugador_derecha3");
+        derecha4 = configurarImagen("/fuentes/jugador/jugador_derecha4");
+        jugadorRomper1 = configurarImagen("/fuentes/jugador/jugador_romper1");
+        jugadorRomper2 = configurarImagen("/fuentes/jugador/jugador_romper2");
+        jugadorRomper3 = configurarImagen("/fuentes/jugador/jugador_romper3");
+        jugadorRomper4 = configurarImagen("/fuentes/jugador/jugador_romper4");
+        jugadorRomper5 = configurarImagen("/fuentes/jugador/jugador_romper5");
+        jugadorRomper6 = configurarImagen("/fuentes/jugador/jugador_romper6");
     }
 
     public void actualizar() {
-        if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado) {
-            if (control.arribaPresionado) {
-                dirección = "arriba";
-            } else if (control.abajoPresionado) {
-                dirección = "abajo";
-            } else if (control.izquierdaPresionado) {
-                dirección = "izquierda";
-            } else if (control.derechaPresionado) {
-                dirección = "derecha";
-            }
-            //verifica Colisión de bloque
-            colisiónActiva = false;
-            tablero.checkColisión.verificarBloque(this);
-            //verificar colisión de objetos
-            int index = tablero.checkColisión.verificarObjeto(this, true);
-            int enemigoIndex = tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
-            contactoConEnemigo(enemigoIndex);
-            recogerFrutas(index);
-            //if colision=false, jugador se mueve
-            if (!colisiónActiva) {
-                switch (dirección) {
-                    case ("arriba"):
-                        mundoY -= velocidad;
-                        break;
-                    case ("abajo"):
-                        mundoY += velocidad;
-                        break;
-                    case ("izquierda"):
-                        mundoX -= velocidad;
-                        break;
-                    case ("derecha"):
-                        mundoX += velocidad;
-                        break;
+        if (rompiendo == true) {
+            rompiendo();
+        } else {
+            if (control.arribaPresionado || control.abajoPresionado || control.izquierdaPresionado || control.derechaPresionado || control.espacioPresionado) {
+                if (control.arribaPresionado) {
+                    dirección = "arriba";
+                } else if (control.abajoPresionado) {
+                    dirección = "abajo";
+                } else if (control.izquierdaPresionado) {
+                    dirección = "izquierda";
+                } else if (control.derechaPresionado) {
+                    dirección = "derecha";
                 }
-            }
-            contadorMovimiento++;
-            if (contadorMovimiento > 10) {
-                if (numeroDeMovimiento == 1) {
-                    numeroDeMovimiento = 2;
-                } else if (numeroDeMovimiento == 2) {
-                    numeroDeMovimiento = 1;
-                } else if (numeroDeMovimiento == 3) {
-                    numeroDeMovimiento = 2;
-                } else if (numeroDeMovimiento == 4) {
-                    numeroDeMovimiento = 3;
+                //verifica Colisión de bloque
+                colisiónActiva = false;
+                tablero.checkColisión.verificarBloque(this);
+                //verificar colisión de objetos
+                int index = tablero.checkColisión.verificarObjeto(this, true);
+                int enemigoIndex = tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
+                contactoConEnemigo(enemigoIndex);
+                recogerFrutas(index);
+                activarRompiendo(index);
+                control.espacioPresionado = false;
+                //if colision=false, jugador se mueve
+                if (!colisiónActiva) {
+                    switch (dirección) {
+                        case ("arriba"):
+                            mundoY -= velocidad;
+                            break;
+                        case ("abajo"):
+                            mundoY += velocidad;
+                            break;
+                        case ("izquierda"):
+                            mundoX -= velocidad;
+                            break;
+                        case ("derecha"):
+                            mundoX += velocidad;
+                            break;
+                    }
                 }
-                contadorMovimiento = 0;
+                contadorMovimiento++;
+                if (contadorMovimiento > 10) {
+                    if (numeroDeMovimiento == 1) {
+                        numeroDeMovimiento = 2;
+                    } else if (numeroDeMovimiento == 2) {
+                        numeroDeMovimiento = 1;
+                    } else if (numeroDeMovimiento == 3) {
+                        numeroDeMovimiento = 2;
+                    } else if (numeroDeMovimiento == 4) {
+                        numeroDeMovimiento = 3;
+                    }
+                    contadorMovimiento = 0;
+                }
             }
         }
         if (invencible == true) {
@@ -127,6 +138,42 @@ public class Jugador extends Entidad {
             }
         }
     }
+    public void activarRompiendo (int i) {
+        if (control.espacioPresionado == true) {
+            rompiendo = true;
+            mundoXOriginal = mundoX;
+            mundoYOriginal = mundoY;
+        }
+    }
+    private void rompiendo() {
+        contadorMovimiento++;
+        if(contadorMovimiento <= 2) {
+            numeroDeMovimiento = 1;
+        }
+        if(contadorMovimiento > 2 && contadorMovimiento <= 6) {
+            numeroDeMovimiento = 2;
+        }
+        if(contadorMovimiento > 6 && contadorMovimiento <= 10) {
+            numeroDeMovimiento = 3;
+        }
+        if(contadorMovimiento > 10 && contadorMovimiento <= 14) {
+            numeroDeMovimiento = 4;
+        }
+        if(contadorMovimiento > 14 && contadorMovimiento <= 18) {
+            numeroDeMovimiento = 5;
+        }
+        if(contadorMovimiento > 18 && contadorMovimiento <= 22) {
+            numeroDeMovimiento = 6;
+        }
+        if(contadorMovimiento > 24) {
+            numeroDeMovimiento = 1;
+            contadorMovimiento = 0;
+            rompiendo = false;
+            mundoX = mundoXOriginal;
+            mundoY = mundoYOriginal;
+        }
+    }
+
 
     private void contactoConEnemigo(int i) {
         if (i != 999) {
@@ -156,59 +203,150 @@ public class Jugador extends Entidad {
         BufferedImage imagen = null;
         switch (dirección) {
             case "arriba":
-                if (numeroDeMovimiento == 1) {
-                    imagen = arriba1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = arriba1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = arriba2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = arriba3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = arriba4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = arriba2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = arriba3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = arriba4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
+                    if (numeroDeMovimiento == 6) {
+                        imagen = jugadorRomper6;
+                    }
                 }
                 break;
+
             case "abajo":
-                if (numeroDeMovimiento == 1) {
-                    imagen = abajo1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = abajo1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = abajo2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = abajo3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = abajo4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = abajo2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = abajo3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = abajo4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
+                    if (numeroDeMovimiento == 6) {
+                        imagen = jugadorRomper6;
+                    }
                 }
                 break;
+
             case "izquierda":
-                if (numeroDeMovimiento == 1) {
-                    imagen = izquierda1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = izquierda1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = izquierda2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = izquierda3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = izquierda4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = izquierda2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = izquierda3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = izquierda4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
+                    if (numeroDeMovimiento == 6) {
+                        imagen = jugadorRomper6;
+                    }
                 }
                 break;
+
             case "derecha":
-                if (numeroDeMovimiento == 1) {
-                    imagen = derecha1;
+                if (rompiendo == false) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = derecha1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = derecha2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = derecha3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = derecha4;
+                    }
                 }
-                if (numeroDeMovimiento == 2) {
-                    imagen = derecha2;
-                }
-                if (numeroDeMovimiento == 3) {
-                    imagen = derecha3;
-                }
-                if (numeroDeMovimiento == 4) {
-                    imagen = derecha4;
+                if (rompiendo == true) {
+                    if (numeroDeMovimiento == 1) {
+                        imagen = jugadorRomper1;
+                    }
+                    if (numeroDeMovimiento == 2) {
+                        imagen = jugadorRomper2;
+                    }
+                    if (numeroDeMovimiento == 3) {
+                        imagen = jugadorRomper3;
+                    }
+                    if (numeroDeMovimiento == 4) {
+                        imagen = jugadorRomper4;
+                    }
+                    if (numeroDeMovimiento == 5) {
+                        imagen = jugadorRomper5;
+                    }
+                    if (numeroDeMovimiento == 6) {
+                        imagen = jugadorRomper6;
+                    }
                 }
                 break;
         }
@@ -216,7 +354,7 @@ public class Jugador extends Entidad {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
 
-        g2.drawImage(imagen, ventanaX, ventanaY, null);
+        g2.drawImage(imagen, ventanaX, ventanaY - áreaSólida.y, null);
         //reseteo
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 

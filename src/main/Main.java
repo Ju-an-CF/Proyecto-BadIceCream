@@ -5,6 +5,7 @@ import escenario.Tablero;
 import javax.swing.*;
 
 public class Main {
+
     public static void main(String[] args) {
         JFrame ventana = new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

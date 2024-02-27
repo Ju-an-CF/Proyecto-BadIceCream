@@ -14,6 +14,7 @@ public class Entidad {
     public int mundoX, mundoY;
     public int velocidad;
     public BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
+    public BufferedImage jugadorRomper1, jugadorRomper2, jugadorRomper3, jugadorRomper4, jugadorRomper5, jugadorRomper6;
     public String dirección = "abajo";
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
@@ -24,6 +25,7 @@ public class Entidad {
     public BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
     public String nombre;
     public boolean colisión = false;
+    public boolean rompiendo = false;
 
     public Entidad(Tablero tablero) {
         this.tablero = tablero;
@@ -76,12 +78,12 @@ public class Entidad {
         }
     }
 
-    public BufferedImage setUp(String nombreImagen) {
+    public BufferedImage configurarImagen(String nombreImagen) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage imagen = null;
         try {
             imagen = ImageIO.read(getClass().getResourceAsStream(nombreImagen + ".png"));
-            imagen = uTool.scaledImage(imagen, 42, 42);
+            //imagen = uTool.scaledImage(imagen, 42, 42);
         } catch (IOException e) {
             e.printStackTrace();
         }

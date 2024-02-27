@@ -2,8 +2,6 @@ package entidades;
 
 import escenario.Tablero;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.util.Random;
 
 public class Enemigo extends Entidad {
@@ -20,22 +18,22 @@ public class Enemigo extends Entidad {
     }
 
     public void obtenerImagenDeEnemigo() {
-        arriba1 = setUp("/fuentes/enemigo/jugador_arriba1");
-        arriba2 = setUp("/fuentes/enemigo/jugador_arriba2");
-        arriba3 = setUp("/fuentes/enemigo/jugador_arriba3");
-        arriba4 = setUp("/fuentes/enemigo/jugador_arriba4");
-        abajo1 = setUp("/fuentes/enemigo/jugador_abajo1");
-        abajo2 = setUp("/fuentes/enemigo/jugador_abajo2");
-        abajo3 = setUp("/fuentes/enemigo/jugador_abajo3");
-        abajo4 = setUp("/fuentes/enemigo/jugador_abajo4");
-        izquierda1 = setUp("/fuentes/enemigo/jugador_izquierda1");
-        izquierda2 = setUp("/fuentes/enemigo/jugador_izquierda2");
-        izquierda3 = setUp("/fuentes/enemigo/jugador_izquierda3");
-        izquierda4 = setUp("/fuentes/enemigo/jugador_izquierda4");
-        derecha1 = setUp("/fuentes/enemigo/jugador_derecha1");
-        derecha2 = setUp("/fuentes/enemigo/jugador_derecha2");
-        derecha3 = setUp("/fuentes/enemigo/jugador_derecha3");
-        derecha4 = setUp("/fuentes/enemigo/jugador_derecha4");
+        arriba1 = configurarImagen("/fuentes/enemigo/jugador_arriba1");
+        arriba2 = configurarImagen("/fuentes/enemigo/jugador_arriba2");
+        arriba3 = configurarImagen("/fuentes/enemigo/jugador_arriba3");
+        arriba4 = configurarImagen("/fuentes/enemigo/jugador_arriba4");
+        abajo1 = configurarImagen("/fuentes/enemigo/jugador_abajo1");
+        abajo2 = configurarImagen("/fuentes/enemigo/jugador_abajo2");
+        abajo3 = configurarImagen("/fuentes/enemigo/jugador_abajo3");
+        abajo4 = configurarImagen("/fuentes/enemigo/jugador_abajo4");
+        izquierda1 = configurarImagen("/fuentes/enemigo/jugador_izquierda1");
+        izquierda2 = configurarImagen("/fuentes/enemigo/jugador_izquierda2");
+        izquierda3 = configurarImagen("/fuentes/enemigo/jugador_izquierda3");
+        izquierda4 = configurarImagen("/fuentes/enemigo/jugador_izquierda4");
+        derecha1 = configurarImagen("/fuentes/enemigo/jugador_derecha1");
+        derecha2 = configurarImagen("/fuentes/enemigo/jugador_derecha2");
+        derecha3 = configurarImagen("/fuentes/enemigo/jugador_derecha3");
+        derecha4 = configurarImagen("/fuentes/enemigo/jugador_derecha4");
     }
 
     public void establecerAcción() {
