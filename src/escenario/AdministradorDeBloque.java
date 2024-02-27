@@ -21,18 +21,18 @@ public class AdministradorDeBloque {
     }
 
     public void obtenerImagenDeBloque() {
-            setUp(0,"nieve","bloque");
-            setUp(1,"esquina1","bloque");
-            setUp(2,"esquina2","bloqueEstático");
-            setUp(3,"esquina3","bloqueEstático");
-            setUp(4,"esquina4","bloqueEstático");
-            setUp(5,"muro","bloqueEstático");
-            setUp(6,"bolaNieve","bloque");
-            setUp(7,"florNieve","bloque");
-            setUp(8,"hielo","bloqueHielo");
+        setUp(0, "nieve", "bloque");
+        setUp(1, "esquina1", "bloque");
+        setUp(2, "esquina2", "bloqueEstático");
+        setUp(3, "esquina3", "bloqueEstático");
+        setUp(4, "esquina4", "bloqueEstático");
+        setUp(5, "muro", "bloqueEstático");
+        setUp(6, "bolaNieve", "bloque");
+        setUp(7, "florNieve", "bloque");
+        setUp(8, "hielo", "bloqueHielo");
     }
 
-    public void setUp(int index, String direccionImagen,String tipoBloque) {
+    public void setUp(int index, String direccionImagen, String tipoBloque) {
         UtilityTool uTool = new UtilityTool();
         try {
             Bloque bloque = null; // Variable genérica para el bloque
@@ -43,7 +43,7 @@ public class AdministradorDeBloque {
                     bloque = new BloqueEstático();
                     break;
                 case "bloqueHielo":
-                    bloque=new BloqueDeHielo();
+                    bloque = new BloqueDeHielo();
                     break;
                 default:
                     bloque = new Bloque();
@@ -102,7 +102,7 @@ public class AdministradorDeBloque {
             int ventanaX = mundoX - tablero.jugador.mundoX + tablero.jugador.ventanaX;
             int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
 
-            if(jugadorEstáEnPantalla(mundoX, mundoY)) {
+            if (jugadorEstáEnPantalla(mundoX, mundoY)) {
                 g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, null);
             }
             columnasDeMundo++;
@@ -115,12 +115,11 @@ public class AdministradorDeBloque {
     }
 
     public boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
-        return mundoX + tablero.TAMANIO_DE_BLOQUE*11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
-                mundoX - tablero.TAMANIO_DE_BLOQUE*12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
-                mundoY + (tablero.TAMANIO_DE_BLOQUE*2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
-                mundoY - (tablero.TAMANIO_DE_BLOQUE*2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
+        return mundoX + tablero.TAMANIO_DE_BLOQUE * 11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
+                mundoX - tablero.TAMANIO_DE_BLOQUE * 12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
+                mundoY + (tablero.TAMANIO_DE_BLOQUE * 2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
+                mundoY - (tablero.TAMANIO_DE_BLOQUE * 2) < tablero.jugador.mundoY + tablero.jugador.ventanaY;
     }
-
 
 
 }

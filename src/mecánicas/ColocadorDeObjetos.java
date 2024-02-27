@@ -12,7 +12,7 @@ public class ColocadorDeObjetos {
     }
 
     public void colocarMora() {
-        if(gp.jugador.númeroDeFrutas==0) {
+        if (gp.jugador.númeroDeFrutas == 0) {
             gp.frutas[0] = new Mora(gp);
             gp.frutas[0].mundoX = 8 * gp.TAMANIO_DE_BLOQUE;
             gp.frutas[0].mundoY = 8 * gp.TAMANIO_DE_BLOQUE;
@@ -58,11 +58,14 @@ public class ColocadorDeObjetos {
             gp.frutas[10].mundoY = 16 * gp.TAMANIO_DE_BLOQUE;
         }
     }
-   public void colocarEnemigos(){
-        gp.enemigos[0]=new Enemigo(gp);
-        gp.enemigos[0].mundoX=gp.TAMANIO_DE_BLOQUE*12;
-        gp.enemigos[0].mundoY=gp.TAMANIO_DE_BLOQUE*14;
 
+    public void colocarEnemigos() {
+        gp.enemigos[0] = new Enemigo(gp);
+        gp.enemigos[0].mundoX = gp.TAMANIO_DE_BLOQUE * 12;
+        gp.enemigos[0].mundoY = gp.TAMANIO_DE_BLOQUE * 14;
+        gp.enemigos[1] = new Enemigo(gp);
+        gp.enemigos[1].mundoX = gp.TAMANIO_DE_BLOQUE * 8;
+        gp.enemigos[1].mundoY = gp.TAMANIO_DE_BLOQUE * 8;
 
     }
 }

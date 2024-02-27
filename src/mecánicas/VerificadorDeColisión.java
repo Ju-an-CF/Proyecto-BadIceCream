@@ -91,16 +91,17 @@ public class VerificadorDeColisión {
                         index = i;
                     }
                 }
-                    entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
-                    entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
-                    tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
-                    tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
-                }
-
+                entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+                entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
+                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
             }
-            return index;
+
         }
-    public int verificarEntidad(Entidad entidad, Entidad[] objetivo){
+        return index;
+    }
+
+    public int verificarEntidad(Entidad entidad, Entidad[] objetivo) {
         int index = 999;
         for (int i = 0; i < objetivo.length; i++) {
             if (objetivo[i] != null) {
@@ -110,16 +111,20 @@ public class VerificadorDeColisión {
                 objetivo[i].áreaSólida.y = objetivo[i].mundoY + objetivo[i].áreaSólida.y;
                 switch (entidad.dirección) {
                     case "arriba":
-                        entidad.áreaSólida.y -= entidad.velocidad; break;
+                        entidad.áreaSólida.y -= entidad.velocidad;
+                        break;
                     case "abajo":
-                        entidad.áreaSólida.y += entidad.velocidad; break;
+                        entidad.áreaSólida.y += entidad.velocidad;
+                        break;
                     case "izquierda":
-                        entidad.áreaSólida.x -= entidad.velocidad; break;
+                        entidad.áreaSólida.x -= entidad.velocidad;
+                        break;
                     case "derecha":
-                        entidad.áreaSólida.x += entidad.velocidad;break;
+                        entidad.áreaSólida.x += entidad.velocidad;
+                        break;
                 }
-                if(entidad.áreaSólida.intersects(objetivo[i].áreaSólida)){
-                    if(objetivo[i]!=entidad) {
+                if (entidad.áreaSólida.intersects(objetivo[i].áreaSólida)) {
+                    if (objetivo[i] != entidad) {
                         entidad.colisiónActiva = true;
                         index = i;
                     }
@@ -133,8 +138,9 @@ public class VerificadorDeColisión {
         }
         return index;
     }
-    public boolean verificarJugador(Entidad entidad){
-        boolean contactoConJugador=false;
+
+    public boolean verificarJugador(Entidad entidad) {
+        boolean contactoConJugador = false;
         entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
         entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
         tablero.jugador.áreaSólida.x = tablero.jugador.mundoX + tablero.jugador.áreaSólida.x;
@@ -155,7 +161,7 @@ public class VerificadorDeColisión {
         }
         if (entidad.áreaSólida.intersects(tablero.jugador.áreaSólida)) {
             entidad.colisiónActiva = true;
-            contactoConJugador=true;
+            contactoConJugador = true;
         }
         entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
         entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;

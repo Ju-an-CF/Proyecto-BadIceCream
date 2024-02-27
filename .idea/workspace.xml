@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa">
-      <change beforePath="$PROJECT_DIR$/src/bloques/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bloques/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Bloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bloques/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueEstático.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bloques/BloqueInteractivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueInteractivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bloques/HieloDestructible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/HieloDestructible.java" afterDir="false" />
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Enemigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Bloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/UtilityTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/UtilityTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Corazón.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Mora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/HerramientaUtilidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/HerramientaUtilidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sonido/Sonido.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +80,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\escenario" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\IU" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\frutas" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\fuentes\frutas" />
@@ -179,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708874343733</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado.">
+      <option name="closed" value="true" />
+      <created>1709065312186</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709065312186</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,14 +224,15 @@
     <MESSAGE value="cambiando la ruta de imagenes de la fruta, a **fuente**" />
     <MESSAGE value="solucionando problema de colisión de frutas" />
     <MESSAGE value="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa" />
+    <MESSAGE value="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado." />
+    <option name="LAST_COMMIT_MESSAGE" value="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>119</line>
+          <line>120</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

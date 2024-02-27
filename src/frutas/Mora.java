@@ -10,15 +10,17 @@ public class Mora extends Entidad {
     private int animaciónIndex = 0;
     private long últimoTiempoCambio = System.currentTimeMillis();
     private int velocidadAnimación = 100; // Cambia cada 100ms
+
     public Mora(Tablero tablero) {
         super(tablero);
         nombre = "Mora";
-        imagen1=setUp("/fuentes/frutas/mora1");
-        imagen2=setUp("/fuentes/frutas/mora2");
-        imagen3=setUp("/fuentes/frutas/mora3");
-        imagen4=setUp("/fuentes/frutas/mora4");
-        imagen5=setUp("/fuentes/frutas/mora5");
+        imagen1 = setUp("/fuentes/frutas/mora1");
+        imagen2 = setUp("/fuentes/frutas/mora2");
+        imagen3 = setUp("/fuentes/frutas/mora3");
+        imagen4 = setUp("/fuentes/frutas/mora4");
+        imagen5 = setUp("/fuentes/frutas/mora5");
     }
+
     public void dibujar(Graphics2D g2) {
         actualizarAnimación();
 
@@ -26,7 +28,7 @@ public class Mora extends Entidad {
         int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
 
         if (mundoX + tablero.TAMANIO_DE_BLOQUE * 11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
-                mundoX -   tablero.TAMANIO_DE_BLOQUE * 12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
+                mundoX - tablero.TAMANIO_DE_BLOQUE * 12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
                 mundoY + (tablero.TAMANIO_DE_BLOQUE * 2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
                 mundoY - (tablero.TAMANIO_DE_BLOQUE * 2) < tablero.jugador.mundoY + tablero.jugador.ventanaY) {
 
@@ -36,10 +38,10 @@ public class Mora extends Entidad {
     }
 
     private void actualizarAnimación() {
-        if(System.currentTimeMillis() - últimoTiempoCambio >= velocidadAnimación) {
+        if (System.currentTimeMillis() - últimoTiempoCambio >= velocidadAnimación) {
             animaciónIndex++;
             // Asegura que el índice de animación varíe entre 0 y 4.
-            if(animaciónIndex > 4) animaciónIndex = 0;
+            if (animaciónIndex > 4) animaciónIndex = 0;
             últimoTiempoCambio = System.currentTimeMillis();
         }
     }

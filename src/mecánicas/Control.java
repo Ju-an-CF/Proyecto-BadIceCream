@@ -11,7 +11,7 @@ public class Control implements KeyListener {
 
 
     public Control(Tablero tablero) {
-       this.tablero=tablero;
+        this.tablero = tablero;
     }
 
     @Override
@@ -22,30 +22,30 @@ public class Control implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
         //Menu estado
-        if(tablero.estadoActualDeJuego == tablero.ESTADO_DE_TITULO){
-            if(tecla == KeyEvent.VK_W){
+        if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_TITULO) {
+            if (tecla == KeyEvent.VK_W) {
                 tablero.iu.comandoNum--;
-                if(tablero.iu.comandoNum<0){
-                    tablero.iu.comandoNum=2;
+                if (tablero.iu.comandoNum < 0) {
+                    tablero.iu.comandoNum = 2;
                 }
             }
-            if(tecla == KeyEvent.VK_S){
+            if (tecla == KeyEvent.VK_S) {
                 tablero.iu.comandoNum++;
-                if(tablero.iu.comandoNum>2){
-                    tablero.iu.comandoNum=0;
+                if (tablero.iu.comandoNum > 2) {
+                    tablero.iu.comandoNum = 0;
                 }
             }
         }
-        if(tecla==KeyEvent.VK_ENTER){
-            if(tablero.iu.comandoNum==0){
-                tablero.estadoActualDeJuego=tablero.ESTADO_DE_JUEGO;
+        if (tecla == KeyEvent.VK_ENTER) {
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = tablero.ESTADO_DE_JUEGO;
                 tablero.pararMúsica();
                 tablero.reproducirSE(2);
             }
-            if(tablero.iu.comandoNum==1){
+            if (tablero.iu.comandoNum == 1) {
                 //add later
             }
-            if(tablero.iu.comandoNum==2){
+            if (tablero.iu.comandoNum == 2) {
                 System.exit(0);
             }
         }
@@ -65,14 +65,14 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_SPACE) {
             espacioPresionado = true;
         }
-        if (tecla == KeyEvent.VK_ESCAPE){
+        if (tecla == KeyEvent.VK_ESCAPE) {
             sePuedeRomper = true;
         }
-        if (tecla == KeyEvent.VK_P){
-            if(tablero.estadoActualDeJuego== tablero.ESTADO_DE_JUEGO){
-                tablero.estadoActualDeJuego=tablero.ESTADO_DE_PAUSA;
-            } else if (tablero.estadoActualDeJuego==tablero.ESTADO_DE_PAUSA) {
-                tablero.estadoActualDeJuego=tablero.ESTADO_DE_JUEGO;
+        if (tecla == KeyEvent.VK_P) {
+            if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_JUEGO) {
+                tablero.estadoActualDeJuego = tablero.ESTADO_DE_PAUSA;
+            } else if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_PAUSA) {
+                tablero.estadoActualDeJuego = tablero.ESTADO_DE_JUEGO;
             }
         }
 

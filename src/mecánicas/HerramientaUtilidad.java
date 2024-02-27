@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public class HerramientaUtilidad {
 
-    public BufferedImage configurar(String nombreImagen, int tamañoBloque){
+    public BufferedImage configurar(String nombreImagen, int tamañoBloque) {
         BufferedImage imagen = null;
-        try{
+        try {
             imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/jugador/" + nombreImagen + ".png"));
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

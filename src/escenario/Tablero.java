@@ -34,23 +34,24 @@ public class Tablero extends JPanel implements Runnable {
     Control control = new Control(this);
     public Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
-    public IU iu=new IU(this);
-    Sonido música=new Sonido();
-    Sonido se=new Sonido();
+    public IU iu = new IU(this);
+    Sonido música = new Sonido();
+    Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-   //jugador y entidades
-    public Jugador jugador = new Jugador(this, control);
+    //jugador y entidades
+    public Jugador jugador = new Jugador(this, control, 8, 7);
+    public Jugador jugador2 = new Jugador(this, control, 9, 10);
     public Entidad[] frutas = new Entidad[20];
-    public Entidad[] enemigos=new Entidad[10];
+    public Entidad[] enemigos = new Entidad[10];
     ArrayList<Entidad> entidades = new ArrayList<>();
 
 
     // estado de juego
     public int estadoActualDeJuego;
-    public final int ESTADO_DE_JUEGO=1;
-    public final int ESTADO_DE_PAUSA=2;
-    public final int ESTADO_DE_TITULO=0;
+    public final int ESTADO_DE_JUEGO = 1;
+    public final int ESTADO_DE_PAUSA = 2;
+    public final int ESTADO_DE_TITULO = 0;
 
 
     public Tablero() {
@@ -66,7 +67,7 @@ public class Tablero extends JPanel implements Runnable {
         colocador.colocarEnemigos();
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
-        estadoActualDeJuego=ESTADO_DE_TITULO;
+        estadoActualDeJuego = ESTADO_DE_TITULO;
     }
 
     public void iniciarHiloDeJuego() {
@@ -111,15 +112,15 @@ public class Tablero extends JPanel implements Runnable {
         if (estadoActualDeJuego == ESTADO_DE_JUEGO) {
             jugador.actualizar();
 
-          for(int i=0; i<enemigos.length;i++){
-                if(enemigos[i]!=null){
-                   enemigos[i].actualizar();
+            for (int i = 0; i < enemigos.length; i++) {
+                if (enemigos[i] != null) {
+                    enemigos[i].actualizar();
                 }
             }
         }
-            if (estadoActualDeJuego == ESTADO_DE_PAUSA) {
+        if (estadoActualDeJuego == ESTADO_DE_PAUSA) {
 
-            }
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -127,21 +128,21 @@ public class Tablero extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         //Titulo estado
-        if(estadoActualDeJuego==ESTADO_DE_TITULO){
+        if (estadoActualDeJuego == ESTADO_DE_TITULO) {
             iu.dibujar(g2);
 
-        } else{
+        } else {
             //Bloques
             adminBlock.dibujar(g2);
             entidades.add(jugador);
             //agrega frutas a la lista de entidades
-            for(int i=0;i<frutas.length;i++){
-                if(frutas[i]!=null){
-                entidades.add(frutas[i]);
+            for (int i = 0; i < frutas.length; i++) {
+                if (frutas[i] != null) {
+                    entidades.add(frutas[i]);
                 }
             }
-            for(int i=0;i<enemigos.length;i++){
-                if(enemigos[i]!=null){
+            for (int i = 0; i < enemigos.length; i++) {
+                if (enemigos[i] != null) {
                     entidades.add(enemigos[i]);
                 }
             }
@@ -149,36 +150,37 @@ public class Tablero extends JPanel implements Runnable {
             Collections.sort(entidades, new Comparator<Entidad>() {
                 @Override
                 public int compare(Entidad o1, Entidad o2) {
-                   int resultado=Integer.compare(o1.mundoY,o2.mundoY);
+                    int resultado = Integer.compare(o1.mundoY, o2.mundoY);
                     return resultado;
                 }
             });
             //dibujar entidades
-            for(int i=0;i<entidades.size();i++){
+            for (int i = 0; i < entidades.size(); i++) {
                 entidades.get(i).dibujar(g2);
             }
             //igualando la lista
-            for(int i=0;i<entidades.size();i++){
+            for (int i = 0; i < entidades.size(); i++) {
                 entidades.remove(i);
             }
             //IU
             iu.dibujar(g2);
-           // g2.dispose();
+            // g2.dispose();
 
         }
         //otros
     }
 
-    public void reproducirMúsica(int i){
+    public void reproducirMúsica(int i) {
         música.colocarArchivo(i);
         música.reproducir();
         música.entrarEnBucle();
     }
 
-    public void pararMúsica(){
+    public void pararMúsica() {
         música.parar();
     }
-    public void reproducirSE(int i){
+
+    public void reproducirSE(int i) {
         se.colocarArchivo(i);
         se.reproducir();
     }

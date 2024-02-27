@@ -14,13 +14,13 @@ public class Entidad {
     public int mundoX, mundoY;
     public int velocidad;
     public BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
-    public String dirección="abajo";
+    public String dirección = "abajo";
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
     public Rectangle áreaSólida = new Rectangle(0, 0, 42, 42);
     public int áreaSólidaPorDefectoX, áreaSólidaPorDefectoY;
     public boolean colisiónActiva = false;
-    public int contadorBloqueoDeAcción=0;
+    public int contadorBloqueoDeAcción = 0;
     public BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
     public String nombre;
     public boolean colisión = false;
@@ -29,21 +29,22 @@ public class Entidad {
         this.tablero = tablero;
     }
 
-    public void establecerAcción(){}
+    public void establecerAcción() {
+    }
 
-    public void actualizar(){
+    public void actualizar() {
 
         establecerAcción();
-        colisiónActiva=false;
+        colisiónActiva = false;
         tablero.checkColisión.verificarBloque(this);
-        tablero.checkColisión.verificarObjeto(this,false);
-        tablero.checkColisión.verificarEntidad(this,tablero.enemigos);
-        boolean contactoConJugador=tablero.checkColisión.verificarJugador(this);
+        tablero.checkColisión.verificarObjeto(this, false);
+        tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
+        boolean contactoConJugador = tablero.checkColisión.verificarJugador(this);
 
-        if(contactoConJugador){
-            if(!tablero.jugador.invencible){
-                tablero.jugador.vida-=1;
-                tablero.jugador.invencible=true;
+        if (contactoConJugador) {
+            if (!tablero.jugador.invencible) {
+                tablero.jugador.vida -= 1;
+                tablero.jugador.invencible = true;
             }
         }
 
@@ -74,6 +75,7 @@ public class Entidad {
             contadorMovimiento = 0;
         }
     }
+
     public BufferedImage setUp(String nombreImagen) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage imagen = null;

@@ -17,9 +17,10 @@ public class Jugador extends Entidad {
     //estadisticas personaje
     public int máximoVidas;
     public int vida;
-    public int tiempoDeInvencibilidad=0;
-    public boolean invencible=false;
-    public Jugador(Tablero tablero, Control control) {
+    public int tiempoDeInvencibilidad = 0;
+    public boolean invencible = false;
+
+    public Jugador(Tablero tablero, Control control, int posiciónX, int posiciónY) {
         super(tablero);
         this.control = control;
         áreaSólida = new Rectangle();
@@ -29,24 +30,25 @@ public class Jugador extends Entidad {
         áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 34;
         áreaSólida.height = 28;
-        ventanaX = tablero.TAMANIO_DE_BLOQUE * 7; //
-        ventanaY = tablero.TAMANIO_DE_BLOQUE * 5; //
+        ventanaX = tablero.TAMANIO_DE_BLOQUE * 7; // 7
+        ventanaY = tablero.TAMANIO_DE_BLOQUE * 5; // 5
         númeroDeFrutas = 0;
+        mundoX = posiciónX * tablero.TAMANIO_DE_BLOQUE;
+        mundoY = posiciónY * tablero.TAMANIO_DE_BLOQUE;
 
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
     }
 
     public void establecerValoresPredeterminados() {
-        mundoX = 336;
-        mundoY = 294;
         velocidad = 6;
         dirección = "abajo";
         //estadisticas
-        máximoVidas=3;
-        vida=máximoVidas;
+        máximoVidas = 3;
+        vida = máximoVidas;
 
     }
+
     public void obtenerImagenDeJugador() {
 
         arriba1 = setUp("/fuentes/jugador/jugador_arriba1");
@@ -83,7 +85,7 @@ public class Jugador extends Entidad {
             tablero.checkColisión.verificarBloque(this);
             //verificar colisión de objetos
             int index = tablero.checkColisión.verificarObjeto(this, true);
-            int enemigoIndex=tablero.checkColisión.verificarEntidad(this,tablero.enemigos);
+            int enemigoIndex = tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
             contactoConEnemigo(enemigoIndex);
             recogerFrutas(index);
             //if colision=false, jugador se mueve
@@ -117,20 +119,20 @@ public class Jugador extends Entidad {
                 contadorMovimiento = 0;
             }
         }
-        if(invencible==true){
+        if (invencible == true) {
             tiempoDeInvencibilidad++;
-            if(tiempoDeInvencibilidad>60){
-                invencible=false;
-                tiempoDeInvencibilidad=0;
+            if (tiempoDeInvencibilidad > 60) {
+                invencible = false;
+                tiempoDeInvencibilidad = 0;
             }
         }
     }
 
     private void contactoConEnemigo(int i) {
-        if(i!=999){
-            if(invencible==false) {
+        if (i != 999) {
+            if (invencible == false) {
                 vida -= 1;
-                invencible=true;
+                invencible = true;
             }
         }
     }
@@ -140,11 +142,11 @@ public class Jugador extends Entidad {
             tablero.frutas[index] = null;
             númeroDeFrutas++;
             tablero.reproducirSE(1);
-          //  tablero.
+            //  tablero.
             System.out.println("Frutas recolectadas: " + númeroDeFrutas);
         }
-        if(númeroDeFrutas==11){
-            tablero.iu.juegoTerminado=true;
+        if (númeroDeFrutas == 11) {
+            tablero.iu.juegoTerminado = true;
             tablero.pararMúsica();
             tablero.reproducirSE(6);
         }
@@ -210,13 +212,13 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        if(invencible){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.3f));
+        if (invencible) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
 
         g2.drawImage(imagen, ventanaX, ventanaY, null);
         //reseteo
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
