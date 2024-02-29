@@ -5,22 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="creando constructor jugador, y arreglando espaciado">
-      <change afterPath="$PROJECT_DIR$/src/escenario/TipoBloque.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Jugador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/escenario/mapa3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mecánicas/Dirección.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Enemigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueInteractivo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/HieloDestructible.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Corazón.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frutas/Mora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Proyecto.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proyecto.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/Enemigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Bloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueDeHielo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueEstático.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/TipoBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/TipoBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/UtilityTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/HerramientaUtilidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sonido/Sonido.java" afterDir="false" />
     </list>
-    <list id="b13e0740-3d8f-45ca-9c5d-f9d658cf79aa" name="Changes by FAMILIAOÑA" comment="">
-      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Bloque.java" afterDir="false" />
-    </list>
+    <list id="04a7281c-026e-4660-b75e-13aa22ca0176" name="Changes by FAMILIAOÑA" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +60,6 @@
     <option name="RECENT_COMMON_BRANCH" value="main" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -59,31 +70,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Compu\Documents\workspace\Clonación\Proyecto---BadIceCream\src\escenario" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\escenario" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\IU" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\frutas" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\fuentes\frutas" />
-      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -116,6 +127,8 @@
       <workItem from="1708848336437" duration="613000" />
       <workItem from="1708873806224" duration="10803000" />
       <workItem from="1709063065622" duration="43000" />
+      <workItem from="1709152282594" duration="4587000" />
+      <workItem from="1709235174634" duration="9334000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -240,7 +253,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>120</line>
+          <line>125</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

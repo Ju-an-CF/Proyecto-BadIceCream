@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 public class Control implements KeyListener {
     Tablero tablero;
     public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper, espacioPresionado;
+    public boolean fPresionada;
 
 
     public Control(Tablero tablero) {
@@ -65,6 +66,9 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_SPACE) {
             espacioPresionado = true;
         }
+        if (tecla == KeyEvent.VK_F) {
+            fPresionada = true;
+        }
         if (tecla == KeyEvent.VK_ESCAPE) {
             sePuedeRomper = true;
         }
@@ -75,6 +79,10 @@ public class Control implements KeyListener {
                 tablero.estadoActualDeJuego = tablero.ESTADO_DE_JUEGO;
             }
         }
+
+    }
+
+    private void romperBloque() {
 
     }
 
@@ -93,6 +101,12 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = false;
         }
+        if (tecla == KeyEvent.VK_SPACE) {
+            espacioPresionado = false;
+        }
+        if (tecla == KeyEvent.VK_F) {
+            fPresionada = false;
+        }
 
     }
 
@@ -100,5 +114,4 @@ public class Control implements KeyListener {
     public String toString() {
         return super.toString();
     }
-
 }

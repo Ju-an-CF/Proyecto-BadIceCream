@@ -1,19 +1,20 @@
-package entidades;
+package escenario.entidades;
 
 import escenario.Tablero;
+import mecánicas.Dirección;
 
 import java.util.Random;
 
 public class Enemigo extends Entidad {
     public Enemigo(Tablero tablero) {
         super(tablero);
-        velocidad = 1;
-        áreaSólida.x = 3;
-        áreaSólida.y = 10;
-        áreaSólida.width = 42;
-        áreaSólida.height = 30;
-        áreaSólidaPorDefectoX = áreaSólida.x;
-        áreaSólidaPorDefectoY = áreaSólida.y;
+        setVelocidad(1);
+        getÁreaSólida().x = 3;
+        getÁreaSólida().y = 10;
+        getÁreaSólida().width = 42;
+        getÁreaSólida().height = 30;
+        setÁreaSólidaPorDefectoX(getÁreaSólida().x);
+        setÁreaSólidaPorDefectoY(getÁreaSólida().y);
         obtenerImagenDeEnemigo();
     }
 
@@ -43,16 +44,16 @@ public class Enemigo extends Entidad {
             int i = random.nextInt(100) + 1;
 
             if (i <= 25) {
-                dirección = "arriba";
+                dirección = Dirección.ARRIBA;
             }
             if (i > 25 && i <= 50) {
-                dirección = "abajo";
+                dirección = Dirección.ABAJO;
             }
             if (i > 50 && i <= 75) {
-                dirección = "izquierda";
+                dirección = Dirección.IZQUIERDA;
             }
             if (i > 75 && i <= 100) {
-                dirección = "derecha";
+                dirección = Dirección.DERECHA;
             }
             contadorBloqueoDeAcción = 0;
         }

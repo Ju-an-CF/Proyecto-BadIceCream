@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import entidades.*;
+import escenario.entidades.*;
+import escenario.entidades.bloques.AdministradorDeBloque;
+import escenario.entidades.bloques.BloqueInteractivo;
 import interfazDeUsuario.IU;
 import mecánicas.ColocadorDeObjetos;
 import mecánicas.Control;
@@ -14,24 +16,24 @@ import mecánicas.VerificadorDeColisión;
 import sonido.Sonido;
 
 public class Tablero extends JPanel implements Runnable {
-    public final int TAMANIO_BLOQUE_ORIGINAL = 14;
+    public final int TAMAÑO_BLOQUE_ORIGINAL = 14;
     public final int ESCALA = 3;
-    public final int TAMANIO_DE_BLOQUE = TAMANIO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
-    public final int COLUMNAS_MAX = 16;
-    public final int FILAS_MAX = 12;
+    public final int TAMAÑO_DE_BLOQUE = TAMAÑO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
+    public final int COLUMNAS_MAX = 17;
+    public final int FILAS_MAX = 15;
 
-    public final int ALTO = TAMANIO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
-    public final int ANCHO = TAMANIO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
+    public final int ALTO = TAMAÑO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
+    public final int ANCHO = TAMAÑO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
 
     //Configuración del mundo
-    public final int maxColDeMundo = 31;
-    public final int maxFilasDeMundo = 28;
+    public final int maxColDeMundo = 17;
+    public final int maxFilasDeMundo = 15;
 
 
     //FPS
     public static final int FPS = 60;
 
-    Control control = new Control(this);
+    public Control control = new Control(this);
     public Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
     public IU iu = new IU(this);
@@ -39,11 +41,12 @@ public class Tablero extends JPanel implements Runnable {
     Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    //jugador y entidades
+    //jugador y escenario.entidades
     public Jugador jugador = new Jugador(this, control, 8, 7);
     public Jugador jugador2 = new Jugador(this, control, 9, 10);
     public Entidad[] frutas = new Entidad[20];
     public Entidad[] enemigos = new Entidad[10];
+    public BloqueInteractivo[] bloqueInteractivos = new BloqueInteractivo[50];
     ArrayList<Entidad> entidades = new ArrayList<>();
 
 
@@ -134,29 +137,34 @@ public class Tablero extends JPanel implements Runnable {
         } else {
             //Bloques
             adminBlock.dibujar(g2);
-            entidades.add(jugador);
-            //agrega frutas a la lista de entidades
-            for (int i = 0; i < frutas.length; i++) {
-                if (frutas[i] != null) {
-                    entidades.add(frutas[i]);
+
+            for (BloqueInteractivo bloqueInteractivo : bloqueInteractivos) {
+                if (bloqueInteractivo != null) {
+                    bloqueInteractivo.dibujar(g2);
                 }
             }
-            for (int i = 0; i < enemigos.length; i++) {
-                if (enemigos[i] != null) {
-                    entidades.add(enemigos[i]);
+            entidades.add(jugador);
+            //agrega escenario.entidades.frutas a la lista de escenario.entidades
+            for (Entidad fruta : frutas) {
+                if (fruta != null) {
+                    entidades.add(fruta);
+                }
+            }
+            for (Entidad enemigo : enemigos) {
+                if (enemigo != null) {
+                    entidades.add(enemigo);
                 }
             }
             //ordenar
             Collections.sort(entidades, new Comparator<Entidad>() {
                 @Override
                 public int compare(Entidad o1, Entidad o2) {
-                    int resultado = Integer.compare(o1.mundoY, o2.mundoY);
-                    return resultado;
+                    return Integer.compare(o1.getMundoY(), o2.getMundoY());
                 }
             });
-            //dibujar entidades
-            for (int i = 0; i < entidades.size(); i++) {
-                entidades.get(i).dibujar(g2);
+            //dibujar escenario.entidades
+            for (Entidad entidad : entidades) {
+                entidad.dibujar(g2);
             }
             //igualando la lista
             for (int i = 0; i < entidades.size(); i++) {
