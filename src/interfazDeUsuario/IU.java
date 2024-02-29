@@ -75,7 +75,7 @@ public class IU {
             graphics2D.setFont(font.deriveFont(Font.BOLD, 15F));
             graphics2D.setColor(Color.BLACK);
             graphics2D.drawImage(moraImagen, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
-            graphics2D.drawString("x= " + tablero.jugador.númeroDeFrutas, 25, 21);
+            graphics2D.drawString("x= " + tablero.getJugador().getNúmeroDeFrutas(), 25, 21);
             //Tiempo
             playTime += (double) 1 / 60;
             graphics2D.drawString("Tiempo: " + decimalFormato.format(playTime) + " s", tablero.TAMAÑO_DE_BLOQUE * 13, 25);
@@ -98,20 +98,20 @@ public class IU {
 
     private void dibujarVidaJugador() {
         int x = tablero.TAMAÑO_DE_BLOQUE / 2;
-        int y = tablero.TAMAÑO_DE_BLOQUE * 8;
+        int y = tablero.TAMAÑO_DE_BLOQUE * 14;
         int i = 0;
         //dibujar corazon vacio
-        while (i < tablero.jugador.máximoVidas) {
+        while (i < tablero.getJugador().getMáximoVidas()) {
             graphics2D.drawImage(corazónVacío, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
             x += tablero.TAMAÑO_DE_BLOQUE;
         }
         //reset
         x = tablero.TAMAÑO_DE_BLOQUE / 2;
-        y = tablero.TAMAÑO_DE_BLOQUE * 8;
+        y = tablero.TAMAÑO_DE_BLOQUE * 14;
         i = 0;
         //dibujar vida actual
-        while (i < tablero.jugador.vida) {
+        while (i < tablero.getJugador().getVida()) {
             graphics2D.drawImage(corazónFull, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
             x += tablero.TAMAÑO_DE_BLOQUE;
@@ -134,7 +134,7 @@ public class IU {
         //dibujo Helado
         x = tablero.ANCHO / 2 - tablero.TAMAÑO_DE_BLOQUE + 42;
         y += tablero.TAMAÑO_DE_BLOQUE * 3;
-        graphics2D.drawImage(tablero.jugador.abajo1, x, y, tablero.TAMAÑO_DE_BLOQUE * 2, tablero.TAMAÑO_DE_BLOQUE * 2, null);
+        graphics2D.drawImage(tablero.getJugador().abajo1, x, y, tablero.TAMAÑO_DE_BLOQUE * 2, tablero.TAMAÑO_DE_BLOQUE * 2, null);
         //Menu
         graphics2D.setFont(font.deriveFont(Font.BOLD, 35F));
 

@@ -9,18 +9,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Jugador extends Entidad {
-    Control control;
+    private Control control;
     //Cantidad De Frutas
-    public int númeroDeFrutas;
+    private int númeroDeFrutas;
     //Estadísticas personaje
-    public int máximoVidas;
-    public int vida;
-    public int tiempoDeInvencibilidad = 0;
-    public boolean invencible = false;
+    private int máximoVidas;
+    private int vida;
+    private int tiempoDeInvencibilidad = 0;
+    private boolean invencible = false;
 
     public Jugador(Tablero tablero, Control control, int posiciónX, int posiciónY) {
         super(tablero);
-        this.control = control;
+        this.setControl(control);
         setÁreaSólida(new Rectangle());
         getÁreaSólida().x = 4;
         getÁreaSólida().y = 14;
@@ -28,26 +28,28 @@ public class Jugador extends Entidad {
         setÁreaSólidaPorDefectoY(getÁreaSólida().y);
         getÁreaSólida().width = 34;
         getÁreaSólida().height = 28;
-        númeroDeFrutas = 0;
+        setNúmeroDeFrutas(0);
         setMundoX(posiciónX * tablero.TAMAÑO_DE_BLOQUE);
         setMundoY(posiciónY * tablero.TAMAÑO_DE_BLOQUE);
         //Configuraciones Especiales
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
     }
+
     /**
      * Establece los valores predeterminados para el jugador.
      * Este método inicializa la velocidad y la dirección del jugador, así como las estadísticas de vida.
      */
     public void establecerValoresPredeterminados() {
         // Establecer la velocidad predeterminada del jugador
-        setVelocidad(6);
+        setVelocidad(4);
         // Establecer la dirección predeterminada del jugador como hacia abajo
         dirección = Dirección.ABAJO;
         // Inicializar las estadísticas de vida
-        máximoVidas = 3;
-        vida = máximoVidas;
+        setMáximoVidas(3);
+        setVida(getMáximoVidas());
     }
+
     public void obtenerImagenDeJugador() {
         // Configurar las imágenes del jugador para la dirección hacia arriba
         arriba1 = configurarImagen("jugador_arriba1");
@@ -80,38 +82,38 @@ public class Jugador extends Entidad {
      * @param nombreImagen El nombre de la imagen a configurar.
      * @return La imagen configurada.
      */
-    public BufferedImage configurarImagen(String nombreImagen){
+    public BufferedImage configurarImagen(String nombreImagen) {
         // Llama al método configurarImagen de la superclase con la ruta completa de la imagen
         return super.configurarImagen("/fuentes/jugador/" + nombreImagen);
     }
 
-    public boolean estáMuerto(){
-        return vida == 0;
+    public boolean estáMuerto() {
+        return getVida() == 0;
     }
 
     public void actualizar() {
-        if (    control.arribaPresionado    ||
-                control.abajoPresionado     ||
-                control.izquierdaPresionado ||
-                control.derechaPresionado   ||
-                control.espacioPresionado || control.fPresionada) {
-            if (control.arribaPresionado) {
+        if (getControl().isArribaPresionado() ||
+                getControl().isAbajoPresionado() ||
+                getControl().isIzquierdaPresionado() ||
+                getControl().isDerechaPresionado() ||
+                getControl().isEspacioPresionado() || getControl().isfPresionada()) {
+            if (getControl().isArribaPresionado()) {
                 dirección = Dirección.ARRIBA;
-            } else if (control.abajoPresionado) {
+            } else if (getControl().isAbajoPresionado()) {
                 dirección = Dirección.ABAJO;
-            } else if (control.izquierdaPresionado) {
+            } else if (getControl().isIzquierdaPresionado()) {
                 dirección = Dirección.IZQUIERDA;
-            } else if (control.derechaPresionado) {
+            } else if (getControl().isDerechaPresionado()) {
                 dirección = Dirección.DERECHA;
             }
             //verifica Colisión de bloque
             setColisiónActiva(false);
-            getTablero().checkColisión.verificarBloque(this);
+            getTablero().getVerificadorDeColisión().verificarBloque(this);
             //verificar colisión de objetos
-            int index = getTablero().checkColisión.verificarObjeto(this, true);
-            int enemigoIndex = getTablero().checkColisión.verificarEntidad(this, getTablero().enemigos);
+            int index = getTablero().getVerificadorDeColisión().verificarObjeto(this, true);
+            int enemigoIndex = getTablero().getVerificadorDeColisión().verificarEntidad(this, getTablero().getEnemigos());
 
-            int índiceBloqueInteractivo = getTablero().checkColisión.verificarEntidad(this, getTablero().bloqueInteractivos);
+            int índiceBloqueInteractivo = getTablero().getVerificadorDeColisión().verificarEntidad(this, getTablero().getBloqueInteractivos());
             destruirBloque(índiceBloqueInteractivo);
 
             int i = 0;
@@ -123,17 +125,25 @@ public class Jugador extends Entidad {
 
 
             //if colisión=false, jugador se mueve
-            if (!isColisiónActiva() && !control.espacioPresionado && !control.fPresionada) {
+            if (!isColisiónActiva() && !getControl().isEspacioPresionado() && !getControl().isfPresionada()) {
                 switch (dirección) {
-                    case ARRIBA: setMundoY(getMundoY() - getVelocidad()); break;
-                    case ABAJO: setMundoY(getMundoY() + getVelocidad()); break;
-                    case IZQUIERDA: setMundoX(getMundoX() - getVelocidad()); break;
-                    case DERECHA: setMundoX(getMundoX() + getVelocidad()); break;
+                    case ARRIBA:
+                        setMundoY(getMundoY() - getVelocidad());
+                        break;
+                    case ABAJO:
+                        setMundoY(getMundoY() + getVelocidad());
+                        break;
+                    case IZQUIERDA:
+                        setMundoX(getMundoX() - getVelocidad());
+                        break;
+                    case DERECHA:
+                        setMundoX(getMundoX() + getVelocidad());
+                        break;
                 }
             }
 
-            getTablero().control.espacioPresionado = false;
-            getTablero().control.fPresionada = false;
+            getTablero().getControl().setEspacioPresionado(false);
+            getTablero().getControl().setfPresionada(false);
 
             contadorMovimiento++;
             if (contadorMovimiento > 10) {
@@ -149,23 +159,24 @@ public class Jugador extends Entidad {
                 contadorMovimiento = 0;
             }
         }
-        if (invencible) {
-            tiempoDeInvencibilidad++;
-            if (tiempoDeInvencibilidad > 60) {
-                invencible = false;
-                tiempoDeInvencibilidad = 0;
+        if (isInvencible()) {
+            setTiempoDeInvencibilidad(getTiempoDeInvencibilidad() + 1);
+            if (getTiempoDeInvencibilidad() > 60) {
+                setInvencible(false);
+                setTiempoDeInvencibilidad(0);
             }
         }
     }
 
-    public void destruirBloque(int índice){
-        if(índice != 999 && getTablero().bloqueInteractivos[índice].destructible && control.espacioPresionado){
-            getTablero().bloqueInteractivos[índice] = null;
+    public void destruirBloque(int índice) {
+        if (índice != 999 && getTablero().getBloqueInteractivos()[índice].isDestructible() && getControl().isEspacioPresionado()) {
+            getTablero().getBloqueInteractivos()[índice] = null;
         }
 
     }
+
     private void comprobarSiEstáMuerto() {
-        if(estáMuerto()){
+        if (estáMuerto()) {
             getTablero().iu.estadoDeJuego = EstadoDeJuego.DERROTA;
             getTablero().pararMúsica();
             getTablero().reproducirSE(4);
@@ -173,24 +184,27 @@ public class Jugador extends Entidad {
     }
 
 
-    public void colocarBloque(int índice){
+    public void colocarBloque(int índice) {
         int x = getMundoX();
         int y = getMundoY();
 
-        if(control.fPresionada){
-            getTablero().colocador.colocarBloquesInteractivos(x, y, índice, dirección); índice++;
+        if (getControl().isfPresionada()) {
+            getTablero().getColocador().colocarBloquesInteractivos(x, y, índice, dirección);
+            índice++;
         }
     }
+
     private void contactoConEnemigo(int i) {
-        if(!getTablero().control.espacioPresionado){
+        if (!getTablero().getControl().isEspacioPresionado()) {
             if (i != 999) {
-                if (!invencible) {
-                    vida -= 1;
-                    invencible = true;
+                if (!isInvencible()) {
+                    setVida(getVida() - 1);
+                    setInvencible(true);
                 }
             }
         }
     }
+
     /**
      * Recoge una fruta en la posición dada en el tablero.
      *
@@ -199,13 +213,13 @@ public class Jugador extends Entidad {
 
     public void recogerFrutas(int index) {
         if (index != 999) {
-            getTablero().frutas[index] = null;
-            númeroDeFrutas++;
+            getTablero().getFrutas()[index] = null;
+            setNúmeroDeFrutas(getNúmeroDeFrutas() + 1);
             getTablero().reproducirSE(1);
             //  tablero.
-            System.out.println("Frutas recolectadas: " + númeroDeFrutas);
+            System.out.println("Frutas recolectadas: " + getNúmeroDeFrutas());
         }
-        if (númeroDeFrutas == 2) {
+        if (getNúmeroDeFrutas() == 2) {
             getTablero().iu.estadoDeJuego = EstadoDeJuego.VICTORIA;
             //tablero.iu.juegoTerminado = true;
             getTablero().pararMúsica();
@@ -273,7 +287,7 @@ public class Jugador extends Entidad {
                 }
                 break;
         }
-        if (invencible) {
+        if (isInvencible()) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
 
@@ -284,4 +298,51 @@ public class Jugador extends Entidad {
         g2.drawRect(getMundoX(), getMundoY() + getÁreaSólida().y, getÁreaSólida().width, getÁreaSólida().height); //HITBOX Jugador
     }
 
+    public int getNúmeroDeFrutas() {
+        return númeroDeFrutas;
+    }
+
+    public void setNúmeroDeFrutas(int númeroDeFrutas) {
+        this.númeroDeFrutas = númeroDeFrutas;
+    }
+
+    public int getMáximoVidas() {
+        return máximoVidas;
+    }
+
+    public void setMáximoVidas(int máximoVidas) {
+        this.máximoVidas = máximoVidas;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getTiempoDeInvencibilidad() {
+        return tiempoDeInvencibilidad;
+    }
+
+    public void setTiempoDeInvencibilidad(int tiempoDeInvencibilidad) {
+        this.tiempoDeInvencibilidad = tiempoDeInvencibilidad;
+    }
+
+    public boolean isInvencible() {
+        return invencible;
+    }
+
+    public void setInvencible(boolean invencible) {
+        this.invencible = invencible;
+    }
+
+    public Control getControl() {
+        return control;
+    }
+
+    public void setControl(Control control) {
+        this.control = control;
+    }
 }

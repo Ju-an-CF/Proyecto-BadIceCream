@@ -47,15 +47,15 @@ public class Entidad {
 
         establecerAcción();
         setColisiónActiva(false);
-        getTablero().checkColisión.verificarBloque(this);
-        getTablero().checkColisión.verificarObjeto(this, false);
-        getTablero().checkColisión.verificarEntidad(this, getTablero().enemigos);
-        boolean contactoConJugador = getTablero().checkColisión.verificarJugador(this);
+        getTablero().getVerificadorDeColisión().verificarBloque(this);
+        getTablero().getVerificadorDeColisión().verificarObjeto(this, false);
+        getTablero().getVerificadorDeColisión().verificarEntidad(this, getTablero().getEnemigos());
+        boolean contactoConJugador = getTablero().getVerificadorDeColisión().verificarJugador(this);
 
         if (contactoConJugador) {
-            if (!getTablero().jugador.invencible) {
-                getTablero().jugador.vida -= 1;
-                getTablero().jugador.invencible = true;
+            if (!getTablero().getJugador().isInvencible()) {
+                getTablero().getJugador().setVida(getTablero().getJugador().getVida() - 1);
+                getTablero().getJugador().setInvencible(true);
             }
         }
 

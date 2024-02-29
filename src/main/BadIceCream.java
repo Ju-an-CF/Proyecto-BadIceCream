@@ -4,9 +4,13 @@ import escenario.Tablero;
 
 import javax.swing.*;
 
-public class Main {
+public class BadIceCream {
 
     public static void main(String[] args) {
+        empezarJuego();
+    }
+
+    private static void empezarJuego() {
         JFrame ventana = new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);

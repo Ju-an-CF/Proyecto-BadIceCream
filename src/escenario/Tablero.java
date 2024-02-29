@@ -33,21 +33,20 @@ public class Tablero extends JPanel implements Runnable {
     //FPS
     public static final int FPS = 60;
 
-    public Control control = new Control(this);
-    public Thread hiloDeJuego;
-    public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
+    private Control control = new Control(this);
+    private VerificadorDeColisión verificadorDeColisión = new VerificadorDeColisión(this);
+    private AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
+    private ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
+    private Thread hiloDeJuego;
     public IU iu = new IU(this);
     Sonido música = new Sonido();
     Sonido se = new Sonido();
-    public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
-    public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    //jugador y escenario.entidades
-    public Jugador jugador = new Jugador(this, control, 8, 7);
-    public Jugador jugador2 = new Jugador(this, control, 9, 10);
-    public Entidad[] frutas = new Entidad[20];
-    public Entidad[] enemigos = new Entidad[10];
-    public BloqueInteractivo[] bloqueInteractivos = new BloqueInteractivo[50];
-    ArrayList<Entidad> entidades = new ArrayList<>();
+    //Jugador y Entidades
+    private Jugador jugador = new Jugador(this, getControl(), 8, 7);
+    private Entidad[] frutas = new Entidad[20];
+    private Entidad[] enemigos = new Entidad[10];
+    private BloqueInteractivo[] bloqueInteractivos = new BloqueInteractivo[50];
+    private ArrayList<Entidad> entidades = new ArrayList<>();
 
 
     // estado de juego
@@ -61,21 +60,22 @@ public class Tablero extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(ALTO, ANCHO));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        this.addKeyListener(control);
+        this.addKeyListener(getControl());
         this.setFocusable(true);
     }
 
     public void configurarJuego() {
-        colocador.colocarMora();
-        colocador.colocarEnemigos();
+        getColocador().colocarMora();
+        getColocador().colocarEnemigos();
+        getColocador().colocarBloquesInteractivos();
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
         estadoActualDeJuego = ESTADO_DE_TITULO;
     }
 
     public void iniciarHiloDeJuego() {
-        hiloDeJuego = new Thread(this);
-        hiloDeJuego.start();
+        setHiloDeJuego(new Thread(this));
+        getHiloDeJuego().start();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Tablero extends JPanel implements Runnable {
         long temporizador = 0;
         int dibujarContar = 0;
 
-        while (hiloDeJuego != null) {
+        while (getHiloDeJuego() != null) {
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
@@ -113,11 +113,11 @@ public class Tablero extends JPanel implements Runnable {
 
     public void actualizar() {
         if (estadoActualDeJuego == ESTADO_DE_JUEGO) {
-            jugador.actualizar();
+            getJugador().actualizar();
 
-            for (int i = 0; i < enemigos.length; i++) {
-                if (enemigos[i] != null) {
-                    enemigos[i].actualizar();
+            for (int i = 0; i < getEnemigos().length; i++) {
+                if (getEnemigos()[i] != null) {
+                    getEnemigos()[i].actualizar();
                 }
             }
         }
@@ -136,39 +136,39 @@ public class Tablero extends JPanel implements Runnable {
 
         } else {
             //Bloques
-            adminBlock.dibujar(g2);
+            getAdminBlock().dibujar(g2);
 
-            for (BloqueInteractivo bloqueInteractivo : bloqueInteractivos) {
+            for (BloqueInteractivo bloqueInteractivo : getBloqueInteractivos()) {
                 if (bloqueInteractivo != null) {
                     bloqueInteractivo.dibujar(g2);
                 }
             }
-            entidades.add(jugador);
+            getEntidades().add(getJugador());
             //agrega escenario.entidades.frutas a la lista de escenario.entidades
-            for (Entidad fruta : frutas) {
+            for (Entidad fruta : getFrutas()) {
                 if (fruta != null) {
-                    entidades.add(fruta);
+                    getEntidades().add(fruta);
                 }
             }
-            for (Entidad enemigo : enemigos) {
+            for (Entidad enemigo : getEnemigos()) {
                 if (enemigo != null) {
-                    entidades.add(enemigo);
+                    getEntidades().add(enemigo);
                 }
             }
             //ordenar
-            Collections.sort(entidades, new Comparator<Entidad>() {
+            Collections.sort(getEntidades(), new Comparator<Entidad>() {
                 @Override
                 public int compare(Entidad o1, Entidad o2) {
                     return Integer.compare(o1.getMundoY(), o2.getMundoY());
                 }
             });
             //dibujar escenario.entidades
-            for (Entidad entidad : entidades) {
+            for (Entidad entidad : getEntidades()) {
                 entidad.dibujar(g2);
             }
             //igualando la lista
-            for (int i = 0; i < entidades.size(); i++) {
-                entidades.remove(i);
+            for (int i = 0; i < getEntidades().size(); i++) {
+                getEntidades().remove(i);
             }
             //IU
             iu.dibujar(g2);
@@ -191,5 +191,53 @@ public class Tablero extends JPanel implements Runnable {
     public void reproducirSE(int i) {
         se.colocarArchivo(i);
         se.reproducir();
+    }
+
+    public Control getControl() {
+        return control;
+    }
+
+    public VerificadorDeColisión getVerificadorDeColisión() {
+        return verificadorDeColisión;
+    }
+
+    public AdministradorDeBloque getAdminBlock() {
+        return adminBlock;
+    }
+
+    public ColocadorDeObjetos getColocador() {
+        return colocador;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public Entidad[] getFrutas() {
+        return frutas;
+    }
+
+    public Entidad[] getEnemigos() {
+        return enemigos;
+    }
+
+    public BloqueInteractivo[] getBloqueInteractivos() {
+        return bloqueInteractivos;
+    }
+
+    public ArrayList<Entidad> getEntidades() {
+        return entidades;
+    }
+
+    public void setEntidades(ArrayList<Entidad> entidades) {
+        this.entidades = entidades;
+    }
+
+    public Thread getHiloDeJuego() {
+        return hiloDeJuego;
+    }
+
+    public void setHiloDeJuego(Thread hiloDeJuego) {
+        this.hiloDeJuego = hiloDeJuego;
     }
 }

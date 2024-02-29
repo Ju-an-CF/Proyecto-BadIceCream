@@ -22,6 +22,7 @@ public class AdministradorDeBloque {
         obtenerImagenDeBloque();
         cargarMapa("/escenario/mapa3.txt");
     }
+
     /**
      * Configura las imágenes de los bloques.
      * Este método configura varios bloques con sus respectivas imágenes y tipos de bloque.
@@ -67,8 +68,8 @@ public class AdministradorDeBloque {
 
     /**
      * Lee el mapa de una ruta y la carga para generar los bloques respectivos
-     * @param direcciónArchivo
-     * Ruta del mapa
+     *
+     * @param direcciónArchivo Ruta del mapa
      */
     public void cargarMapa(String direcciónArchivo) {
         try {
@@ -100,6 +101,7 @@ public class AdministradorDeBloque {
 
         }
     }
+
     public void dibujar(Graphics2D g2) {
         int columnasDeMundo = 0;
         int filasDeMundo = 0;

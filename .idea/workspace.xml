@@ -4,35 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="creando constructor jugador, y arreglando espaciado">
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Jugador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/mapa3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mecánicas/Dirección.java" afterDir="false" />
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="cambiando varias cosas, como la ubicación de los paquetes, de acuerdo al nuevo diagrama UML, también encapsulando algunos atributos de Entidad, Eliminando seguimiento de camara del jugador, y por último implementando Cambios de la rama Master.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Proyecto.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proyecto.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/Enemigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Bloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueDeHielo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueEstático.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/TipoBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/TipoBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/UtilityTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/HerramientaUtilidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BadIceCream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/HerramientaUtilidad.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sonido/Sonido.java" afterDir="false" />
     </list>
-    <list id="04a7281c-026e-4660-b75e-13aa22ca0176" name="Changes by FAMILIAOÑA" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,24 +56,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BadIceCream.executor": "Run",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Compu\Documents\workspace\Clonación\Proyecto---BadIceCream\src\escenario" />
@@ -128,7 +115,7 @@
       <workItem from="1708873806224" duration="10803000" />
       <workItem from="1709063065622" duration="43000" />
       <workItem from="1709152282594" duration="4587000" />
-      <workItem from="1709235174634" duration="9334000" />
+      <workItem from="1709235174634" duration="12021000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -218,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709066946562</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="cambiando varias cosas, como la ubicación de los paquetes, de acuerdo al nuevo diagrama UML, también encapsulando algunos atributos de Entidad, Eliminando seguimiento de camara del jugador, y por último implementando Cambios de la rama Master.">
+      <option name="closed" value="true" />
+      <created>1709245263659</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1709245263659</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,14 +241,15 @@
     <MESSAGE value="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa" />
     <MESSAGE value="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado." />
     <MESSAGE value="creando constructor jugador, y arreglando espaciado" />
-    <option name="LAST_COMMIT_MESSAGE" value="creando constructor jugador, y arreglando espaciado" />
+    <MESSAGE value="cambiando varias cosas, como la ubicación de los paquetes, de acuerdo al nuevo diagrama UML, también encapsulando algunos atributos de Entidad, Eliminando seguimiento de camara del jugador, y por último implementando Cambios de la rama Master." />
+    <option name="LAST_COMMIT_MESSAGE" value="cambiando varias cosas, como la ubicación de los paquetes, de acuerdo al nuevo diagrama UML, también encapsulando algunos atributos de Entidad, Eliminando seguimiento de camara del jugador, y por último implementando Cambios de la rama Master." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>125</line>
+          <line>123</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
