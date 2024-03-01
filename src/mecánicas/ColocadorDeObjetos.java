@@ -54,7 +54,7 @@ public class ColocadorDeObjetos {
                 gp.getBloqueInteractivos()[i] = new Hielo(gp, posX, posY);
                 break;
             case ABAJO:
-                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX, posY + 1);
+                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX, posY + 2);
                 break;
             case IZQUIERDA:
                 gp.getBloqueInteractivos()[i] = new Hielo(gp, posX - 1, posY + 1);

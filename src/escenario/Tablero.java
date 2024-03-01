@@ -43,6 +43,7 @@ public class Tablero extends JPanel implements Runnable {
     Sonido se = new Sonido();
     //Jugador y Entidades
     private Jugador jugador = new Jugador(this, getControl(), 8, 7);
+    private Jugador jugador2 = new Jugador(this, getControl(), 10, 9);
     private Entidad[] frutas = new Entidad[20];
     private Entidad[] enemigos = new Entidad[10];
     private BloqueInteractivo[] bloqueInteractivos = new BloqueInteractivo[50];
@@ -143,7 +144,8 @@ public class Tablero extends JPanel implements Runnable {
                     bloqueInteractivo.dibujar(g2);
                 }
             }
-            getEntidades().add(getJugador());
+            //Añadir Jugadores
+            entidades.add(jugador);
             //agrega escenario.entidades.frutas a la lista de escenario.entidades
             for (Entidad fruta : getFrutas()) {
                 if (fruta != null) {

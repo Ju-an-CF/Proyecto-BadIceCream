@@ -29,7 +29,7 @@ public class AdministradorDeBloque {
      */
     public void obtenerImagenDeBloque() {
         configurar(0, "nieve", TipoBloque.NORMAL);      // Bloque de nieve normal
-        configurar(1, "esquina1", TipoBloque.NORMAL);   // Bloque de nieve normal
+        configurar(1, "esquina1", TipoBloque.ESTÁTICO);   // Bloque de nieve normal
         configurar(2, "esquina2", TipoBloque.ESTÁTICO); // Bloque de esquina estático
         configurar(3, "esquina3", TipoBloque.ESTÁTICO); // Bloque de esquina estático
         configurar(4, "esquina4", TipoBloque.ESTÁTICO); // Bloque de esquina estático
