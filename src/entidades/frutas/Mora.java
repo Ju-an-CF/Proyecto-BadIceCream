@@ -1,26 +1,27 @@
-package entidades;
+package entidades.frutas;
 
+import entidades.Entidad;
 import escenario.Tablero;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Mora extends Entidad {
+public class Mora extends Fruta {
 
     private int animaciónIndex = 0;
     private long últimoTiempoCambio = System.currentTimeMillis();
     private int velocidadAnimación = 100; // Cambia cada 100ms
+    private final static int PUNTAJE = 2;
+    private final static String nombre = "Mora";
 
     public Mora(Tablero tablero) {
-        super(tablero);
-        nombre = "Mora";
-        obtenerImagen();
+        super(tablero, PUNTAJE, nombre);
     }
 
     /**
      * Este método asigna imágenes a cinco variables utilizando el método configurarImagen().
      */
-    private void obtenerImagen() {
+    public void obtenerImagen() {
         imagen1 = configurarImagen("mora1");
         imagen2 = configurarImagen("mora2");
         imagen3 = configurarImagen("mora3");
