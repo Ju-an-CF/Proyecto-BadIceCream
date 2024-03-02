@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Implementación de estado de juego">
-      <change afterPath="$PROJECT_DIR$/src/escenario/TipoBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta">
+      <change afterPath="$PROJECT_DIR$/src/entidades/personajes/Ogro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entidades/personajes/Toro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_abajo1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_abajo2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_abajo3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_abajo4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_arriba1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_arriba2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_arriba3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_arriba4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_derecha1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_derecha2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_derecha3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_derecha4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_izquierda1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_izquierda2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_izquierda3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/enemigo/ogro_izquierda4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/frutas/Mora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" beforeDir="false" />
@@ -15,6 +34,22 @@
       <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/mapa3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_abajo1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_abajo2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_abajo3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_abajo4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_arriba1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_arriba2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_arriba3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_arriba4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_derecha1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_derecha2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_derecha3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_derecha4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_izquierda1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_izquierda2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_izquierda3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/enemigo/jugador_izquierda4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper3.png" beforeDir="false" />
@@ -22,7 +57,6 @@
       <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper5.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper6.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/HerramientaUtilidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +66,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,34 +98,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="escenario" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Alessss\1 semestre\Programación\Java\ProyectoProgra\src\fuentes\enemigo" />
+      <recent name="F:\Alessss\1 semestre\Programación\Java\ProyectoProgra\src\fuentes\avatares" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\IU" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\frutas" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\fuentes\frutas" />
-      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -131,7 +166,10 @@
       <workItem from="1709248511177" duration="11823000" />
       <workItem from="1709292377702" duration="1690000" />
       <workItem from="1709318016656" duration="4807000" />
-      <workItem from="1709333145945" duration="9310000" />
+      <workItem from="1709333145945" duration="11677000" />
+      <workItem from="1709350655731" duration="249000" />
+      <workItem from="1709351987701" duration="3620000" />
+      <workItem from="1709389468856" duration="427000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -365,7 +403,87 @@
       <option name="project" value="LOCAL" />
       <updated>1709346970847</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Creación de TipoBloque">
+      <option name="closed" value="true" />
+      <created>1709347003715</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709347003715</updated>
+    </task>
+    <task id="LOCAL-00031" summary="...">
+      <option name="closed" value="true" />
+      <created>1709347021782</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1709347021782</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Se agrega otro enemigo(Toro)">
+      <option name="closed" value="true" />
+      <created>1709389595204</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389595204</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Se lo mueve de paquete a objetos">
+      <option name="closed" value="true" />
+      <created>1709389618503</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389618503</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Se vuelve la clase abstracta, además se manda un parámetro de velocidad en el constructor para luego poder crear enemigos más fácil">
+      <option name="closed" value="true" />
+      <created>1709389671671</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389671671</updated>
+    </task>
+    <task id="LOCAL-00035" summary="...">
+      <option name="closed" value="true" />
+      <created>1709389715277</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389715277</updated>
+    </task>
+    <task id="LOCAL-00036" summary="...">
+      <option name="closed" value="true" />
+      <created>1709389744046</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389744046</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Se vuelve abstracta la clase para que se pueda heredar, además de que se agrega el atributo puntaje.">
+      <option name="closed" value="true" />
+      <created>1709389781297</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389781297</updated>
+    </task>
+    <task id="LOCAL-00038" summary="...">
+      <option name="closed" value="true" />
+      <created>1709389798973</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389798973</updated>
+    </task>
+    <task id="LOCAL-00039" summary="...">
+      <option name="closed" value="true" />
+      <created>1709389828466</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1709389828466</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,9 +516,15 @@
     <MESSAGE value="Se agregan estados de juego" />
     <MESSAGE value="Documentación y la implementación de estado de juego además de crear un método general" />
     <MESSAGE value="Documentación" />
-    <MESSAGE value="..." />
     <MESSAGE value="Implementación de estado de juego" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementación de estado de juego" />
+    <MESSAGE value="Creación de TipoBloque" />
+    <MESSAGE value="Se agrega otro enemigo(Toro)" />
+    <MESSAGE value="Se lo mueve de paquete a objetos" />
+    <MESSAGE value="Se vuelve la clase abstracta, además se manda un parámetro de velocidad en el constructor para luego poder crear enemigos más fácil" />
+    <MESSAGE value="Se vuelve abstracta la clase para que se pueda heredar, además de que se agrega el atributo puntaje." />
+    <MESSAGE value="..." />
+    <MESSAGE value="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -411,18 +535,9 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/entidades/Jugador.java</url>
+          <url>file://$PROJECT_DIR$/src/entidades/personajes/Jugador.java</url>
           <line>154</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>62</line>
-          <properties class="escenario.Tablero" method="configurarJuego">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
