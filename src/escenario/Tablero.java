@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import entidades.*;
+import entidades.personajes.Jugador;
 import interfazDeUsuario.EstadoDeJuego;
 import interfazDeUsuario.IU;
 import mecánicas.ColocadorDeObjetos;
