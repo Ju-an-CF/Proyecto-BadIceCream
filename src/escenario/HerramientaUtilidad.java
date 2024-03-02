@@ -12,7 +12,7 @@ public class HerramientaUtilidad {
      * @param alto     El alto deseado para la imagen escalada.
      * @return La imagen escalada al tamaño especificado.
      */
-    public BufferedImage scaledImage(BufferedImage original, int ancho, int alto) {
+    public BufferedImage escalarImagen(BufferedImage original, int ancho, int alto) {
         // Crear una nueva imagen escalada con las dimensiones especificadas
         BufferedImage imagenEscalada = new BufferedImage(ancho, alto, original.getType());
 
