@@ -1,14 +1,14 @@
 package mecánicas;
 
 import escenario.Tablero;
+import interfazDeUsuario.EstadoDeJuego;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
     Tablero tablero;
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper, espacioPresionado;
-    public boolean fPresionada;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
 
 
     public Control(Tablero tablero) {
@@ -23,7 +23,7 @@ public class Control implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
         //Menu estado
-        if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_TITULO) {
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
             if (tecla == KeyEvent.VK_W) {
                 tablero.iu.comandoNum--;
                 if (tablero.iu.comandoNum < 0) {
@@ -39,7 +39,7 @@ public class Control implements KeyListener {
         }
         if (tecla == KeyEvent.VK_ENTER) {
             if (tablero.iu.comandoNum == 0) {
-                tablero.estadoActualDeJuego = tablero.ESTADO_DE_JUEGO;
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
                 tablero.pararMúsica();
                 tablero.reproducirSE(2);
             }
@@ -63,26 +63,19 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = true;
         }
-        if (tecla == KeyEvent.VK_SPACE) {
-            espacioPresionado = true;
-        }
-        if (tecla == KeyEvent.VK_F) {
-            fPresionada = true;
-        }
         if (tecla == KeyEvent.VK_ESCAPE) {
             sePuedeRomper = true;
         }
+        if (tecla == KeyEvent.VK_SPACE) {
+            tablero.jugador.romperOCrearHielo();
+        }
         if (tecla == KeyEvent.VK_P) {
-            if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_JUEGO) {
-                tablero.estadoActualDeJuego = tablero.ESTADO_DE_PAUSA;
-            } else if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_PAUSA) {
-                tablero.estadoActualDeJuego = tablero.ESTADO_DE_JUEGO;
+            if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.PAUSA;
+            } else if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
             }
         }
-
-    }
-
-    private void romperBloque() {
 
     }
 
@@ -100,12 +93,6 @@ public class Control implements KeyListener {
         }
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_SPACE) {
-            espacioPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_F) {
-            fPresionada = false;
         }
 
     }
