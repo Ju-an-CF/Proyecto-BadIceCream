@@ -2,6 +2,7 @@ package escenario;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,58 +12,95 @@ public class AdministradorDeBloque {
     Tablero tablero;
     public Bloque[] bloques;
     public int mapa[][];
+    HerramientaUtilidad utilidad;
 
     public AdministradorDeBloque(Tablero tablero) {
         this.tablero = tablero;
         bloques = new Bloque[100];
         mapa = new int[tablero.maxColDeMundo][tablero.maxFilasDeMundo];
-        obtenerImagenDeBloque();
+        inicializarBloques();
+        cargarImagenesDeBloques();
         cargarMapa("/escenario/mapa.txt");
+    }
+    private void inicializarBloques() {
+        bloques[0] = new Bloque();
+        bloques[1] = new BloqueEstático();
+        bloques[2] = new BloqueEstático();
+        bloques[3] = new BloqueEstático();
+        bloques[4] = new BloqueEstático();
+        bloques[5] = new BloqueEstático();
+        bloques[6] = new Bloque();
+        bloques[7] = new Bloque();
+        bloques[8] = new BloqueDeHielo();
+    }
+
+    /**
+     * Carga las imágenes para cada bloque.
+     */
+    private void cargarImagenesDeBloques() {
+        for (int i = 0; i < bloques.length; i++) {
+            Bloque bloque = bloques[i];
+            if (bloque != null) {
+                String nombreImagen = obtenerNombreImagenPorIndice(i);
+                bloque.imagen = cargarImagen("/fuentes/bloque/" + nombreImagen + ".png");
+            }
+        }
+    }
+
+    /**
+     * Obtiene el nombre de la imagen basado en el índice del bloque.
+     * @param índice El índice del bloque.
+     * @return El nombre de la imagen correspondiente.
+     */
+    private String obtenerNombreImagenPorIndice(int índice) {
+        // Aquí retornas el nombre de la imagen basado en el índice.
+        // Por ejemplo:
+        switch (índice) {
+            case 0:
+                return "nieve";
+            case 1:
+                return "esquina1";
+            case 2:
+                return "esquina2";
+            case 3:
+                return "esquina3";
+            case 4:
+                return "esquina4";
+            case 5:
+                return "muro";
+            case 6:
+                return "florNieve";
+            case 7:
+                return "bolaNieve";
+            case 8:
+                return "hielo";
+            default:
+                return "default"; // O maneja una imagen por defecto.
+        }
+    }
+
+    /**
+     * Carga una imagen desde el sistema de archivos.
+     * @param rutaImagen La ruta de la imagen.
+     * @return La imagen cargada.
+     */
+    private BufferedImage cargarImagen(String rutaImagen) {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(getClass().getResourceAsStream(rutaImagen));
+            HerramientaUtilidad uTool = new HerramientaUtilidad();
+            imagen = uTool.escalarImagen(imagen, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imagen;
     }
 
     /**
      * Configura las imágenes de los bloques.
      * Este método configura varios bloques con sus respectivas imágenes y tipos de bloque.
      */
-    public void obtenerImagenDeBloque() {
-        configurar(0, "nieve", TipoBloque.NORMAL);      // Bloque de nieve normal
-        configurar(1, "esquina1", TipoBloque.ESTÁTICO);   // Bloque de nieve normal
-        configurar(2, "esquina2", TipoBloque.ESTÁTICO); // Bloque de esquina estático
-        configurar(3, "esquina3", TipoBloque.ESTÁTICO); // Bloque de esquina estático
-        configurar(4, "esquina4", TipoBloque.ESTÁTICO); // Bloque de esquina estático
-        configurar(5, "muro", TipoBloque.ESTÁTICO);     // Bloque de muro estático
-        configurar(6, "bolaNieve", TipoBloque.NORMAL);  // Bloque de nieve normal
-        configurar(7, "florNieve", TipoBloque.NORMAL);  // Bloque de nieve normal
-        configurar(8, "hielo", TipoBloque.HIELO);       // Bloque de hielo
-    }
 
-
-    /**
-     * Configura un bloque en el índice especificado con la imagen y tipo de bloque dados.
-     *
-     * @param índice          El índice donde se configurará el bloque.
-     * @param direcciónImagen La dirección de la imagen del bloque
-     * @param tipoBloque      El tipo de bloque a instanciar
-     */
-    public void configurar(int índice, String direcciónImagen, TipoBloque tipoBloque) {
-        HerramientaUtilidad uT = new HerramientaUtilidad();
-
-        try {
-            // Determinar el tipo de bloque a instanciar
-            Bloque bloque = switch (tipoBloque) {
-                case ESTÁTICO -> new BloqueEstático();
-                case HIELO -> new BloqueDeHielo();
-                default -> new Bloque();
-            };
-
-            bloque.imagen = ImageIO.read(getClass().getResourceAsStream("/fuentes/bloque/" + direcciónImagen + ".png"));
-            bloque.imagen = uT.escalarImagen(bloque.imagen, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE);
-
-            bloques[índice] = bloque; // Asignar el bloque instanciado al arreglo de bloques.
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Lee el mapa de una ruta y la carga para generar los bloques respectivos
