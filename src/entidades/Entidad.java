@@ -1,7 +1,7 @@
 package entidades;
 
-import escenario.Tablero;
 import escenario.HerramientaUtilidad;
+import escenario.Tablero;
 import mecánicas.Dirección;
 
 import javax.imageio.ImageIO;
@@ -22,7 +22,7 @@ public class Entidad {
     public BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
 
     //Dirección por defecto
-    public Dirección dirección= Dirección.ABAJO;
+    public Dirección dirección = Dirección.ABAJO;
 
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
@@ -33,7 +33,7 @@ public class Entidad {
     public boolean colisiónActiva = false;
     public boolean colisión = false;
 
-    public int contadorBloqueoDeAcción=0;
+    public int contadorBloqueoDeAcción = 0;
 
     public String nombre;
 
@@ -41,31 +41,40 @@ public class Entidad {
         this.tablero = tablero;
     }
 
-    public void establecerAcción(){}
+    public void establecerAcción() {
+    }
 
-    public void actualizar(){
+    public void actualizar() {
 
         establecerAcción();
-        colisiónActiva=false;
+        colisiónActiva = false;
         tablero.checkColisión.verificarBloque(this);
-        tablero.checkColisión.verificarObjeto(this,false);
-        tablero.checkColisión.verificarEntidad(this,tablero.enemigos);
-        boolean contactoConJugador=tablero.checkColisión.verificarJugador(this);
+        tablero.checkColisión.verificarObjeto(this, false);
+        tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
+        boolean contactoConJugador = tablero.checkColisión.verificarJugador(this);
 
-        if(contactoConJugador){
-            if(!tablero.jugador.invencible){
-                tablero.jugador.vida-=1;
-                tablero.jugador.invencible=true;
+        if (contactoConJugador) {
+            if (!tablero.jugador.invencible) {
+                tablero.jugador.vida -= 1;
+                tablero.jugador.invencible = true;
             }
         }
 
         //entidad puede moverse
         if (!colisiónActiva) {
             switch (dirección) {
-                case ARRIBA:    mundoY -= velocidad; break;
-                case ABAJO:     mundoY += velocidad; break;
-                case IZQUIERDA: mundoX -= velocidad; break;
-                case DERECHA:   mundoX += velocidad; break;
+                case ARRIBA:
+                    mundoY -= velocidad;
+                    break;
+                case ABAJO:
+                    mundoY += velocidad;
+                    break;
+                case IZQUIERDA:
+                    mundoX -= velocidad;
+                    break;
+                case DERECHA:
+                    mundoX += velocidad;
+                    break;
             }
         }
 
