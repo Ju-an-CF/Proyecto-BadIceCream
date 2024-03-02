@@ -1,5 +1,6 @@
-package entidades;
+package entidades.personajes;
 
+import entidades.Entidad;
 import escenario.Tablero;
 import interfazDeUsuario.EstadoDeJuego;
 import mecánicas.Control;
