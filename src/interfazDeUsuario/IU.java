@@ -1,6 +1,8 @@
 package interfazDeUsuario;
 
-import escenario.entidades.Entidad;
+import entidades.Corazón;
+import entidades.Entidad;
+import entidades.Mora;
 import escenario.*;
 
 import java.awt.*;
@@ -8,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
-
-import escenario.entidades.frutas.*;
 
 import javax.imageio.ImageIO;
 
@@ -20,7 +20,8 @@ public class IU {
     public EstadoDeJuego estadoDeJuego;
     BufferedImage corazónFull, medioCorazón, corazónVacío;
     BufferedImage moraImagen;
-    BufferedImage imagenEstadoDeJuego;
+    BufferedImage imagenJuegoGanado;
+    public boolean juegoTerminado = false;
     double playTime;
     DecimalFormat decimalFormato = new DecimalFormat("0.00");
     public int comandoNum = 0;
@@ -32,75 +33,113 @@ public class IU {
 
         //objetos
         Entidad corazón = new Corazón(tablero);
+        Entidad mora = new Mora(tablero);
+        //Imágenes de los objetos
         corazónFull = corazón.imagen1;
         medioCorazón = corazón.imagen2;
         corazónVacío = corazón.imagen3;
-        Entidad mora = new Mora(tablero);
-        moraImagen = mora.imagen1;
 
+        moraImagen = mora.imagen1;
     }
-    public void terminarJuego() {
-        switch (this.estadoDeJuego) {
-            case VICTORIA: {
-                imagenEstadoDeJuego = configurarPantalla("you_win");
-                dibujarMenú();
-            }
-            case DERROTA: {
-                imagenEstadoDeJuego = configurarPantalla("game_over");
-                dibujarMenú();
-            }
-        }
-    }
-    public BufferedImage configurarPantalla(String rutaImagenAMostrar) {
-        BufferedImage imagenActual = null;
-        try {
-            imagenActual = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/" + rutaImagenAMostrar + ".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        graphics2D.drawImage(imagenEstadoDeJuego, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
-        return imagenActual;
-    }
+
 
     public void dibujar(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
 
-        //TODO crear un estado de juego terminado, no un atributo
+        //TO DO crear un estado de juego terminado, no un atributo
 
-        if (estadoDeJuego == EstadoDeJuego.VICTORIA) {
-            terminarJuego();
-        } else if (estadoDeJuego == EstadoDeJuego.DERROTA) {
-            terminarJuego();
-        } else {
-            graphics2D.setFont(font.deriveFont(Font.BOLD, 15F));
-            graphics2D.setColor(Color.BLACK);
-            graphics2D.drawImage(moraImagen, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
-            graphics2D.drawString("x= " + tablero.jugador.númeroDeFrutas, 25, 21);
-            //Tiempo
-            playTime += (double) 1 / 60;
-            graphics2D.drawString("Tiempo: " + decimalFormato.format(playTime) + " s", tablero.TAMAÑO_DE_BLOQUE * 13, 25);
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 15F));
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawImage(moraImagen, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE / 2, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
+        graphics2D.drawString("x= " + tablero.jugador.númeroDeFrutas, 25, 21);
+        //Tiempo
+        playTime += (double) 1 / 60;
+        graphics2D.drawString("Time= " + decimalFormato.format(playTime), tablero.TAMAÑO_DE_BLOQUE * 11, 30);
 
-            //menú
-            if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_TITULO) {
+        dibujarEstadoDeJuegoSegúnEstado();
+        //menu
+        /*if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
+            dibujarMenú();
+        }
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.VICTORIA) {
+            dibujarVictoria();
+            tablero.hiloDeJuego = null;
+            tablero.reproducirSE(6);
+        }
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.DERROTA) {
+            dibujarDerrota();
+            tablero.hiloDeJuego = null;
+            tablero.reproducirSE(4);
+        }
+        //estado de juego
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
+            dibujarVidaJugador();
+        }
+        //estado de pausa
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
+            dibujarVidaJugador();
+            dibujarPantallaDePausa();
+        }*/
+    }
+
+    private void dibujarDerrota() {
+        try {
+            imagenJuegoGanado = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/game_over.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics2D.drawImage(imagenJuegoGanado, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
+    }
+
+    public void dibujarVictoria() {
+        try {
+            imagenJuegoGanado = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/you_win.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics2D.drawImage(imagenJuegoGanado, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
+    }
+
+    public void dibujarEstadoDeJuego(String imagenDeEstado) {
+        try {
+            imagenJuegoGanado = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/" + imagenDeEstado + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics2D.drawImage(imagenJuegoGanado, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
+    }
+
+    public void dibujarEstadoDeJuegoSegúnEstado(){
+        switch (tablero.estadoActualDeJuego){
+            case TÍTULO: {
                 dibujarMenú();
-            }
-            //estado de juego
-            if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_JUEGO) {
+            } break;
+            case VICTORIA: {
+                dibujarEstadoDeJuego("you_win");
+                tablero.hiloDeJuego = null;
+                tablero.reproducirSE(6);
+            } break;
+            case DERROTA: {
+                dibujarEstadoDeJuego("game_over");
+                tablero.hiloDeJuego = null;
+                tablero.reproducirSE(4);
+            } break;
+            case JUEGO: {
                 dibujarVidaJugador();
-            }
-            //estado de pausa
-            if (tablero.estadoActualDeJuego == tablero.ESTADO_DE_PAUSA) {
+            } break;
+            case PAUSA: {
                 dibujarVidaJugador();
                 dibujarPantallaDePausa();
-            }
+            } break;
         }
     }
+
 
     private void dibujarVidaJugador() {
         int x = tablero.TAMAÑO_DE_BLOQUE / 2;
         int y = tablero.TAMAÑO_DE_BLOQUE * 8;
         int i = 0;
-        //dibujar corazon vacio
+//dibujar corazon vacio
         while (i < tablero.jugador.máximoVidas) {
             graphics2D.drawImage(corazónVacío, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
@@ -125,15 +164,15 @@ public class IU {
         graphics2D.setFont(font.deriveFont(Font.BOLD, 60F));
         String texto = "Bad Ice cream";
         int x = getXParaCentrarTexto(texto);
-        int y = tablero.TAMAÑO_DE_BLOQUE * 2;
+        int y = tablero.TAMAÑO_DE_BLOQUE * 3;
 
         graphics2D.setColor(Color.gray);
-        graphics2D.drawString(texto, x + 2, y + 2);
+        graphics2D.drawString(texto, x + 5, y + 5);
         graphics2D.setColor(Color.white);
         graphics2D.drawString(texto, x, y);
-        //dibujo Helado
-        x = tablero.ANCHO / 2 - tablero.TAMAÑO_DE_BLOQUE + 42;
-        y += tablero.TAMAÑO_DE_BLOQUE * 3;
+        //dibujo muneco
+        x = tablero.ANCHO / 2 - tablero.TAMAÑO_DE_BLOQUE + 75;
+        y += tablero.TAMAÑO_DE_BLOQUE * 2;
         graphics2D.drawImage(tablero.jugador.abajo1, x, y, tablero.TAMAÑO_DE_BLOQUE * 2, tablero.TAMAÑO_DE_BLOQUE * 2, null);
         //Menu
         graphics2D.setFont(font.deriveFont(Font.BOLD, 35F));
@@ -177,7 +216,7 @@ public class IU {
         int longitudTexto = (int) graphics2D.getFontMetrics().getStringBounds(texto, graphics2D).getWidth();
         // Calcula el punto de inicio x para centrar el texto en el ancho del tablero.
         // Se añade un pequeño desplazamiento a la derecha si es necesario.
-        int desplazamiento = 42; // Ajusta este valor según sea necesario.
+        int desplazamiento = 75; // Ajusta este valor según sea necesario.
         int xParaCentrar = (tablero.ANCHO - longitudTexto) / 2 + desplazamiento;
         return xParaCentrar;
     }
