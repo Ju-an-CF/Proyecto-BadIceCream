@@ -1,8 +1,9 @@
 package mecánicas;
 
-import entidades.Enemigo;
+import entidades.personajes.Ogro;
+import entidades.personajes.Toro;
 import escenario.Tablero;
-import entidades.Mora;
+import entidades.frutas.Mora;
 
 public class ColocadorDeObjetos {
     Tablero gp;
@@ -59,15 +60,21 @@ public class ColocadorDeObjetos {
         }
     }
    public void colocarEnemigos(){
-        gp.enemigos[0]=new Enemigo(gp);
+        gp.enemigos[0]=new Toro(gp);
         gp.enemigos[0].mundoX=gp.TAMAÑO_DE_BLOQUE *12;
         gp.enemigos[0].mundoY=gp.TAMAÑO_DE_BLOQUE *14;
 
-
-       gp.enemigos[1]=new Enemigo(gp);
+       gp.enemigos[1]=new Toro(gp);
        gp.enemigos[1].mundoX=gp.TAMAÑO_DE_BLOQUE *10;
        gp.enemigos[1].mundoY=gp.TAMAÑO_DE_BLOQUE *18;
 
+       gp.enemigos[2]=new Ogro(gp);
+       gp.enemigos[2].mundoX=gp.TAMAÑO_DE_BLOQUE *13;
+       gp.enemigos[2].mundoY=gp.TAMAÑO_DE_BLOQUE *19;
+
+       gp.enemigos[3]=new Ogro(gp);
+       gp.enemigos[3].mundoX=gp.TAMAÑO_DE_BLOQUE *20;
+       gp.enemigos[3].mundoY=gp.TAMAÑO_DE_BLOQUE *19;
 
     }
 }
