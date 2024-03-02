@@ -4,35 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="creando constructor jugador, y arreglando espaciado">
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/Jugador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/escenario/mapa3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mecánicas/Dirección.java" afterDir="false" />
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Implementación de estado de juego">
+      <change afterPath="$PROJECT_DIR$/src/escenario/TipoBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Proyecto.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proyecto.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/Enemigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Jugador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/Bloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueDeHielo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueEstático.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/TipoBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/bloques/TipoBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/UtilityTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/HerramientaUtilidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Corazón.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frutas/Mora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/TipoBloque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/mapa3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fuentes/jugador/jugador_romper6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/HerramientaUtilidad.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sonido/Sonido.java" afterDir="false" />
     </list>
-    <list id="04a7281c-026e-4660-b75e-13aa22ca0176" name="Changes by FAMILIAOÑA" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -54,7 +46,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Enemigo-y-optimización-gráfica" />
       </map>
     </option>
     <option name="RECENT_COMMON_BRANCH" value="main" />
@@ -65,36 +57,41 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2cShw0HmmtpChmcG5EttAKPcLwi" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="escenario" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Compu\Documents\workspace\Clonación\Proyecto---BadIceCream\src\escenario" />
-      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\escenario" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\IU" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\frutas" />
       <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src\fuentes\frutas" />
+      <recent name="C:\Users\Compu\Documents\Ejercicios Java\Proyecto\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -127,8 +124,14 @@
       <workItem from="1708848336437" duration="613000" />
       <workItem from="1708873806224" duration="10803000" />
       <workItem from="1709063065622" duration="43000" />
-      <workItem from="1709152282594" duration="4587000" />
-      <workItem from="1709235174634" duration="9334000" />
+      <workItem from="1709063139420" duration="519000" />
+      <workItem from="1709215678195" duration="1861000" />
+      <workItem from="1709218165980" duration="3535000" />
+      <workItem from="1709242338312" duration="5012000" />
+      <workItem from="1709248511177" duration="11823000" />
+      <workItem from="1709292377702" duration="1690000" />
+      <workItem from="1709318016656" duration="4807000" />
+      <workItem from="1709333145945" duration="9310000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -202,23 +205,167 @@
       <option name="project" value="LOCAL" />
       <updated>1708874343733</updated>
     </task>
-    <task id="LOCAL-00010" summary="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado.">
+    <task id="LOCAL-00010" summary="Se añadio enemigos y se mejoró  la forma en que se cargan los graficos">
       <option name="closed" value="true" />
-      <created>1709065312186</created>
+      <created>1709063381810</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1709065312186</updated>
+      <updated>1709063381810</updated>
     </task>
-    <task id="LOCAL-00011" summary="creando constructor jugador, y arreglando espaciado">
+    <task id="LOCAL-00011" summary="Se añadio enemigos y se mejoró  la forma en que se cargan los graficos">
       <option name="closed" value="true" />
-      <created>1709066946562</created>
+      <created>1709063399796</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1709066946562</updated>
+      <updated>1709063399796</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Se documentan algunos métodos, además de implementar los tipos de bloques">
+      <option name="closed" value="true" />
+      <created>1709341741508</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1709341741508</updated>
+    </task>
+    <task id="LOCAL-00013" summary="...">
+      <option name="closed" value="true" />
+      <created>1709341851892</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1709341851892</updated>
+    </task>
+    <task id="LOCAL-00014" summary="...">
+      <option name="closed" value="true" />
+      <created>1709341864102</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709341864103</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Se implementa los estados de juego como enum">
+      <option name="closed" value="true" />
+      <created>1709341892126</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709341892126</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Se documentan algunos métodos, además de implementar los tipos de bloques">
+      <option name="closed" value="true" />
+      <created>1709342041067</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1709342041067</updated>
+    </task>
+    <task id="LOCAL-00017" summary="...">
+      <option name="closed" value="true" />
+      <created>1709342053652</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709342053653</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Se reduce el método configurarImagen para solo recibir como parametro el nombre del imagen">
+      <option name="closed" value="true" />
+      <created>1709342079963</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709342079963</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Documentación">
+      <option name="closed" value="true" />
+      <created>1709342245113</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709342245113</updated>
+    </task>
+    <task id="LOCAL-00020" summary="...">
+      <option name="closed" value="true" />
+      <created>1709342266109</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709342266109</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Documentación">
+      <option name="closed" value="true" />
+      <created>1709346565277</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346565277</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Se agregan estados de juego">
+      <option name="closed" value="true" />
+      <created>1709346596510</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346596510</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Documentación">
+      <option name="closed" value="true" />
+      <created>1709346635275</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346635275</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Documentación y la implementación de estado de juego además de crear un método general">
+      <option name="closed" value="true" />
+      <created>1709346725494</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346725494</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Documentación">
+      <option name="closed" value="true" />
+      <created>1709346747201</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346747201</updated>
+    </task>
+    <task id="LOCAL-00026" summary="...">
+      <option name="closed" value="true" />
+      <created>1709346772066</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346772066</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Documentación">
+      <option name="closed" value="true" />
+      <created>1709346812765</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346812765</updated>
+    </task>
+    <task id="LOCAL-00028" summary="...">
+      <option name="closed" value="true" />
+      <created>1709346825522</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346825522</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Implementación de estado de juego">
+      <option name="closed" value="true" />
+      <created>1709346970847</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1709346970847</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,17 +391,38 @@
     <MESSAGE value="cambiando la ruta de imagenes de la fruta, a **fuente**" />
     <MESSAGE value="solucionando problema de colisión de frutas" />
     <MESSAGE value="Mejorando la interfaz de usuario, pantalla de carga e iconos a mostrarse durante el juego, así como un estado de pausa" />
-    <MESSAGE value="añadiendo enemigos, cambiando ubicación de bloques y eliminando paquete de bloques, de momento vuelve a estar como antes ese apartado." />
-    <MESSAGE value="creando constructor jugador, y arreglando espaciado" />
-    <option name="LAST_COMMIT_MESSAGE" value="creando constructor jugador, y arreglando espaciado" />
+    <MESSAGE value="Se añadio enemigos y se mejoró  la forma en que se cargan los graficos" />
+    <MESSAGE value="Se implementa los estados de juego como enum" />
+    <MESSAGE value="Se documentan algunos métodos, además de implementar los tipos de bloques" />
+    <MESSAGE value="Se reduce el método configurarImagen para solo recibir como parametro el nombre del imagen" />
+    <MESSAGE value="Se agregan estados de juego" />
+    <MESSAGE value="Documentación y la implementación de estado de juego además de crear un método general" />
+    <MESSAGE value="Documentación" />
+    <MESSAGE value="..." />
+    <MESSAGE value="Implementación de estado de juego" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementación de estado de juego" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/interfazDeUsuario/IU.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/entidades/Jugador.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="1" />
+          <line>62</line>
+          <properties class="escenario.Tablero" method="configurarJuego">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
