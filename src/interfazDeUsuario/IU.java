@@ -1,8 +1,8 @@
 package interfazDeUsuario;
 
-import entidades.Corazón;
+import entidades.objetos.Corazón;
 import entidades.Entidad;
-import entidades.Mora;
+import entidades.frutas.Mora;
 import escenario.*;
 
 import java.awt.*;
