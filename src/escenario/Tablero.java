@@ -6,34 +6,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import escenario.entidades.*;
-import escenario.entidades.bloques.AdministradorDeBloque;
-import escenario.entidades.bloques.BloqueInteractivo;
+import entidades.*;
+import interfazDeUsuario.EstadoDeJuego;
 import interfazDeUsuario.IU;
 import mecánicas.ColocadorDeObjetos;
 import mecánicas.Control;
+import mecánicas.Dirección;
 import mecánicas.VerificadorDeColisión;
 import sonido.Sonido;
 
 public class Tablero extends JPanel implements Runnable {
-    public final int TAMAÑO_BLOQUE_ORIGINAL = 14;
+    public final int TAMAÑO_BLOQUE_ORIGINAL = 13;
     public final int ESCALA = 3;
     public final int TAMAÑO_DE_BLOQUE = TAMAÑO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
-    public final int COLUMNAS_MAX = 17;
-    public final int FILAS_MAX = 15;
+    public final int COLUMNAS_MAX = 16;
+    public final int FILAS_MAX = 12;
 
     public final int ALTO = TAMAÑO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
     public final int ANCHO = TAMAÑO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
 
     //Configuración del mundo
-    public final int maxColDeMundo = 17;
-    public final int maxFilasDeMundo = 15;
+    public final int maxColDeMundo = 31;
+    public final int maxFilasDeMundo = 28;
 
 
     //FPS
     public static final int FPS = 60;
 
-    public Control control = new Control(this);
+    Control control = new Control(this);
     public Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
     public IU iu = new IU(this);
@@ -41,20 +41,15 @@ public class Tablero extends JPanel implements Runnable {
     Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    //jugador y escenario.entidades
-    public Jugador jugador = new Jugador(this, control, 8, 7);
-    public Jugador jugador2 = new Jugador(this, control, 9, 10);
+    //jugador y entidades
+    public Jugador jugador = new Jugador(this, control);
     public Entidad[] frutas = new Entidad[20];
     public Entidad[] enemigos = new Entidad[10];
-    public BloqueInteractivo[] bloqueInteractivos = new BloqueInteractivo[50];
     ArrayList<Entidad> entidades = new ArrayList<>();
 
 
-    // estado de juego
-    public int estadoActualDeJuego;
-    public final int ESTADO_DE_JUEGO = 1;
-    public final int ESTADO_DE_PAUSA = 2;
-    public final int ESTADO_DE_TITULO = 0;
+    // estados de juego
+    public EstadoDeJuego estadoActualDeJuego = EstadoDeJuego.NEUTRO;
 
 
     public Tablero() {
@@ -70,7 +65,7 @@ public class Tablero extends JPanel implements Runnable {
         colocador.colocarEnemigos();
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
-        estadoActualDeJuego = ESTADO_DE_TITULO;
+        estadoActualDeJuego = EstadoDeJuego.TÍTULO;
     }
 
     public void iniciarHiloDeJuego() {
@@ -112,18 +107,20 @@ public class Tablero extends JPanel implements Runnable {
     }
 
     public void actualizar() {
-        if (estadoActualDeJuego == ESTADO_DE_JUEGO) {
+        if (estadoActualDeJuego == EstadoDeJuego.JUEGO) {
             jugador.actualizar();
 
-            for (int i = 0; i < enemigos.length; i++) {
-                if (enemigos[i] != null) {
-                    enemigos[i].actualizar();
+            for (Entidad enemigo : enemigos) {
+                if (enemigo != null) {
+                    enemigo.actualizar();
                 }
             }
         }
-        if (estadoActualDeJuego == ESTADO_DE_PAUSA) {
+
+        if (estadoActualDeJuego == EstadoDeJuego.PAUSA) {
 
         }
+
     }
 
     public void paintComponent(Graphics g) {
@@ -131,20 +128,14 @@ public class Tablero extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         //Titulo estado
-        if (estadoActualDeJuego == ESTADO_DE_TITULO) {
+        if (estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
             iu.dibujar(g2);
-
         } else {
             //Bloques
             adminBlock.dibujar(g2);
-
-            for (BloqueInteractivo bloqueInteractivo : bloqueInteractivos) {
-                if (bloqueInteractivo != null) {
-                    bloqueInteractivo.dibujar(g2);
-                }
-            }
+            //Añadir al jugador a la lista de entidades
             entidades.add(jugador);
-            //agrega escenario.entidades.frutas a la lista de escenario.entidades
+            //agrega frutas a la lista de entidades
             for (Entidad fruta : frutas) {
                 if (fruta != null) {
                     entidades.add(fruta);
@@ -159,12 +150,13 @@ public class Tablero extends JPanel implements Runnable {
             Collections.sort(entidades, new Comparator<Entidad>() {
                 @Override
                 public int compare(Entidad o1, Entidad o2) {
-                    return Integer.compare(o1.getMundoY(), o2.getMundoY());
+                    int resultado = Integer.compare(o1.mundoY, o2.mundoY);
+                    return resultado;
                 }
             });
-            //dibujar escenario.entidades
-            for (Entidad entidad : entidades) {
-                entidad.dibujar(g2);
+            //dibujar entidades
+            for (Entidad entidade : entidades) {
+                entidade.dibujar(g2);
             }
             //igualando la lista
             for (int i = 0; i < entidades.size(); i++) {
@@ -175,7 +167,104 @@ public class Tablero extends JPanel implements Runnable {
             // g2.dispose();
 
         }
+        if (jugador.númeroDeFrutas == 11) {
+            estadoActualDeJuego = EstadoDeJuego.VICTORIA;
+        }
+        if (jugador.vida == 0) {
+            estadoActualDeJuego = EstadoDeJuego.DERROTA;
+        }
         //otros
+    }
+
+    public void crearBloqueHielo() {
+        // Calcula el punto de inicio ajustando desde el centro del borde del área sólida en la dirección mirada
+        int ajusteX = obtenerAjusteX();
+        int ajusteY = obtenerAjusteY();
+
+        int x = (jugador.mundoX + ajusteX) / TAMAÑO_DE_BLOQUE;
+        int y = (jugador.mundoY + ajusteY) / TAMAÑO_DE_BLOQUE;
+
+        Dirección dirección = jugador.getDireccion();
+
+        while (true) {
+            switch (dirección) {
+                case ARRIBA:
+                    y--;
+                    break;
+                case ABAJO:
+                    y++;
+                    break;
+                case IZQUIERDA:
+                    x--;
+                    break;
+                case DERECHA:
+                    x++;
+                    break;
+            }
+
+            if (x < 0 || y < 0 || x >= maxColDeMundo || y >= maxFilasDeMundo || esBloqueNoTransformable(adminBlock.mapa[x][y])) {
+                break;
+            }
+
+            if (adminBlock.mapa[x][y] == 8) { // Si ya es un bloque de hielo, detener.
+                break;
+            }
+
+            adminBlock.mapa[x][y] = 8; // Crear bloque de hielo.
+        }
+    }
+
+    private boolean esBloqueNoTransformable(int bloque) {
+        return bloque == 1 || bloque == 2 || bloque == 3 || bloque == 4 || bloque == 5;
+    }
+
+    public int obtenerAjusteX(){
+        return jugador.getDireccion().equals(Dirección.IZQUIERDA) ? jugador.áreaSólida.x :
+               jugador.getDireccion().equals(Dirección.DERECHA) ? jugador.áreaSólida.x + jugador.áreaSólida.width :
+               jugador.áreaSólida.width / 2;
+    }
+    public int obtenerAjusteY(){
+        return jugador.getDireccion().equals(Dirección.ARRIBA) ? jugador.áreaSólida.y :
+               jugador.getDireccion().equals(Dirección.ABAJO) ? jugador.áreaSólida.y + jugador.áreaSólida.height :
+               jugador.áreaSólida.height / 2;
+    }
+
+    public void romperBloqueHielo() {
+        // Igual que el método crearBloqueHielo pero ajustando para romper
+        int ajusteX = obtenerAjusteX();
+        int ajusteY = obtenerAjusteY();
+
+        int x = (jugador.mundoX + ajusteX) / TAMAÑO_DE_BLOQUE;
+        int y = (jugador.mundoY + ajusteY) / TAMAÑO_DE_BLOQUE;
+        Dirección dirección = jugador.getDireccion();
+
+        while (true) {
+            switch (dirección) {
+                case ARRIBA:
+                    y--;
+                    break;
+                case ABAJO:
+                    y++;
+                    break;
+                case IZQUIERDA:
+                    x--;
+                    break;
+                case DERECHA:
+                    x++;
+                    break;
+            }
+
+            if (x < 0 || y < 0 || x >= maxColDeMundo || y >= maxFilasDeMundo || adminBlock.mapa[x][y] == 0 || adminBlock.mapa[x][y] == 6 || adminBlock.mapa[x][y] == 7) {
+                break;
+            }
+
+            if (esBloqueNoTransformable(adminBlock.mapa[x][y])) {
+                break;
+            }
+
+            adminBlock.mapa[x][y] = 0; // Eliminar bloque de hielo.
+            reproducirSE(3);
+        }
     }
 
     public void reproducirMúsica(int i) {
@@ -192,4 +281,6 @@ public class Tablero extends JPanel implements Runnable {
         se.colocarArchivo(i);
         se.reproducir();
     }
+
+
 }
