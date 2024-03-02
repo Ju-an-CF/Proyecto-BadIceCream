@@ -1,5 +1,6 @@
-package entidades;
+package entidades.objetos;
 
+import entidades.Entidad;
 import escenario.Tablero;
 
 import java.awt.image.BufferedImage;
