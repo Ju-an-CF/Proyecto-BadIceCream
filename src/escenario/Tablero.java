@@ -21,7 +21,7 @@ public class Tablero extends JPanel implements Runnable {
     public final int ESCALA = 3;
     public final int TAMAÑO_DE_BLOQUE = TAMAÑO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
     public final int COLUMNAS_MAX = 16;
-    public final int FILAS_MAX = 12;
+    public final int FILAS_MAX = 15;
 
     public final int ALTO = TAMAÑO_DE_BLOQUE * COLUMNAS_MAX; // 674 pixeles
     public final int ANCHO = TAMAÑO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
@@ -48,7 +48,6 @@ public class Tablero extends JPanel implements Runnable {
     public Entidad[] enemigos = new Entidad[10];
     ArrayList<Entidad> entidades = new ArrayList<>();
 
-
     // estados de juego
     public EstadoDeJuego estadoActualDeJuego = EstadoDeJuego.NEUTRO;
 
@@ -62,11 +61,11 @@ public class Tablero extends JPanel implements Runnable {
     }
 
     public void configurarJuego() {
+        estadoActualDeJuego = EstadoDeJuego.TÍTULO;
         colocador.colocarMora();
         colocador.colocarEnemigos();
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
-        estadoActualDeJuego = EstadoDeJuego.TÍTULO;
     }
 
     public void iniciarHiloDeJuego() {

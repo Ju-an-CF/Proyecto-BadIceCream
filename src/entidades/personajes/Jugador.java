@@ -34,8 +34,8 @@ public class Jugador extends Entidad {
         áreaSólidaPorDefectoY = áreaSólida.y;
         áreaSólida.width = 28;
         áreaSólida.height = 28;
-        ventanaX = tablero.TAMAÑO_DE_BLOQUE * 6; //
-        ventanaY = tablero.TAMAÑO_DE_BLOQUE * 5; //
+        ventanaX = tablero.TAMAÑO_DE_BLOQUE * 7; //
+        ventanaY = tablero.TAMAÑO_DE_BLOQUE * 7; //
         númeroDeFrutas = 0;
         //Configuraciones iniciales del jugador
         establecerValoresPredeterminados();

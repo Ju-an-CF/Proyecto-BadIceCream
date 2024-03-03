@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta">
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="se borró enum tipo de objeto, se inicializan directamente con lo que son; objetos.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/TipoBloque.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/TipoBloque.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Corazón.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/frutas/Mora.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/bolaNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/bolaNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/esquina1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/esquina2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/esquina3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/esquina4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/esquina4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/florNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/florNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/hielo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/hielo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/bloque/muro.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/bloque/muro.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +34,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_COMMON_BRANCH" value="main" />
@@ -71,9 +60,9 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "IUmejorada",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
+    "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream - copia (2)",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,6 +124,7 @@
       <workItem from="1709350655731" duration="249000" />
       <workItem from="1709351987701" duration="3620000" />
       <workItem from="1709389468856" duration="427000" />
+      <workItem from="1709422688270" duration="5325000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -448,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709389828466</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="se borró enum tipo de objeto, se inicializan directamente con lo que son; objetos.">
+      <option name="closed" value="true" />
+      <created>1709413404574</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1709413404574</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,16 +487,12 @@
     <MESSAGE value="Se vuelve abstracta la clase para que se pueda heredar, además de que se agrega el atributo puntaje." />
     <MESSAGE value="..." />
     <MESSAGE value="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se agrega un puntaje particular y el nombre, además de que ahora hereda de fruta" />
+    <MESSAGE value="se borró enum tipo de objeto, se inicializan directamente con lo que son; objetos." />
+    <option name="LAST_COMMIT_MESSAGE" value="se borró enum tipo de objeto, se inicializan directamente con lo que son; objetos." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/interfazDeUsuario/IU.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/entidades/personajes/Jugador.java</url>
           <line>154</line>
