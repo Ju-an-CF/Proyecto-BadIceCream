@@ -5,10 +5,11 @@ import interfazDeUsuario.EstadoDeJuego;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class Control implements KeyListener {
     Tablero tablero;
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado,enterPresionado;
 
 
     public Control(Tablero tablero) {
@@ -22,7 +23,7 @@ public class Control implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
-        //Menu estado
+        //Menú Principal
         if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
             if (tecla == KeyEvent.VK_W) {
                 tablero.iu.comandoNum--;
@@ -35,22 +36,27 @@ public class Control implements KeyListener {
                 if (tablero.iu.comandoNum > 2) {
                     tablero.iu.comandoNum = 0;
                 }
+
+            }
+            if (tecla == KeyEvent.VK_ENTER) {
+                if (tablero.iu.comandoNum == 0) {
+                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                    tablero.pararMúsica();
+                    tablero.reproducirSE(2);
+                }
+                if (tablero.iu.comandoNum == 1) {
+                    tablero.guardadoYCarga.cargar();
+                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                    tablero.pararMúsica();
+                    tablero.reproducirSE(2);
+                }
+                if (tablero.iu.comandoNum == 2) {
+                    System.exit(0);
+                }
             }
         }
-        if (tecla == KeyEvent.VK_ENTER) {
-            if (tablero.iu.comandoNum == 0) {
-                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
-                tablero.pararMúsica();
-                tablero.reproducirSE(2);
-            }
-            if (tablero.iu.comandoNum == 1) {
-                //add later
-            }
-            if (tablero.iu.comandoNum == 2) {
-                System.exit(0);
-            }
-        }
-        //jugador estado
+
+        //Movimiento de Jugador
         if (tecla == KeyEvent.VK_W) {
             arribaPresionado = true;
         }
@@ -63,17 +69,48 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = true;
         }
-        if (tecla == KeyEvent.VK_ESCAPE) {
-            sePuedeRomper = true;
-        }
         if (tecla == KeyEvent.VK_SPACE) {
             tablero.jugador.romperOCrearHielo();
         }
+
+        //Estado De pausa
         if (tecla == KeyEvent.VK_P) {
             if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
                 tablero.estadoActualDeJuego = EstadoDeJuego.PAUSA;
             } else if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
                 tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+            }
+        }
+
+        //Menú de Opciones
+        if(tecla == KeyEvent.VK_ESCAPE) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.OPCIONES;
+        }
+        if(tablero.estadoActualDeJuego == EstadoDeJuego.OPCIONES){
+            int maxOpciones = 0;
+            if(tablero.iu.subEstado == 0){
+                maxOpciones = 3;
+            }
+            if (tecla == KeyEvent.VK_W) {
+                tablero.iu.comandoNum--;
+                if (tablero.iu.comandoNum < 0) {
+                    tablero.iu.comandoNum = maxOpciones;
+                }
+            }
+            if (tecla == KeyEvent.VK_S) {
+                tablero.iu.comandoNum++;
+                if (tablero.iu.comandoNum > maxOpciones) {
+                    tablero.iu.comandoNum = 0;
+                }
+            }
+            if (tecla == KeyEvent.VK_ENTER) {
+                if (tablero.iu.comandoNum == 0) {
+                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                }
+                if(tablero.iu.comandoNum == 2){
+                    tablero.guardadoYCarga.guardar();
+                    System.out.println("Guardado");
+                }
             }
         }
 
