@@ -27,8 +27,8 @@ public class Tablero extends JPanel implements Runnable {
     public final int ANCHO = TAMAÑO_DE_BLOQUE * FILAS_MAX; // 504 pixeles
 
     //Configuración del mundo
-    public final int maxColDeMundo = 31;
-    public final int maxFilasDeMundo = 28;
+    public final int maxColDeMundo = 33;
+    public final int maxFilasDeMundo = 31;
 
 
     //FPS

@@ -48,8 +48,8 @@ public class Jugador extends Entidad {
      */
     public void establecerValoresPredeterminados() {
         //Coordenadas iniciales
-        mundoX = 336;
-        mundoY = 294;
+        mundoX = 9 * tablero.TAMAÑO_DE_BLOQUE;
+        mundoY = 10 * tablero.TAMAÑO_DE_BLOQUE;
         // Establecer la velocidad predeterminada del jugador
         velocidad = 6;
         // Establecer la dirección predeterminada del jugador como hacia abajo
