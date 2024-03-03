@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Encapsulando y acomodando cosas">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/Entidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/AdministradorDeBloque.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/BloqueInteractivo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/entidades/bloques/Hielo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
-    </list>
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +52,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Compu/Documents/Ejercicios Java/Proyecto---BadIceCream",
+    "last_opened_file_path": "C:/Users/Compu/Documents/workspace/Clonación/Proyecto---BadIceCream",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -114,6 +106,7 @@
       <workItem from="1709327285574" duration="1110000" />
       <workItem from="1709436220550" duration="632000" />
       <workItem from="1709436942238" duration="42000" />
+      <workItem from="1709440991945" duration="385000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -219,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709247613830</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada">
+      <option name="closed" value="true" />
+      <created>1709441235979</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709441235979</updated>
+    </task>
+    <task id="LOCAL-00015" summary="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada">
+      <option name="closed" value="true" />
+      <created>1709441254270</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709441254270</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,19 +258,20 @@
     <MESSAGE value="creando constructor jugador, y arreglando espaciado" />
     <MESSAGE value="cambiando varias cosas, como la ubicación de los paquetes, de acuerdo al nuevo diagrama UML, también encapsulando algunos atributos de Entidad, Eliminando seguimiento de camara del jugador, y por último implementando Cambios de la rama Master." />
     <MESSAGE value="Encapsulando las clases de Control, tablero, Entidad, Bloque interactivo, y mejorando apariencia en general" />
-    <option name="LAST_COMMIT_MESSAGE" value="Encapsulando las clases de Control, tablero, Entidad, Bloque interactivo, y mejorando apariencia en general" />
+    <MESSAGE value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada" />
+    <option name="LAST_COMMIT_MESSAGE" value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>121</line>
+          <line>115</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/escenario/Tablero.java</url>
-          <line>163</line>
+          <line>152</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
