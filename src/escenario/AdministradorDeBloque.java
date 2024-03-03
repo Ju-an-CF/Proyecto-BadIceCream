@@ -17,7 +17,7 @@ public class AdministradorDeBloque implements Serializable {
         mapa = new int[tablero.maxColDeMundo][tablero.maxFilasDeMundo];
         inicializarBloques();
         cargarImagenesDeBloques();
-        cargarMapa("/escenario/mapa.txt");
+        cargarMapa("/fuentes/datosDeJuego/mapa.txt");
     }
     private void inicializarBloques() {
         bloques[0] = new Bloque();

@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
-import java.util.Objects;
 
 
 import javax.imageio.ImageIO;
@@ -19,10 +18,8 @@ public class IU {
     Tablero tablero;
     Font font;
     Graphics2D graphics2D;
-    public EstadoDeJuego estadoDeJuego;
-    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites;
+    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites, imagenDerrota;
     BufferedImage moraImagen;
-    BufferedImage imagenEstado;
     public double playTime;
     DecimalFormat decimalFormato = new DecimalFormat("0.00");
     public int comandoNum = 0;
@@ -53,7 +50,7 @@ public class IU {
     public BufferedImage cargarRecursosAdicionales(String ruta){
         BufferedImage imagen=null;
         try {
-            imagen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(ruta)));
+            imagen = ImageIO.read(getClass().getResourceAsStream(ruta));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,14 +102,7 @@ public class IU {
         relojActivo = true; // Opcional, dependiendo de si quieres que el reloj se reinicie y continúe automáticamente
     }
 
-    public void dibujarEstadoDeJuego(String ruta) {
-        try {
-            imagenEstado = ImageIO.read(getClass().getResourceAsStream("/fuentes/IU/" + ruta + ".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        graphics2D.drawImage(imagenEstado,tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
-    }
+
 
     public void dibujarEstadoDeJuegoSegúnEstado(){
         switch (tablero.estadoActualDeJuego){
@@ -120,14 +110,10 @@ public class IU {
                 dibujarMenú(graphics2D);
             } break;
             case VICTORIA: {
-                dibujarEstadoDeJuego("you_win");
-                tablero.hiloDeJuego = null;
-                tablero.reproducirSE(6);
+                dibujarPantallaDeVictoria();
             } break;
             case DERROTA: {
-                dibujarEstadoDeJuego("game_over");
-                tablero.hiloDeJuego = null;
-                tablero.reproducirSE(4);
+                dibujarPantallaDeDerrota();
             } break;
             case JUEGO: {
                 reiniciarReloj();
@@ -149,12 +135,89 @@ public class IU {
         }
     }
 
+    private void dibujarPantallaDeVictoria() {
+        Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
+        graphics2D.setColor(colorFondo);
+
+        // Dibuja el rectángulo de fondo cubriendo toda la pantalla
+        graphics2D.fillRect(0, 0, tablero.ANCHO+42, tablero.ALTO);
+
+        imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/you_win.png");
+        graphics2D.drawImage(imagenDerrota,tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*3,250,250,null);
+
+        //reintentar
+        String text;
+        graphics2D.setColor(Color.BLACK);
+        int x,y;
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 28F));
+        text="Salir a pantalla principal";
+        x=getXParaCentrarTexto(text);
+        y=tablero.TAMAÑO_DE_BLOQUE*11;
+        graphics2D.drawString(text,x,y);
+
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString(text,x-4,y-4);
+
+        if(comandoNum==0){
+            graphics2D.drawString(">",x-40,y);
+        }
+
+    }
+
+    private void dibujarPantallaDeDerrota() {
+        //imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/game_over.png");
+        //graphics2D.drawImage(imagenDerrota, tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*4,200,200,null);
+        Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
+        graphics2D.setColor(colorFondo);
+
+        // Dibuja el rectángulo de fondo cubriendo toda la pantalla
+        graphics2D.fillRect(0, 0, tablero.ANCHO+42, tablero.ALTO);
+
+        imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/game_over.png");
+        graphics2D.drawImage(imagenDerrota,tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*3,250,250,null);
+
+        //reintentar
+        String text;
+        graphics2D.setColor(Color.BLACK);
+        int x,y;
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 28F));
+        text="Reintentar";
+        x=getXParaCentrarTexto(text);
+        y=tablero.TAMAÑO_DE_BLOQUE*11;
+        graphics2D.drawString(text,x,y);
+
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString(text,x-4,y-4);
+
+        if(comandoNum==0){
+            graphics2D.drawString(">",x-40,y);
+        }
+
+        //regresar pantalla titulo
+        graphics2D.setColor(Color.BLACK);
+
+        text="Salir a pantalla principal";
+        x=getXParaCentrarTexto(text);
+        y+=55;
+        graphics2D.drawString(text,x,y);
+
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString(text,x-4,y-4);
+
+        if(comandoNum==1){
+            graphics2D.drawString(">",x-100,y);
+        }
+
+
+
+    }
+
 
     private void dibujarVidaJugador() {
         int x = 84;
         int y = 526;
         int i = 0;
-        //dibujar corazon vacio
+//dibujar corazon vacio
         while (i < tablero.jugador.máximoVidas) {
             graphics2D.drawImage(corazónVacío, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
@@ -174,6 +237,7 @@ public class IU {
 
     public void dibujarMenú(Graphics2D g2) {
         String texto;
+
 
         imagenDeFondo=cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
         g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO+50, tablero.ALTO, null);
@@ -391,6 +455,8 @@ public class IU {
         graphics2D.drawRect(textX,textY,120,24);
         volumenAncho=24*tablero.getSe().getEscalaDeVolumen();
         graphics2D.fillRect(textX,textY,volumenAncho,24);
+
+        tablero.getConfiguración().guardarConfig();
 
     }
     public void opcionesControl(int frameX, int frameY){

@@ -17,6 +17,7 @@ public class BadIceCream {
 
         Tablero tablero = new Tablero();
         ventana.add(tablero);
+        tablero.configuración.cargarConfig();
 
         ventana.pack();
         ventana.setLocationRelativeTo(null);

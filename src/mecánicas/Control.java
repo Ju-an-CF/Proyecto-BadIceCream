@@ -23,26 +23,57 @@ public class Control implements KeyListener, Serializable {
     @Override
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
-        //Menu estado
-        if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
-            estadoTítulo(tecla);
-        }
-        //jugador estado
-        if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
-            estadoJugador(tecla);
+
+        // Manejo de teclas comunes
+        switch (tecla) {
+            case KeyEvent.VK_W:
+                arribaPresionado = true;
+                break;
+            case KeyEvent.VK_S:
+                abajoPresionado = true;
+                break;
+            case KeyEvent.VK_A:
+                izquierdaPresionado = true;
+                break;
+            case KeyEvent.VK_D:
+                derechaPresionado = true;
+                break;
+            case KeyEvent.VK_ENTER:
+                enterPresionado = true;
+                break;
         }
 
-        //Pausa
-        if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
-            estadoPausa(tecla);
+        // Manejo de estados específicos
+        switch (tablero.estadoActualDeJuego) {
+            case TÍTULO:
+                estadoTítulo(tecla);
+                break;
+            case JUEGO:
+                estadoJugador(tecla);
+                break;
+            case PAUSA:
+                estadoPausa(tecla);
+                break;
+            case OPCIONES:
+                estadoOpciones(tecla);
+                break;
+            case DERROTA:
+                estadoDerrota(tecla);
+                break;
+            case VICTORIA:
+                estadoVictoria(tecla);
+                break;
         }
-
-        //opciones
-        if (tablero.estadoActualDeJuego == EstadoDeJuego.OPCIONES) {
-            estadoOpciones(tecla);
-        }
-
     }
+
+    private void estadoVictoria(int tecla) {
+        if (tecla == KeyEvent.VK_ENTER) {
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
+            }
+        }
+    }
+
 
     private void estadoPausa(int tecla) {
         if (tecla == KeyEvent.VK_ESCAPE) {
@@ -164,25 +195,56 @@ public class Control implements KeyListener, Serializable {
                 System.exit(0);
             }
         }
+
+    }
+
+    private void estadoDerrota(int tecla) {
+        if (tecla == KeyEvent.VK_W) {
+            tablero.iu.comandoNum--;
+            if (tablero.iu.comandoNum < 0) {
+                tablero.iu.comandoNum = 1;
+            }
+            //efecto sonido
+        }
+        if (tecla == KeyEvent.VK_S) {
+            tablero.iu.comandoNum++;
+            if (tablero.iu.comandoNum > 1) {
+                tablero.iu.comandoNum = 0;
+            }
+            //efecto sonido
+        }
+        if (tecla == KeyEvent.VK_ENTER) {
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.reintentar();
+            } else if (tablero.iu.comandoNum == 1) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
+                tablero.reestablecer();
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int tecla = e.getKeyCode();
-        if (tecla == KeyEvent.VK_W) {
-            arribaPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_S) {
-            abajoPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_A) {
-            izquierdaPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_D) {
-            derechaPresionado = false;
-        }
-        if (tecla == KeyEvent.VK_ENTER) {
-            enterPresionado = false;
+
+        // Actualización del estado de las teclas al soltarlas
+        switch (tecla) {
+            case KeyEvent.VK_W:
+                arribaPresionado = false;
+                break;
+            case KeyEvent.VK_S:
+                abajoPresionado = false;
+                break;
+            case KeyEvent.VK_A:
+                izquierdaPresionado = false;
+                break;
+            case KeyEvent.VK_D:
+                derechaPresionado = false;
+                break;
+            case KeyEvent.VK_ENTER:
+                enterPresionado = false;
+                break;
         }
     }
 

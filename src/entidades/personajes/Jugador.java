@@ -22,7 +22,7 @@ public class Jugador extends Entidad {
     public int vida;
     public int tiempoDeInvencibilidad = 0;
     public boolean invencible = false;
-    public boolean timerStart = false;
+    private final int NUM_MAX_FRUTAS=11;
 
     public Jugador(Tablero tablero, Control control) {
         super(tablero);
@@ -41,6 +41,18 @@ public class Jugador extends Entidad {
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
     }
+    public void establecerPosiciónPredeterminada(){
+        mundoX=336;
+        mundoY=294;
+        dirección=Dirección.ABAJO;
+    }
+    public void reestablecerVida(){
+        vida=máximoVidas;
+        invencible=false;
+    }
+    public void reestablecerFrutas(){
+        númeroDeFrutas=0;
+    }
 
     /**
      * Establece los valores predeterminados para el jugador.
@@ -48,8 +60,8 @@ public class Jugador extends Entidad {
      */
     public void establecerValoresPredeterminados() {
         //Coordenadas iniciales
-        mundoX = 9 * tablero.TAMAÑO_DE_BLOQUE;
-        mundoY = 10 * tablero.TAMAÑO_DE_BLOQUE;
+        mundoX = 9*tablero.TAMAÑO_DE_BLOQUE;
+        mundoY = 10*tablero.TAMAÑO_DE_BLOQUE;
         // Establecer la velocidad predeterminada del jugador
         velocidad = 6;
         // Establecer la dirección predeterminada del jugador como hacia abajo
@@ -150,19 +162,24 @@ public class Jugador extends Entidad {
                 tiempoDeInvencibilidad = 0;
             }
         }
-    }
-
-    public void comprobarSiEstáMuerto(){
-        if(estáMuerto()){
-            tablero.iu.estadoDeJuego = EstadoDeJuego.DERROTA;
-            tablero.pararMúsica();
+        if(comprobarSiEstáMuerto()){
+            tablero.estadoActualDeJuego=EstadoDeJuego.DERROTA;
             tablero.reproducirSE(4);
+        }
+        if(comprobarVictoria()){
+            tablero.estadoActualDeJuego=EstadoDeJuego.VICTORIA;
+            tablero.reproducirSE(6);
         }
     }
 
-    private boolean estáMuerto() {
-        return vida == 0;
+    private boolean comprobarVictoria() {
+        return númeroDeFrutas==NUM_MAX_FRUTAS;
     }
+
+    public boolean comprobarSiEstáMuerto(){
+        return vida ==0;
+    }
+
 
     private void contactoConEnemigo(int i) {
         if (i != 999) {
@@ -185,12 +202,6 @@ public class Jugador extends Entidad {
             tablero.reproducirSE(1);
             //  tablero.
             System.out.println("Frutas recolectadas: " + númeroDeFrutas);
-        }
-        if (númeroDeFrutas == 11) {
-            tablero.estadoActualDeJuego = EstadoDeJuego.VICTORIA;
-//            tablero.iu.juegoTerminado = true;
-            tablero.pararMúsica();
-            tablero.reproducirSE(6);
         }
     }
 

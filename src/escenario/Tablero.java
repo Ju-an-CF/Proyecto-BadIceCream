@@ -9,6 +9,8 @@ import java.util.Comparator;
 import datos.GuardarCargar;
 import entidades.*;
 import entidades.personajes.Jugador;
+import interfazDeUsuario.Configuración;
+
 import interfazDeUsuario.EstadoDeJuego;
 import interfazDeUsuario.IU;
 import mecánicas.ColocadorDeObjetos;
@@ -35,6 +37,9 @@ public class Tablero extends JPanel implements Runnable {
     //FPS
     public static final int FPS = 60;
 
+    //sistema
+    public Configuración configuración=new Configuración(this);
+    public GuardarCargar guardarCargar = new  GuardarCargar(this);
     Control control = new Control(this);
     public transient Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
@@ -43,7 +48,6 @@ public class Tablero extends JPanel implements Runnable {
     private transient Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    public GuardarCargar guardarCargar = new GuardarCargar(this);
     //jugador y entidades
     public Jugador jugador = new Jugador(this, control);
     public Entidad[] frutas = new Entidad[20];
@@ -75,6 +79,23 @@ public class Tablero extends JPanel implements Runnable {
     public void iniciarHiloDeJuego() {
         hiloDeJuego = new Thread(this);
         hiloDeJuego.start();
+    }
+    public void reintentar(){
+        jugador.establecerPosiciónPredeterminada();
+        jugador.reestablecerVida();
+        jugador.reestablecerFrutas();
+        colocador.colocarMora();
+        iu.resetearReloj();
+    }
+
+    public void reestablecer(){
+        jugador.establecerValoresPredeterminados();
+        jugador.establecerPosiciónPredeterminada();
+        jugador.reestablecerFrutas();
+        jugador.reestablecerVida();
+        colocador.colocarEnemigos();
+        colocador.colocarMora();
+        iu.resetearReloj();
     }
 
     @Override
@@ -295,5 +316,9 @@ public class Tablero extends JPanel implements Runnable {
 
     public Control getControl() {
         return control;
+    }
+
+    public Configuración getConfiguración() {
+        return configuración;
     }
 }

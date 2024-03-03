@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles checar las ramas en especial Master y UIMejorada">
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas">
+      <change afterPath="$PROJECT_DIR$/src/fuentes/datosDeJuego/configuración.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/datosDeJuego/mapa.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfazDeUsuario/Configuración.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/escenario/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Bloque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/mapa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/mapa.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BadIceCream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BadIceCream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/VerificadorDeColisión.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sonido/Sonido.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +249,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709441498586</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implementando capa de datos, con la carga y guardado de información">
+      <option name="closed" value="true" />
+      <created>1709499126356</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709499126356</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas">
+      <option name="closed" value="true" />
+      <created>1709499203680</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709499203680</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +297,8 @@
     <MESSAGE value="Encapsulando las clases de Control, tablero, Entidad, Bloque interactivo, y mejorando apariencia en general" />
     <MESSAGE value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles chechar la ramas en especial Master y UIMejorada" />
     <MESSAGE value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles checar las ramas en especial Master y UIMejorada" />
-    <option name="LAST_COMMIT_MESSAGE" value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles checar las ramas en especial Master y UIMejorada" />
+    <MESSAGE value="Implementando capa de datos, con la carga y guardado de información" />
+    <MESSAGE value="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas" />
   </component>
 </project>

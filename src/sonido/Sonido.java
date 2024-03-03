@@ -10,7 +10,7 @@ public class Sonido {
     private Clip clip;
     private URL soundURL[] = new URL[30];
     FloatControl fc;
-    int escalaDeVolumen=3;
+    public int escalaDeVolumen=3;
     float volumen;
 
     /**
