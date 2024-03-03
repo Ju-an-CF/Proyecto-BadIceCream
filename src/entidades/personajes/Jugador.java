@@ -42,8 +42,8 @@ public class Jugador extends Entidad {
         obtenerImagenDeJugador();
     }
     public void establecerPosiciónPredeterminada(){
-        mundoX=336;
-        mundoY=294;
+        mundoX = 9*tablero.TAMAÑO_DE_BLOQUE;
+        mundoY = 10*tablero.TAMAÑO_DE_BLOQUE;
         dirección=Dirección.ABAJO;
     }
     public void reestablecerVida(){
