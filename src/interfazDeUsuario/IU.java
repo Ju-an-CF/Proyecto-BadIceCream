@@ -359,6 +359,7 @@ public class IU {
                 subEstado=0;
                 tablero.guardarCargar.guardar();
                 tablero.estadoActualDeJuego=EstadoDeJuego.TÍTULO;
+                tablero.reestablecer();
             }
         }
         //no
