@@ -4,10 +4,14 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class Sonido {
     private Clip clip;
     private URL soundURL[] = new URL[30];
+    FloatControl fc;
+    int escalaDeVolumen=3;
+    float volumen;
 
     /**
      * Constructor de la clase Sonido.
@@ -44,6 +48,8 @@ public class Sonido {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[índiceSonido]);
             clip = AudioSystem.getClip();
             clip.open(ais);
+            fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+            verificarVolumen();
         } catch (Exception e) {
         }
     }
@@ -66,5 +72,25 @@ public class Sonido {
     public void parar() {
         clip.stop();
     }
+    public void verificarVolumen(){
+        switch (escalaDeVolumen){
+            case 0: volumen=-80f; break;
+            case 1: volumen=-20f; break;
+            case 2: volumen=-12f; break;
+            case 3: volumen=-5f; break;
+            case 4: volumen=1f; break;
+            case 5: volumen=6f; break;
+        }
+        fc.setValue(volumen);
+    }
 
+    public int getEscalaDeVolumen() {
+        return escalaDeVolumen;
+    }
+    public void disminuirVolumen(){
+        escalaDeVolumen--;
+    }
+    public void aumentarVolumen(){
+        escalaDeVolumen++;
+    }
 }

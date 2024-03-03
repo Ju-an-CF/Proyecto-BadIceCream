@@ -2,7 +2,8 @@ package escenario;
 
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class Bloque{
-    public BufferedImage imagen;
+public class Bloque implements Serializable {
+    public transient BufferedImage imagen;
 }

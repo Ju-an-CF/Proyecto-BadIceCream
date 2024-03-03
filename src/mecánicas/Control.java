@@ -5,11 +5,11 @@ import interfazDeUsuario.EstadoDeJuego;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
+import java.io.Serializable;
 
-public class Control implements KeyListener {
+public class Control implements KeyListener, Serializable {
     Tablero tablero;
-    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado,enterPresionado;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, enterPresionado;
 
 
     public Control(Tablero tablero) {
@@ -23,40 +23,93 @@ public class Control implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
-        //Menú Principal
+        //Menu estado
         if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
-            if (tecla == KeyEvent.VK_W) {
-                tablero.iu.comandoNum--;
-                if (tablero.iu.comandoNum < 0) {
-                    tablero.iu.comandoNum = 2;
-                }
-            }
-            if (tecla == KeyEvent.VK_S) {
-                tablero.iu.comandoNum++;
-                if (tablero.iu.comandoNum > 2) {
-                    tablero.iu.comandoNum = 0;
-                }
+            estadoTítulo(tecla);
+        }
+        //jugador estado
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
+            estadoJugador(tecla);
+        }
 
+        //Pausa
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
+            estadoPausa(tecla);
+        }
+
+        //opciones
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.OPCIONES) {
+            estadoOpciones(tecla);
+        }
+
+    }
+
+    private void estadoPausa(int tecla) {
+        if (tecla == KeyEvent.VK_ESCAPE) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+        }
+    }
+
+
+    private void estadoOpciones(int tecla) {
+        if (tecla == KeyEvent.VK_ENTER) {
+            enterPresionado = true;
+        }
+        if (tecla == KeyEvent.VK_ESCAPE) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+        }
+        int maxComandoNum = 0;
+        switch (tablero.iu.subEstado) {
+            case 0:
+                maxComandoNum = 4;
+                break;
+            case 2:
+                maxComandoNum = 1;
+                break;
+        }
+        if (tecla == KeyEvent.VK_W) {
+            tablero.iu.comandoNum--;
+            if (tablero.iu.comandoNum < 0) {
+                tablero.iu.comandoNum = maxComandoNum;
             }
-            if (tecla == KeyEvent.VK_ENTER) {
-                if (tablero.iu.comandoNum == 0) {
-                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
-                    tablero.pararMúsica();
-                    tablero.reproducirSE(2);
+        }
+        if (tecla == KeyEvent.VK_S) {
+            tablero.iu.comandoNum++;
+            //music
+            if (tablero.iu.comandoNum > maxComandoNum) {
+                tablero.iu.comandoNum = 0;
+            }
+        }
+        if (tecla == KeyEvent.VK_A) {
+            if (tablero.iu.subEstado == 0) {
+                if (tablero.iu.comandoNum == 0 && tablero.getMúsica().getEscalaDeVolumen() > 0) {
+                    tablero.getMúsica().disminuirVolumen();
+                    tablero.getMúsica().verificarVolumen();
+                    //tablero.reproducirSE();
                 }
-                if (tablero.iu.comandoNum == 1) {
-                    tablero.guardadoYCarga.cargar();
-                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
-                    tablero.pararMúsica();
-                    tablero.reproducirSE(2);
-                }
-                if (tablero.iu.comandoNum == 2) {
-                    System.exit(0);
+                if (tablero.iu.comandoNum == 1 && tablero.getSe().getEscalaDeVolumen() > 0) {
+                    tablero.getSe().disminuirVolumen();
+                    //tablero.reproducirSE();
                 }
             }
         }
+        if (tecla == KeyEvent.VK_D) {
+            if (tablero.iu.subEstado == 0) {
+                if (tablero.iu.comandoNum == 0 && tablero.getMúsica().getEscalaDeVolumen() < 5) {
+                    tablero.getMúsica().aumentarVolumen();
+                    tablero.getMúsica().verificarVolumen();
+                    //tablero.reproducirSE();
+                }
+            }
+            if (tablero.iu.comandoNum == 1 && tablero.getSe().getEscalaDeVolumen() < 5) {
+                tablero.getSe().aumentarVolumen();
+                //tablero.reproducirSE();
+            }
+        }
+    }
 
-        //Movimiento de Jugador
+
+    private void estadoJugador(int tecla) {
         if (tecla == KeyEvent.VK_W) {
             arribaPresionado = true;
         }
@@ -72,48 +125,45 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_SPACE) {
             tablero.jugador.romperOCrearHielo();
         }
-
-        //Estado De pausa
-        if (tecla == KeyEvent.VK_P) {
-            if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
-                tablero.estadoActualDeJuego = EstadoDeJuego.PAUSA;
-            } else if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
-                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
-            }
-        }
-
-        //Menú de Opciones
-        if(tecla == KeyEvent.VK_ESCAPE) {
+        if (tecla == KeyEvent.VK_F) {
             tablero.estadoActualDeJuego = EstadoDeJuego.OPCIONES;
         }
-        if(tablero.estadoActualDeJuego == EstadoDeJuego.OPCIONES){
-            int maxOpciones = 0;
-            if(tablero.iu.subEstado == 0){
-                maxOpciones = 3;
+        if (tecla == KeyEvent.VK_P) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.PAUSA;
+        }
+    }
+
+
+    public void estadoTítulo(int tecla) {
+        if (tecla == KeyEvent.VK_W) {
+            tablero.iu.comandoNum--;
+            if (tablero.iu.comandoNum < 0) {
+                tablero.iu.comandoNum = 2;
             }
-            if (tecla == KeyEvent.VK_W) {
-                tablero.iu.comandoNum--;
-                if (tablero.iu.comandoNum < 0) {
-                    tablero.iu.comandoNum = maxOpciones;
-                }
-            }
-            if (tecla == KeyEvent.VK_S) {
-                tablero.iu.comandoNum++;
-                if (tablero.iu.comandoNum > maxOpciones) {
-                    tablero.iu.comandoNum = 0;
-                }
-            }
-            if (tecla == KeyEvent.VK_ENTER) {
-                if (tablero.iu.comandoNum == 0) {
-                    tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
-                }
-                if(tablero.iu.comandoNum == 2){
-                    tablero.guardadoYCarga.guardar();
-                    System.out.println("Guardado");
-                }
+        }
+        if (tecla == KeyEvent.VK_S) {
+            tablero.iu.comandoNum++;
+            if (tablero.iu.comandoNum > 2) {
+                tablero.iu.comandoNum = 0;
             }
         }
 
+        if (tecla == KeyEvent.VK_ENTER) {
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.pararMúsica();
+                tablero.reproducirMúsica(2);
+            }
+            if (tablero.iu.comandoNum == 1) {
+                tablero.guardarCargar.cargar();
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.pararMúsica();
+                tablero.reproducirMúsica(2);
+            }
+            if (tablero.iu.comandoNum == 2) {
+                System.exit(0);
+            }
+        }
     }
 
     @Override
@@ -131,7 +181,9 @@ public class Control implements KeyListener {
         if (tecla == KeyEvent.VK_D) {
             derechaPresionado = false;
         }
-
+        if (tecla == KeyEvent.VK_ENTER) {
+            enterPresionado = false;
+        }
     }
 
     @Override

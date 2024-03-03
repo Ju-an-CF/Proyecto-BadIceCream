@@ -5,7 +5,9 @@ import entidades.personajes.Toro;
 import escenario.Tablero;
 import entidades.frutas.Mora;
 
-public class ColocadorDeObjetos {
+import java.io.Serializable;
+
+public class ColocadorDeObjetos implements Serializable {
     Tablero gp;
 
     public ColocadorDeObjetos(Tablero gp) {
@@ -19,7 +21,7 @@ public class ColocadorDeObjetos {
             gp.frutas[0].mundoY = 9 * gp.TAMAÑO_DE_BLOQUE;
 
             gp.frutas[1] = new Mora(gp);
-            gp.frutas[1].mundoX = 9 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[1].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
             gp.frutas[1].mundoY = 13 * gp.TAMAÑO_DE_BLOQUE;
 
             gp.frutas[2] = new Mora(gp);

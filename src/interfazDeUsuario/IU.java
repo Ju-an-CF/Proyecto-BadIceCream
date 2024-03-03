@@ -20,7 +20,7 @@ public class IU {
     Font font;
     Graphics2D graphics2D;
     public EstadoDeJuego estadoDeJuego;
-    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú, opcionesMen, hojaDeSprites;
+    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites;
     BufferedImage moraImagen;
     BufferedImage imagenEstado;
     public double playTime;
@@ -31,7 +31,8 @@ public class IU {
     private final int numeroDeFrames = 15; // Número total de frames
     private final double tiempoPorFrame = 1.0; // Tiempo que cada frame se muestra, ajusta según necesidad
     private boolean relojActivo = true; // Controla si el reloj está activo
-    public int subEstado = 0;
+    public int subEstado=0;
+
 
 
     public IU(Tablero tablero) {
@@ -49,8 +50,8 @@ public class IU {
 
     }
 
-    public BufferedImage cargarRecursosAdicionales(String ruta) {
-        BufferedImage imagen = null;
+    public BufferedImage cargarRecursosAdicionales(String ruta){
+        BufferedImage imagen=null;
         try {
             imagen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(ruta)));
         } catch (IOException e) {
@@ -83,7 +84,7 @@ public class IU {
             playTime += (double) 1 / 60;
         }
 
-        int indiceFrame = (int) ((playTime * numeroDeFrames) / tiempoPorFrame) % numeroDeFrames;
+        int indiceFrame = (int)((playTime * numeroDeFrames) / tiempoPorFrame) % numeroDeFrames;
         int xFrame = indiceFrame * anchoFrame;
 
         graphics2D.drawImage(hojaDeSprites, 455, 531, 455 + anchoFrame, 531 + altoFrame,
@@ -110,119 +111,42 @@ public class IU {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        graphics2D.drawImage(imagenEstado, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
+        graphics2D.drawImage(imagenEstado,tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
     }
 
-    public void dibujarEstadoDeJuegoSegúnEstado() {
-        switch (tablero.estadoActualDeJuego) {
+    public void dibujarEstadoDeJuegoSegúnEstado(){
+        switch (tablero.estadoActualDeJuego){
             case TÍTULO: {
                 dibujarMenú(graphics2D);
-            }
-            break;
+            } break;
             case VICTORIA: {
                 dibujarEstadoDeJuego("you_win");
                 tablero.hiloDeJuego = null;
                 tablero.reproducirSE(6);
-            }
-            break;
+            } break;
             case DERROTA: {
                 dibujarEstadoDeJuego("game_over");
                 tablero.hiloDeJuego = null;
                 tablero.reproducirSE(4);
-            }
-            break;
+            } break;
             case JUEGO: {
                 reiniciarReloj();
-                panelImagen = cargarRecursosAdicionales("/fuentes/IU/panel.png");
-                graphics2D.drawImage(panelImagen, tablero.TAMAÑO_DE_BLOQUE, 13 * tablero.TAMAÑO_DE_BLOQUE, panelImagen.getWidth(), panelImagen.getHeight(), null);
+                panelImagen=cargarRecursosAdicionales("/fuentes/IU/panel.png");
+                graphics2D.drawImage(panelImagen, tablero.TAMAÑO_DE_BLOQUE, 13*tablero.TAMAÑO_DE_BLOQUE, panelImagen.getWidth(), panelImagen.getHeight(), null);
                 dibujarVidaJugador();
                 dibujarMoras();
                 dibujarTiempo();
 
-            }
-            break;
+            } break;
             case PAUSA: {
                 dibujarVidaJugador();
                 dibujarPantallaDePausa();
-                pararReloj();
-            }
-            break;
-            case OPCIONES: {
-                dibujarVentanaDeOpciones();
-                pararReloj();
-            }
-            break;
+               // pararReloj();
+            } break;
+            case OPCIONES:{
+                dibujarPantallaDeOpciones();
+            } break;
         }
-    }
-
-    private void dibujarVentanaDeOpciones() {
-        graphics2D.setColor(Color.RED);
-        graphics2D.setFont(graphics2D.getFont().deriveFont(32F));
-
-        int ventanaX = tablero.TAMAÑO_DE_BLOQUE * 4;
-        int ventanaY = tablero.TAMAÑO_DE_BLOQUE;
-        int ventanaAncho = tablero.TAMAÑO_DE_BLOQUE * 8;
-        int ventanaAlto = tablero.TAMAÑO_DE_BLOQUE * 7;
-        dibujarSubVentana(ventanaX, ventanaY, ventanaAncho, ventanaAlto);
-
-        switch (subEstado) {
-            case 0:
-                dibujarOpciones(ventanaX, ventanaY);
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-        }
-    }
-
-    public void dibujarOpciones(int ventanaX, int ventanaY) {
-        int textoX;
-        int textoY;
-
-        //título
-        String texto = "Opciones";
-        textoX = getXParaCentrarTexto(texto);
-        textoY = ventanaY + tablero.TAMAÑO_DE_BLOQUE;
-        graphics2D.drawString(texto, textoX, textoY);
-
-        textoX = ventanaX + tablero.TAMAÑO_DE_BLOQUE;
-        //Reanudar
-        textoY = tablero.TAMAÑO_DE_BLOQUE * 4;
-        graphics2D.drawString("Reanudar", textoX, textoY);
-        if (comandoNum == 0) {
-            graphics2D.drawString(">", textoX - 25, textoY);
-        }
-        //Reiniciar nivel
-        textoY += tablero.TAMAÑO_DE_BLOQUE;
-        graphics2D.drawString("Reiniciar Nivel", textoX, textoY);
-        if (comandoNum == 1) {
-            graphics2D.drawString(">", textoX - 25, textoY);
-        }
-        //Guardar
-        textoY += tablero.TAMAÑO_DE_BLOQUE;
-        graphics2D.drawString("Guardar", textoX, textoY);
-        if (comandoNum == 2) {
-            graphics2D.drawString(">", textoX - 25, textoY);
-        }
-        //Guardar Y salir
-        textoY += tablero.TAMAÑO_DE_BLOQUE;
-        graphics2D.drawString("Guardar y Salir", textoX, textoY);
-        if (comandoNum == 3) {
-            graphics2D.drawString(">", textoX - 25, textoY);
-        }
-
-    }
-
-    private void dibujarSubVentana(int x, int y, int ancho, int alto) {
-        Color color = new Color(0, 0, 0, 200);
-        graphics2D.setColor(color);
-        graphics2D.fillRoundRect(x, y, ancho, alto, 35, 35);
-
-        Color colorBordes = new Color(255, 255, 255, 200);
-        graphics2D.setColor(colorBordes);
-        graphics2D.setStroke(new BasicStroke(5));
-        graphics2D.fillRoundRect(x + 5, y + 5, ancho - 10, alto - 10, 25, 25);
     }
 
 
@@ -251,14 +175,14 @@ public class IU {
     public void dibujarMenú(Graphics2D g2) {
         String texto;
 
-        imagenDeFondo = cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
-        g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO + 50, tablero.ALTO, null);
+        imagenDeFondo=cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
+        g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO+50, tablero.ALTO, null);
 
-        imagenMenú = cargarRecursosAdicionales("/fuentes/IU/título.png");
+        imagenMenú=cargarRecursosAdicionales("/fuentes/IU/título.png");
 
         g2.drawImage(imagenMenú, 60, 10, 500, 500, null);
 
-        opcionesMen = cargarRecursosAdicionales("/fuentes/IU/opcionesmen.png");
+        opcionesMen=cargarRecursosAdicionales("/fuentes/IU/opcionesmen.png");
         g2.drawImage(opcionesMen, 190, 420, 250, 150, null);
 
         //Menu
@@ -287,30 +211,32 @@ public class IU {
     }
 
     private void dibujarPantallaDePausa() {
+        Color colorFondo = new Color(0, 0, 0, 127); // 127 es aproximadamente 50% de transparencia
+        graphics2D.setColor(colorFondo);
+
+        // Dibuja el rectángulo de fondo cubriendo toda la pantalla
+        graphics2D.fillRect(0, 0, tablero.ANCHO+42, tablero.ALTO);
+
+        // Configura el color para el texto
+        graphics2D.setColor(Color.WHITE);
+
+        // Calcula la posición para centrar el texto
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 35F));
         String texto = "Pausado";
-        comandoNum = 0;
-        graphics2D.drawString(texto, 270, 250);
+        int x = getXParaCentrarTexto(texto);
 
-        texto = "Guardar Juego";
-        graphics2D.drawString(texto, 240, 270);
-        if (comandoNum == 0) {
-            graphics2D.drawString(">", 220 - tablero.TAMAÑO_DE_BLOQUE, 270);
-        }
-        texto = "Reanudar Juego";
-        graphics2D.drawString(texto, 240, 290);
-        if (comandoNum == 1) {
-            graphics2D.drawString(">", 220 - tablero.TAMAÑO_DE_BLOQUE, 290);
-        }
+        int y = tablero.ALTO / 2;
 
+        // Dibuja el texto
+        graphics2D.drawString(texto, x, y);
     }
 
     public int getXParaCentrarTexto(String texto) {
         // Calcula la longitud del texto en píxeles.
         int longitudTexto = (int) graphics2D.getFontMetrics().getStringBounds(texto, graphics2D).getWidth();
-        // Calcula el punto de inicio x para centrar el texto en el ancho del tablero.
-        // Se añade un pequeño desplazamiento a la derecha si es necesario.
-        int desplazamiento = 25; // Ajusta este valor según sea necesario.
-        int xParaCentrar = (tablero.ANCHO - longitudTexto) / 2 + desplazamiento;
+
+        int desplazamiento = 22; // Ajusta este valor según sea necesario.
+        int xParaCentrar = (tablero.ALTO - longitudTexto) / 2 + desplazamiento;
         return xParaCentrar;
     }
 
@@ -329,5 +255,183 @@ public class IU {
             }
         }
     }
+    public void dibujarPantallaDeOpciones(){
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 20F));
+
+        //sub ventana
+        int frameX=tablero.TAMAÑO_DE_BLOQUE*4;
+        int frameY=tablero.TAMAÑO_DE_BLOQUE;
+        int frameAncho=tablero.TAMAÑO_DE_BLOQUE*9;
+        int frameAlto=tablero.TAMAÑO_DE_BLOQUE*8;
+        dibujarSubVentana(frameX,frameY,frameAncho,frameAlto);
+        switch (subEstado) {
+            case 0:
+                opcionesF(frameX, frameY);
+                break;
+            case 1:
+                opcionesControl(frameX,frameY); break;
+            case 2:
+                opcionesFinDeJuego(frameX,frameY);
+                break;
+        }
+    }
+
+    private void opcionesFinDeJuego(int frameX, int frameY) {
+        int textX=frameX+tablero.TAMAÑO_DE_BLOQUE*2;
+        int textY=frameY+tablero.TAMAÑO_DE_BLOQUE;
+
+        String text="Salir y Guardar";
+        graphics2D.drawString(text,textX,textY);
+
+        //si
+        text="Si";
+        textX=getXParaCentrarTexto(text);
+        textY+=tablero.TAMAÑO_DE_BLOQUE*3;
+        graphics2D.drawString(text,textX,textY);
+        if(comandoNum==0){
+            graphics2D.drawString(">",textX-25,textY);
+            if(tablero.getControl().enterPresionado){
+                subEstado=0;
+                tablero.guardarCargar.guardar();
+                tablero.estadoActualDeJuego=EstadoDeJuego.TÍTULO;
+            }
+        }
+        //no
+        text="No";
+        textX=getXParaCentrarTexto(text);
+        textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString(text,textX,textY);
+        if(comandoNum==1){
+            graphics2D.drawString(">",textX-25,textY);
+            if(tablero.getControl().enterPresionado){
+                subEstado=0;
+                comandoNum=3;
+            }
+        }
+    }
+
+    private void dibujarSubVentana(int x, int y, int ancho, int alto) {
+        Color c =new Color(0,0,0,220);
+        graphics2D.setColor(c);
+        graphics2D.fillRoundRect(x,y,ancho,alto,35,35);
+
+        c=new Color(255,255,255);
+        graphics2D.setColor(c);
+        graphics2D.setStroke(new BasicStroke(5));
+        graphics2D.drawRoundRect(x+5,y+5,ancho-10,alto-10,25,25);
+
+    }
+
+    private void opcionesF(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        String text = "Opciones";
+        textX = getXParaCentrarTexto(text);
+        textY = frameY + tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString(text, textX, textY);
+
+        //musica
+        textX = frameX + tablero.TAMAÑO_DE_BLOQUE;
+        textY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Music", textX, textY);
+        if (comandoNum == 0) {
+            graphics2D.drawString(">", textX - 25, textY);
+        }
+        //SE
+        textY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("ES", textX, textY);
+        if (comandoNum == 1) {
+            graphics2D.drawString(">", textX - 25, textY);
+        }
+
+        //Control
+        textY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Control", textX, textY);
+        if (comandoNum == 2) {
+            graphics2D.drawString(">", textX - 25, textY);
+            if(tablero.getControl().enterPresionado){
+                subEstado=1;
+                comandoNum=0;
+            }
+        }
+
+        //terminarJuego
+        textY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Terminar Juego", textX, textY);
+        if (comandoNum == 3) {
+            graphics2D.drawString(">", textX - 25, textY);
+            if(tablero.getControl().enterPresionado){
+                subEstado=2;
+                comandoNum=0;
+            }
+        }
+
+        //regresar
+        textY += tablero.TAMAÑO_DE_BLOQUE * 2;
+        graphics2D.drawString("Regresar", textX, textY);
+        if (comandoNum == 4) {
+            graphics2D.drawString(">", textX - 25, textY);
+            if(tablero.getControl().enterPresionado){
+                tablero.estadoActualDeJuego=EstadoDeJuego.JUEGO;
+                comandoNum=0;
+            }
+        }
+
+        //music volumen
+        textX=frameX+(int)(tablero.TAMAÑO_DE_BLOQUE*4.5);
+        textY= frameY+60;
+        graphics2D.drawRect(textX, textY, 120, 24);
+        int volumenAncho=24*tablero.getMúsica().getEscalaDeVolumen();
+        graphics2D.fillRect(textX,textY,volumenAncho,24);
+
+        //es
+        textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawRect(textX,textY,120,24);
+        volumenAncho=24*tablero.getSe().getEscalaDeVolumen();
+        graphics2D.fillRect(textX,textY,volumenAncho,24);
+
+    }
+    public void opcionesControl(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        //Titulo
+        String text="Controles";
+        textX=getXParaCentrarTexto(text);
+        textY=frameY+tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString(text,textX,textY);
+
+
+        textX=frameX+tablero.TAMAÑO_DE_BLOQUE;
+        textY+=tablero.TAMAÑO_DE_BLOQUE;
+
+        graphics2D.drawString("Moverse", textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Pausa",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Opciones", textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        //graphics2D.drawString("Moverse",textX,textY)textY+=tablero.TAMAÑO_DE_BLOQUE;
+
+        textX=frameX+tablero.TAMAÑO_DE_BLOQUE*6;
+        textY=frameY+tablero.TAMAÑO_DE_BLOQUE*2;
+        graphics2D.drawString("WASD",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("P",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("F",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        //graphics2D.drawString("Enter",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+
+        //BACK
+        textX=frameX+tablero.TAMAÑO_DE_BLOQUE;
+        textY=frameY+tablero.TAMAÑO_DE_BLOQUE*5;
+
+        graphics2D.drawString("Regresar",textX,textY);
+        if(comandoNum==0){
+            graphics2D.drawString(">",textX-25,textY);
+            if(tablero.getControl().enterPresionado){
+                subEstado=0;
+                comandoNum=2;
+            }
+        }
+    }
+
 
 }

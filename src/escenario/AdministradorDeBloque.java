@@ -3,12 +3,9 @@ package escenario;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
-public class AdministradorDeBloque {
+public class AdministradorDeBloque implements Serializable {
     Tablero tablero;
     public Bloque[] bloques;
     public int mapa[][];

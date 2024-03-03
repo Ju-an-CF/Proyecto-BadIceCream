@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import datos.GuardarCargar;
 import entidades.*;
 import entidades.personajes.Jugador;
 import interfazDeUsuario.EstadoDeJuego;
@@ -35,18 +36,20 @@ public class Tablero extends JPanel implements Runnable {
     public static final int FPS = 60;
 
     Control control = new Control(this);
-    public Thread hiloDeJuego;
+    public transient Thread hiloDeJuego;
     public VerificadorDeColisión checkColisión = new VerificadorDeColisión(this);
-    public IU iu = new IU(this);
-    Sonido música = new Sonido();
-    Sonido se = new Sonido();
+    public transient IU iu = new IU(this);
+    private transient Sonido música = new Sonido();
+    private transient Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
+    public GuardarCargar guardarCargar = new GuardarCargar(this);
     //jugador y entidades
     public Jugador jugador = new Jugador(this, control);
     public Entidad[] frutas = new Entidad[20];
     public Entidad[] enemigos = new Entidad[10];
     ArrayList<Entidad> entidades = new ArrayList<>();
+
 
     // estados de juego
     public EstadoDeJuego estadoActualDeJuego = EstadoDeJuego.NEUTRO;
@@ -66,6 +69,7 @@ public class Tablero extends JPanel implements Runnable {
         colocador.colocarEnemigos();
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
+
     }
 
     public void iniciarHiloDeJuego() {
@@ -282,5 +286,14 @@ public class Tablero extends JPanel implements Runnable {
         se.reproducir();
     }
 
+    public Sonido getMúsica() {
+        return música;
+    }
+    public Sonido getSe(){
+        return se;
+    }
 
+    public Control getControl() {
+        return control;
+    }
 }

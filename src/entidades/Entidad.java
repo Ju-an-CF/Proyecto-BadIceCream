@@ -8,8 +8,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Entidad {
+public class Entidad implements Serializable {
 
     public Tablero tablero;
     //Coordenadas de la entidad
@@ -18,8 +19,8 @@ public class Entidad {
     public int velocidad;
 
     //Imágenes que usarán las entidades
-    public BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
-    public BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
+    public transient BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
+    public transient BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
 
     //Dirección por defecto
     public Dirección dirección = Dirección.ABAJO;

@@ -4,7 +4,9 @@ import entidades.Entidad;
 import escenario.BloqueEstático;
 import escenario.Tablero;
 
-public class VerificadorDeColisión {
+import java.io.Serializable;
+
+public class VerificadorDeColisión implements Serializable {
     Tablero tablero;
 
     public VerificadorDeColisión(Tablero tablero) {
