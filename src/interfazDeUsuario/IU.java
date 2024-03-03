@@ -20,10 +20,10 @@ public class IU {
     Font font;
     Graphics2D graphics2D;
     public EstadoDeJuego estadoDeJuego;
-    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites;
+    BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú, opcionesMen, hojaDeSprites;
     BufferedImage moraImagen;
     BufferedImage imagenEstado;
-    double playTime;
+    public double playTime;
     DecimalFormat decimalFormato = new DecimalFormat("0.00");
     public int comandoNum = 0;
     private int anchoFrame; // Ancho de un único frame en la hoja de sprites
@@ -31,7 +31,7 @@ public class IU {
     private final int numeroDeFrames = 15; // Número total de frames
     private final double tiempoPorFrame = 1.0; // Tiempo que cada frame se muestra, ajusta según necesidad
     private boolean relojActivo = true; // Controla si el reloj está activo
-
+    public int subEstado = 0;
 
 
     public IU(Tablero tablero) {
@@ -49,8 +49,8 @@ public class IU {
 
     }
 
-    public BufferedImage cargarRecursosAdicionales(String ruta){
-        BufferedImage imagen=null;
+    public BufferedImage cargarRecursosAdicionales(String ruta) {
+        BufferedImage imagen = null;
         try {
             imagen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(ruta)));
         } catch (IOException e) {
@@ -83,7 +83,7 @@ public class IU {
             playTime += (double) 1 / 60;
         }
 
-        int indiceFrame = (int)((playTime * numeroDeFrames) / tiempoPorFrame) % numeroDeFrames;
+        int indiceFrame = (int) ((playTime * numeroDeFrames) / tiempoPorFrame) % numeroDeFrames;
         int xFrame = indiceFrame * anchoFrame;
 
         graphics2D.drawImage(hojaDeSprites, 455, 531, 455 + anchoFrame, 531 + altoFrame,
@@ -110,39 +110,119 @@ public class IU {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        graphics2D.drawImage(imagenEstado,tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
+        graphics2D.drawImage(imagenEstado, tablero.TAMAÑO_DE_BLOQUE * 5, tablero.TAMAÑO_DE_BLOQUE * 4, 200, 200, null);
     }
 
-    public void dibujarEstadoDeJuegoSegúnEstado(){
-        switch (tablero.estadoActualDeJuego){
+    public void dibujarEstadoDeJuegoSegúnEstado() {
+        switch (tablero.estadoActualDeJuego) {
             case TÍTULO: {
                 dibujarMenú(graphics2D);
-            } break;
+            }
+            break;
             case VICTORIA: {
                 dibujarEstadoDeJuego("you_win");
                 tablero.hiloDeJuego = null;
                 tablero.reproducirSE(6);
-            } break;
+            }
+            break;
             case DERROTA: {
                 dibujarEstadoDeJuego("game_over");
                 tablero.hiloDeJuego = null;
                 tablero.reproducirSE(4);
-            } break;
+            }
+            break;
             case JUEGO: {
                 reiniciarReloj();
-                panelImagen=cargarRecursosAdicionales("/fuentes/IU/panel.png");
-                graphics2D.drawImage(panelImagen, tablero.TAMAÑO_DE_BLOQUE, 13*tablero.TAMAÑO_DE_BLOQUE, panelImagen.getWidth(), panelImagen.getHeight(), null);
+                panelImagen = cargarRecursosAdicionales("/fuentes/IU/panel.png");
+                graphics2D.drawImage(panelImagen, tablero.TAMAÑO_DE_BLOQUE, 13 * tablero.TAMAÑO_DE_BLOQUE, panelImagen.getWidth(), panelImagen.getHeight(), null);
                 dibujarVidaJugador();
                 dibujarMoras();
                 dibujarTiempo();
 
-            } break;
+            }
+            break;
             case PAUSA: {
                 dibujarVidaJugador();
                 dibujarPantallaDePausa();
                 pararReloj();
-            } break;
+            }
+            break;
+            case OPCIONES: {
+                dibujarVentanaDeOpciones();
+                pararReloj();
+            }
+            break;
         }
+    }
+
+    private void dibujarVentanaDeOpciones() {
+        graphics2D.setColor(Color.RED);
+        graphics2D.setFont(graphics2D.getFont().deriveFont(32F));
+
+        int ventanaX = tablero.TAMAÑO_DE_BLOQUE * 4;
+        int ventanaY = tablero.TAMAÑO_DE_BLOQUE;
+        int ventanaAncho = tablero.TAMAÑO_DE_BLOQUE * 8;
+        int ventanaAlto = tablero.TAMAÑO_DE_BLOQUE * 7;
+        dibujarSubVentana(ventanaX, ventanaY, ventanaAncho, ventanaAlto);
+
+        switch (subEstado) {
+            case 0:
+                dibujarOpciones(ventanaX, ventanaY);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+
+    public void dibujarOpciones(int ventanaX, int ventanaY) {
+        int textoX;
+        int textoY;
+
+        //título
+        String texto = "Opciones";
+        textoX = getXParaCentrarTexto(texto);
+        textoY = ventanaY + tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString(texto, textoX, textoY);
+
+        textoX = ventanaX + tablero.TAMAÑO_DE_BLOQUE;
+        //Reanudar
+        textoY = tablero.TAMAÑO_DE_BLOQUE * 4;
+        graphics2D.drawString("Reanudar", textoX, textoY);
+        if (comandoNum == 0) {
+            graphics2D.drawString(">", textoX - 25, textoY);
+        }
+        //Reiniciar nivel
+        textoY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Reiniciar Nivel", textoX, textoY);
+        if (comandoNum == 1) {
+            graphics2D.drawString(">", textoX - 25, textoY);
+        }
+        //Guardar
+        textoY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Guardar", textoX, textoY);
+        if (comandoNum == 2) {
+            graphics2D.drawString(">", textoX - 25, textoY);
+        }
+        //Guardar Y salir
+        textoY += tablero.TAMAÑO_DE_BLOQUE;
+        graphics2D.drawString("Guardar y Salir", textoX, textoY);
+        if (comandoNum == 3) {
+            graphics2D.drawString(">", textoX - 25, textoY);
+        }
+
+    }
+
+    private void dibujarSubVentana(int x, int y, int ancho, int alto) {
+        Color color = new Color(0, 0, 0, 200);
+        graphics2D.setColor(color);
+        graphics2D.fillRoundRect(x, y, ancho, alto, 35, 35);
+
+        Color colorBordes = new Color(255, 255, 255, 200);
+        graphics2D.setColor(colorBordes);
+        graphics2D.setStroke(new BasicStroke(5));
+        graphics2D.fillRoundRect(x + 5, y + 5, ancho - 10, alto - 10, 25, 25);
     }
 
 
@@ -171,14 +251,14 @@ public class IU {
     public void dibujarMenú(Graphics2D g2) {
         String texto;
 
-        imagenDeFondo=cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
-        g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO+50, tablero.ALTO, null);
+        imagenDeFondo = cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
+        g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO + 50, tablero.ALTO, null);
 
-        imagenMenú=cargarRecursosAdicionales("/fuentes/IU/título.png");
+        imagenMenú = cargarRecursosAdicionales("/fuentes/IU/título.png");
 
         g2.drawImage(imagenMenú, 60, 10, 500, 500, null);
 
-        opcionesMen=cargarRecursosAdicionales("/fuentes/IU/opcionesmen.png");
+        opcionesMen = cargarRecursosAdicionales("/fuentes/IU/opcionesmen.png");
         g2.drawImage(opcionesMen, 190, 420, 250, 150, null);
 
         //Menu
@@ -208,11 +288,20 @@ public class IU {
 
     private void dibujarPantallaDePausa() {
         String texto = "Pausado";
-        int x = getXParaCentrarTexto(texto);
+        comandoNum = 0;
+        graphics2D.drawString(texto, 270, 250);
 
-        int y = tablero.ANCHO / 2;
+        texto = "Guardar Juego";
+        graphics2D.drawString(texto, 240, 270);
+        if (comandoNum == 0) {
+            graphics2D.drawString(">", 220 - tablero.TAMAÑO_DE_BLOQUE, 270);
+        }
+        texto = "Reanudar Juego";
+        graphics2D.drawString(texto, 240, 290);
+        if (comandoNum == 1) {
+            graphics2D.drawString(">", 220 - tablero.TAMAÑO_DE_BLOQUE, 290);
+        }
 
-        graphics2D.drawString(texto, x, y);
     }
 
     public int getXParaCentrarTexto(String texto) {
@@ -220,7 +309,7 @@ public class IU {
         int longitudTexto = (int) graphics2D.getFontMetrics().getStringBounds(texto, graphics2D).getWidth();
         // Calcula el punto de inicio x para centrar el texto en el ancho del tablero.
         // Se añade un pequeño desplazamiento a la derecha si es necesario.
-        int desplazamiento = 75; // Ajusta este valor según sea necesario.
+        int desplazamiento = 25; // Ajusta este valor según sea necesario.
         int xParaCentrar = (tablero.ANCHO - longitudTexto) / 2 + desplazamiento;
         return xParaCentrar;
     }

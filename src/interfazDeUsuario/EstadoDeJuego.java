@@ -1,5 +1,5 @@
 package interfazDeUsuario;
 
 public enum EstadoDeJuego {
-    TÍTULO, JUEGO, PAUSA, VICTORIA, DERROTA, NEUTRO
+    TÍTULO, JUEGO, PAUSA, VICTORIA, DERROTA, NEUTRO, OPCIONES
 }
