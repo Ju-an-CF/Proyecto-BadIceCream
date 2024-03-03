@@ -14,7 +14,7 @@ public class Configuración implements Serializable{
 
     public void guardarConfig(){
         try {
-            BufferedWriter bw=new BufferedWriter(new FileWriter("C:/Users/Compu/Documents/workspace/Clonación/Proyecto---BadIceCream/src/fuentes/datosDeJuego/configuración.txt"));
+            BufferedWriter bw=new BufferedWriter(new FileWriter("C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream/src/fuentes/datosDeJuego/configuración.txt"));
             //music
             bw.write(String.valueOf(tablero.getMúsica().getEscalaDeVolumen()));
             bw.newLine();
@@ -31,7 +31,7 @@ public class Configuración implements Serializable{
     }
     public void cargarConfig(){
         try {
-            BufferedReader br=new BufferedReader(new FileReader("C:/Users/Compu/Documents/workspace/Clonación/Proyecto---BadIceCream/src/fuentes/datosDeJuego/configuración.txt"));
+            BufferedReader br=new BufferedReader(new FileReader("C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream/src/fuentes/datosDeJuego/configuración.txt"));
             String s;
 
             s=br.readLine();
