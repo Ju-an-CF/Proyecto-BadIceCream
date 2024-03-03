@@ -1,7 +1,7 @@
 package mecánicas;
 
-import escenario.entidades.Entidad;
-import escenario.entidades.bloques.BloqueEstático;
+import entidades.Entidad;
+import escenario.BloqueEstático;
 import escenario.Tablero;
 
 public class VerificadorDeColisión {
@@ -12,10 +12,10 @@ public class VerificadorDeColisión {
     }
 
     public void verificarBloque(Entidad entidad) {
-        int entidadDimIzquierdaX = entidad.getMundoX() + entidad.getÁreaSólida().x;
-        int entidadDimDerechaX = entidad.getMundoX() + entidad.getÁreaSólida().x + entidad.getÁreaSólida().width;
-        int entidadDimSuperiorY = entidad.getMundoY() + entidad.getÁreaSólida().y;
-        int entidadDimInferiorY = entidad.getMundoY() + entidad.getÁreaSólida().y + entidad.getÁreaSólida().height;
+        int entidadDimIzquierdaX = entidad.mundoX + entidad.áreaSólida.x;
+        int entidadDimDerechaX = entidad.mundoX + entidad.áreaSólida.x + entidad.áreaSólida.width;
+        int entidadDimSuperiorY = entidad.mundoY + entidad.áreaSólida.y;
+        int entidadDimInferiorY = entidad.mundoY + entidad.áreaSólida.y + entidad.áreaSólida.height;
 
         int columnaIzquierdaDeEntidad = entidadDimIzquierdaX / tablero.TAMAÑO_DE_BLOQUE;
         int columnaDerechaDeEntidad = entidadDimDerechaX / tablero.TAMAÑO_DE_BLOQUE;
@@ -26,35 +26,35 @@ public class VerificadorDeColisión {
 
         switch (entidad.dirección) {
             case ARRIBA:
-                filaSuperiorDeEntidad = (entidadDimSuperiorY - entidad.getVelocidad()) / tablero.TAMAÑO_DE_BLOQUE;
-                numBloque1 = tablero.getAdminBlock().mapa[columnaIzquierdaDeEntidad][filaSuperiorDeEntidad];
-                numBloque2 = tablero.getAdminBlock().mapa[columnaDerechaDeEntidad][filaSuperiorDeEntidad];
-                if (tablero.getAdminBlock().bloques[numBloque1] instanceof BloqueEstático || tablero.getAdminBlock().bloques[numBloque2] instanceof BloqueEstático) {
-                    entidad.setColisiónActiva(true);
+                filaSuperiorDeEntidad = (entidadDimSuperiorY - entidad.velocidad) / tablero.TAMAÑO_DE_BLOQUE;
+                numBloque1 = tablero.adminBlock.mapa[columnaIzquierdaDeEntidad][filaSuperiorDeEntidad];
+                numBloque2 = tablero.adminBlock.mapa[columnaDerechaDeEntidad][filaSuperiorDeEntidad];
+                if (tablero.adminBlock.bloques[numBloque1] instanceof BloqueEstático || tablero.adminBlock.bloques[numBloque2] instanceof BloqueEstático) {
+                    entidad.colisiónActiva = true;
                 }
                 break;
             case ABAJO:
-                filaInferiorDeEntidad = (entidadDimInferiorY + entidad.getVelocidad()) / tablero.TAMAÑO_DE_BLOQUE;
-                numBloque1 = tablero.getAdminBlock().mapa[columnaIzquierdaDeEntidad][filaInferiorDeEntidad];
-                numBloque2 = tablero.getAdminBlock().mapa[columnaDerechaDeEntidad][filaInferiorDeEntidad];
-                if (tablero.getAdminBlock().bloques[numBloque1] instanceof BloqueEstático || tablero.getAdminBlock().bloques[numBloque2] instanceof BloqueEstático) {
-                    entidad.setColisiónActiva(true);
+                filaInferiorDeEntidad = (entidadDimInferiorY + entidad.velocidad) / tablero.TAMAÑO_DE_BLOQUE;
+                numBloque1 = tablero.adminBlock.mapa[columnaIzquierdaDeEntidad][filaInferiorDeEntidad];
+                numBloque2 = tablero.adminBlock.mapa[columnaDerechaDeEntidad][filaInferiorDeEntidad];
+                if (tablero.adminBlock.bloques[numBloque1] instanceof BloqueEstático || tablero.adminBlock.bloques[numBloque2] instanceof BloqueEstático) {
+                    entidad.colisiónActiva = true;
                 }
                 break;
             case IZQUIERDA:
-                columnaIzquierdaDeEntidad = (entidadDimIzquierdaX - entidad.getVelocidad()) / tablero.TAMAÑO_DE_BLOQUE;
-                numBloque1 = tablero.getAdminBlock().mapa[columnaIzquierdaDeEntidad][filaSuperiorDeEntidad];
-                numBloque2 = tablero.getAdminBlock().mapa[columnaIzquierdaDeEntidad][filaInferiorDeEntidad];
-                if (tablero.getAdminBlock().bloques[numBloque1] instanceof BloqueEstático || tablero.getAdminBlock().bloques[numBloque2] instanceof BloqueEstático) {
-                    entidad.setColisiónActiva(true);
+                columnaIzquierdaDeEntidad = (entidadDimIzquierdaX - entidad.velocidad) / tablero.TAMAÑO_DE_BLOQUE;
+                numBloque1 = tablero.adminBlock.mapa[columnaIzquierdaDeEntidad][filaSuperiorDeEntidad];
+                numBloque2 = tablero.adminBlock.mapa[columnaIzquierdaDeEntidad][filaInferiorDeEntidad];
+                if (tablero.adminBlock.bloques[numBloque1] instanceof BloqueEstático || tablero.adminBlock.bloques[numBloque2] instanceof BloqueEstático) {
+                    entidad.colisiónActiva = true;
                 }
                 break;
             case DERECHA:
-                columnaDerechaDeEntidad = (entidadDimDerechaX + entidad.getVelocidad()) / tablero.TAMAÑO_DE_BLOQUE;
-                numBloque1 = tablero.getAdminBlock().mapa[columnaDerechaDeEntidad][filaSuperiorDeEntidad];
-                numBloque2 = tablero.getAdminBlock().mapa[columnaDerechaDeEntidad][filaInferiorDeEntidad];
-                if (tablero.getAdminBlock().bloques[numBloque1] instanceof BloqueEstático || tablero.getAdminBlock().bloques[numBloque2] instanceof BloqueEstático) {
-                    entidad.setColisiónActiva(true);
+                columnaDerechaDeEntidad = (entidadDimDerechaX + entidad.velocidad) / tablero.TAMAÑO_DE_BLOQUE;
+                numBloque1 = tablero.adminBlock.mapa[columnaDerechaDeEntidad][filaSuperiorDeEntidad];
+                numBloque2 = tablero.adminBlock.mapa[columnaDerechaDeEntidad][filaInferiorDeEntidad];
+                if (tablero.adminBlock.bloques[numBloque1] instanceof BloqueEstático || tablero.adminBlock.bloques[numBloque2] instanceof BloqueEstático) {
+                    entidad.colisiónActiva = true;
                 }
                 break;
         }
@@ -62,38 +62,25 @@ public class VerificadorDeColisión {
 
     public int verificarObjeto(Entidad entidad, boolean esJugador) {
         int index = 999;
-        for (int i = 0; i < tablero.getFrutas().length; i++) {
-            if (tablero.getFrutas()[i] != null) {
-                entidad.getÁreaSólida().x = entidad.getMundoX() + entidad.getÁreaSólida().x;
-                entidad.getÁreaSólida().y = entidad.getMundoY() + entidad.getÁreaSólida().y;
-                tablero.getFrutas()[i].getÁreaSólida().x = tablero.getFrutas()[i].getMundoX() + tablero.getFrutas()[i].getÁreaSólida().x;
-                tablero.getFrutas()[i].getÁreaSólida().y = tablero.getFrutas()[i].getMundoY() + tablero.getFrutas()[i].getÁreaSólida().y;
-                switch (entidad.dirección) {
-                    case ARRIBA:
-                        entidad.getÁreaSólida().y -= entidad.getVelocidad();
-                        break;
-                    case ABAJO:
-                        entidad.getÁreaSólida().y += entidad.getVelocidad();
-                        break;
-                    case IZQUIERDA:
-                        entidad.getÁreaSólida().x -= entidad.getVelocidad();
-                        break;
-                    case DERECHA:
-                        entidad.getÁreaSólida().x += entidad.getVelocidad();
-                        break;
-                }
-                if (entidad.getÁreaSólida().intersects(tablero.getFrutas()[i].getÁreaSólida())) {
-                    if (tablero.getFrutas()[i].isColisiónActiva()) {
-                        entidad.setColisiónActiva(true);
+        for (int i = 0; i < tablero.frutas.length; i++) {
+            if (tablero.frutas[i] != null) {
+                entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+                entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].mundoX + tablero.frutas[i].áreaSólida.x;
+                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].mundoY + tablero.frutas[i].áreaSólida.y;
+                moverEntidad(entidad);
+                if (entidad.áreaSólida.intersects(tablero.frutas[i].áreaSólida)) {
+                    if (tablero.frutas[i].colisión) {
+                        entidad.colisiónActiva = true;
                     }
                     if (esJugador) {
                         index = i;
                     }
                 }
-                entidad.getÁreaSólida().x = entidad.getÁreaSólidaPorDefectoX();
-                entidad.getÁreaSólida().y = entidad.getÁreaSólidaPorDefectoY();
-                tablero.getFrutas()[i].getÁreaSólida().x = tablero.getFrutas()[i].getÁreaSólidaPorDefectoX();
-                tablero.getFrutas()[i].getÁreaSólida().y = tablero.getFrutas()[i].getÁreaSólidaPorDefectoY();
+                entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+                entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+                tablero.frutas[i].áreaSólida.x = tablero.frutas[i].áreaSólidaPorDefectoX;
+                tablero.frutas[i].áreaSólida.y = tablero.frutas[i].áreaSólidaPorDefectoY;
             }
 
         }
@@ -102,70 +89,71 @@ public class VerificadorDeColisión {
 
     public int verificarEntidad(Entidad entidad, Entidad[] objetivo) {
         int index = 999;
+
         for (int i = 0; i < objetivo.length; i++) {
             if (objetivo[i] != null) {
-                entidad.getÁreaSólida().x = entidad.getMundoX() + entidad.getÁreaSólida().x;
-                entidad.getÁreaSólida().y = entidad.getMundoY() + entidad.getÁreaSólida().y;
-                objetivo[i].getÁreaSólida().x = objetivo[i].getMundoX() + objetivo[i].getÁreaSólida().x;
-                objetivo[i].getÁreaSólida().y = objetivo[i].getMundoY() + objetivo[i].getÁreaSólida().y;
-                switch (entidad.dirección) {
-                    case ARRIBA:
-                        entidad.getÁreaSólida().y -= entidad.getVelocidad();
-                        break;
-                    case ABAJO:
-                        entidad.getÁreaSólida().y += entidad.getVelocidad();
-                        break;
-                    case IZQUIERDA:
-                        entidad.getÁreaSólida().x -= entidad.getVelocidad();
-                        break;
-                    case DERECHA:
-                        entidad.getÁreaSólida().x += entidad.getVelocidad();
-                        break;
-                }
-                if (entidad.getÁreaSólida().intersects(objetivo[i].getÁreaSólida())) {
+                entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+                entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+                objetivo[i].áreaSólida.x = objetivo[i].mundoX + objetivo[i].áreaSólida.x;
+                objetivo[i].áreaSólida.y = objetivo[i].mundoY + objetivo[i].áreaSólida.y;
+
+                moverEntidad(entidad);
+
+                if (entidad.áreaSólida.intersects(objetivo[i].áreaSólida)) {
                     if (objetivo[i] != entidad) {
-                        entidad.setColisiónActiva(true);
+                        entidad.colisiónActiva = true;
                         index = i;
                     }
                 }
-                entidad.getÁreaSólida().x = entidad.getÁreaSólidaPorDefectoX();
-                entidad.getÁreaSólida().y = entidad.getÁreaSólidaPorDefectoY();
-                objetivo[i].getÁreaSólida().x = objetivo[i].getÁreaSólidaPorDefectoX();
-                objetivo[i].getÁreaSólida().y = objetivo[i].getÁreaSólidaPorDefectoY();
-            }
 
+                entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+                entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+                objetivo[i].áreaSólida.x = objetivo[i].áreaSólidaPorDefectoX;
+                objetivo[i].áreaSólida.y = objetivo[i].áreaSólidaPorDefectoY;
+            }
         }
+
         return index;
+    }
+
+    private void moverEntidad(Entidad entidad) {
+        switch (entidad.dirección) {
+            case ARRIBA:
+                entidad.áreaSólida.y -= entidad.velocidad;
+                break;
+            case ABAJO:
+                entidad.áreaSólida.y += entidad.velocidad;
+                break;
+            case IZQUIERDA:
+                entidad.áreaSólida.x -= entidad.velocidad;
+                break;
+            case DERECHA:
+                entidad.áreaSólida.x += entidad.velocidad;
+                break;
+        }
     }
 
     public boolean verificarJugador(Entidad entidad) {
         boolean contactoConJugador = false;
-        entidad.getÁreaSólida().x = entidad.getMundoX() + entidad.getÁreaSólida().x;
-        entidad.getÁreaSólida().y = entidad.getMundoY() + entidad.getÁreaSólida().y;
-        tablero.getJugador().getÁreaSólida().x = tablero.getJugador().getMundoX() + tablero.getJugador().getÁreaSólida().x;
-        tablero.getJugador().getÁreaSólida().y = tablero.getJugador().getMundoY() + tablero.getJugador().getÁreaSólida().y;
-        switch (entidad.dirección) {
-            case ARRIBA:
-                entidad.getÁreaSólida().y -= entidad.getVelocidad();
-                break;
-            case ABAJO:
-                entidad.getÁreaSólida().y += entidad.getVelocidad();
-                break;
-            case IZQUIERDA:
-                entidad.getÁreaSólida().x -= entidad.getVelocidad();
-                break;
-            case DERECHA:
-                entidad.getÁreaSólida().x += entidad.getVelocidad();
-                break;
-        }
-        if (entidad.getÁreaSólida().intersects(tablero.getJugador().getÁreaSólida())) {
-            entidad.setColisiónActiva(true);
+
+        entidad.áreaSólida.x = entidad.mundoX + entidad.áreaSólida.x;
+        entidad.áreaSólida.y = entidad.mundoY + entidad.áreaSólida.y;
+
+        tablero.jugador.áreaSólida.x = tablero.jugador.mundoX + tablero.jugador.áreaSólida.x;
+        tablero.jugador.áreaSólida.y = tablero.jugador.mundoY + tablero.jugador.áreaSólida.y;
+
+        moverEntidad(entidad);
+
+        if (entidad.áreaSólida.intersects(tablero.jugador.áreaSólida)) {
+            entidad.colisiónActiva = true;
             contactoConJugador = true;
         }
-        entidad.getÁreaSólida().x = entidad.getÁreaSólidaPorDefectoX();
-        entidad.getÁreaSólida().y = entidad.getÁreaSólidaPorDefectoY();
-        tablero.getJugador().getÁreaSólida().x = tablero.getJugador().getÁreaSólidaPorDefectoX();
-        tablero.getJugador().getÁreaSólida().y = tablero.getJugador().getÁreaSólidaPorDefectoY();
+
+        entidad.áreaSólida.x = entidad.áreaSólidaPorDefectoX;
+        entidad.áreaSólida.y = entidad.áreaSólidaPorDefectoY;
+        tablero.jugador.áreaSólida.x = tablero.jugador.áreaSólidaPorDefectoX;
+        tablero.jugador.áreaSólida.y = tablero.jugador.áreaSólidaPorDefectoY;
+
         return contactoConJugador;
     }
 

@@ -1,9 +1,9 @@
 package mecánicas;
 
-import escenario.entidades.Enemigo;
+import entidades.personajes.Ogro;
+import entidades.personajes.Toro;
 import escenario.Tablero;
-import escenario.entidades.bloques.Hielo;
-import escenario.entidades.frutas.Mora;
+import entidades.frutas.Mora;
 
 public class ColocadorDeObjetos {
     Tablero gp;
@@ -13,55 +13,68 @@ public class ColocadorDeObjetos {
     }
 
     public void colocarMora() {
-        if (gp.getJugador().getNúmeroDeFrutas() == 0) {
-            gp.getFrutas()[0] = new Mora(gp);
-            gp.getFrutas()[0].setMundoX(4 * gp.TAMAÑO_DE_BLOQUE);
-            gp.getFrutas()[0].setMundoY(2 * gp.TAMAÑO_DE_BLOQUE);
-            gp.getFrutas()[1] = new Mora(gp);
-            gp.getFrutas()[1].setMundoX(13 * gp.TAMAÑO_DE_BLOQUE);
-            gp.getFrutas()[1].setMundoY(11 * gp.TAMAÑO_DE_BLOQUE);
+        if(gp.jugador.númeroDeFrutas==0) {
+            gp.frutas[0] = new Mora(gp);
+            gp.frutas[0].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[0].mundoY = 8 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[1] = new Mora(gp);
+            gp.frutas[1].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[1].mundoY = 11 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[2] = new Mora(gp);
+            gp.frutas[2].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[2].mundoY = 14 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[3] = new Mora(gp);
+            gp.frutas[3].mundoX = 19 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[3].mundoY = 10 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[4] = new Mora(gp);
+            gp.frutas[4].mundoX = 10 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[4].mundoY = 12 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[5] = new Mora(gp);
+            gp.frutas[5].mundoX = 14 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[5].mundoY = 17 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[6] = new Mora(gp);
+            gp.frutas[6].mundoX = 15 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[6].mundoY = 11 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[7] = new Mora(gp);
+            gp.frutas[7].mundoX = 22 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[7].mundoY = 13 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[8] = new Mora(gp);
+            gp.frutas[8].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[8].mundoY = 19 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[9] = new Mora(gp);
+            gp.frutas[9].mundoX = 22 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[9].mundoY = 20 * gp.TAMAÑO_DE_BLOQUE;
+
+            gp.frutas[10] = new Mora(gp);
+            gp.frutas[10].mundoX = 22 * gp.TAMAÑO_DE_BLOQUE;
+            gp.frutas[10].mundoY = 16 * gp.TAMAÑO_DE_BLOQUE;
         }
     }
+   public void colocarEnemigos(){
+        gp.enemigos[0]=new Toro(gp);
+        gp.enemigos[0].mundoX=gp.TAMAÑO_DE_BLOQUE *12;
+        gp.enemigos[0].mundoY=gp.TAMAÑO_DE_BLOQUE *14;
 
-    public void colocarEnemigos() {
-        gp.getEnemigos()[0] = new Enemigo(gp);
-        gp.getEnemigos()[0].setMundoX(gp.TAMAÑO_DE_BLOQUE * 5);
-        gp.getEnemigos()[0].setMundoY(gp.TAMAÑO_DE_BLOQUE * 5);
-        gp.getEnemigos()[1] = new Enemigo(gp);
-        gp.getEnemigos()[1].setMundoX(gp.TAMAÑO_DE_BLOQUE * 10);
-        gp.getEnemigos()[1].setMundoY(gp.TAMAÑO_DE_BLOQUE * 10);
-    }
+       gp.enemigos[1]=new Toro(gp);
+       gp.enemigos[1].mundoX=gp.TAMAÑO_DE_BLOQUE *10;
+       gp.enemigos[1].mundoY=gp.TAMAÑO_DE_BLOQUE *18;
 
-    public void colocarBloquesInteractivos() {
-        int i = 0;
-        gp.getBloqueInteractivos()[i] = new Hielo(gp, 9, 8);
-        i++;
-        gp.getBloqueInteractivos()[i] = new Hielo(gp, 11, 8);
-        i++;
-        gp.getBloqueInteractivos()[i] = new Hielo(gp, 12, 8);
-        i++;
-        gp.getBloqueInteractivos()[i] = new Hielo(gp, 13, 8);
-        i++;
+       gp.enemigos[2]=new Ogro(gp);
+       gp.enemigos[2].mundoX=gp.TAMAÑO_DE_BLOQUE *13;
+       gp.enemigos[2].mundoY=gp.TAMAÑO_DE_BLOQUE *19;
 
-    }
+       gp.enemigos[3]=new Ogro(gp);
+       gp.enemigos[3].mundoX=gp.TAMAÑO_DE_BLOQUE *20;
+       gp.enemigos[3].mundoY=gp.TAMAÑO_DE_BLOQUE *19;
 
-    public void colocarBloquesInteractivos(int x, int y, int i, Dirección dirección) {
-        int posX = (int) x / gp.TAMAÑO_DE_BLOQUE;
-        int posY = (int) y / gp.TAMAÑO_DE_BLOQUE;
-
-        switch (dirección) {
-            case ARRIBA:
-                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX, posY);
-                break;
-            case ABAJO:
-                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX, posY + 2);
-                break;
-            case IZQUIERDA:
-                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX - 1, posY + 1);
-                break;
-            case DERECHA:
-                gp.getBloqueInteractivos()[i] = new Hielo(gp, posX + 1, posY + 1);
-                break;
-        }
     }
 }

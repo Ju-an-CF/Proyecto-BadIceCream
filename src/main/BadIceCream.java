@@ -5,7 +5,6 @@ import escenario.Tablero;
 import javax.swing.*;
 
 public class BadIceCream {
-
     public static void main(String[] args) {
         empezarJuego();
     }

@@ -1,22 +1,18 @@
 package mecánicas;
 
 import escenario.Tablero;
+import interfazDeUsuario.EstadoDeJuego;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
-    private Tablero tablero;
-    private boolean arribaPresionado;
-    private boolean abajoPresionado;
-    private boolean derechaPresionado;
-    private boolean izquierdaPresionado;
-    private boolean espacioPresionado;
-    private boolean fPresionada;
+    Tablero tablero;
+    public boolean arribaPresionado, abajoPresionado, derechaPresionado, izquierdaPresionado, sePuedeRomper;
 
 
     public Control(Tablero tablero) {
-        this.setTablero(tablero);
+        this.tablero = tablero;
     }
 
     @Override
@@ -27,63 +23,59 @@ public class Control implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
         //Menu estado
-        if (getTablero().estadoActualDeJuego == getTablero().ESTADO_DE_TITULO) {
+        if (tablero.estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
             if (tecla == KeyEvent.VK_W) {
-                getTablero().iu.comandoNum--;
-                if (getTablero().iu.comandoNum < 0) {
-                    getTablero().iu.comandoNum = 2;
+                tablero.iu.comandoNum--;
+                if (tablero.iu.comandoNum < 0) {
+                    tablero.iu.comandoNum = 2;
                 }
             }
             if (tecla == KeyEvent.VK_S) {
-                getTablero().iu.comandoNum++;
-                if (getTablero().iu.comandoNum > 2) {
-                    getTablero().iu.comandoNum = 0;
+                tablero.iu.comandoNum++;
+                if (tablero.iu.comandoNum > 2) {
+                    tablero.iu.comandoNum = 0;
                 }
             }
         }
         if (tecla == KeyEvent.VK_ENTER) {
-            if (getTablero().iu.comandoNum == 0) {
-                getTablero().estadoActualDeJuego = getTablero().ESTADO_DE_JUEGO;
-                getTablero().pararMúsica();
-                getTablero().reproducirSE(2);
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.pararMúsica();
+                tablero.reproducirSE(2);
             }
-            if (getTablero().iu.comandoNum == 1) {
+            if (tablero.iu.comandoNum == 1) {
                 //add later
             }
-            if (getTablero().iu.comandoNum == 2) {
+            if (tablero.iu.comandoNum == 2) {
                 System.exit(0);
             }
         }
         //jugador estado
         if (tecla == KeyEvent.VK_W) {
-            setArribaPresionado(true);
+            arribaPresionado = true;
         }
         if (tecla == KeyEvent.VK_S) {
-            setAbajoPresionado(true);
+            abajoPresionado = true;
         }
         if (tecla == KeyEvent.VK_A) {
-            setIzquierdaPresionado(true);
+            izquierdaPresionado = true;
         }
         if (tecla == KeyEvent.VK_D) {
-            setDerechaPresionado(true);
+            derechaPresionado = true;
+        }
+        if (tecla == KeyEvent.VK_ESCAPE) {
+            sePuedeRomper = true;
         }
         if (tecla == KeyEvent.VK_SPACE) {
-            setEspacioPresionado(true);
-        }
-        if (tecla == KeyEvent.VK_F) {
-            setfPresionada(true);
+            tablero.jugador.romperOCrearHielo();
         }
         if (tecla == KeyEvent.VK_P) {
-            if (getTablero().estadoActualDeJuego == getTablero().ESTADO_DE_JUEGO) {
-                getTablero().estadoActualDeJuego = getTablero().ESTADO_DE_PAUSA;
-            } else if (getTablero().estadoActualDeJuego == getTablero().ESTADO_DE_PAUSA) {
-                getTablero().estadoActualDeJuego = getTablero().ESTADO_DE_JUEGO;
+            if (tablero.estadoActualDeJuego == EstadoDeJuego.JUEGO) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.PAUSA;
+            } else if (tablero.estadoActualDeJuego == EstadoDeJuego.PAUSA) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
             }
         }
-
-    }
-
-    private void romperBloque() {
 
     }
 
@@ -91,22 +83,16 @@ public class Control implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int tecla = e.getKeyCode();
         if (tecla == KeyEvent.VK_W) {
-            setArribaPresionado(false);
+            arribaPresionado = false;
         }
         if (tecla == KeyEvent.VK_S) {
-            setAbajoPresionado(false);
+            abajoPresionado = false;
         }
         if (tecla == KeyEvent.VK_A) {
-            setIzquierdaPresionado(false);
+            izquierdaPresionado = false;
         }
         if (tecla == KeyEvent.VK_D) {
-            setDerechaPresionado(false);
-        }
-        if (tecla == KeyEvent.VK_SPACE) {
-            setEspacioPresionado(false);
-        }
-        if (tecla == KeyEvent.VK_F) {
-            setfPresionada(false);
+            derechaPresionado = false;
         }
 
     }
@@ -114,61 +100,5 @@ public class Control implements KeyListener {
     @Override
     public String toString() {
         return super.toString();
-    }
-
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
-
-    public boolean isArribaPresionado() {
-        return arribaPresionado;
-    }
-
-    public void setArribaPresionado(boolean arribaPresionado) {
-        this.arribaPresionado = arribaPresionado;
-    }
-
-    public boolean isAbajoPresionado() {
-        return abajoPresionado;
-    }
-
-    public void setAbajoPresionado(boolean abajoPresionado) {
-        this.abajoPresionado = abajoPresionado;
-    }
-
-    public boolean isDerechaPresionado() {
-        return derechaPresionado;
-    }
-
-    public void setDerechaPresionado(boolean derechaPresionado) {
-        this.derechaPresionado = derechaPresionado;
-    }
-
-    public boolean isIzquierdaPresionado() {
-        return izquierdaPresionado;
-    }
-
-    public void setIzquierdaPresionado(boolean izquierdaPresionado) {
-        this.izquierdaPresionado = izquierdaPresionado;
-    }
-
-    public boolean isEspacioPresionado() {
-        return espacioPresionado;
-    }
-
-    public void setEspacioPresionado(boolean espacioPresionado) {
-        this.espacioPresionado = espacioPresionado;
-    }
-
-    public boolean isfPresionada() {
-        return fPresionada;
-    }
-
-    public void setfPresionada(boolean fPresionada) {
-        this.fPresionada = fPresionada;
     }
 }
