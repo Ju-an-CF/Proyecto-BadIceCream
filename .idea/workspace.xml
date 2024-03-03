@@ -260,7 +260,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709499203680</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Cambiando ubicación del mapa a fuentes y datos del juego, además estableciendo una configuración inicial, con una clase, nueva, implementando mejoras en la UI, en especial la opción de reintentar o salir al menú al momento de morir">
+      <option name="closed" value="true" />
+      <created>1709504943630</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709504943630</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Ajustanto posicion al reintentar">
+      <option name="closed" value="true" />
+      <created>1709506435304</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709506435304</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,6 +310,8 @@
     <MESSAGE value="*Recomendado hacer una copia o reemplazar los archivos del src en su proyecto local* Mejorando UML, solucionando Bugs, implementando cambios de la rama UIMejorada, sprites enemigos, mejorando apariencia menú... para más detalles checar las ramas en especial Master y UIMejorada" />
     <MESSAGE value="Implementando capa de datos, con la carga y guardado de información" />
     <MESSAGE value="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas" />
+    <MESSAGE value="Cambiando ubicación del mapa a fuentes y datos del juego, además estableciendo una configuración inicial, con una clase, nueva, implementando mejoras en la UI, en especial la opción de reintentar o salir al menú al momento de morir" />
+    <MESSAGE value="Ajustanto posicion al reintentar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustanto posicion al reintentar" />
   </component>
 </project>

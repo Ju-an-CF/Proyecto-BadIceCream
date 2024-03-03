@@ -208,8 +208,6 @@ public class IU {
             graphics2D.drawString(">",x-100,y);
         }
 
-
-
     }
 
 
