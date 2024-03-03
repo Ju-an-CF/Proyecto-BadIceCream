@@ -1,4 +1,4 @@
-package escenario.entidades;
+package entidades;
 
 import escenario.Tablero;
 import mecánicas.Dirección;
@@ -8,13 +8,13 @@ import java.util.Random;
 public class Enemigo extends Entidad {
     public Enemigo(Tablero tablero) {
         super(tablero);
-        setVelocidad(1);
-        getÁreaSólida().x = 3;
-        getÁreaSólida().y = 10;
-        getÁreaSólida().width = 42;
-        getÁreaSólida().height = 30;
-        setÁreaSólidaPorDefectoX(getÁreaSólida().x);
-        setÁreaSólidaPorDefectoY(getÁreaSólida().y);
+        velocidad = 1;
+        áreaSólida.x = 3;
+        áreaSólida.y = 10;
+        áreaSólida.width = 42;
+        áreaSólida.height = 30;
+        áreaSólidaPorDefectoX = áreaSólida.x;
+        áreaSólidaPorDefectoY = áreaSólida.y;
         obtenerImagenDeEnemigo();
     }
 

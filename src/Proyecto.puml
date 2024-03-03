@@ -2,29 +2,60 @@
 package negocio {
 package mecánicas {
 
-class Control {
--espacio: Tecla
--f: Tecla
--p: Tecla
+interface Desplazable {
+    +{abstract}moverse()
 }
-class ColocadorDeObjetos {}
-class Colisión {}
-enum Dirección {
-ARRIBA
-ABAJO
-DERECHA
-IZQUIERDA
+
+class Control {
+    - teclaSuperior: boolean
+    - teclaInferior: boolean
+    - teclaDerecha: boolean
+    - teclaIzquierda: boolean
 }
 
 }
 
 package escenario {
-class Tablero {}
-package entidades {
+class Tablero {
+    -generarBloques()
+}
+}
+package bloques {
+
+abstract class Bloque {
+}
+
+class BloqueDeHielo {
+    +romper()
+}
+
+class BloqueEstático {}
+}
+package frutas {
+    abstract class Fruta {
+        -puntuación: int
+    }
+
+    class Banana {
+
+    }
+}
+
+package nivel {
+
+class Nivel {
+   -número: int
+   -completado: boolean
+   -generarPersonajes()
+   -generarFrutas()
+   -generarTablero(int tamanioEnX, int tamanioEnY   )
+}
+
+}
+
+package personajes {
     abstract class Entidad {
-        posX: int
-        posY: int
-        velocidad: int
+        +{abstract}destruirBloque()
     }
 
     class Jugador {
@@ -33,44 +64,39 @@ package entidades {
         +recolectarFruta()
         +morir()
     }
-package frutas {
-    abstract class Fruta {
-        -puntuación: int
+
+class Enemigo {
+        +atraparJugador()
     }
-}
-package bloques {
 
-abstract class Bloque {
-}
-class BloqueInteractivo {}
-class Hielo {}
-class BloqueEstático {}
-}
-
-class Enemigo {}
+ class VacaLoca {
+    }
 
 }
-}
-
 class BadIceCream {
     +empezar()
     +elegirNivel()
     +cerrar()
 }
 }
-BadIceCream --> Tablero
 
-Jugador --|> Entidad
-Enemigo -right-|> Entidad
+BadIceCream ..> nivel
+
+Nivel --> "1..n" Enemigo
+Nivel --> "1" Jugador
+Nivel --> Fruta
+frutas ..> mecánicas
+personajes ..> mecánicas
+
+Jugador -up-|> Entidad
+Enemigo -up-|> Entidad
+VacaLoca -up-|> Enemigo
+Banana -up-|> Fruta
 Tablero --> "*" Bloque
-BloqueInteractivo <|-- Hielo
-Entidad <|-- BloqueInteractivo
+BloqueDeHielo -up-|> Bloque
 BloqueEstático -up-|> Bloque
-Entidad --> Control
-Entidad --> Colisión
-Entidad --> ColocadorDeObjetos
-Entidad <|-up-Fruta
-Control -up-> Dirección
+Jugador -> Control
+Nivel --> Tablero
 
 }
 

@@ -1,4 +1,4 @@
-package escenario.entidades.bloques;
+package escenario;
 
 
 import java.awt.image.BufferedImage;
