@@ -19,7 +19,9 @@ import mecánicas.Dirección;
 import mecánicas.VerificadorDeColisión;
 import sonido.Sonido;
 
+// Clase Tablero que extiende JPanel e implementa Runnable
 public class Tablero extends JPanel implements Runnable {
+    // Constantes para dimensiones y límites del juego
     public final int TAMAÑO_BLOQUE_ORIGINAL = 13;
     public final int ESCALA = 3;
     public final int TAMAÑO_DE_BLOQUE = TAMAÑO_BLOQUE_ORIGINAL * ESCALA; //42 pixeles
@@ -37,7 +39,7 @@ public class Tablero extends JPanel implements Runnable {
     //FPS
     public static final int FPS = 60;
 
-    //sistema
+    // Instancias de objetos esenciales para el juego
     public Configuración configuración=new Configuración(this);
     public GuardarCargar guardarCargar = new  GuardarCargar(this);
     Control control = new Control(this);
@@ -48,17 +50,17 @@ public class Tablero extends JPanel implements Runnable {
     private transient Sonido se = new Sonido();
     public AdministradorDeBloque adminBlock = new AdministradorDeBloque(this);
     public ColocadorDeObjetos colocador = new ColocadorDeObjetos(this);
-    //jugador y entidades
+    // Jugador y entidades del juego
     public Jugador jugador = new Jugador(this, control);
     public Entidad[] frutas = new Entidad[20];
     public Entidad[] enemigos = new Entidad[10];
     ArrayList<Entidad> entidades = new ArrayList<>();
 
 
-    // estados de juego
+    // Estados de juego
     public EstadoDeJuego estadoActualDeJuego = EstadoDeJuego.NEUTRO;
 
-
+    // Constructor de la clase Tablero
     public Tablero() {
         this.setPreferredSize(new Dimension(ALTO, ANCHO));
         this.setBackground(Color.black);
@@ -67,6 +69,7 @@ public class Tablero extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    // Método para configurar el juego
     public void configurarJuego() {
         estadoActualDeJuego = EstadoDeJuego.TÍTULO;
         colocador.colocarMora();
@@ -76,10 +79,13 @@ public class Tablero extends JPanel implements Runnable {
 
     }
 
+    // Método para iniciar el hilo del juego
     public void iniciarHiloDeJuego() {
         hiloDeJuego = new Thread(this);
         hiloDeJuego.start();
     }
+
+    // Método para reiniciar el juego tras un intento fallido
     public void reintentar(){
         jugador.establecerPosiciónPredeterminada();
         adminBlock.cargarMapa("/fuentes/datosDeJuego/mapa.txt");
@@ -90,6 +96,7 @@ public class Tablero extends JPanel implements Runnable {
         iu.resetearReloj();
     }
 
+    // Método para restablecer el juego
     public void reestablecer(){
         jugador.establecerValoresPredeterminados();
         jugador.establecerPosiciónPredeterminada();
@@ -101,6 +108,7 @@ public class Tablero extends JPanel implements Runnable {
         iu.resetearReloj();
     }
 
+    // Implementación del método run de la interfaz Runnable
     @Override
     public void run() {
         double drawInterval = 1000000000 / FPS;
@@ -134,6 +142,7 @@ public class Tablero extends JPanel implements Runnable {
 
     }
 
+    // Método para actualizar la lógica del juego
     public void actualizar() {
         if (estadoActualDeJuego == EstadoDeJuego.JUEGO) {
             jugador.actualizar();
@@ -151,19 +160,20 @@ public class Tablero extends JPanel implements Runnable {
 
     }
 
+    // Método para dibujar los componentes en el tablero
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        //Titulo estado
+        // Dibujar el título cuando el juego está en el estado de TÍTULO
         if (estadoActualDeJuego == EstadoDeJuego.TÍTULO) {
             iu.dibujar(g2);
         } else {
-            //Bloques
+            // Dibujar bloques del mapa
             adminBlock.dibujar(g2);
-            //Añadir al jugador a la lista de entidades
+            // Añadir al jugador a la lista de entidades
             entidades.add(jugador);
-            //agrega frutas a la lista de entidades
+            // Agrega frutas a la lista de entidades
             for (Entidad fruta : frutas) {
                 if (fruta != null) {
                     entidades.add(fruta);
@@ -174,7 +184,7 @@ public class Tablero extends JPanel implements Runnable {
                     entidades.add(enemigo);
                 }
             }
-            //ordenar
+            // Ordenar entidades por su posición en el mundo
             Collections.sort(entidades, new Comparator<Entidad>() {
                 @Override
                 public int compare(Entidad o1, Entidad o2) {
@@ -182,19 +192,21 @@ public class Tablero extends JPanel implements Runnable {
                     return resultado;
                 }
             });
-            //dibujar entidades
+            // Dibujar entidades en orden
             for (Entidad entidade : entidades) {
                 entidade.dibujar(g2);
             }
-            //igualando la lista
+            // Limpiar la lista de entidades
             for (int i = 0; i < entidades.size(); i++) {
                 entidades.remove(i);
             }
-            //IU
+
+            // Dibujar la UI
             iu.dibujar(g2);
             // g2.dispose();
 
         }
+        // Verificar condiciones de victoria o derrota
         if (jugador.númeroDeFrutas == 11) {
             estadoActualDeJuego = EstadoDeJuego.VICTORIA;
         }
@@ -204,6 +216,7 @@ public class Tablero extends JPanel implements Runnable {
         //otros
     }
 
+    // Método para crear bloques de hielo en la dirección mirada por el jugador
     public void crearBloqueHielo() {
         // Calcula el punto de inicio ajustando desde el centro del borde del área sólida en la dirección mirada
         int ajusteX = obtenerAjusteX();
@@ -214,6 +227,7 @@ public class Tablero extends JPanel implements Runnable {
 
         Dirección dirección = jugador.getDireccion();
 
+        // Crea bloques de hielo en la dirección mirada hasta encontrar un obstáculo
         while (true) {
             switch (dirección) {
                 case ARRIBA:
@@ -229,7 +243,7 @@ public class Tablero extends JPanel implements Runnable {
                     x++;
                     break;
             }
-
+            // Verifica los límites del mundo y si el bloque es transformable
             if (x < 0 || y < 0 || x >= maxColDeMundo || y >= maxFilasDeMundo || esBloqueNoTransformable(adminBlock.mapa[x][y])) {
                 break;
             }
@@ -242,21 +256,23 @@ public class Tablero extends JPanel implements Runnable {
         }
     }
 
+    // Método para verificar si un bloque es no transformable
     private boolean esBloqueNoTransformable(int bloque) {
         return bloque == 1 || bloque == 2 || bloque == 3 || bloque == 4 || bloque == 5;
     }
-
+    // Método para obtener el ajuste en la coordenada X según la dirección del jugador
     public int obtenerAjusteX(){
         return jugador.getDireccion().equals(Dirección.IZQUIERDA) ? jugador.áreaSólida.x :
                jugador.getDireccion().equals(Dirección.DERECHA) ? jugador.áreaSólida.x + jugador.áreaSólida.width :
                jugador.áreaSólida.width / 2;
     }
+    // Método para obtener el ajuste en la coordenada Y según la dirección del jugador
     public int obtenerAjusteY(){
         return jugador.getDireccion().equals(Dirección.ARRIBA) ? jugador.áreaSólida.y :
                jugador.getDireccion().equals(Dirección.ABAJO) ? jugador.áreaSólida.y + jugador.áreaSólida.height :
                jugador.áreaSólida.height / 2;
     }
-
+    // Método para romper bloques de hielo en la dirección mirada por el jugador
     public void romperBloqueHielo() {
         // Igual que el método crearBloqueHielo pero ajustando para romper
         int ajusteX = obtenerAjusteX();
@@ -281,35 +297,36 @@ public class Tablero extends JPanel implements Runnable {
                     x++;
                     break;
             }
-
+            // Verifica los límites del mundo y si el bloque es transformable
             if (x < 0 || y < 0 || x >= maxColDeMundo || y >= maxFilasDeMundo || adminBlock.mapa[x][y] == 0 || adminBlock.mapa[x][y] == 6 || adminBlock.mapa[x][y] == 7) {
                 break;
             }
-
+            // Si el bloque no es transformable, detener
             if (esBloqueNoTransformable(adminBlock.mapa[x][y])) {
                 break;
             }
 
-            adminBlock.mapa[x][y] = 0; // Eliminar bloque de hielo.
+            adminBlock.mapa[x][y] = 0; // Eliminar bloque de hielo y reproducir sonido.
             reproducirSE(3);
         }
     }
 
+    // Método para reproducir música según el índice proporcionado
     public void reproducirMúsica(int i) {
         música.colocarArchivo(i);
         música.reproducir();
         música.entrarEnBucle();
     }
-
+    // Método para detener la reproducción de música
     public void pararMúsica() {
         música.parar();
     }
-
+    // Método para reproducir efectos de sonido según el índice proporcionado
     public void reproducirSE(int i) {
         se.colocarArchivo(i);
         se.reproducir();
     }
-
+    // Métodos para obtener las instancias de los objetos de sonido
     public Sonido getMúsica() {
         return música;
     }

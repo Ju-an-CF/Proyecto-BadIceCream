@@ -5,12 +5,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+// Clase que gestiona los bloques en el juego
 public class AdministradorDeBloque implements Serializable {
     Tablero tablero;
     public Bloque[] bloques;
     public int mapa[][];
     HerramientaUtilidad utilidad;
 
+    // Constructor que inicializa el administrador de bloques
     public AdministradorDeBloque(Tablero tablero) {
         this.tablero = tablero;
         bloques = new Bloque[100];
@@ -19,6 +21,7 @@ public class AdministradorDeBloque implements Serializable {
         cargarImagenesDeBloques();
         cargarMapa("/fuentes/datosDeJuego/mapa.txt");
     }
+    // Método para inicializar los diferentes tipos de bloques
     private void inicializarBloques() {
         bloques[0] = new Bloque();
         bloques[1] = new BloqueEstático();
@@ -34,6 +37,7 @@ public class AdministradorDeBloque implements Serializable {
     /**
      * Carga las imágenes para cada bloque.
      */
+
     private void cargarImagenesDeBloques() {
         for (int i = 0; i < bloques.length; i++) {
             Bloque bloque = bloques[i];
@@ -50,8 +54,7 @@ public class AdministradorDeBloque implements Serializable {
      * @return El nombre de la imagen correspondiente.
      */
     private String obtenerNombreImagenPorIndice(int índice) {
-        // Aquí retornas el nombre de la imagen basado en el índice.
-        // Por ejemplo:
+        // Implementación para obtener el nombre de la imagen basado en el índice
         switch (índice) {
             case 0:
                 return "nieve";
@@ -131,10 +134,11 @@ public class AdministradorDeBloque implements Serializable {
             }
             br.close();
         } catch (Exception e) {
-
+            // Manejo de excepciones (puede ser mejorado)
         }
     }
 
+    // Método para dibujar el mapa en el panel
     public void dibujar(Graphics2D g2) {
         int columnasDeMundo = 0;
         int filasDeMundo = 0;
@@ -146,7 +150,7 @@ public class AdministradorDeBloque implements Serializable {
             int mundoY = filasDeMundo * tablero.TAMAÑO_DE_BLOQUE;
             int ventanaX = mundoX - tablero.jugador.mundoX + tablero.jugador.ventanaX;
             int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
-
+            // Si el jugador está en pantalla, dibujar el bloque
             if(jugadorEstáEnPantalla(mundoX, mundoY)) {
                 g2.drawImage(bloques[numBloque].imagen, ventanaX, ventanaY, null);
             }
@@ -158,7 +162,7 @@ public class AdministradorDeBloque implements Serializable {
             }
         }
     }
-
+    // Método para verificar si el jugador está en pantalla
     public boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
         return mundoX + tablero.TAMAÑO_DE_BLOQUE *11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
                 mundoX - tablero.TAMAÑO_DE_BLOQUE *12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&

@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 
+// Clase encargada de gestionar y dibujar la interfaz de usuario en el juego
 public class IU {
     Tablero tablero;
     Font font;
@@ -31,15 +32,15 @@ public class IU {
     public int subEstado=0;
 
 
-
+    // Constructor que recibe el tablero asociado
     public IU(Tablero tablero) {
         this.tablero = tablero;
         importarFont();
 
-        //objetos
+        // Crear instancias de objetos
         Entidad corazón = new Corazón(tablero);
         Entidad mora = new Mora(tablero);
-        //Imágenes de los objetos
+        // Asignar las imágenes de los objetos a las variables correspondientes
         corazónFull = corazón.imagen1;
         medioCorazón = corazón.imagen2;
         corazónVacío = corazón.imagen3;
@@ -47,6 +48,7 @@ public class IU {
 
     }
 
+    // Método para cargar imágenes desde el sistema de archivos
     public BufferedImage cargarRecursosAdicionales(String ruta){
         BufferedImage imagen=null;
         try {
@@ -57,42 +59,44 @@ public class IU {
         return imagen;
     }
 
-
+    // Método principal para dibujar la interfaz de usuario
     public void dibujar(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
         dibujarEstadoDeJuegoSegúnEstado();
     }
 
+    // Método para dibujar la cantidad de moras recolectadas por el jugador
     private void dibujarMoras() {
         graphics2D.setFont(font.deriveFont(Font.BOLD, 18F));
         graphics2D.setColor(Color.BLACK);
         graphics2D.drawImage(moraImagen, 320, 525, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
         graphics2D.drawString("x" + tablero.jugador.númeroDeFrutas, 285, 553);
     }
-
+    // Método para dibujar el tiempo transcurrido durante el juego
     private void dibujarTiempo() {
         if (hojaDeSprites == null) {
             hojaDeSprites = cargarRecursosAdicionales("/fuentes/IU/reloj.png");
             anchoFrame = hojaDeSprites.getWidth() / numeroDeFrames;
             altoFrame = hojaDeSprites.getHeight();
         }
-
+        // Actualizar el tiempo transcurrido si el reloj está activo
         if (relojActivo) {
             playTime += (double) 1 / 60;
         }
-
+        // Calcular el índice del frame actual en la hoja de sprites
         int indiceFrame = (int)((playTime * numeroDeFrames) / tiempoPorFrame) % numeroDeFrames;
         int xFrame = indiceFrame * anchoFrame;
-
+        // Dibujar el reloj en la interfaz
         graphics2D.drawImage(hojaDeSprites, 455, 531, 455 + anchoFrame, 531 + altoFrame,
                 xFrame, 0, xFrame + anchoFrame, altoFrame, null);
         graphics2D.drawString(decimalFormato.format(playTime), 497, 500 + altoFrame + 20);
     }
-
+    // Detiene el reloj
     public void pararReloj() {
         relojActivo = false;
     }
 
+    // Reinicia y restablece el reloj
     public void reiniciarReloj() {
         relojActivo = true;
     }
@@ -103,7 +107,7 @@ public class IU {
     }
 
 
-
+    // Dibuja la interfaz según el estado actual del juego
     public void dibujarEstadoDeJuegoSegúnEstado(){
         switch (tablero.estadoActualDeJuego){
             case TÍTULO: {
@@ -135,16 +139,20 @@ public class IU {
         }
     }
 
+    // Método para dibujar la pantalla de victoria
     private void dibujarPantallaDeVictoria() {
+        // Configurar el color de fondo semi-transparente
         Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
         graphics2D.setColor(colorFondo);
 
         // Dibuja el rectángulo de fondo cubriendo toda la pantalla
         graphics2D.fillRect(0, 0, tablero.ANCHO+42, tablero.ALTO);
 
+        // Cargar la imagen de victoria y dibujarla en la pantalla
         imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/you_win.png");
         graphics2D.drawImage(imagenDerrota,tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*3,250,250,null);
 
+        // Texto para salir a la pantalla principal
         //reintentar
         String text;
         graphics2D.setColor(Color.BLACK);
@@ -153,8 +161,8 @@ public class IU {
         text="Salir a pantalla principal";
         x=getXParaCentrarTexto(text);
         y=tablero.TAMAÑO_DE_BLOQUE*11;
+        // Dibujar el texto y un indicador ">" si el comandoNum es 0
         graphics2D.drawString(text,x,y);
-
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawString(text,x-4,y-4);
 
@@ -164,7 +172,9 @@ public class IU {
 
     }
 
+    // Método para dibujar la pantalla de derrota
     private void dibujarPantallaDeDerrota() {
+        // Configurar el color de fondo semi-transparente
         //imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/game_over.png");
         //graphics2D.drawImage(imagenDerrota, tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*4,200,200,null);
         Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
@@ -172,7 +182,7 @@ public class IU {
 
         // Dibuja el rectángulo de fondo cubriendo toda la pantalla
         graphics2D.fillRect(0, 0, tablero.ANCHO+42, tablero.ALTO);
-
+        // Cargar la imagen de derrota y dibujarla en la pantalla
         imagenDerrota=cargarRecursosAdicionales("/fuentes/IU/game_over.png");
         graphics2D.drawImage(imagenDerrota,tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*3,250,250,null);
 
@@ -193,7 +203,7 @@ public class IU {
             graphics2D.drawString(">",x-40,y);
         }
 
-        //regresar pantalla titulo
+        // Texto para regresar a la pantalla de título
         graphics2D.setColor(Color.BLACK);
 
         text="Salir a pantalla principal";
@@ -210,44 +220,43 @@ public class IU {
 
     }
 
-
+    // Método para dibujar la cantidad de vidas del jugador
     private void dibujarVidaJugador() {
         int x = 84;
         int y = 526;
         int i = 0;
-//dibujar corazon vacio
+        // Dibujar corazones vacíos
         while (i < tablero.jugador.máximoVidas) {
             graphics2D.drawImage(corazónVacío, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
             x += tablero.TAMAÑO_DE_BLOQUE;
         }
-        //reset
+        // Reiniciar valores
         x = 84;
         y = 526;
         i = 0;
-        //dibujar vida actual
+        // Dibujar corazones llenos según la vida actual
         while (i < tablero.jugador.vida) {
             graphics2D.drawImage(corazónFull, x, y, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
             i++;
             x += tablero.TAMAÑO_DE_BLOQUE;
         }
     }
-
+    // Método para dibujar el menú principal del juego
     public void dibujarMenú(Graphics2D g2) {
         String texto;
 
-
+        // Dibujar fondo del menú
         imagenDeFondo=cargarRecursosAdicionales("/fuentes/IU/fondo.jpg");
         g2.drawImage(imagenDeFondo, 0, 0, tablero.ANCHO+50, tablero.ALTO, null);
-
+        // Dibujar título del juego
         imagenMenú=cargarRecursosAdicionales("/fuentes/IU/título.png");
-
         g2.drawImage(imagenMenú, 60, 10, 500, 500, null);
-
+        // Dibujar opciones del menú
         opcionesMen=cargarRecursosAdicionales("/fuentes/IU/opcionesmen.png");
         g2.drawImage(opcionesMen, 190, 420, 250, 150, null);
 
-        //Menu
+        // Menú de opciones
 
         graphics2D.setFont(font.deriveFont(Font.BOLD, 20F));
 
@@ -271,7 +280,7 @@ public class IU {
             graphics2D.drawString(">", 220 - tablero.TAMAÑO_DE_BLOQUE, 550);
         }
     }
-
+    // Método para dibujar la pantalla de pausa
     private void dibujarPantallaDePausa() {
         Color colorFondo = new Color(0, 0, 0, 127); // 127 es aproximadamente 50% de transparencia
         graphics2D.setColor(colorFondo);
@@ -292,7 +301,7 @@ public class IU {
         // Dibuja el texto
         graphics2D.drawString(texto, x, y);
     }
-
+    // Método para obtener la posición X para centrar un texto
     public int getXParaCentrarTexto(String texto) {
         // Calcula la longitud del texto en píxeles.
         int longitudTexto = (int) graphics2D.getFontMetrics().getStringBounds(texto, graphics2D).getWidth();
@@ -301,7 +310,7 @@ public class IU {
         int xParaCentrar = (tablero.ALTO - longitudTexto) / 2 + desplazamiento;
         return xParaCentrar;
     }
-
+    // Método para importar la fuente personalizada
     public void importarFont() {
         InputStream is = getClass().getResourceAsStream("/fuentes/font/tinypixel.otf");
         try {
@@ -317,16 +326,20 @@ public class IU {
             }
         }
     }
+
+    // Método para dibujar la pantalla de opciones
     public void dibujarPantallaDeOpciones(){
         graphics2D.setColor(Color.WHITE);
         graphics2D.setFont(font.deriveFont(Font.BOLD, 20F));
 
-        //sub ventana
+        // Subventana
         int frameX=tablero.TAMAÑO_DE_BLOQUE*4;
         int frameY=tablero.TAMAÑO_DE_BLOQUE;
         int frameAncho=tablero.TAMAÑO_DE_BLOQUE*9;
         int frameAlto=tablero.TAMAÑO_DE_BLOQUE*8;
         dibujarSubVentana(frameX,frameY,frameAncho,frameAlto);
+
+        // Según el subestado, dibujar las opciones correspondientes
         switch (subEstado) {
             case 0:
                 opcionesF(frameX, frameY);
@@ -339,18 +352,20 @@ public class IU {
         }
     }
 
+    // Método para dibujar las opciones relacionadas con el fin de juego
     private void opcionesFinDeJuego(int frameX, int frameY) {
         int textX=frameX+tablero.TAMAÑO_DE_BLOQUE*2;
         int textY=frameY+tablero.TAMAÑO_DE_BLOQUE;
-
+        // Opción "Salir y Guardar"
         String text="Salir y Guardar";
         graphics2D.drawString(text,textX,textY);
 
-        //si
+        // Opción "Si
         text="Si";
         textX=getXParaCentrarTexto(text);
         textY+=tablero.TAMAÑO_DE_BLOQUE*3;
         graphics2D.drawString(text,textX,textY);
+        // Manejo de la opción "Si"
         if(comandoNum==0){
             graphics2D.drawString(">",textX-25,textY);
             if(tablero.getControl().enterPresionado){
@@ -360,11 +375,12 @@ public class IU {
                 tablero.reestablecer();
             }
         }
-        //no
+        // Opción "No"
         text="No";
         textX=getXParaCentrarTexto(text);
         textY+=tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString(text,textX,textY);
+        // Manejo de la opción "No"
         if(comandoNum==1){
             graphics2D.drawString(">",textX-25,textY);
             if(tablero.getControl().enterPresionado){
@@ -374,6 +390,7 @@ public class IU {
         }
     }
 
+    // Método para dibujar la subventana en la pantalla de opciones
     private void dibujarSubVentana(int x, int y, int ancho, int alto) {
         Color c =new Color(0,0,0,220);
         graphics2D.setColor(c);
@@ -385,17 +402,17 @@ public class IU {
         graphics2D.drawRoundRect(x+5,y+5,ancho-10,alto-10,25,25);
 
     }
-
+    // Método para dibujar las opciones relacionadas con la música y el sonido
     private void opcionesF(int frameX, int frameY) {
         int textX;
         int textY;
-
+        // Título de la subventana
         String text = "Opciones";
         textX = getXParaCentrarTexto(text);
         textY = frameY + tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString(text, textX, textY);
 
-        //musica
+        // Opción "Music"
         textX = frameX + tablero.TAMAÑO_DE_BLOQUE;
         textY += tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString("Music", textX, textY);
@@ -409,40 +426,43 @@ public class IU {
             graphics2D.drawString(">", textX - 25, textY);
         }
 
-        //Control
+        // Opción "Control"
         textY += tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString("Control", textX, textY);
         if (comandoNum == 2) {
             graphics2D.drawString(">", textX - 25, textY);
+            // Cambiar al subestado de opciones de control al presionar "Enter"
             if(tablero.getControl().enterPresionado){
                 subEstado=1;
                 comandoNum=0;
             }
         }
 
-        //terminarJuego
+        // Opción "Terminar Juego"
         textY += tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString("Terminar Juego", textX, textY);
         if (comandoNum == 3) {
             graphics2D.drawString(">", textX - 25, textY);
+            // Cambiar al subestado de opciones de fin de juego al presionar "Enter"
             if(tablero.getControl().enterPresionado){
                 subEstado=2;
                 comandoNum=0;
             }
         }
 
-        //regresar
+        // Opción "Regresar"
         textY += tablero.TAMAÑO_DE_BLOQUE * 2;
         graphics2D.drawString("Regresar", textX, textY);
         if (comandoNum == 4) {
             graphics2D.drawString(">", textX - 25, textY);
+            // Regresar al juego al presionar "Enter"
             if(tablero.getControl().enterPresionado){
                 tablero.estadoActualDeJuego=EstadoDeJuego.JUEGO;
                 comandoNum=0;
             }
         }
 
-        //music volumen
+        // Volumen de la música
         textX=frameX+(int)(tablero.TAMAÑO_DE_BLOQUE*4.5);
         textY= frameY+60;
         graphics2D.drawRect(textX, textY, 120, 24);
@@ -458,37 +478,42 @@ public class IU {
         tablero.getConfiguración().guardarConfig();
 
     }
+
+    // Método para dibujar las opciones relacionadas con los controles del juego
     public void opcionesControl(int frameX, int frameY){
         int textX;
         int textY;
 
-        //Titulo
+        // Título de la subventana
         String text="Controles";
         textX=getXParaCentrarTexto(text);
         textY=frameY+tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString(text,textX,textY);
 
-
+        // Desplazarse
         textX=frameX+tablero.TAMAÑO_DE_BLOQUE;
         textY+=tablero.TAMAÑO_DE_BLOQUE;
-
         graphics2D.drawString("Moverse", textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        // Pausa
         graphics2D.drawString("Pausa",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
+        // Opciones
         graphics2D.drawString("Opciones", textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
         //graphics2D.drawString("Moverse",textX,textY)textY+=tablero.TAMAÑO_DE_BLOQUE;
 
+        // Teclas correspondientes a cada acción
         textX=frameX+tablero.TAMAÑO_DE_BLOQUE*6;
         textY=frameY+tablero.TAMAÑO_DE_BLOQUE*2;
         graphics2D.drawString("WASD",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString("P",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
         graphics2D.drawString("F",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
         //graphics2D.drawString("Enter",textX,textY);textY+=tablero.TAMAÑO_DE_BLOQUE;
-
+        // Botón "Regresar"
         //BACK
         textX=frameX+tablero.TAMAÑO_DE_BLOQUE;
         textY=frameY+tablero.TAMAÑO_DE_BLOQUE*5;
 
         graphics2D.drawString("Regresar",textX,textY);
+        // Manejo de la opción "Regresar"
         if(comandoNum==0){
             graphics2D.drawString(">",textX-25,textY);
             if(tablero.getControl().enterPresionado){

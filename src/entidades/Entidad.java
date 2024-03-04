@@ -22,33 +22,44 @@ public class Entidad implements Serializable {
     public transient BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
     public transient BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
 
-    //Dirección por defecto
+    // Dirección por defecto de la entidad
     public Dirección dirección = Dirección.ABAJO;
-
+    // Contadores y números para controlar la animación de la entidad
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
-
+    // Área sólida de la entidad para detección de colisiones
     public Rectangle áreaSólida = new Rectangle(0, 0, 42, 42);
     public int áreaSólidaPorDefectoX, áreaSólidaPorDefectoY;
-
+    // Estado de colisión de la entidad
     public boolean colisiónActiva = false;
     public boolean colisión = false;
-
+    // Contador para bloquear la acción de la entidad temporalmente
     public int contadorBloqueoDeAcción = 0;
-
+    // Nombre de la entidad
     public String nombre;
-
+    /**
+     * Constructor de la clase Entidad.
+     *
+     * @param tablero   La referencia al tablero en el que se encuentra la entidad.
+     */
     public Entidad(Tablero tablero) {
         this.tablero = tablero;
     }
-
+    /**
+     * Método para establecer la acción de la entidad.
+     * Este método puede ser sobrescrito por clases derivadas para definir comportamientos específicos.
+     */
     public void establecerAcción() {
     }
-
+    /**
+     * Método para actualizar la entidad en el juego.
+     * Realiza acciones como establecer su comportamiento, verificar colisiones con bloques, objetos, enemigos y jugadores,
+     * y actualizar su posición en el mundo según su dirección y velocidad.
+     */
     public void actualizar() {
 
         establecerAcción();
-        colisiónActiva = false;
+        colisiónActiva = false; // Reinicia el estado de colisión
         tablero.checkColisión.verificarBloque(this);
         tablero.checkColisión.verificarObjeto(this, false);
         tablero.checkColisión.verificarEntidad(this, tablero.enemigos);

@@ -16,6 +16,7 @@ public class ColocadorDeObjetos implements Serializable {
 
     public void colocarMora() {
         if(gp.jugador.númeroDeFrutas==0) {
+            // Colocar moras en posiciones específicas del tablero
             gp.frutas[0] = new Mora(gp);
             gp.frutas[0].mundoX = 9 * gp.TAMAÑO_DE_BLOQUE;
             gp.frutas[0].mundoY = 9 * gp.TAMAÑO_DE_BLOQUE;
@@ -61,6 +62,7 @@ public class ColocadorDeObjetos implements Serializable {
             gp.frutas[10].mundoY = 18 * gp.TAMAÑO_DE_BLOQUE;
         }
     }
+
    public void colocarEnemigos(){
         gp.enemigos[0]=new Toro(gp);
         gp.enemigos[0].mundoX=gp.TAMAÑO_DE_BLOQUE * 13;
