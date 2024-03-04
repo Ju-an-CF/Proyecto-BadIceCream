@@ -82,7 +82,7 @@ public class Tablero extends JPanel implements Runnable {
     }
     public void reintentar(){
         jugador.establecerPosiciónPredeterminada();
-        adminBlock.cargarMapa("/fuentes/datosDeJuego/mapaOriginal.txt");
+        adminBlock.cargarMapa("/fuentes/datosDeJuego/mapa.txt");
         jugador.reestablecerVida();
         jugador.reestablecerFrutas();
         colocador.colocarMora();
@@ -93,6 +93,7 @@ public class Tablero extends JPanel implements Runnable {
     public void reestablecer(){
         jugador.establecerValoresPredeterminados();
         jugador.establecerPosiciónPredeterminada();
+        adminBlock.cargarMapa("/fuentes/datosDeJuego/mapa.txt");
         jugador.reestablecerFrutas();
         jugador.reestablecerVida();
         colocador.colocarEnemigos();
