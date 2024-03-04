@@ -60,11 +60,13 @@ public class Entidad implements Serializable {
 
         establecerAcción();
         colisiónActiva = false; // Reinicia el estado de colisión
+
+        // Verifica colisiones con bloques, objetos, enemigos y jugadores
         tablero.checkColisión.verificarBloque(this);
         tablero.checkColisión.verificarObjeto(this, false);
         tablero.checkColisión.verificarEntidad(this, tablero.enemigos);
         boolean contactoConJugador = tablero.checkColisión.verificarJugador(this);
-
+        // Realiza acciones específicas en caso de colisión con el jugador
         if (contactoConJugador) {
             if (!tablero.jugador.invencible) {
                 tablero.jugador.vida -= 1;
@@ -72,7 +74,7 @@ public class Entidad implements Serializable {
             }
         }
 
-        //entidad puede moverse
+        // Mueve la entidad si no hay colisión activa
         if (!colisiónActiva) {
             switch (dirección) {
                 case ARRIBA:
@@ -89,7 +91,7 @@ public class Entidad implements Serializable {
                     break;
             }
         }
-
+        // Actualiza la animación de la entidad
         contadorMovimiento++;
         if (contadorMovimiento > 10) {
             if (numeroDeMovimiento == 1) {
@@ -100,11 +102,16 @@ public class Entidad implements Serializable {
             contadorMovimiento = 0;
         }
     }
-
+    /**
+     * Método para configurar la imagen de la entidad a partir de su nombre.
+     * @param nombreImagen Nombre del archivo de imagen.
+     * @return BufferedImage con la imagen configurada y escalada a 42x42 píxeles.
+     */
     public BufferedImage configurarImagen(String nombreImagen) {
         HerramientaUtilidad ut = new HerramientaUtilidad();
         BufferedImage imagen = null;
         try {
+            // Lee la imagen y la escala a 42x42 píxeles
             imagen = ImageIO.read(getClass().getResourceAsStream(nombreImagen + ".png"));
             imagen = ut.escalarImagen(imagen, 42, 42);
         } catch (IOException e) {
@@ -112,17 +119,21 @@ public class Entidad implements Serializable {
         }
         return imagen;
     }
-
+    /**
+     * Método para dibujar la entidad en el juego.
+     * @param graphics2D Objeto Graphics2D utilizado para dibujar la entidad.
+     */
     public void dibujar(Graphics2D graphics2D) {
         BufferedImage imagen = null;
-
+        // Calcula las coordenadas de la entidad en relación con el jugador y la ventana de visualización
         int ventanaX = mundoX - tablero.jugador.mundoX + tablero.jugador.ventanaX;
         int ventanaY = mundoY - tablero.jugador.mundoY + tablero.jugador.ventanaY;
-
+        // Verifica si la entidad se encuentra dentro del área visible del jugador
         if (mundoX + tablero.TAMAÑO_DE_BLOQUE * 11 > tablero.jugador.mundoX - tablero.jugador.ventanaX &&
                 mundoX - tablero.TAMAÑO_DE_BLOQUE * 12 < tablero.jugador.mundoX + tablero.jugador.ventanaX &&
                 mundoY + (tablero.TAMAÑO_DE_BLOQUE * 2) > tablero.jugador.mundoY - tablero.jugador.ventanaY &&
                 mundoY - (tablero.TAMAÑO_DE_BLOQUE * 2) < tablero.jugador.mundoY + tablero.jugador.ventanaY) {
+            // Asigna la imagen correspondiente a la dirección y número de movimiento de la entidad
             switch (dirección) {
                 case ARRIBA:
                     if (numeroDeMovimiento == 1) {
@@ -181,6 +192,7 @@ public class Entidad implements Serializable {
                     }
                     break;
             }
+            // Dibuja la imagen en las coordenadas calculadas
             graphics2D.drawImage(imagen, ventanaX, ventanaY, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
         }
     }
