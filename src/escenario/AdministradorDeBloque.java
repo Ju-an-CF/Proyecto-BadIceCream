@@ -1,5 +1,7 @@
 package escenario;
 
+import niveles.Nivel;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,9 +13,11 @@ public class AdministradorDeBloque implements Serializable {
     public Bloque[] bloques;
     public int mapa[][];
     HerramientaUtilidad utilidad;
+    Nivel nivel;
 
     // Constructor que inicializa el administrador de bloques
-    public AdministradorDeBloque(Tablero tablero) {
+    public AdministradorDeBloque(Tablero tablero, Nivel nivel) {
+        this.nivel = nivel;
         this.tablero = tablero;
         bloques = new Bloque[100];
         mapa = new int[tablero.maxColDeMundo][tablero.maxFilasDeMundo];

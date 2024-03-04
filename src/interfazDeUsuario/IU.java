@@ -403,7 +403,7 @@ public class IU {
             graphics2D.drawString(">", textX - 25, textY);
             if (tablero.getControl().enterPresionado) {
                 subEstado = 0;
-                tablero.guardarCargar.guardar();
+                tablero.guardarCargar.guardar(tablero.nivel);
                 tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
                 tablero.reestablecer();
             }

@@ -1,88 +1,47 @@
 package mecánicas;
 
+import entidades.Entidad;
+import entidades.frutas.Mora;
 import entidades.personajes.Ogro;
 import entidades.personajes.Toro;
 import escenario.Tablero;
-import entidades.frutas.Mora;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-public class ColocadorDeObjetos implements Serializable {
-    Tablero gp;
+import static mecánicas.LectorEntidades.leerEnemigos;
 
-    public ColocadorDeObjetos(Tablero gp) {
-        this.gp = gp;
+public class ColocadorDeObjetos implements Serializable {
+    public Tablero tablero;
+
+    public ColocadorDeObjetos(Tablero tablero) {
+        this.tablero = tablero;
     }
 
-    public void colocarMora() {
-        if(gp.jugador.númeroDeFrutas==0) {
-            // Colocar moras en posiciones específicas del tablero
-            gp.frutas[0] = new Mora(gp);
-            gp.frutas[0].mundoX = 9 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[0].mundoY = 9 * gp.TAMAÑO_DE_BLOQUE;
+    public void colocarMora(String rutaDeFrutas) {
+        try {
+            int[][] posiciones = LectorEntidades.leerPosiciones(rutaDeFrutas);
 
-            gp.frutas[1] = new Mora(gp);
-            gp.frutas[1].mundoX = 8 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[1].mundoY = 13 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[2] = new Mora(gp);
-            gp.frutas[2].mundoX = 9 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[2].mundoY = 16 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[3] = new Mora(gp);
-            gp.frutas[3].mundoX = 20 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[3].mundoY = 12 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[4] = new Mora(gp);
-            gp.frutas[4].mundoX = 11 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[4].mundoY = 14 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[5] = new Mora(gp);
-            gp.frutas[5].mundoX = 15 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[5].mundoY = 19 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[6] = new Mora(gp);
-            gp.frutas[6].mundoX = 16 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[6].mundoY = 13 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[7] = new Mora(gp);
-            gp.frutas[7].mundoX = 23 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[7].mundoY = 15 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[8] = new Mora(gp);
-            gp.frutas[8].mundoX = 9 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[8].mundoY = 21 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[9] = new Mora(gp);
-            gp.frutas[9].mundoX = 23 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[9].mundoY = 22 * gp.TAMAÑO_DE_BLOQUE;
-
-            gp.frutas[10] = new Mora(gp);
-            gp.frutas[10].mundoX = 21 * gp.TAMAÑO_DE_BLOQUE;
-            gp.frutas[10].mundoY = 18 * gp.TAMAÑO_DE_BLOQUE;
+            for (int i = 0; i < posiciones.length; i++) {
+                tablero.frutas[i] = new Mora(tablero);
+                tablero.frutas[i].mundoX = posiciones[i][0] * tablero.TAMAÑO_DE_BLOQUE;
+                tablero.frutas[i].mundoY = posiciones[i][1] * tablero.TAMAÑO_DE_BLOQUE;
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de frutas: " + e.getMessage());
         }
     }
 
-   public void colocarEnemigos(){
-        gp.enemigos[0]=new Toro(gp);
-        gp.enemigos[0].mundoX=gp.TAMAÑO_DE_BLOQUE * 13;
-        gp.enemigos[0].mundoY=gp.TAMAÑO_DE_BLOQUE * 16;
+    public void colocarEnemigos(String rutaDeEnemigos) {
+        try {
+            Entidad[] enemigos = leerEnemigos(rutaDeEnemigos, tablero);
 
-       gp.enemigos[1]=new Toro(gp);
-       gp.enemigos[1].mundoX=gp.TAMAÑO_DE_BLOQUE *11;
-       gp.enemigos[1].mundoY=gp.TAMAÑO_DE_BLOQUE *20;
+            for (int i = 0; i < enemigos.length; i++) {
+                tablero.enemigos[i] = enemigos[i];
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de enemigos: " + e.getMessage());
+        }
+    }
 
-       gp.enemigos[2]=new Ogro(gp);
-       gp.enemigos[2].mundoX=gp.TAMAÑO_DE_BLOQUE *14;
-       gp.enemigos[2].mundoY=gp.TAMAÑO_DE_BLOQUE *21;
-
-       gp.enemigos[3]=new Ogro(gp);
-       gp.enemigos[3].mundoX=gp.TAMAÑO_DE_BLOQUE *21;
-       gp.enemigos[3].mundoY=gp.TAMAÑO_DE_BLOQUE *21;
-
-       gp.enemigos[4] = new Toro(gp);
-       gp.enemigos[4].mundoX=gp.TAMAÑO_DE_BLOQUE *22;
-       gp.enemigos[4].mundoY=gp.TAMAÑO_DE_BLOQUE *10;
-
-   }
 }

@@ -2,6 +2,8 @@ package mecánicas;
 
 import escenario.Tablero;
 import interfazDeUsuario.EstadoDeJuego;
+import niveles.Nivel1;
+import niveles.Nivel2;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -96,10 +98,12 @@ public class Control implements KeyListener, Serializable {
                 tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
             }
             if(tablero.iu.comandoNum == 1){
-                //Nivel 2
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.setNivel(new Nivel1());
             }
             if (tablero.iu.comandoNum == 2) {
-
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                tablero.setNivel(new Nivel2());
             }
             if (tablero.iu.comandoNum == 3) {
 
@@ -236,7 +240,7 @@ public class Control implements KeyListener, Serializable {
                 tablero.estadoActualDeJuego = EstadoDeJuego.NIVELES;
             }
             if (tablero.iu.comandoNum == 1) {
-                tablero.guardarCargar.cargar();
+                tablero.guardarCargar.cargar(new Nivel1());
                 tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
                 tablero.pararMúsica();
                 tablero.reproducirMúsica(2);

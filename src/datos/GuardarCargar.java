@@ -3,6 +3,8 @@ package datos;
 import entidades.Entidad;
 import entidades.frutas.Mora;
 import escenario.Tablero;
+import niveles.Nivel;
+import niveles.Nivel1;
 
 import java.io.*;
 
@@ -14,10 +16,12 @@ public class GuardarCargar implements Serializable {
         this.tablero = tablero;
     }
 
-    public void guardar(){
+    public void guardar(Nivel nivel){
 
         try{
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("guardado.dat")));
+
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(nivel.getNivel() + ".dat")));
+
 
             Almacenamiento almacenamiento = new Almacenamiento();
 
@@ -41,7 +45,6 @@ public class GuardarCargar implements Serializable {
                 }
             }
 
-
             //Frutas
             almacenamiento.frutas = new Entidad[tablero.frutas.length];
             for(int i = 0; i < tablero.frutas.length; i++){
@@ -57,7 +60,6 @@ public class GuardarCargar implements Serializable {
                 }
             }
 
-
             //Escribir en el archivo
             oos.writeObject(almacenamiento);
             oos.close();
@@ -68,9 +70,9 @@ public class GuardarCargar implements Serializable {
         }
     }
 
-    public void cargar(){
+    public void cargar(Nivel nivel){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("guardado.dat")));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(nivel.getNivel() + ".dat")));
 
             //Leer del archivo
             Almacenamiento almacenamiento = (Almacenamiento) ois.readObject();
@@ -82,7 +84,6 @@ public class GuardarCargar implements Serializable {
             tablero.jugador.mundoY          = almacenamiento.posY;
             tablero.iu.playTime             = almacenamiento.tiempo;
             tablero.adminBlock.mapa         = almacenamiento.mapa;
-
 
             for(int i = 0; i < almacenamiento.enemigos.length; i++){
                 if(tablero.enemigos[i] != null){
@@ -99,8 +100,6 @@ public class GuardarCargar implements Serializable {
                     tablero.frutas[i] = null;
                 }
             }
-
-
 
         }catch (Exception e){
             System.out.println("Excepción de cargado");

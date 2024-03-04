@@ -1,6 +1,7 @@
 package main;
 
 import escenario.Tablero;
+import niveles.Nivel1;
 
 import javax.swing.*;
 
@@ -15,7 +16,7 @@ public class BadIceCream {
         ventana.setResizable(false);
         ventana.setTitle("Bad Ice Cream");
 
-        Tablero tablero = new Tablero();
+        Tablero tablero = new Tablero(new Nivel1());
         ventana.add(tablero);
         tablero.configuración.cargarConfig();
 

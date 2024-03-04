@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas">
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Agregando estado de niveles TODO: implementar niveles">
+      <change afterPath="$PROJECT_DIR$/src/fuentes/datosDeJuego/mapa2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/entidades/enemigos.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/entidades/enemigos2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/entidades/frutas.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fuentes/entidades/frutas2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mecánicas/LectorEntidades.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/niveles/Nivel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/niveles/Nivel1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/niveles/Nivel2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/niveles/NivelPorDefecto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardado.dat" beforeDir="false" afterPath="$PROJECT_DIR$/guardado.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datos/GuardarCargar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/GuardarCargar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/AdministradorDeBloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/escenario/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/escenario/Tablero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fuentes/datosDeJuego/configuración.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/datosDeJuego/configuración.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/Configuración.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/Configuración.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/EstadoDeJuego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BadIceCream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BadIceCream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecánicas/Control.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -277,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709506435304</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Agregando estado de niveles TODO: implementar niveles">
+      <option name="closed" value="true" />
+      <created>1709522286065</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709522286065</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +333,7 @@
     <MESSAGE value="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas" />
     <MESSAGE value="Cambiando ubicación del mapa a fuentes y datos del juego, además estableciendo una configuración inicial, con una clase, nueva, implementando mejoras en la UI, en especial la opción de reintentar o salir al menú al momento de morir" />
     <MESSAGE value="Ajustanto posicion al reintentar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustanto posicion al reintentar" />
+    <MESSAGE value="Agregando estado de niveles TODO: implementar niveles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando estado de niveles TODO: implementar niveles" />
   </component>
 </project>
