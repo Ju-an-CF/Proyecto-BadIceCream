@@ -16,7 +16,7 @@ public class BadIceCream {
         ventana.setResizable(false);
         ventana.setTitle("Bad Ice Cream");
 
-        Tablero tablero = new Tablero(new Nivel1());
+        Tablero tablero = new Tablero();
         ventana.add(tablero);
         tablero.configuración.cargarConfig();
 

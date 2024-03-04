@@ -19,7 +19,7 @@ public class IU {
     Font font;
     Graphics2D graphics2D;
     BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú, opcionesMen, hojaDeSprites, imagenDerrota;
-    BufferedImage moraImagen;
+    BufferedImage frutas;
     BufferedImage barra;
     public double playTime;
     DecimalFormat decimalFormato = new DecimalFormat("0.00");
@@ -43,7 +43,7 @@ public class IU {
         corazónFull = corazón.imagen1;
         medioCorazón = corazón.imagen2;
         corazónVacío = corazón.imagen3;
-        moraImagen = mora.imagen1;
+        frutas = cargarRecursosAdicionales("/fuentes/frutas/frutas_contador2.png");
 
     }
 
@@ -66,8 +66,9 @@ public class IU {
     private void dibujarMoras() {
         graphics2D.setFont(font.deriveFont(Font.BOLD, 18F));
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawImage(moraImagen, 320, 525, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
+        graphics2D.drawImage(frutas, 320, 525, tablero.TAMAÑO_DE_BLOQUE, tablero.TAMAÑO_DE_BLOQUE, null);
         graphics2D.drawString("x" + tablero.jugador.númeroDeFrutas, 285, 553);
+        graphics2D.drawString("Puntaje: " + tablero.jugador.puntaje, tablero.TAMAÑO_DE_BLOQUE * 12, 20);
     }
 
     private void dibujarTiempo() {
@@ -271,12 +272,12 @@ public class IU {
         if(comandoNum == 2){
             graphics2D.drawString("_______", 135, 130);
         }
-        texto = "Nivel 3";
+      /*  texto = "Nivel 3";
         g2.drawImage(barra, 250, 80, 110, 50, null);
         graphics2D.drawString(texto, 265, 110);
         if(comandoNum == 3){
             graphics2D.drawString("_______", 255, 130);
-        }
+        }*/
 
     }
 
@@ -403,7 +404,7 @@ public class IU {
             graphics2D.drawString(">", textX - 25, textY);
             if (tablero.getControl().enterPresionado) {
                 subEstado = 0;
-                tablero.guardarCargar.guardar(tablero.nivel);
+                tablero.guardarCargar.guardar();
                 tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
                 tablero.reestablecer();
             }

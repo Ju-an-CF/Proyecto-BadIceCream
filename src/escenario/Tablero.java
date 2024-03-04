@@ -19,7 +19,7 @@ import mecánicas.Dirección;
 import mecánicas.VerificadorDeColisión;
 import niveles.Nivel;
 import niveles.Nivel1;
-import niveles.NivelPorDefecto;
+import niveles.Nivel2;
 import sonido.Sonido;
 
 public class Tablero extends JPanel implements Runnable {
@@ -37,7 +37,7 @@ public class Tablero extends JPanel implements Runnable {
     public final int maxFilasDeMundo = 31;
 
     //Niveles
-    public transient Nivel nivel;
+    public transient Nivel nivel = new Nivel1();
 
     //FPS
     public static final int FPS = 60;
@@ -63,19 +63,11 @@ public class Tablero extends JPanel implements Runnable {
     // estados de juego
     public EstadoDeJuego estadoActualDeJuego = EstadoDeJuego.NEUTRO;
 
+    //Niveles
+    public Nivel[] niveles = {new Nivel1(), new Nivel2()};
+
 
     public Tablero() {
-        this.setPreferredSize(new Dimension(ALTO, ANCHO));
-        this.setBackground(Color.black);
-        this.setDoubleBuffered(true);
-        this.addKeyListener(control);
-        this.setFocusable(true);
-        setNivel(nivel);
-    }
-
-    public Tablero(Nivel nivel) {
-        this.nivel = nivel;
-        adminBlock = new AdministradorDeBloque(this, nivel);
         this.setPreferredSize(new Dimension(ALTO, ANCHO));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -85,11 +77,8 @@ public class Tablero extends JPanel implements Runnable {
 
     public void configurarJuego() {
         estadoActualDeJuego = EstadoDeJuego.TÍTULO;
-        colocador.colocarMora(nivel.getRutaFrutas());
-        colocador.colocarEnemigos(nivel.getRutaEnemigos());
         //colocador.colocarEnemigos();
         reproducirMúsica(5);
-
     }
 
     public void iniciarHiloDeJuego() {
@@ -97,7 +86,6 @@ public class Tablero extends JPanel implements Runnable {
         hiloDeJuego.start();
     }
     public void reintentar(){
-
         jugador.establecerPosiciónPredeterminada();
         adminBlock.cargarMapa(nivel.getRutaMapa());
         jugador.reestablecerVida();
@@ -345,5 +333,9 @@ public class Tablero extends JPanel implements Runnable {
 
     public void setNivel(Nivel nivel) {
         this.nivel = nivel;
+        adminBlock = new AdministradorDeBloque(this, nivel);
+        adminBlock.cargarMapa(nivel.getRutaMapa());
+        colocador.colocarMora(nivel.getRutaFrutas());
+        colocador.colocarEnemigos(nivel.getRutaEnemigos());
     }
 }

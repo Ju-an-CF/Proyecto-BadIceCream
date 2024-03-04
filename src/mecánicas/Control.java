@@ -21,6 +21,7 @@ public class Control implements KeyListener, Serializable {
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
     // Método que maneja eventos de tecla presionada
     @Override
     public void keyPressed(KeyEvent e) {
@@ -70,6 +71,7 @@ public class Control implements KeyListener, Serializable {
                 break;
         }
     }
+
     // Método para gestionar eventos de tecla en estado de victoria
     private void estadoVictoria(int tecla) {
         if (tecla == KeyEvent.VK_ENTER) {
@@ -80,7 +82,7 @@ public class Control implements KeyListener, Serializable {
     }
 
     private void estadoNiveles(int tecla) {
-        int maxComandoNum = 3;
+        int maxComandoNum = 2;
         if (tecla == KeyEvent.VK_A) {
             tablero.iu.comandoNum--;
             if (tablero.iu.comandoNum < 0) {
@@ -97,20 +99,15 @@ public class Control implements KeyListener, Serializable {
             if (tablero.iu.comandoNum == 0) {
                 tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
             }
-            if(tablero.iu.comandoNum == 1){
-                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+            if (tablero.iu.comandoNum == 1) {
                 tablero.setNivel(new Nivel1());
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
             }
             if (tablero.iu.comandoNum == 2) {
-                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
                 tablero.setNivel(new Nivel2());
+                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
             }
-            if (tablero.iu.comandoNum == 3) {
-
-            }
-
         }
-
     }
 
     // Método para gestionar eventos de tecla en estado de pausa
@@ -240,7 +237,7 @@ public class Control implements KeyListener, Serializable {
                 tablero.estadoActualDeJuego = EstadoDeJuego.NIVELES;
             }
             if (tablero.iu.comandoNum == 1) {
-                tablero.guardarCargar.cargar(new Nivel1());
+                tablero.guardarCargar.cargar();
                 tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
                 tablero.pararMúsica();
                 tablero.reproducirMúsica(2);
@@ -251,6 +248,7 @@ public class Control implements KeyListener, Serializable {
         }
 
     }
+
     // Método para gestionar eventos de tecla en estado de derrota
     private void estadoDerrota(int tecla) {
         if (tecla == KeyEvent.VK_W) {

@@ -1,6 +1,7 @@
 package entidades.personajes;
 
 import entidades.Entidad;
+import entidades.frutas.Fruta;
 import escenario.Tablero;
 import interfazDeUsuario.EstadoDeJuego;
 import mecánicas.Control;
@@ -23,9 +24,12 @@ public class Jugador extends Entidad {
     public int tiempoDeInvencibilidad = 0;
     public boolean invencible = false;
     // Número máximo de frutas que puede recolectar el jugador
-    private final int NUM_MAX_FRUTAS=11;
+    private final int NUM_MAX_FRUTAS = 11;
+    public int puntaje = 0;
+
     /**
      * Constructor de la clase Jugador.
+     *
      * @param tablero Referencia al objeto Tablero.
      * @param control Referencia al objeto Control para manejar la entrada del jugador.
      */
@@ -48,29 +52,32 @@ public class Jugador extends Entidad {
         establecerValoresPredeterminados();
         obtenerImagenDeJugador();
     }
+
     /**
      * Establece la posición predeterminada del jugador.
      * Este método coloca al jugador en una posición específica y con una dirección inicial.
      */
-    public void establecerPosiciónPredeterminada(){
-        mundoX=9*tablero.TAMAÑO_DE_BLOQUE;
-        mundoY=10*tablero.TAMAÑO_DE_BLOQUE;
-        dirección=Dirección.ABAJO;
+    public void establecerPosiciónPredeterminada() {
+        mundoX = 9 * tablero.TAMAÑO_DE_BLOQUE;
+        mundoY = 10 * tablero.TAMAÑO_DE_BLOQUE;
+        dirección = Dirección.ABAJO;
     }
+
     /**
      * Restablece la vida del jugador a su valor máximo.
      * Este método se utiliza al reiniciar el juego o al reintentar.
      */
-    public void reestablecerVida(){
-        vida=máximoVidas;
-        invencible=false;
+    public void reestablecerVida() {
+        vida = máximoVidas;
+        invencible = false;
     }
+
     /**
      * Restablece la cantidad de frutas recolectadas por el jugador.
      * Este método se utiliza al reiniciar el juego o al reintentar.
      */
-    public void reestablecerFrutas(){
-        númeroDeFrutas=0;
+    public void reestablecerFrutas() {
+        númeroDeFrutas = 0;
     }
 
     /**
@@ -79,8 +86,8 @@ public class Jugador extends Entidad {
      */
     public void establecerValoresPredeterminados() {
         //Coordenadas iniciales
-        mundoX = 9*tablero.TAMAÑO_DE_BLOQUE;
-        mundoY = 10*tablero.TAMAÑO_DE_BLOQUE;
+        mundoX = 9 * tablero.TAMAÑO_DE_BLOQUE;
+        mundoY = 10 * tablero.TAMAÑO_DE_BLOQUE;
         // Establecer la velocidad predeterminada del jugador
         velocidad = 6;
         // Establecer la dirección predeterminada del jugador como hacia abajo
@@ -127,6 +134,7 @@ public class Jugador extends Entidad {
         // Llama al método configurarImagen de la superclase con la ruta completa de la imagen
         return super.configurarImagen("/fuentes/jugador/" + nombreImagen);
     }
+
     /**
      * Actualiza el estado del jugador en el juego.
      * Este método maneja la entrada del jugador, verifica colisiones con bloques, objetos y enemigos,
@@ -159,10 +167,18 @@ public class Jugador extends Entidad {
             //Si la conlisión es falsa, el jugador se mueve
             if (!colisiónActiva) {
                 switch (dirección) {
-                    case ARRIBA:    mundoY -= velocidad;    break;
-                    case ABAJO:     mundoY += velocidad;     break;
-                    case IZQUIERDA: mundoX -= velocidad; break;
-                    case DERECHA:   mundoX += velocidad;   break;
+                    case ARRIBA:
+                        mundoY -= velocidad;
+                        break;
+                    case ABAJO:
+                        mundoY += velocidad;
+                        break;
+                    case IZQUIERDA:
+                        mundoX -= velocidad;
+                        break;
+                    case DERECHA:
+                        mundoX += velocidad;
+                        break;
                 }
             }
             // Actualizar contador de movimiento para cambiar entre sprites de animación
@@ -189,31 +205,33 @@ public class Jugador extends Entidad {
             }
         }
         // Verificar si el jugador ha muerto y actualizar el estado del juego
-        if(comprobarSiEstáMuerto()){
-            tablero.estadoActualDeJuego=EstadoDeJuego.DERROTA;
+        if (comprobarSiEstáMuerto()) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.DERROTA;
             tablero.reproducirSE(4);
         }
         // Verificar si el jugador ha ganado y actualizar el estado del juego
-        if(comprobarVictoria()){
-            tablero.estadoActualDeJuego=EstadoDeJuego.VICTORIA;
+        if (comprobarVictoria()) {
+            tablero.estadoActualDeJuego = EstadoDeJuego.VICTORIA;
             tablero.reproducirSE(6);
         }
     }
+
     /**
      * Comprueba si el jugador ha alcanzado la victoria al recoger todas las frutas disponibles.
      *
      * @return true si el número de frutas recolectadas es igual al número máximo de frutas, false en caso contrario.
      */
     private boolean comprobarVictoria() {
-        return númeroDeFrutas==NUM_MAX_FRUTAS;
+        return númeroDeFrutas == NUM_MAX_FRUTAS;
     }
+
     /**
      * Comprueba si el jugador ha perdido todas sus vidas.
      *
      * @return true si la vida del jugador es igual a cero, false en caso contrario.
      */
-    public boolean comprobarSiEstáMuerto(){
-        return vida ==0;
+    public boolean comprobarSiEstáMuerto() {
+        return vida == 0;
     }
 
     /**
@@ -237,6 +255,8 @@ public class Jugador extends Entidad {
      */
     public void recogerFrutas(int index) {
         if (index != 999) {
+            Fruta fruta = (Fruta)tablero.frutas[index];
+            puntaje += fruta.getPuntaje();
             tablero.frutas[index] = null;
             númeroDeFrutas++;
             tablero.reproducirSE(1);
@@ -323,6 +343,7 @@ public class Jugador extends Entidad {
         g2.drawRect(ventanaX + áreaSólida.x, ventanaY + áreaSólida.y, áreaSólida.width, áreaSólida.height); //HITBOX Jugador
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }
+
     /**
      * Realiza la acción de romper o crear hielo según la posición del jugador en el tablero.
      * Si el jugador está sobre un bloque de hielo, lo rompe; de lo contrario, crea un bloque de hielo.
@@ -335,6 +356,7 @@ public class Jugador extends Entidad {
             tablero.crearBloqueHielo();
         }
     }
+
     /**
      * Obtiene la dirección actual del jugador.
      *

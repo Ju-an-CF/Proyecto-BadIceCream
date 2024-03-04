@@ -25,4 +25,8 @@ public abstract class Fruta extends Entidad {
      */
     public abstract void obtenerImagen();
 
+    public int getPuntaje(){
+        return puntaje;
+    }
+
 }
