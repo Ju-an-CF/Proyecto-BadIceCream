@@ -63,6 +63,9 @@ public class Control implements KeyListener, Serializable {
             case VICTORIA:
                 estadoVictoria(tecla);
                 break;
+            case NIVELES:
+                estadoNiveles(tecla);
+                break;
         }
     }
     // Método para gestionar eventos de tecla en estado de victoria
@@ -72,6 +75,38 @@ public class Control implements KeyListener, Serializable {
                 tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
             }
         }
+    }
+
+    private void estadoNiveles(int tecla) {
+        int maxComandoNum = 3;
+        if (tecla == KeyEvent.VK_A) {
+            tablero.iu.comandoNum--;
+            if (tablero.iu.comandoNum < 0) {
+                tablero.iu.comandoNum = maxComandoNum;
+            }
+        }
+        if (tecla == KeyEvent.VK_D) {
+            tablero.iu.comandoNum++;
+            if (tablero.iu.comandoNum > maxComandoNum) {
+                tablero.iu.comandoNum = 0;
+            }
+        }
+        if (tecla == KeyEvent.VK_ENTER) {
+            if (tablero.iu.comandoNum == 0) {
+                tablero.estadoActualDeJuego = EstadoDeJuego.TÍTULO;
+            }
+            if(tablero.iu.comandoNum == 1){
+                //Nivel 2
+            }
+            if (tablero.iu.comandoNum == 2) {
+
+            }
+            if (tablero.iu.comandoNum == 3) {
+
+            }
+
+        }
+
     }
 
     // Método para gestionar eventos de tecla en estado de pausa
@@ -192,13 +227,13 @@ public class Control implements KeyListener, Serializable {
                 tablero.iu.comandoNum = 0;
             }
         }
-
         if (tecla == KeyEvent.VK_ENTER) {
             // Realizar acciones según la opción seleccionada
             if (tablero.iu.comandoNum == 0) {
-                tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
+                /*tablero.estadoActualDeJuego = EstadoDeJuego.JUEGO;
                 tablero.pararMúsica();
-                tablero.reproducirMúsica(2);
+                tablero.reproducirMúsica(2);*/
+                tablero.estadoActualDeJuego = EstadoDeJuego.NIVELES;
             }
             if (tablero.iu.comandoNum == 1) {
                 tablero.guardarCargar.cargar();
