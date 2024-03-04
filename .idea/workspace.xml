@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Implementando capa de datos, con la carga y guardado de información, además implementando en las clases la interface Serializable lo cual permite que sean guardadas">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/personajes/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fuentes/datosDeJuego/configuración.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/fuentes/datosDeJuego/configuración.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/Configuración.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/Configuración.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazDeUsuario/IU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardado.dat" beforeDir="false" afterPath="$PROJECT_DIR$/guardado.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "detalles",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/MY LENOVO/IdeaProjects/Proyecto---BadIceCream",
     "node.js.detected.package.eslint": "true",
