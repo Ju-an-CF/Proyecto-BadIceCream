@@ -27,6 +27,7 @@ public class IU {
     BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites, imagenDerrota;
     BufferedImage imagenVictoria;
     BufferedImage frutas;
+    BufferedImage trofeo;
     BufferedImage barra;
     BufferedImage moraImagen;
     public double playTime;
@@ -52,6 +53,7 @@ public class IU {
         corazónVacío = corazón.imagen3;
         moraImagen = mora.imagen1;
         frutas = cargarRecursosAdicionales("/datos/fuentes/frutas/frutas_contador2.png");
+        trofeo = cargarRecursosAdicionales("/datos/fuentes/IU/trofeo.png");
     }
 
     public BufferedImage cargarRecursosAdicionales(String ruta){
@@ -70,13 +72,11 @@ public class IU {
         dibujarEstadoDeJuegoSegúnEstado();
     }
 
-    private void dibujarMoras() {
+    private void dibujarFrutas() {
         graphics2D.setFont(font.deriveFont(Font.BOLD, 18F));
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawImage(moraImagen, 320, 525, panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelDeJuego.getTAMAÑO_DE_BLOQUE(), null);
+        graphics2D.drawImage(frutas, 320, 525, panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelDeJuego.getTAMAÑO_DE_BLOQUE(), null);
         graphics2D.drawString("x" + panelDeJuego.getJugador().getNúmeroDeFrutas(), 285, 553);
-        graphics2D.drawString("x" + panelDeJuego.getJugador().getNúmeroDeFrutas(), 285, 553);
-        graphics2D.drawString("Puntaje: " + panelDeJuego.getJugador().getPuntaje(), panelDeJuego.getTAMAÑO_DE_BLOQUE() * 12, 20);
     }
 
     private void dibujarTiempo() {
@@ -98,6 +98,13 @@ public class IU {
         graphics2D.drawString(decimalFormato.format(playTime), 497, 500 + altoFrame + 20);
     }
 
+
+    private void dibujarTrofeoDePuntaje() {
+        graphics2D.setFont(font.deriveFont(Font.BOLD, 18F));
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawImage(trofeo, panelDeJuego.getTAMAÑO_DE_BLOQUE() * 11, 5, panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelDeJuego.getTAMAÑO_DE_BLOQUE(), null);
+        graphics2D.drawString("Puntaje: " + panelDeJuego.getJugador().getPuntaje(), panelDeJuego.getTAMAÑO_DE_BLOQUE() * 12, 30);
+    }
     public void pararReloj() {
         relojActivo = false;
     }
@@ -129,8 +136,9 @@ public class IU {
                 panelImagen=cargarRecursosAdicionales("/datos/fuentes/IU/panel.png");
                 graphics2D.drawImage(panelImagen, panelDeJuego.getTAMAÑO_DE_BLOQUE(), 13* panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelImagen.getWidth(), panelImagen.getHeight(), null);
                 dibujarVidaJugador();
-                dibujarMoras();
+                dibujarFrutas();
                 dibujarTiempo();
+                dibujarTrofeoDePuntaje();
 
             } break;
             case PAUSA: {
