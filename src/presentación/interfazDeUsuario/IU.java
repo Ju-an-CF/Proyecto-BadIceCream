@@ -15,11 +15,17 @@ import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Clase parte de la capa de presentación la cual
+ * se encarga del dibujado de las ventanas y subventanas del juego
+ * que dependen del estado del juego.
+ */
 public class IU {
     PanelDeJuego panelDeJuego;
     Font font;
     Graphics2D graphics2D;
     BufferedImage corazónFull, medioCorazón, corazónVacío, panelImagen, imagenDeFondo, imagenMenú,opcionesMen, hojaDeSprites, imagenDerrota;
+    BufferedImage imagenVictoria;
     BufferedImage frutas;
     BufferedImage barra;
     BufferedImage moraImagen;
@@ -32,8 +38,6 @@ public class IU {
     private final double tiempoPorFrame = 1.0; // Tiempo que cada frame se muestra, ajusta según necesidad
     private boolean relojActivo = true; // Controla si el reloj está activo
     public int subEstado=0;
-
-
 
     public IU(PanelDeJuego panelDeJuego) {
         this.panelDeJuego = panelDeJuego;
@@ -147,8 +151,8 @@ public class IU {
         // Dibuja el rectángulo de fondo cubriendo toda la pantalla
         graphics2D.fillRect(0, 0, panelDeJuego.getANCHO() +42, panelDeJuego.getALTO());
 
-        imagenDerrota=cargarRecursosAdicionales("/datos/fuentes/IU/you_win.png");
-        graphics2D.drawImage(imagenDerrota, panelDeJuego.getTAMAÑO_DE_BLOQUE() *5, panelDeJuego.getTAMAÑO_DE_BLOQUE() *3,250,250,null);
+        imagenVictoria =cargarRecursosAdicionales("/datos/fuentes/IU/you_win.png");
+        graphics2D.drawImage(imagenVictoria, panelDeJuego.getTAMAÑO_DE_BLOQUE() *5, panelDeJuego.getTAMAÑO_DE_BLOQUE() *3,250,250,null);
 
         //reintentar
         String text;
@@ -184,8 +188,6 @@ public class IU {
     }
 
     private void dibujarPantallaDeDerrota() {
-        //imagenDerrota=cargarRecursosAdicionales("/datos.fuentes/IU/game_over.png");
-        //graphics2D.drawImage(imagenDerrota, tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*4,200,200,null);
         Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
         graphics2D.setColor(colorFondo);
 

@@ -31,13 +31,13 @@ public abstract class Fruta extends Entidad {
     }
 
     public void dibujar(Graphics2D g2) {
-        GestorImagen.actualizarAnimación(this);
+        GestorImagen.actualizarAnimaciónDeFruta(this);
 
         int ventanaX = getMundoX() - getTablero().getJugador().getMundoX() + getTablero().getJugador().getVentanaX();
         int ventanaY = getMundoY() - getTablero().getJugador().getMundoY() + getTablero().getJugador().getVentanaY();
 
         if (cámaraSigueAJugador()) {
-            BufferedImage imagenActual = GestorImagen.obtenerImagenActual(this);
+            BufferedImage imagenActual = GestorImagen.obtenerImagenActualDeFruta(this);
             g2.drawImage(imagenActual, ventanaX, ventanaY, getTablero().getTAMAÑO_DE_BLOQUE(), getTablero().getTAMAÑO_DE_BLOQUE(), null);
         }
     }

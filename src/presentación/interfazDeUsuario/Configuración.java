@@ -5,6 +5,9 @@ import Negocio.escenario.*;
 
 import java.io.*;
 
+/**
+ * La clase Configuración proporciona métodos para guardar y cargar la configuración del juego.
+ */
 public class Configuración implements Serializable{
     PanelDeJuego panelDeJuego;
 
@@ -12,6 +15,9 @@ public class Configuración implements Serializable{
         this.panelDeJuego = panelDeJuego;
     }
 
+    /**
+     * Guarda la configuración actual del juego en un archivo.
+     */
     public void guardarConfig(){
         try {
             BufferedWriter bw=new BufferedWriter(new FileWriter("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\fuentes\\configuración.txt"));
@@ -29,6 +35,9 @@ public class Configuración implements Serializable{
         }
 
     }
+    /**
+     * Carga la configuración del juego desde un archivo.
+     */
     public void cargarConfig(){
         try {
             BufferedReader br=new BufferedReader(new FileReader("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\fuentes\\datosDeJuego\\configuración.txt"));

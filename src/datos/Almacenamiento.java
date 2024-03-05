@@ -4,8 +4,13 @@ import Negocio.entidades.Entidad;
 
 import java.io.Serializable;
 
+/**
+ * La clase Almacenamiento la cual almacena los últimos datos
+ * del jugador, como su posición, vida, puntuación, etc.
+ * Estos datos serán salvados para luego ser cargados.
+ */
 public class Almacenamiento implements Serializable {
-    //Estadísticas del juegador
+    //Estadísticas del jugador
     int puntuación;
     int númeroDeFrutas;
     int vidaMáxima;

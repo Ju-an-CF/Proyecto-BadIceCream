@@ -10,7 +10,12 @@ public class BadIceCream {
         empezarJuego(new Nivel1());
     }
 
-
+    /**
+     * Método que inicializa el juego
+     * carga el panel del juego y con esto
+     * inicializa el Hilo del juego
+     * lo que permite que el programa se ejecute.
+     */
     private static void empezarJuego(Nivel nivel) {
         JFrame ventana = new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -42,7 +42,6 @@ public abstract class Enemigo extends Entidad {
     public abstract void establecerAcción();
     /**
      * Método para obtener el daño que el enemigo puede infligir.
-     *
      * @return El daño que el enemigo puede infligir.
      */
     public int getDaño() {

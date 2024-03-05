@@ -55,7 +55,7 @@ public class Sonido {
     }
 
     /**
-     * Reproduce el presentación.sonido asociado al clip.
+     * Reproduce el sonido asociado al clip.
      * Este método inicia la reproducción del clip de presentación.sonido.
      */
     public void reproducir() {
@@ -67,7 +67,7 @@ public class Sonido {
     }
 
     /**
-     * Para el presentación.sonido asociado al clip.
+     * Para la reproducción del sonido asociado al clip.
      */
     public void parar() {
         clip.stop();

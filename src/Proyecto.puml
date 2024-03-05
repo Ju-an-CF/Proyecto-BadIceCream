@@ -1,8 +1,6 @@
 @startuml
 class BadIceCream {
     +empezar()
-    +cargar()
-    +cerrar()
 }
 package datos {
     class Almacenamiento {
@@ -174,7 +172,7 @@ package niveles {
 
 }
 
-BadIceCream -down--> PanelDeJuego
+BadIceCream -> PanelDeJuego
 Bloque <|-- BloqueEstático
 Bloque <|-- BloqueDeHielo
 
@@ -201,14 +199,14 @@ ColocadorDeObjetos -> LectorEntidades
 Nivel <|--Nivel1
 Nivel <|--Nivel2
 
-Control -> Dirección
+Control --> Dirección
 Entidad -> Control
-Objeto -> GestorDeImagen: <<access>>
+/'Objeto -> GestorDeImagen: <<access>>
 Jugador -> GestorDeImagen: <<access>>
 Enemigo -> GestorDeImagen: <<access>>
-Fruta -> GestorDeImagen: <<access>>
+Fruta -> GestorDeImagen: <<access>>'/
 
-
+presentación .up.>negocio
 negocio ..> datos
 GuardarCargar -> Almacenamiento
 GuardarCargar -up-> PanelDeJuego

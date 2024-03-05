@@ -4,141 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="Separando la lógica de la interfaz gráfica y datos, mejorando UML">
+    <list default="true" id="4dce0674-eb7d-48f0-9d16-46f042dd50c2" name="Changes" comment="moviendo, fuentes, y mejorando UML">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/BadIceCreamTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Enemigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Ogro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Ogro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Toro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/enemigos/Toro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/entidades/frutas/Fruta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/entidades/frutas/Fruta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Negocio/escenario/AdministradorDeBloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/escenario/AdministradorDeBloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Negocio/niveles/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/niveles/Nivel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Negocio/niveles/Nivel1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/niveles/Nivel1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Negocio/niveles/Nivel2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/niveles/Nivel2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/escenario/PanelDeJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/escenario/PanelDeJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/escenario/bloques/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/escenario/bloques/Bloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/escenario/bloques/BloqueDeHielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/escenario/bloques/BloqueDeHielo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/escenario/bloques/BloqueEstático.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/escenario/bloques/BloqueEstático.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/ColocadorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/ColocadorDeObjetos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/Dirección.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/Dirección.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/EstadoDeJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/EstadoDeJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/LectorEntidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/LectorEntidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/mecánicas/VerificadorDeColisión.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/mecánicas/VerificadorDeColisión.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Proyecto.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proyecto.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datos/Almacenamiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/Almacenamiento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/datos/GuardarCargar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/GuardarCargar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BadIceCream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BadIceCream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentación/GestorImagen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentación/GestorImagen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/corazón1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/corazón1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/corazón2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/corazón2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/corazón3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/corazón3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/fondo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/fondo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/fondo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/fondo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/fondo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/fondo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/game_over.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/game_over.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/opcionesmen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/opcionesmen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/panel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/panel.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/player_life_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/player_life_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/reloj.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/reloj.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/título.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/título.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/IU/you_win.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/IU/you_win.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/bolaNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/bolaNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquina1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquina1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquina12.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquina12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquina2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquina2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquina3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquina3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquina4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquina4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquinas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquinas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/esquinas34.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/esquinas34.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/florNieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/florNieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/hielo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/hielo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/muro.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/muro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/nieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/nieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/shadow_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/shadow_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/shadow_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/shadow_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/tile_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/tile_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/bloque/wall_crack_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/bloque/wall_crack_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/configuración.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/configuración.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/datosDeJuego/configuración.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/datosDeJuego/configuración.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/datosDeJuego/mapa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/datosDeJuego/mapa.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/datosDeJuego/mapa2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/datosDeJuego/mapa2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/datosDeJuego/mapaOriginal.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/datosDeJuego/mapaOriginal.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_abajo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_abajo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_abajo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_abajo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_abajo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_abajo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_abajo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_abajo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_arriba1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_arriba1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_arriba2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_arriba2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_arriba3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_arriba3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_arriba4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_arriba4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_derecha1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_derecha1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_derecha2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_derecha2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_derecha3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_derecha3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_derecha4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_derecha4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_izquierda1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_izquierda1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_izquierda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_izquierda2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_izquierda3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_izquierda3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/jugador_izquierda4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/jugador_izquierda4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_abajo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_abajo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_abajo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_abajo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_abajo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_abajo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_abajo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_abajo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_arriba1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_arriba1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_arriba2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_arriba2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_arriba3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_arriba3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_arriba4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_arriba4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_derecha1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_derecha1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_derecha2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_derecha2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_derecha3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_derecha3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_derecha4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_derecha4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_izquierda1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_izquierda1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_izquierda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_izquierda2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_izquierda3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_izquierda3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/ogro_izquierda4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/ogro_izquierda4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/player_spritesheet..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/player_spritesheet..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/player_spritesheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/player_spritesheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_abajo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_abajo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_abajo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_abajo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_abajo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_abajo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_abajo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_abajo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_arriba1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_arriba1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_arriba2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_arriba2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_arriba3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_arriba3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_arriba4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_arriba4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_derecha1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_derecha1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_derecha2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_derecha2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_derecha3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_derecha3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_derecha4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_derecha4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_izquierda1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_izquierda1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_izquierda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_izquierda2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_izquierda3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_izquierda3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/enemigo/toro_izquierda4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/enemigo/toro_izquierda4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/entidades/enemigos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/entidades/enemigos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/entidades/enemigos2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/entidades/enemigos2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/entidades/frutas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/entidades/frutas.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/entidades/frutas2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/entidades/frutas2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/font/tinypixel.otf" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/font/tinypixel.otf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/frutas_contador2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/frutas_contador2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/grape_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/grape_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/guineo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/guineo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/guineo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/guineo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/guineo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/guineo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/guineo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/guineo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/guineo5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/guineo5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/mora1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/mora1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/mora2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/mora2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/mora3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/mora3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/mora4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/mora4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/frutas/mora5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/frutas/mora5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_abajo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_abajo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_abajo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_abajo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_abajo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_abajo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_abajo4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_abajo4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_arriba1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_arriba1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_arriba2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_arriba2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_arriba3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_arriba3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_arriba4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_arriba4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_derecha1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_derecha1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_derecha2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_derecha2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_derecha3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_derecha3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_derecha4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_derecha4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_izquierda1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_izquierda1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_izquierda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_izquierda2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_izquierda3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_izquierda3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/jugador_izquierda4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/jugador_izquierda4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/player_spritesheet..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/player_spritesheet..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/jugador/player_spritesheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/jugador/player_spritesheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/Die.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/Die.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/Fruit.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/Fruit.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/GameMusic.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/GameMusic.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/IceDestroy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/IceDestroy.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/LoseMusic.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/LoseMusic.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/MenuMusic.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/MenuMusic.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentación/fuentes/sounds/WinMusic.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/datos/fuentes/sounds/WinMusic.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentación/interfazDeUsuario/Configuración.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentación/interfazDeUsuario/Configuración.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentación/interfazDeUsuario/IU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentación/interfazDeUsuario/IU.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentación/sonido/Sonido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentación/sonido/Sonido.java" afterDir="false" />
@@ -184,18 +76,29 @@
   "keyToString": {
     "Application.BadIceCream.executor": "Run",
     "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.BadIceCreamTest.executor": "Run",
+    "JUnit.BadIceCreamTest.testDeberíaCambiarDePosiciónAlApretarUnaTecla.executor": "Run",
+    "JUnit.BadIceCreamTest.testRecogerFrutasYAumentarLasFrutasRecogidasDelJugador.executor": "Run",
+    "JUnit.BadIceCreamTest.testSeDeberíaCrearBloques.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Compu/Pictures/Varios",
+    "last_opened_file_path": "C:/Users/Compu/Documents/workspace/Clonación/Proyecto---BadIceCream/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -207,6 +110,96 @@
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\IU" />
       <recent name="C:\Users\MY LENOVO\IdeaProjects\Proyecto---BadIceCream\src\fuentes\frutas" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BadIceCreamTest">
+    <configuration name="BadIceCreamTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BadIceCreamTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BadIceCreamTest.testDeberíaCambiarDePosiciónAlApretarUnaTecla" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BadIceCreamTest" />
+      <option name="METHOD_NAME" value="testDeberíaCambiarDePosiciónAlApretarUnaTecla" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BadIceCreamTest.testRecogerFrutasYAumentarLasFrutasRecogidasDelJugador" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BadIceCreamTest" />
+      <option name="METHOD_NAME" value="testRecogerFrutasYAumentarLasFrutasRecogidasDelJugador" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BadIceCreamTest.testSeDeberíaCrearBloques" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BadIceCreamTest" />
+      <option name="METHOD_NAME" value="testSeDeberíaCrearBloques" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BadIceCreamTest.testSeDeberíaDestruirBloques" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BadIceCreamTest" />
+      <option name="METHOD_NAME" value="testSeDeberíaDestruirBloques" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BadIceCreamTest" />
+        <item itemvalue="JUnit.BadIceCreamTest.testSeDeberíaDestruirBloques" />
+        <item itemvalue="JUnit.BadIceCreamTest.testSeDeberíaCrearBloques" />
+        <item itemvalue="JUnit.BadIceCreamTest.testRecogerFrutasYAumentarLasFrutasRecogidasDelJugador" />
+        <item itemvalue="JUnit.BadIceCreamTest.testDeberíaCambiarDePosiciónAlApretarUnaTecla" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -248,7 +241,7 @@
       <workItem from="1709505929617" duration="1488000" />
       <workItem from="1709581013916" duration="11990000" />
       <workItem from="1709597937724" duration="622000" />
-      <workItem from="1709598584741" duration="11025000" />
+      <workItem from="1709598584741" duration="20318000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 2">
       <option name="closed" value="true" />
@@ -442,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709604410795</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="moviendo, fuentes, y mejorando UML">
+      <option name="closed" value="true" />
+      <created>1709611630129</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709611630129</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,6 +482,18 @@
     <MESSAGE value="Agregando estado de niveles TODO: implementar niveles" />
     <MESSAGE value="Implementando selección de niveles, TODO: solucionar errores de nivel por defecto" />
     <MESSAGE value="Separando la lógica de la interfaz gráfica y datos, mejorando UML" />
-    <option name="LAST_COMMIT_MESSAGE" value="Separando la lógica de la interfaz gráfica y datos, mejorando UML" />
+    <MESSAGE value="moviendo, fuentes, y mejorando UML" />
+    <option name="LAST_COMMIT_MESSAGE" value="moviendo, fuentes, y mejorando UML" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/BadIceCreamTest.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

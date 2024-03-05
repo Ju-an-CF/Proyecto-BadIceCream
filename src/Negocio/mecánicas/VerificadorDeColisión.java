@@ -9,10 +9,20 @@ import java.io.Serializable;
 public class VerificadorDeColisión implements Serializable {
     private PanelDeJuego panelDeJuego;
 
+    /**
+     * La clase VerificadorDeColisión se encarga de verificar colisiones entre entidades y bloques en un juego.
+     */
     public VerificadorDeColisión(PanelDeJuego panelDeJuego) {
         this.setTablero(panelDeJuego);
     }
 
+
+
+    /**
+     * Verifica la colisión entre una entidad y los bloques en el tablero.
+     *
+     * @param entidad La entidad cuya colisión se va a verificar.
+     */
     public void verificarBloque(Entidad entidad) {
         int entidadDimIzquierdaX = entidad.getMundoX() + entidad.getÁreaSólida().x;
         int entidadDimDerechaX = entidad.getMundoX() + entidad.getÁreaSólida().x + entidad.getÁreaSólida().width;
@@ -62,6 +72,13 @@ public class VerificadorDeColisión implements Serializable {
         }
     }
 
+    /**
+     * Verifica la colisión entre una entidad y las frutas en el tablero.
+     *
+     * @param entidad   La entidad cuya colisión se va a verificar.
+     * @param esJugador Indica si la entidad es el jugador principal.
+     * @return El índice de la fruta con la que la entidad colisionó.
+     */
     public int verificarObjeto(Entidad entidad, boolean esJugador) {
         int index = 999;
         for (int i = 0; i < getTablero().getFrutas().length; i++) {
@@ -89,6 +106,13 @@ public class VerificadorDeColisión implements Serializable {
         return index;
     }
 
+    /**
+     * Verifica la colisión entre una entidad y otras entidades en el tablero.
+     *
+     * @param entidad   La entidad cuya colisión se va a verificar.
+     * @param objetivo  El array de entidades con las que se verificará la colisión.
+     * @return El índice de la entidad con la que la entidad colisionó.
+     */
     public int verificarEntidad(Entidad entidad, Entidad[] objetivo) {
         int index = 999;
 
@@ -118,6 +142,11 @@ public class VerificadorDeColisión implements Serializable {
         return index;
     }
 
+    /**
+     * Mueve la posición de una entidad según su dirección y velocidad.
+     *
+     * @param entidad La entidad que se va a mover.
+     */
     private void moverEntidad(Entidad entidad) {
         switch (entidad.getDirección()) {
             case ARRIBA:
@@ -135,6 +164,12 @@ public class VerificadorDeColisión implements Serializable {
         }
     }
 
+    /**
+     * Verifica la colisión entre una entidad y el jugador principal en el tablero.
+     *
+     * @param entidad La entidad cuya colisión con el jugador se va a verificar.
+     * @return true si hay contacto con el jugador, false en caso contrario.
+     */
     public boolean verificarJugador(Entidad entidad) {
         boolean contactoConJugador = false;
 

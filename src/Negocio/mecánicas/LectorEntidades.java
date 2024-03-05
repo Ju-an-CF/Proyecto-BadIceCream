@@ -10,8 +10,19 @@ import Negocio.escenario.PanelDeJuego;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * La clase LectorEntidades proporciona métodos estáticos para leer información sobre frutas y enemigos desde un archivo
+ * y crear instancias de las clases correspondientes (Fruta y Enemigo) basadas en esa información.
+ */
 public class LectorEntidades {
+    /**
+     * Lee información sobre frutas desde un archivo y crea un array de instancias de Fruta.
+     *
+     * @param nombreArchivo Nombre del archivo desde el cual se leerán los datos.
+     * @param panelDeJuego       Objeto de tipo Tablero necesario para la creación de instancias de Fruta.
+     * @return Un array de instancias de Fruta.
+     * @throws IOException Si ocurre un error de entrada/salida al leer el archivo.
+     */
     public static Fruta[] leerFrutas(String nombreArchivo, PanelDeJuego panelDeJuego) throws IOException {
         BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo));
         Fruta[] frutas = new Fruta[11]; // Suponiendo que hay 11 frutas en el archivo
@@ -40,6 +51,14 @@ public class LectorEntidades {
         return frutas;
     }
 
+    /**
+     * Lee información sobre enemigos desde un archivo y crea un array de instancias de Enemigo.
+     *
+     * @param nombreArchivo Nombre del archivo desde el cual se leerán los datos.
+     * @param panelDeJuego       Objeto de tipo Tablero necesario para la creación de instancias de Enemigo.
+     * @return Un array de instancias de Enemigo.
+     * @throws IOException Si ocurre un error de entrada/salida al leer el archivo.
+     */
     public static Enemigo[] leerEnemigos(String nombreArchivo, PanelDeJuego panelDeJuego) throws IOException {
         BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo));
         Enemigo[] enemigos = new Enemigo[panelDeJuego.getEnemigos().length]; // Suponiendo que hay 5 enemigos en el archivo

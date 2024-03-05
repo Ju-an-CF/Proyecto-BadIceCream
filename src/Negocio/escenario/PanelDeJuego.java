@@ -97,11 +97,12 @@ public class PanelDeJuego extends JPanel implements Runnable {
         getHiloDeJuego().start();
     }
     public void reintentar(){
-        getJugador().establecerPosiciónPredeterminada();
+        jugador.establecerPosiciónPredeterminada();
         getAdminBlock().cargarMapa();
-        getJugador().reestablecerVida();
+        jugador.reestablecerVida();
         reestablecer();
-        getJugador().reestablecerFrutas();
+        jugador.reestablecerFrutas();
+        jugador.reestablecerPuntuación();
         getColocador().colocarFrutas(getNivel().getRutaFrutas());
         getColocador().colocarEnemigos(getNivel().getRutaEnemigos());
         getIu().resetearReloj();
@@ -109,10 +110,10 @@ public class PanelDeJuego extends JPanel implements Runnable {
 
     public void reestablecer(){
         getAdminBlock().cargarMapa();
-        getJugador().establecerValoresPredeterminados();
-        getJugador().establecerPosiciónPredeterminada();
-        getJugador().reestablecerFrutas();
-        getJugador().reestablecerVida();
+        jugador.establecerValoresPredeterminados();
+        jugador.establecerPosiciónPredeterminada();
+        jugador.reestablecerFrutas();
+        jugador.reestablecerVida();
         getColocador().colocarEnemigos(getNivel().getRutaEnemigos());
         getColocador().colocarFrutas(getNivel().getRutaFrutas());
         getIu().resetearReloj();
@@ -153,7 +154,7 @@ public class PanelDeJuego extends JPanel implements Runnable {
 
     public void actualizar() {
         if (getEstadoActualDeJuego() == EstadoDeJuego.JUEGO) {
-            getJugador().actualizar();
+            jugador.actualizar();
 
             for (Entidad enemigo : getEnemigos()) {
                 if (enemigo != null) {
@@ -179,7 +180,7 @@ public class PanelDeJuego extends JPanel implements Runnable {
             //Bloques
             getAdminBlock().dibujar(g2);
             //Añadir al jugador a la lista de Negocio.entidades
-            getEntidades().add(getJugador());
+            getEntidades().add(jugador);
             //agrega frutas a la lista de Negocio.entidades
             for (Entidad fruta : getFrutas()) {
                 if (fruta != null) {
@@ -212,10 +213,10 @@ public class PanelDeJuego extends JPanel implements Runnable {
             // g2.dispose();
 
         }
-        if (getJugador().getNúmeroDeFrutas() == 11) {
+        if (jugador.getNúmeroDeFrutas() == 11) {
             setEstadoActualDeJuego(EstadoDeJuego.VICTORIA);
         }
-        if (getJugador().getVida() == 0) {
+        if (jugador.getVida() == 0) {
             setEstadoActualDeJuego(EstadoDeJuego.DERROTA);
         }
         //otros
@@ -226,10 +227,10 @@ public class PanelDeJuego extends JPanel implements Runnable {
         int ajusteX = obtenerAjusteX();
         int ajusteY = obtenerAjusteY();
 
-        int x = (getJugador().getMundoX() + ajusteX) / getTAMAÑO_DE_BLOQUE();
-        int y = (getJugador().getMundoY() + ajusteY) / getTAMAÑO_DE_BLOQUE();
+        int x = (jugador.getMundoX() + ajusteX) / getTAMAÑO_DE_BLOQUE();
+        int y = (jugador.getMundoY() + ajusteY) / getTAMAÑO_DE_BLOQUE();
 
-        Dirección dirección = getJugador().getDireccion();
+        Dirección dirección = jugador.getDireccion();
 
         while (true) {
             switch (dirección) {

@@ -6,6 +6,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.Serializable;
 
+/**
+ * Clase que maneja los eventos del teclado para controlar el juego.
+ * Implementa la interfaz KeyListener para detectar las pulsaciones de teclas.
+ * Implementa Serializable para permitir la serialización de objetos.
+ */
 public class Control implements KeyListener, Serializable {
     private PanelDeJuego panelDeJuego;
     private boolean arribaPresionado;
@@ -15,6 +20,11 @@ public class Control implements KeyListener, Serializable {
     private boolean enterPresionado;
 
 
+    /**
+     * Constructor de la clase Control.
+     *
+     * @param panelDeJuego El panelDeJuego asociado al controlador.
+     */
     public Control(PanelDeJuego panelDeJuego) {
         this.setTablero(panelDeJuego);
     }
@@ -47,7 +57,7 @@ public class Control implements KeyListener, Serializable {
         }
 
         // Manejo de estados específicos
-        switch (getTablero().getEstadoActualDeJuego()) {
+        switch (panelDeJuego.getEstadoActualDeJuego()) {
             case TÍTULO:
                 estadoTítulo(tecla);
                 break;
@@ -69,10 +79,31 @@ public class Control implements KeyListener, Serializable {
         }
     }
 
+    /**
+     * Método que permite la entrada por teclado
+     * Para modificar las distintas opciones
+     * Dentro del estado de Victoria.
+     */
     private void estadoVictoria(int tecla) {
+        if (tecla == KeyEvent.VK_W) {
+            panelDeJuego.getIu().comandoNum--;
+            if (panelDeJuego.getIu().comandoNum < 0) {
+                panelDeJuego.getIu().comandoNum = 1;
+            }
+        }
+        if (tecla == KeyEvent.VK_S) {
+            panelDeJuego.getIu().comandoNum++;
+            if (panelDeJuego.getIu().comandoNum > 1) {
+                panelDeJuego.getIu().comandoNum = 0;
+            }
+        }
         if (tecla == KeyEvent.VK_ENTER) {
-            if (getTablero().getIu().comandoNum == 0) {
-                getTablero().setEstadoActualDeJuego(EstadoDeJuego.TÍTULO);
+            if (panelDeJuego.getIu().comandoNum == 0) {
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+                panelDeJuego.reintentar();
+            } else if (panelDeJuego.getIu().comandoNum == 1) {
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.TÍTULO);
+                panelDeJuego.reestablecer();
             }
         }
     }
@@ -80,20 +111,28 @@ public class Control implements KeyListener, Serializable {
 
     private void estadoPausa(int tecla) {
         if (tecla == KeyEvent.VK_ESCAPE) {
-            getTablero().setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+            panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
         }
     }
 
 
+    /**
+     * Método que permite la entrada por teclado
+     * Para modificar las distintas opciones
+     * Dentro del estado de Opciones
+     * Como el submenú de Guardar y salir
+     * Control del volumen
+     * Y Guardado del progreso en un nivel.
+     */
     private void estadoOpciones(int tecla) {
         if (tecla == KeyEvent.VK_ENTER) {
             setEnterPresionado(true);
         }
         if (tecla == KeyEvent.VK_ESCAPE) {
-            getTablero().setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+            panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
         }
         int maxComandoNum = 0;
-        switch (getTablero().getIu().subEstado) {
+        switch (panelDeJuego.getIu().subEstado) {
             case 0:
                 maxComandoNum = 4;
                 break;
@@ -102,47 +141,52 @@ public class Control implements KeyListener, Serializable {
                 break;
         }
         if (tecla == KeyEvent.VK_W) {
-            getTablero().getIu().comandoNum--;
-            if (getTablero().getIu().comandoNum < 0) {
-                getTablero().getIu().comandoNum = maxComandoNum;
+            panelDeJuego.getIu().comandoNum--;
+            if (panelDeJuego.getIu().comandoNum < 0) {
+                panelDeJuego.getIu().comandoNum = maxComandoNum;
             }
         }
         if (tecla == KeyEvent.VK_S) {
-            getTablero().getIu().comandoNum++;
+            panelDeJuego.getIu().comandoNum++;
             //music
-            if (getTablero().getIu().comandoNum > maxComandoNum) {
-                getTablero().getIu().comandoNum = 0;
+            if (panelDeJuego.getIu().comandoNum > maxComandoNum) {
+                panelDeJuego.getIu().comandoNum = 0;
             }
         }
         if (tecla == KeyEvent.VK_A) {
-            if (getTablero().getIu().subEstado == 0) {
-                if (getTablero().getIu().comandoNum == 0 && getTablero().getMúsica().getEscalaDeVolumen() > 0) {
-                    getTablero().getMúsica().disminuirVolumen();
-                    getTablero().getMúsica().verificarVolumen();
+            if (panelDeJuego.getIu().subEstado == 0) {
+                if (panelDeJuego.getIu().comandoNum == 0 && panelDeJuego.getMúsica().getEscalaDeVolumen() > 0) {
+                    panelDeJuego.getMúsica().disminuirVolumen();
+                    panelDeJuego.getMúsica().verificarVolumen();
                     //tablero.reproducirSE();
                 }
-                if (getTablero().getIu().comandoNum == 1 && getTablero().getSe().getEscalaDeVolumen() > 0) {
-                    getTablero().getSe().disminuirVolumen();
+                if (panelDeJuego.getIu().comandoNum == 1 && panelDeJuego.getSe().getEscalaDeVolumen() > 0) {
+                    panelDeJuego.getSe().disminuirVolumen();
                     //tablero.reproducirSE();
                 }
             }
         }
         if (tecla == KeyEvent.VK_D) {
-            if (getTablero().getIu().subEstado == 0) {
-                if (getTablero().getIu().comandoNum == 0 && getTablero().getMúsica().getEscalaDeVolumen() < 5) {
-                    getTablero().getMúsica().aumentarVolumen();
-                    getTablero().getMúsica().verificarVolumen();
+            if (panelDeJuego.getIu().subEstado == 0) {
+                if (panelDeJuego.getIu().comandoNum == 0 && panelDeJuego.getMúsica().getEscalaDeVolumen() < 5) {
+                    panelDeJuego.getMúsica().aumentarVolumen();
+                    panelDeJuego.getMúsica().verificarVolumen();
                     //tablero.reproducirSE();
                 }
             }
-            if (getTablero().getIu().comandoNum == 1 && getTablero().getSe().getEscalaDeVolumen() < 5) {
-                getTablero().getSe().aumentarVolumen();
+            if (panelDeJuego.getIu().comandoNum == 1 && panelDeJuego.getSe().getEscalaDeVolumen() < 5) {
+                panelDeJuego.getSe().aumentarVolumen();
                 //tablero.reproducirSE();
             }
         }
     }
 
 
+    /**
+     * Método que permite la entrada por teclado
+     * Para modificar las distintas opciones
+     * Dentro del estado de Juego.
+     */
     private void estadoJugador(int tecla) {
         if (tecla == KeyEvent.VK_W) {
             setArribaPresionado(true);
@@ -157,72 +201,82 @@ public class Control implements KeyListener, Serializable {
             setDerechaPresionado(true);
         }
         if (tecla == KeyEvent.VK_SPACE) {
-            getTablero().getJugador().romperOCrearHielo();
+            panelDeJuego.getJugador().romperOCrearHielo();
         }
         if (tecla == KeyEvent.VK_F) {
-            getTablero().setEstadoActualDeJuego(EstadoDeJuego.OPCIONES);
+            panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.OPCIONES);
         }
         if (tecla == KeyEvent.VK_P) {
-            getTablero().setEstadoActualDeJuego(EstadoDeJuego.PAUSA);
+            panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.PAUSA);
         }
     }
 
-
+    /**
+     * Método que permite la entrada por teclado
+     * Para modificar las distintas opciones
+     * Dentro del estado de Título.
+     */
     public void estadoTítulo(int tecla) {
         if (tecla == KeyEvent.VK_W) {
-            getTablero().getIu().comandoNum--;
-            if (getTablero().getIu().comandoNum < 0) {
-                getTablero().getIu().comandoNum = 2;
+            panelDeJuego.getIu().comandoNum--;
+            if (panelDeJuego.getIu().comandoNum < 0) {
+                panelDeJuego.getIu().comandoNum = 2;
             }
         }
         if (tecla == KeyEvent.VK_S) {
-            getTablero().getIu().comandoNum++;
-            if (getTablero().getIu().comandoNum > 2) {
-                getTablero().getIu().comandoNum = 0;
+            panelDeJuego.getIu().comandoNum++;
+            if (panelDeJuego.getIu().comandoNum > 2) {
+                panelDeJuego.getIu().comandoNum = 0;
             }
         }
 
         if (tecla == KeyEvent.VK_ENTER) {
-            if (getTablero().getIu().comandoNum == 0) {
-                getTablero().setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
-                getTablero().pararMúsica();
-                getTablero().reproducirMúsica(2);
+            if (panelDeJuego.getIu().comandoNum == 0) {
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+                panelDeJuego.pararMúsica();
+                panelDeJuego.reproducirMúsica(2);
             }
-            if (getTablero().getIu().comandoNum == 1) {
-                getTablero().getGuardarCargar().cargar(getTablero().getNivel());
-                getTablero().setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
-                getTablero().pararMúsica();
-                getTablero().reproducirMúsica(2);
+            if (panelDeJuego.getIu().comandoNum == 1) {
+                panelDeJuego.getGuardarCargar().cargar(panelDeJuego.getNivel());
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+                panelDeJuego.pararMúsica();
+                panelDeJuego.reproducirMúsica(2);
             }
-            if (getTablero().getIu().comandoNum == 2) {
+            if (panelDeJuego.getIu().comandoNum == 2) {
                 System.exit(0);
             }
         }
 
     }
 
+
+    /**
+     * Método que permite la entrada por teclado
+     * Para modificar las distintas opciones
+     * Dentro del estado de Derrota.
+     */
     private void estadoDerrota(int tecla) {
         if (tecla == KeyEvent.VK_W) {
-            getTablero().getIu().comandoNum--;
-            if (getTablero().getIu().comandoNum < 0) {
-                getTablero().getIu().comandoNum = 1;
+            panelDeJuego.getIu().comandoNum--;
+            if (panelDeJuego.getIu().comandoNum < 0) {
+                panelDeJuego.getIu().comandoNum = 1;
             }
             //efecto presentación.sonido
         }
         if (tecla == KeyEvent.VK_S) {
-            getTablero().getIu().comandoNum++;
-            if (getTablero().getIu().comandoNum > 1) {
-                getTablero().getIu().comandoNum = 0;
+            panelDeJuego.getIu().comandoNum++;
+            if (panelDeJuego.getIu().comandoNum > 1) {
+                panelDeJuego.getIu().comandoNum = 0;
             }
             //efecto presentación.sonido
         }
         if (tecla == KeyEvent.VK_ENTER) {
-            if (getTablero().getIu().comandoNum == 0) {
-                getTablero().setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
-                getTablero().reintentar();
-            } else if (getTablero().getIu().comandoNum == 1) {
-                getTablero().setEstadoActualDeJuego(EstadoDeJuego.TÍTULO);
-                getTablero().reestablecer();
+            if (panelDeJuego.getIu().comandoNum == 0) {
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.JUEGO);
+                panelDeJuego.reintentar();
+            } else if (panelDeJuego.getIu().comandoNum == 1) {
+                panelDeJuego.setEstadoActualDeJuego(EstadoDeJuego.TÍTULO);
+                panelDeJuego.reestablecer();
             }
         }
     }
@@ -256,7 +310,7 @@ public class Control implements KeyListener, Serializable {
         return super.toString();
     }
 
-    public PanelDeJuego getTablero() {
+    public PanelDeJuego panelDeJuego() {
         return panelDeJuego;
     }
 

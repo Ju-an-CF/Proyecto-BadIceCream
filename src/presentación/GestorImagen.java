@@ -5,18 +5,32 @@ import Negocio.entidades.objetos.Corazón;
 import Negocio.entidades.enemigos.Enemigo;
 import Negocio.entidades.Jugador;
 import Negocio.escenario.HerramientaUtilidad;
+import Negocio.escenario.PanelDeJuego;
+import Negocio.escenario.bloques.Bloque;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * La clase GestorImagen se encarga de obtener y configurar las imágenes para diferentes entidades del juego.
+ */
 public class GestorImagen{
+
+    /**
+     * Configura las imágenes de un objeto corazón.
+     * @param corazón El objeto corazón.
+     */
     public static void obtenerImagenDeObjetos(Corazón corazón){
         corazón.imagen1 = configurarImagen("/datos/fuentes/IU/corazón1");
         corazón.imagen2 = configurarImagen("/datos/fuentes/IU/corazón2");
         corazón.imagen3 = configurarImagen("/datos/fuentes/IU/corazón3");
     }
 
+    /**
+     * Configura las imágenes de un enemigo.
+     * @param enemigo El enemigo.
+     */
     public static void obtenerImagenDeEnemigo(Enemigo enemigo) {
         enemigo.arriba1 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba1");
         enemigo.arriba2 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba2");
@@ -36,7 +50,10 @@ public class GestorImagen{
         enemigo.derecha4 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_derecha4");
     }
 
-
+    /**
+     * Configura las imágenes de una fruta.
+     * @param fruta La fruta.
+     */
     public static void obtenerImagenDeFruta(Fruta fruta){
         fruta.imagen1 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 1);
         fruta.imagen2 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 2);
@@ -45,7 +62,12 @@ public class GestorImagen{
         fruta.imagen5 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 5);
     }
 
-    public static BufferedImage obtenerImagenActual(Fruta fruta) {
+    /**
+     * Obtiene la imagen actual de una fruta basada en el índice de animación.
+     * @param fruta La fruta.
+     * @return La imagen actual de la fruta.
+     */
+    public static BufferedImage obtenerImagenActualDeFruta(Fruta fruta) {
         // Retorna la imagen actual basada en el índice de animación.
         return switch (fruta.animaciónIndex) {
             case 0 -> fruta.imagen1;
@@ -57,8 +79,11 @@ public class GestorImagen{
             default -> fruta.imagen1;
         };
     }
-
-    public static void actualizarAnimación(Fruta fruta) {
+    /**
+     * Actualiza la animación de una fruta.
+     * @param fruta La fruta.
+     */
+    public static void actualizarAnimaciónDeFruta(Fruta fruta) {
         if (System.currentTimeMillis() - fruta.últimoTiempoCambio >= fruta.velocidadAnimación) {
             fruta.animaciónIndex++;
             // Asegura que el índice de animación varíe entre 0 y 4.
@@ -67,6 +92,10 @@ public class GestorImagen{
         }
     }
 
+    /**
+     * Configura las imágenes de un jugador.
+     * @param jugador El jugador.
+     */
     public static void obtenerImagenDeJugador(Jugador jugador){
         // Configurar las imágenes del jugador para la dirección hacia arriba
         jugador.arriba1 = configurarImagen("/datos/fuentes/jugador/jugador_arriba1");
@@ -92,7 +121,28 @@ public class GestorImagen{
         jugador.derecha3 = configurarImagen("/datos/fuentes/jugador/jugador_derecha3");
         jugador.derecha4 = configurarImagen("/datos/fuentes/jugador/jugador_derecha4");
     }
+    /**
+     * Configura una imagen basada en su nombre.
+     * @param nombreImagen El nombre de la imagen.
+     * @return La imagen configurada.
+     */
+    public static BufferedImage configurarImagen(String nombreImagen) {
+        HerramientaUtilidad ut = new HerramientaUtilidad();
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(GestorImagen.class.getResourceAsStream(nombreImagen + ".png"));
+            imagen = ut.escalarImagen(imagen, 42, 42);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imagen;
+    }
 
+    /**
+     * Obtiene la imagen de una entidad basada en su dirección y movimiento.
+     * @param jugador La entidad.
+     * @return La imagen correspondiente a la entidad.
+     */
     public static BufferedImage obtenerImagen(Jugador jugador) {
         BufferedImage imagen = null;
         switch (jugador.getDirección()) {
@@ -156,17 +206,58 @@ public class GestorImagen{
         return imagen;
     }
 
-    public static BufferedImage configurarImagen(String nombreImagen) {
-        HerramientaUtilidad ut = new HerramientaUtilidad();
+    /**
+     * Carga las imágenes para cada bloque.
+     */
+    public static void cargarImagenesDeBloques(Bloque[] bloques) {
+        for (int i = 0; i < bloques.length; i++) {
+            Bloque bloque = bloques[i];
+            if (bloque != null) {
+                String nombreImagen = obtenerNombreImagenPorIndice(i);
+                bloque.imagen = cargarImagen("/datos/fuentes/bloque/" + nombreImagen + ".png");
+            }
+        }
+    }
+
+    /**
+     * Obtiene el nombre de la imagen basado en el índice del bloque.
+     * @param índice El índice del bloque.
+     * @return El nombre de la imagen correspondiente.
+     */
+    private static String obtenerNombreImagenPorIndice(int índice) {
+        // Aquí retornas el nombre de la imagen basado en el índice.
+        // Por ejemplo:
+        return switch (índice) {
+            case 0 -> "nieve";
+            case 1 -> "esquina1";
+            case 2 -> "esquina2";
+            case 3 -> "esquina3";
+            case 4 -> "esquina4";
+            case 5 -> "muro";
+            case 6 -> "florNieve";
+            case 7 -> "bolaNieve";
+            case 8 -> "hielo";
+            default -> "default"; // O maneja una imagen por defecto.
+        };
+    }
+
+
+    /**
+     * Carga una imagen desde el sistema de archivos.
+     * @param rutaImagen La ruta de la imagen.
+     * @return La imagen cargada.
+     */
+    private static BufferedImage cargarImagen(String rutaImagen) {
+        PanelDeJuego panelDeJuego = new PanelDeJuego();
         BufferedImage imagen = null;
         try {
-            imagen = ImageIO.read(GestorImagen.class.getResourceAsStream(nombreImagen + ".png"));
-            imagen = ut.escalarImagen(imagen, 42, 42);
+            imagen = ImageIO.read(GestorImagen.class.getResourceAsStream(rutaImagen));
+            HerramientaUtilidad uTool = new HerramientaUtilidad();
+            imagen = uTool.escalarImagen(imagen, panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelDeJuego.getTAMAÑO_DE_BLOQUE());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return imagen;
     }
-
 
 }

@@ -10,6 +10,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * Clase que representa una entidad en el juego.
+ * Las entidades pueden ser objetos, jugadores o enemigos.
+ * Implementa la interfaz Serializable para permitir la serialización de objetos.
+ */
 public class Entidad implements Serializable {
 
     private PanelDeJuego panelDeJuego;
@@ -42,14 +47,16 @@ public class Entidad implements Serializable {
     public int contadorMovimiento = 0;
     public int numeroDeMovimiento = 1;
 
-
-
+    /**
+     * Constructor de la clase Entidad.
+     */
     public Entidad(PanelDeJuego panelDeJuego) {
         this.setTablero(panelDeJuego);
     }
 
-    public void establecerAcción() {
-    }
+    // Métodos de actualización y configuración de la entidad
+    // ...
+    public void establecerAcción() {}
 
     public void actualizar() {
 
@@ -108,6 +115,11 @@ public class Entidad implements Serializable {
         return imagen;
     }
 
+    /**
+     * Método para dibujar la entidad en el tablero.
+     *
+     * @param graphics2D El contexto gráfico en el que se dibuja la entidad.
+     */
     public void dibujar(Graphics2D graphics2D) {
         BufferedImage imagen = null;
 
@@ -180,6 +192,11 @@ public class Entidad implements Serializable {
         }
     }
 
+    /**
+     * Método para obtener el nombre de la entidad.
+     *
+     * @return El nombre de la entidad.
+     */
     public String getNombre() {
         return nombre;
     }

@@ -24,6 +24,9 @@ public class Toro extends Enemigo{
         super(panelDeJuego, VELOCIDAD, NOMBRE, DAÑO);
     }
 
+    /**
+     * Método para establecer la acción del toro.
+     */
     @Override
     public void establecerAcción() {
         setContadorBloqueoDeAcción(getContadorBloqueoDeAcción() + 1);

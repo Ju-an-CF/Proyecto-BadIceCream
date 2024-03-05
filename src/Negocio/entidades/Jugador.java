@@ -90,7 +90,9 @@ public class Jugador extends Entidad {
         setVida(getMáximoVidas());
 
     }
-
+    /**
+     * Método para actualizar el estado del jugador en el juego.
+     */
     public void actualizar() {
         if (getControl().isArribaPresionado() || getControl().isAbajoPresionado() || getControl().isIzquierdaPresionado() || getControl().isDerechaPresionado()) {
             if (getControl().isArribaPresionado()) {
@@ -153,20 +155,32 @@ public class Jugador extends Entidad {
             getTablero().reproducirSE(6);
         }
     }
-
+    /**
+     * Método para comprobar si el jugador ha alcanzado la victoria al recolectar todas las frutas.
+     *
+     * @return true si el jugador ha recolectado todas las frutas, false en caso contrario.
+     */
     private boolean comprobarVictoria() {
         return getNúmeroDeFrutas() == NUM_MAX_FRUTAS;
     }
-
+    /**
+     * Método para comprobar si el jugador está muerto.
+     *
+     * @return true si el jugador está muerto (vida igual a 0), false en caso contrario.
+     */
     public boolean comprobarSiEstáMuerto() {
         return this.getVida() == 0;
     }
 
-
-    private void contactoConEnemigo(int i) {
-        if (i != 999) {
+    /**
+     * Método para manejar el contacto o la colisión con un enemigo.
+     *
+     * @param índice El índice del enemigo en el arreglo de enemigos del tablero.
+     */
+    private void contactoConEnemigo(int índice) {
+        if (índice != 999) {
             if (!isInvencible()) {
-                Enemigo enemigo = (Enemigo) getTablero().getEnemigos()[i];
+                Enemigo enemigo = (Enemigo) getTablero().getEnemigos()[índice];
                 this.setVida(this.getVida() - enemigo.getDaño());
                 if(this.getVida() <= 0){
                     this.setVida(0);
@@ -193,6 +207,11 @@ public class Jugador extends Entidad {
         }
     }
 
+    /**
+     * Método para dibujar al jugador en la pantalla.
+     *
+     * @param g2 El contexto gráfico en el que se dibuja el jugador.
+     */
     public void dibujar(Graphics2D g2) {
         BufferedImage imagen = null;
         imagen = GestorImagen.obtenerImagen( this);
@@ -209,6 +228,9 @@ public class Jugador extends Entidad {
         //g2.drawRect(126, 84, tablero.TAMANIO_DE_BLOQUE, tablero.TAMANIO_DE_BLOQUE); //HITBOX Bloque
     }
 
+    /**
+     * Método para romper o crear un bloque de hielo.
+     */
     public void romperOCrearHielo() {
         // Validar si el jugador está sobre un bloque de hielo
         if (isColisiónActiva()) {
@@ -218,6 +240,11 @@ public class Jugador extends Entidad {
         }
     }
 
+    /**
+     * Método para obtener la dirección actual del jugador.
+     *
+     * @return La dirección actual del jugador.
+     */
     public Dirección getDireccion() {
         return getDirección();
     }
@@ -284,5 +311,9 @@ public class Jugador extends Entidad {
 
     public void setInvencible(boolean invencible) {
         this.invencible = invencible;
+    }
+
+    public void reestablecerPuntuación() {
+        puntaje = 0;
     }
 }

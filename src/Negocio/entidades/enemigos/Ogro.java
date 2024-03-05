@@ -21,6 +21,9 @@ public class Ogro extends Enemigo{
         super(panelDeJuego, VELOCIDAD, NOMBRE, DAÑO);
     }
 
+    /**
+     * Método para establecer la acción del ogro.
+     */
     @Override
     public void establecerAcción() {
         setContadorBloqueoDeAcción(getContadorBloqueoDeAcción() + 1);

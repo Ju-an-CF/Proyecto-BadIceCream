@@ -4,12 +4,16 @@ import Negocio.escenario.bloques.Bloque;
 import Negocio.escenario.bloques.BloqueDeHielo;
 import Negocio.escenario.bloques.BloqueEstático;
 import Negocio.niveles.Nivel;
+import presentación.GestorImagen;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-
+/**
+ * Clase que gestiona la creación y dibujo de los bloques en el tablero.
+ * Implementa la interfaz Serializable para permitir la serialización de objetos.
+ */
 public class AdministradorDeBloque implements Serializable {
     private PanelDeJuego panelDeJuego;
     private Bloque[] bloques;
@@ -23,9 +27,12 @@ public class AdministradorDeBloque implements Serializable {
         setBloques(new Bloque[100]);
         setMapa(new int[panelDeJuego.getMaxColDeMundo()][panelDeJuego.getMaxFilasDeMundo()]);
         inicializarBloques();
-        cargarImagenesDeBloques();
+        GestorImagen.cargarImagenesDeBloques(this.bloques);
         cargarMapa();
     }
+    /**
+     * Método privado para inicializar los tipos de bloques.
+     */
     private void inicializarBloques() {
         getBloques()[0] = new Bloque();
         getBloques()[1] = new BloqueEstático();
@@ -37,64 +44,6 @@ public class AdministradorDeBloque implements Serializable {
         getBloques()[7] = new Bloque();
         getBloques()[8] = new BloqueDeHielo();
     }
-
-    /**
-     * Carga las imágenes para cada bloque.
-     */
-    private void cargarImagenesDeBloques() {
-        for (int i = 0; i < getBloques().length; i++) {
-            Bloque bloque = getBloques()[i];
-            if (bloque != null) {
-                String nombreImagen = obtenerNombreImagenPorIndice(i);
-                bloque.imagen = cargarImagen("/datos/fuentes/bloque/" + nombreImagen + ".png");
-            }
-        }
-    }
-
-    /**
-     * Obtiene el nombre de la imagen basado en el índice del bloque.
-     * @param índice El índice del bloque.
-     * @return El nombre de la imagen correspondiente.
-     */
-    private String obtenerNombreImagenPorIndice(int índice) {
-        // Aquí retornas el nombre de la imagen basado en el índice.
-        // Por ejemplo:
-        return switch (índice) {
-            case 0 -> "nieve";
-            case 1 -> "esquina1";
-            case 2 -> "esquina2";
-            case 3 -> "esquina3";
-            case 4 -> "esquina4";
-            case 5 -> "muro";
-            case 6 -> "florNieve";
-            case 7 -> "bolaNieve";
-            case 8 -> "hielo";
-            default -> "default"; // O maneja una imagen por defecto.
-        };
-    }
-
-    /**
-     * Carga una imagen desde el sistema de archivos.
-     * @param rutaImagen La ruta de la imagen.
-     * @return La imagen cargada.
-     */
-    private BufferedImage cargarImagen(String rutaImagen) {
-        BufferedImage imagen = null;
-        try {
-            imagen = ImageIO.read(getClass().getResourceAsStream(rutaImagen));
-            HerramientaUtilidad uTool = new HerramientaUtilidad();
-            imagen = uTool.escalarImagen(imagen, getTablero().getTAMAÑO_DE_BLOQUE(), getTablero().getTAMAÑO_DE_BLOQUE());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return imagen;
-    }
-
-    /**
-     * Configura las imágenes de los bloques.
-     * Este método configura varios bloques con sus respectivas imágenes y tipos de bloque.
-     */
-
 
     /**
      * Lee el mapa de una ruta y la carga para generar los bloques respectivos
@@ -133,6 +82,11 @@ public class AdministradorDeBloque implements Serializable {
         }
     }
 
+    /**
+     * Método para dibujar los bloques en el tablero.
+     *
+     * @param g2 El contexto gráfico en el que se dibujan los bloques.
+     */
     public void dibujar(Graphics2D g2) {
         int columnasDeMundo = 0;
         int filasDeMundo = 0;
@@ -157,6 +111,14 @@ public class AdministradorDeBloque implements Serializable {
         }
     }
 
+
+    /**
+     * Método para verificar si el jugador está en pantalla.
+     *
+     * @param mundoX La coordenada X en el mundo del juego.
+     * @param mundoY La coordenada Y en el mundo del juego.
+     * @return true si el jugador está en pantalla, false en caso contrario.
+     */
     public boolean jugadorEstáEnPantalla(int mundoX, int mundoY) {
         return mundoX + getTablero().getTAMAÑO_DE_BLOQUE() *11 > getTablero().getJugador().getMundoX() - getTablero().getJugador().getVentanaX() &&
                 mundoX - getTablero().getTAMAÑO_DE_BLOQUE() *12 < getTablero().getJugador().getMundoX() + getTablero().getJugador().getVentanaX() &&
