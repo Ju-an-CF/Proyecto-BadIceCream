@@ -6,6 +6,9 @@ import Negocio.niveles.Nivel;
 
 import java.io.*;
 
+/**
+ * La clase GuardarCargar proporciona métodos para guardar y cargar el estado del juego.
+ */
 public class GuardarCargar implements Serializable {
 
     PanelDeJuego panelDeJuego;
@@ -14,14 +17,20 @@ public class GuardarCargar implements Serializable {
         this.panelDeJuego = panelDeJuego;
     }
 
+    /**
+     * Guarda el estado actual del juego en un archivo.
+     *
+     * @param nivel El nivel actual del juego.
+     */
     public void guardar(Nivel nivel){
 
         try{
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\"+ nivel.getNivel() + ".dat")));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(nivel.getNivel() + ".dat")));
 
             Almacenamiento almacenamiento = new Almacenamiento();
 
+            // Almacenar información del jugador y del tablero
             almacenamiento.númeroDeFrutas = panelDeJuego.getJugador().getNúmeroDeFrutas();
             almacenamiento.puntuación     = panelDeJuego.getJugador().getPuntaje();
             almacenamiento.vidaMáxima     = panelDeJuego.getJugador().getMáximoVidas();
@@ -31,11 +40,12 @@ public class GuardarCargar implements Serializable {
             almacenamiento.tiempo         = panelDeJuego.getIu().playTime;
             almacenamiento.mapa           = panelDeJuego.getAdminBlock().getMapa();
 
-            //Enemigos
+            // Almacenar información de los enemigos
             almacenamiento.enemigos = new Entidad[panelDeJuego.getEnemigos().length];
             for(int i = 0; i < panelDeJuego.getEnemigos().length; i++){
                 almacenamiento.enemigos[i] = new Entidad(panelDeJuego);
             }
+
             for(int i = 0; i < panelDeJuego.getEnemigos().length; i++){
                 if(panelDeJuego.getEnemigos()[i] != null){
                     almacenamiento.enemigos[i].setMundoX(panelDeJuego.getEnemigos()[i].getMundoX());
@@ -43,7 +53,7 @@ public class GuardarCargar implements Serializable {
                 }
             }
 
-            //Frutas
+            // Almacenar información de las frutas
             almacenamiento.frutas = new Entidad[panelDeJuego.getFrutas().length];
             for(int i = 0; i < panelDeJuego.getFrutas().length; i++){
                 almacenamiento.frutas[i] = new Entidad(panelDeJuego);
@@ -68,22 +78,29 @@ public class GuardarCargar implements Serializable {
         }
     }
 
+    /**
+     * Carga el estado del juego desde un archivo.
+     *
+     * @param nivel El nivel actual del juego.
+     */
     public void cargar(Nivel nivel){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\"+ nivel.getNivel() + ".dat")));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(nivel.getNivel() + ".dat")));
 
             //Leer del archivo
             Almacenamiento almacenamiento = (Almacenamiento) ois.readObject();
 
+            // Restaurar información del jugador y del tablero
             panelDeJuego.getJugador().setPuntaje(almacenamiento.puntuación);
             panelDeJuego.getJugador().setNúmeroDeFrutas(almacenamiento.númeroDeFrutas);
             panelDeJuego.getJugador().setMáximoVidas(almacenamiento.vidaMáxima);
             panelDeJuego.getJugador().setVida(almacenamiento.vida);
             panelDeJuego.getJugador().setMundoX(almacenamiento.posX);
             panelDeJuego.getJugador().setMundoY(almacenamiento.posY);
-            panelDeJuego.getIu().playTime             = almacenamiento.tiempo;
             panelDeJuego.getAdminBlock().setMapa(almacenamiento.mapa);
+            panelDeJuego.getIu().playTime = almacenamiento.tiempo;
 
+            // Restaurar información de los enemigos
             for(int i = 0; i < almacenamiento.enemigos.length; i++){
                 if(panelDeJuego.getEnemigos()[i] != null){
                     panelDeJuego.getEnemigos()[i].setMundoX(almacenamiento.enemigos[i].getMundoX());
@@ -91,6 +108,7 @@ public class GuardarCargar implements Serializable {
                 }
             }
 
+            // Restaurar información de las frutas
             for(int i = 0; i < almacenamiento.frutas.length; i++){
                 if(almacenamiento.frutas[i] != null){
                     panelDeJuego.getFrutas()[i].setMundoX(almacenamiento.frutas[i].getMundoX());

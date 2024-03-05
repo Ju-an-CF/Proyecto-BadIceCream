@@ -35,7 +35,7 @@ public class Sonido {
      * @param direcciónSonido La dirección del archivo de presentación.sonido.
      */
     public void configurarSonido(int índice, String direcciónSonido){
-        this.soundURL[índice] = getClass().getResource("/presentación/fuentes/sounds/" + direcciónSonido + ".wav");
+        this.soundURL[índice] = getClass().getResource("/datos/fuentes/sounds/" + direcciónSonido + ".wav");
     }
 
     /**

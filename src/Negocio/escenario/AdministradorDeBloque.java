@@ -46,7 +46,7 @@ public class AdministradorDeBloque implements Serializable {
             Bloque bloque = getBloques()[i];
             if (bloque != null) {
                 String nombreImagen = obtenerNombreImagenPorIndice(i);
-                bloque.imagen = cargarImagen("/presentación/fuentes/bloque/" + nombreImagen + ".png");
+                bloque.imagen = cargarImagen("/datos/fuentes/bloque/" + nombreImagen + ".png");
             }
         }
     }

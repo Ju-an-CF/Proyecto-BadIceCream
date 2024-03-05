@@ -12,37 +12,37 @@ import java.io.IOException;
 
 public class GestorImagen{
     public static void obtenerImagenDeObjetos(Corazón corazón){
-        corazón.imagen1 = configurarImagen("/presentación/fuentes/IU/corazón1");
-        corazón.imagen2 = configurarImagen("/presentación/fuentes/IU/corazón2");
-        corazón.imagen3 = configurarImagen("/presentación/fuentes/IU/corazón3");
+        corazón.imagen1 = configurarImagen("/datos/fuentes/IU/corazón1");
+        corazón.imagen2 = configurarImagen("/datos/fuentes/IU/corazón2");
+        corazón.imagen3 = configurarImagen("/datos/fuentes/IU/corazón3");
     }
 
     public static void obtenerImagenDeEnemigo(Enemigo enemigo) {
-        enemigo.arriba1 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_arriba1");
-        enemigo.arriba2 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_arriba2");
-        enemigo.arriba3 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_arriba3");
-        enemigo.arriba4 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_arriba4");
-        enemigo.abajo1 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_abajo1");
-        enemigo.abajo2 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_abajo2");
-        enemigo.abajo3 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_abajo3");
-        enemigo.abajo4 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_abajo4");
-        enemigo.izquierda1 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda1");
-        enemigo.izquierda2 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda2");
-        enemigo.izquierda3 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda3");
-        enemigo.izquierda4 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda4");
-        enemigo.derecha1 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_derecha1");
-        enemigo.derecha2 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_derecha2");
-        enemigo.derecha3 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_derecha3");
-        enemigo.derecha4 = configurarImagen("/presentación/fuentes/enemigo/" + enemigo.getNombre() + "_derecha4");
+        enemigo.arriba1 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba1");
+        enemigo.arriba2 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba2");
+        enemigo.arriba3 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba3");
+        enemigo.arriba4 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_arriba4");
+        enemigo.abajo1 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_abajo1");
+        enemigo.abajo2 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_abajo2");
+        enemigo.abajo3 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_abajo3");
+        enemigo.abajo4 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_abajo4");
+        enemigo.izquierda1 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda1");
+        enemigo.izquierda2 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda2");
+        enemigo.izquierda3 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda3");
+        enemigo.izquierda4 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_izquierda4");
+        enemigo.derecha1 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_derecha1");
+        enemigo.derecha2 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_derecha2");
+        enemigo.derecha3 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_derecha3");
+        enemigo.derecha4 = configurarImagen("/datos/fuentes/enemigo/" + enemigo.getNombre() + "_derecha4");
     }
 
 
     public static void obtenerImagenDeFruta(Fruta fruta){
-        fruta.imagen1 = configurarImagen("/presentación/fuentes/frutas/" + fruta.getNombre() + 1);
-        fruta.imagen2 = configurarImagen("/presentación/fuentes/frutas/" + fruta.getNombre() + 2);
-        fruta.imagen3 = configurarImagen("/presentación/fuentes/frutas/" + fruta.getNombre() + 3);
-        fruta.imagen4 = configurarImagen("/presentación/fuentes/frutas/" + fruta.getNombre() + 4);
-        fruta.imagen5 = configurarImagen("/presentación/fuentes/frutas/" + fruta.getNombre() + 5);
+        fruta.imagen1 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 1);
+        fruta.imagen2 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 2);
+        fruta.imagen3 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 3);
+        fruta.imagen4 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 4);
+        fruta.imagen5 = configurarImagen("/datos/fuentes/frutas/" + fruta.getNombre() + 5);
     }
 
     public static BufferedImage obtenerImagenActual(Fruta fruta) {
@@ -69,28 +69,28 @@ public class GestorImagen{
 
     public static void obtenerImagenDeJugador(Jugador jugador){
         // Configurar las imágenes del jugador para la dirección hacia arriba
-        jugador.arriba1 = configurarImagen("/presentación/fuentes/jugador/jugador_arriba1");
-        jugador.arriba2 = configurarImagen("/presentación/fuentes/jugador/jugador_arriba2");
-        jugador.arriba3 = configurarImagen("/presentación/fuentes/jugador/jugador_arriba3");
-        jugador.arriba4 = configurarImagen("/presentación/fuentes/jugador/jugador_arriba4");
+        jugador.arriba1 = configurarImagen("/datos/fuentes/jugador/jugador_arriba1");
+        jugador.arriba2 = configurarImagen("/datos/fuentes/jugador/jugador_arriba2");
+        jugador.arriba3 = configurarImagen("/datos/fuentes/jugador/jugador_arriba3");
+        jugador.arriba4 = configurarImagen("/datos/fuentes/jugador/jugador_arriba4");
 
         // Configurar las imágenes del jugador para la dirección hacia abajo
-        jugador.abajo1 = configurarImagen("/presentación/fuentes/jugador/jugador_abajo1");
-        jugador.abajo2 = configurarImagen("/presentación/fuentes/jugador/jugador_abajo2");
-        jugador.abajo3 = configurarImagen("/presentación/fuentes/jugador/jugador_abajo3");
-        jugador.abajo4 = configurarImagen("/presentación/fuentes/jugador/jugador_abajo4");
+        jugador.abajo1 = configurarImagen("/datos/fuentes/jugador/jugador_abajo1");
+        jugador.abajo2 = configurarImagen("/datos/fuentes/jugador/jugador_abajo2");
+        jugador.abajo3 = configurarImagen("/datos/fuentes/jugador/jugador_abajo3");
+        jugador.abajo4 = configurarImagen("/datos/fuentes/jugador/jugador_abajo4");
 
         // Configurar las imágenes del jugador para la dirección hacia izquierda
-        jugador.izquierda1 = configurarImagen("/presentación/fuentes/jugador/jugador_izquierda1");
-        jugador.izquierda2 = configurarImagen("/presentación/fuentes/jugador/jugador_izquierda2");
-        jugador.izquierda3 = configurarImagen("/presentación/fuentes/jugador/jugador_izquierda3");
-        jugador.izquierda4 = configurarImagen("/presentación/fuentes/jugador/jugador_izquierda4");
+        jugador.izquierda1 = configurarImagen("/datos/fuentes/jugador/jugador_izquierda1");
+        jugador.izquierda2 = configurarImagen("/datos/fuentes/jugador/jugador_izquierda2");
+        jugador.izquierda3 = configurarImagen("/datos/fuentes/jugador/jugador_izquierda3");
+        jugador.izquierda4 = configurarImagen("/datos/fuentes/jugador/jugador_izquierda4");
 
         // Configurar las imágenes del jugador para la dirección hacia derecha
-        jugador.derecha1 = configurarImagen("/presentación/fuentes/jugador/jugador_derecha1");
-        jugador.derecha2 = configurarImagen("/presentación/fuentes/jugador/jugador_derecha2");
-        jugador.derecha3 = configurarImagen("/presentación/fuentes/jugador/jugador_derecha3");
-        jugador.derecha4 = configurarImagen("/presentación/fuentes/jugador/jugador_derecha4");
+        jugador.derecha1 = configurarImagen("/datos/fuentes/jugador/jugador_derecha1");
+        jugador.derecha2 = configurarImagen("/datos/fuentes/jugador/jugador_derecha2");
+        jugador.derecha3 = configurarImagen("/datos/fuentes/jugador/jugador_derecha3");
+        jugador.derecha4 = configurarImagen("/datos/fuentes/jugador/jugador_derecha4");
     }
 
     public static BufferedImage obtenerImagen(Jugador jugador) {

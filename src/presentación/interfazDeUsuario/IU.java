@@ -47,7 +47,7 @@ public class IU {
         medioCorazón = corazón.imagen2;
         corazónVacío = corazón.imagen3;
         moraImagen = mora.imagen1;
-        frutas = cargarRecursosAdicionales("/presentación/fuentes/frutas/frutas_contador2.png");
+        frutas = cargarRecursosAdicionales("/datos/fuentes/frutas/frutas_contador2.png");
     }
 
     public BufferedImage cargarRecursosAdicionales(String ruta){
@@ -77,7 +77,7 @@ public class IU {
 
     private void dibujarTiempo() {
         if (hojaDeSprites == null) {
-            hojaDeSprites = cargarRecursosAdicionales("/presentación/fuentes/IU/reloj.png");
+            hojaDeSprites = cargarRecursosAdicionales("/datos/fuentes/IU/reloj.png");
             anchoFrame = hojaDeSprites.getWidth() / numeroDeFrames;
             altoFrame = hojaDeSprites.getHeight();
         }
@@ -122,7 +122,7 @@ public class IU {
             } break;
             case JUEGO: {
                 reiniciarReloj();
-                panelImagen=cargarRecursosAdicionales("/presentación/fuentes/IU/panel.png");
+                panelImagen=cargarRecursosAdicionales("/datos/fuentes/IU/panel.png");
                 graphics2D.drawImage(panelImagen, panelDeJuego.getTAMAÑO_DE_BLOQUE(), 13* panelDeJuego.getTAMAÑO_DE_BLOQUE(), panelImagen.getWidth(), panelImagen.getHeight(), null);
                 dibujarVidaJugador();
                 dibujarMoras();
@@ -147,7 +147,7 @@ public class IU {
         // Dibuja el rectángulo de fondo cubriendo toda la pantalla
         graphics2D.fillRect(0, 0, panelDeJuego.getANCHO() +42, panelDeJuego.getALTO());
 
-        imagenDerrota=cargarRecursosAdicionales("/presentación/fuentes/IU/you_win.png");
+        imagenDerrota=cargarRecursosAdicionales("/datos/fuentes/IU/you_win.png");
         graphics2D.drawImage(imagenDerrota, panelDeJuego.getTAMAÑO_DE_BLOQUE() *5, panelDeJuego.getTAMAÑO_DE_BLOQUE() *3,250,250,null);
 
         //reintentar
@@ -184,7 +184,7 @@ public class IU {
     }
 
     private void dibujarPantallaDeDerrota() {
-        //imagenDerrota=cargarRecursosAdicionales("/presentación.fuentes/IU/game_over.png");
+        //imagenDerrota=cargarRecursosAdicionales("/datos.fuentes/IU/game_over.png");
         //graphics2D.drawImage(imagenDerrota, tablero.TAMAÑO_DE_BLOQUE*5,tablero.TAMAÑO_DE_BLOQUE*4,200,200,null);
         Color colorFondo = new Color(0, 0, 0, 150); // 127 es aproximadamente 50% de transparencia
         graphics2D.setColor(colorFondo);
@@ -192,7 +192,7 @@ public class IU {
         // Dibuja el rectángulo de fondo cubriendo toda la pantalla
         graphics2D.fillRect(0, 0, panelDeJuego.getANCHO() +42, panelDeJuego.getALTO());
 
-        imagenDerrota=cargarRecursosAdicionales("/presentación/fuentes/IU/game_over.png");
+        imagenDerrota=cargarRecursosAdicionales("/datos/fuentes/IU/game_over.png");
         graphics2D.drawImage(imagenDerrota, panelDeJuego.getTAMAÑO_DE_BLOQUE() *5, panelDeJuego.getTAMAÑO_DE_BLOQUE() *3,250,250,null);
 
         //reintentar
@@ -256,14 +256,14 @@ public class IU {
         String texto;
 
 
-        imagenDeFondo=cargarRecursosAdicionales("/presentación/fuentes/IU/fondo.jpg");
+        imagenDeFondo=cargarRecursosAdicionales("/datos/fuentes/IU/fondo.jpg");
         g2.drawImage(imagenDeFondo, 0, 0, panelDeJuego.getANCHO() +50, panelDeJuego.getALTO(), null);
 
-        imagenMenú=cargarRecursosAdicionales("/presentación/fuentes/IU/título.png");
+        imagenMenú=cargarRecursosAdicionales("/datos/fuentes/IU/título.png");
 
         g2.drawImage(imagenMenú, 60, 10, 500, 500, null);
 
-        opcionesMen=cargarRecursosAdicionales("/presentación/fuentes/IU/opcionesmen.png");
+        opcionesMen=cargarRecursosAdicionales("/datos/fuentes/IU/opcionesmen.png");
         g2.drawImage(opcionesMen, 190, 420, 250, 150, null);
 
         //Menu
@@ -322,7 +322,7 @@ public class IU {
     }
 
     public void importarFont() {
-        InputStream is = getClass().getResourceAsStream("/presentación/fuentes/font/tinypixel.otf");
+        InputStream is = getClass().getResourceAsStream("/datos/fuentes/font/tinypixel.otf");
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, is);
 
