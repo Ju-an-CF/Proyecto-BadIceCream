@@ -1,61 +1,58 @@
 package datos;
 
-import entidades.Entidad;
-import entidades.frutas.Mora;
-import entidades.personajes.Enemigo;
-import escenario.Tablero;
-import niveles.Nivel;
-import niveles.Nivel1;
+import Negocio.entidades.Entidad;
+import Negocio.escenario.PanelDeJuego;
+import Negocio.niveles.Nivel;
 
 import java.io.*;
 
 public class GuardarCargar implements Serializable {
 
-    Tablero tablero;
+    PanelDeJuego panelDeJuego;
 
-    public GuardarCargar(Tablero tablero) {
-        this.tablero = tablero;
+    public GuardarCargar(PanelDeJuego panelDeJuego){
+        this.panelDeJuego = panelDeJuego;
     }
 
-    public void guardar() {
+    public void guardar(Nivel nivel){
 
-        try {
+        try{
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("nivel1.dat"));
-
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\"+ nivel.getNivel() + ".dat")));
 
             Almacenamiento almacenamiento = new Almacenamiento();
 
-            almacenamiento.númeroDeFrutas = tablero.jugador.númeroDeFrutas;
-            almacenamiento.vidaMáxima = tablero.jugador.máximoVidas;
-            almacenamiento.vida = tablero.jugador.vida;
-            almacenamiento.posX = tablero.jugador.mundoX;
-            almacenamiento.posY = tablero.jugador.mundoY;
-            almacenamiento.tiempo = tablero.iu.playTime;
-            almacenamiento.mapa = tablero.adminBlock.mapa;
+            almacenamiento.númeroDeFrutas = panelDeJuego.getJugador().getNúmeroDeFrutas();
+            almacenamiento.puntuación     = panelDeJuego.getJugador().getPuntaje();
+            almacenamiento.vidaMáxima     = panelDeJuego.getJugador().getMáximoVidas();
+            almacenamiento.vida           = panelDeJuego.getJugador().getVida();
+            almacenamiento.posX           = panelDeJuego.getJugador().getMundoX();
+            almacenamiento.posY           = panelDeJuego.getJugador().getMundoY();
+            almacenamiento.tiempo         = panelDeJuego.getIu().playTime;
+            almacenamiento.mapa           = panelDeJuego.getAdminBlock().getMapa();
 
             //Enemigos
-            almacenamiento.enemigos = new Entidad[tablero.enemigos.length];
-            for (int i = 0; i < tablero.enemigos.length; i++) {
-                almacenamiento.enemigos[i] = new Entidad(tablero);
+            almacenamiento.enemigos = new Entidad[panelDeJuego.getEnemigos().length];
+            for(int i = 0; i < panelDeJuego.getEnemigos().length; i++){
+                almacenamiento.enemigos[i] = new Entidad(panelDeJuego);
             }
-            for (int i = 0; i < tablero.enemigos.length; i++) {
-                if (tablero.enemigos[i] != null) {
-                    almacenamiento.enemigos[i].mundoX = tablero.enemigos[i].mundoX;
-                    almacenamiento.enemigos[i].mundoY = tablero.enemigos[i].mundoY;
+            for(int i = 0; i < panelDeJuego.getEnemigos().length; i++){
+                if(panelDeJuego.getEnemigos()[i] != null){
+                    almacenamiento.enemigos[i].setMundoX(panelDeJuego.getEnemigos()[i].getMundoX());
+                    almacenamiento.enemigos[i].setMundoY(panelDeJuego.getEnemigos()[i].getMundoY());
                 }
             }
 
             //Frutas
-            almacenamiento.frutas = new Entidad[tablero.frutas.length];
-            for (int i = 0; i < tablero.frutas.length; i++) {
-                almacenamiento.frutas[i] = new Mora(tablero);
+            almacenamiento.frutas = new Entidad[panelDeJuego.getFrutas().length];
+            for(int i = 0; i < panelDeJuego.getFrutas().length; i++){
+                almacenamiento.frutas[i] = new Entidad(panelDeJuego);
             }
 
-            for (int i = 0; i < tablero.frutas.length; i++) {
-                if (tablero.frutas[i] != null) {
-                    almacenamiento.frutas[i].mundoX = tablero.frutas[i].mundoX;
-                    almacenamiento.frutas[i].mundoY = tablero.frutas[i].mundoY;
+            for(int i = 0; i < panelDeJuego.getFrutas().length; i++){
+                if(panelDeJuego.getFrutas()[i] != null){
+                    almacenamiento.frutas[i].setMundoX(panelDeJuego.getFrutas()[i].getMundoX());
+                    almacenamiento.frutas[i].setMundoY(panelDeJuego.getFrutas()[i].getMundoY());
                 } else {
                     almacenamiento.frutas[i] = null;
                 }
@@ -65,47 +62,45 @@ public class GuardarCargar implements Serializable {
             oos.writeObject(almacenamiento);
             oos.close();
 
-        } catch (Exception e) {
+        }catch (Exception e){
             System.out.println("Excepción de guardado!");
             e.printStackTrace();
         }
     }
 
-    public void cargar() {
+    public void cargar(Nivel nivel){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("nivel1.dat"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("C:\\Users\\Compu\\Documents\\workspace\\Clonación\\Proyecto---BadIceCream\\src\\datos\\"+ nivel.getNivel() + ".dat")));
 
             //Leer del archivo
             Almacenamiento almacenamiento = (Almacenamiento) ois.readObject();
 
-            tablero.jugador.númeroDeFrutas = almacenamiento.númeroDeFrutas;
-            tablero.jugador.máximoVidas = almacenamiento.vidaMáxima;
-            tablero.jugador.vida = almacenamiento.vida;
-            tablero.jugador.mundoX = almacenamiento.posX;
-            tablero.jugador.mundoY = almacenamiento.posY;
-            tablero.iu.playTime = almacenamiento.tiempo;
-            tablero.adminBlock.mapa = almacenamiento.mapa;
+            panelDeJuego.getJugador().setPuntaje(almacenamiento.puntuación);
+            panelDeJuego.getJugador().setNúmeroDeFrutas(almacenamiento.númeroDeFrutas);
+            panelDeJuego.getJugador().setMáximoVidas(almacenamiento.vidaMáxima);
+            panelDeJuego.getJugador().setVida(almacenamiento.vida);
+            panelDeJuego.getJugador().setMundoX(almacenamiento.posX);
+            panelDeJuego.getJugador().setMundoY(almacenamiento.posY);
+            panelDeJuego.getIu().playTime             = almacenamiento.tiempo;
+            panelDeJuego.getAdminBlock().setMapa(almacenamiento.mapa);
 
-            tablero.enemigos = almacenamiento.enemigos;
-            tablero.frutas = almacenamiento.frutas;
-
-            for (int i = 0; i < almacenamiento.enemigos.length; i++) {
-                if (almacenamiento.enemigos[i] != null) {
-                    tablero.enemigos[i].mundoX = almacenamiento.enemigos[i].mundoX;
-                    tablero.enemigos[i].mundoY = almacenamiento.enemigos[i].mundoY;
+            for(int i = 0; i < almacenamiento.enemigos.length; i++){
+                if(panelDeJuego.getEnemigos()[i] != null){
+                    panelDeJuego.getEnemigos()[i].setMundoX(almacenamiento.enemigos[i].getMundoX());
+                    panelDeJuego.getEnemigos()[i].setMundoY(almacenamiento.enemigos[i].getMundoY());
                 }
             }
 
-            for (int i = 0; i < almacenamiento.frutas.length; i++) {
-                if (almacenamiento.frutas[i] != null) {
-                    tablero.frutas[i].mundoX = almacenamiento.frutas[i].mundoX;
-                    tablero.frutas[i].mundoY = almacenamiento.frutas[i].mundoY;
+            for(int i = 0; i < almacenamiento.frutas.length; i++){
+                if(almacenamiento.frutas[i] != null){
+                    panelDeJuego.getFrutas()[i].setMundoX(almacenamiento.frutas[i].getMundoX());
+                    panelDeJuego.getFrutas()[i].setMundoY(almacenamiento.frutas[i].getMundoY());
                 } else {
-                    tablero.frutas[i] = null;
+                    panelDeJuego.getFrutas()[i] = null;
                 }
             }
 
-        } catch (Exception e) {
+        }catch (Exception e){
             System.out.println("Excepción de cargado");
             e.printStackTrace();
         }

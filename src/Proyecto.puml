@@ -1,43 +1,30 @@
 @startuml
+class BadIceCream {
+    +empezar()
+    +cargar()
+    +cerrar()
+}
 package negocio {
-package mecánicas {
-    class Control {
-    -espacio: Tecla
-    -p: Tecla
-    -enter: Tecla
-    }
-    enum Dirección {
-    ARRIBA
-    ABAJO
-    IZQUIERDA
-    DERECHA
-    }
-    class ColocadorDeObjetos {}
-    class Colisión {}
-}
-
-package escenario {
-    class Tablero {}
-
-package bloques {
-    abstract class Bloque {}
-    class BloqueDeHielo {}
-    class BloqueEstático {}
-}
-
 package Entidades {
-    abstract class Entidad {
-    -posX: int
-    -posY: int
+    class Entidad {
+    -mundoX: int
+    -mundoY: int
     -velocidad: int
+    -colisión: boolean
     }
     class Jugador {
     -puntación: int
+    -vida: int
+    -númeroDeFrutasRecogidas: int
+    -áreaSólida: Rectangle
     +generarODestruirBloque()
     +recolectarFruta()
     }
 package enemigos {
-    abstract class Enemigo {}
+    abstract class Enemigo {
+    -daño: int
+    +establecerAcción()
+    }
     class Toro {}
     class Ogro {}
 }
@@ -45,32 +32,116 @@ package enemigos {
 package frutas {
     abstract class Fruta {}
     class Mora {}
+    class Banana {}
+}
+package Objetos {
+    class Corazón
 }
 }
+package escenario {
+    class AdministradorDeBloque {
+    -mapa: int[][]
+    +inicializarBloque()
+    +cargarMapa()
+    }
+    class PanelDeJuego {
+    -TAMAÑO_BLOQUE_ORIGINAL: int
+    -ESCALA: int
+    -TAMAÑO_BLOQUE_ORIGINAL: int
+    -COLUMNA_MAX: int
+    -ALTO: int
+    -ANCHO: int
+    -FPS: int
+    -maxColumnasDeMundo: int
+    -maxFilasDeMundo: int
+    +configurarJuego()
+    +iniciarHiloDeJuego()
+    +reintentar()
+    +reestablecer()
+    +actualizar()
+    +romperBloqueDeHielo()
+    +crearBloqueDeHielo()
+    +reproducirMúsica()
+    +pararMúsica()
+
+    }
+
+package bloques {
+    abstract class Bloque {}
+    class BloqueDeHielo {}
+    class BloqueEstático {}
 }
-class BadIceCream {
-    +empezar()
-    +cargar()
-    +cerrar()
 }
+package mecánicas {
+    class Control {
+    -espacioPresionado: boolean
+    -arribaPresionado: boolean
+    -abajoPresionado: boolean
+    -derechaPresionado: boolean
+    -izquierdaPresionado: boolean
+    -enterPresionado: boolean
+    +keyPressed()
+    +keyReleased()
+    +estadoTítulo()
+    +estadoJuego()
+    +estadoPausa()
+    +estadoOpciones()
+    +estadoDerrota()
+    +estadoVictoria()
+    }
+    enum Dirección {
+    ARRIBA
+    ABAJO
+    IZQUIERDA
+    DERECHA
+    }
+    enum EstadoDeJuego {
+    TITULO
+    JUEGO
+    PAUSA
+    VICTORIA
+    DERROTA
+    NEUTRO
+    OPCIONES
+    }
+    class ColocadorDeObjetos {
+    +colocarFrutas()
+    +colocarEnemigos()
+    }
+    class LectorEntidades {
+    +leerFrutas()
+    +leerEnemigos()
+    }
+    class Colisión {}
 }
 
-BadIceCream --> Tablero
-Tablero --> "*" Entidad
+}
+
+BadIceCream -down--> PanelDeJuego
 Bloque <|-- BloqueEstático
 Bloque <|-- BloqueDeHielo
-Tablero --> "*" Bloque
 
 Entidad <|-down-Jugador
 Entidad <|-down--Enemigo
 Entidad <|-up- Fruta
 Fruta <|- Mora
+Fruta <|-up- Banana
 Enemigo <|-- Toro
 Enemigo <|-- Ogro
+AdministradorDeBloque <-> PanelDeJuego
+AdministradorDeBloque -> Nivel
+AdministradorDeBloque -> "*" Bloque: bloques
+
+PanelDeJuego <-> Control
+PanelDeJuego --> "*" Entidad
+PanelDeJuego --> "*" Bloque: bloques
+PanelDeJuego -> VerificadorDeColisión
+PanelDeJuego <-> ColocadorDeObjetos
+PanelDeJuego -> EstadoDeJuego
+
+ColocadorDeObjetos -> LectorEntidades
 
 Control --> Dirección
 Entidad --> Control
-Entidad --> ColocadorDeObjetos
-Entidad --> Colisión
 
 @enduml
