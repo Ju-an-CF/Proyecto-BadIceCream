@@ -1,0 +1,216 @@
+@startuml
+class BadIceCream {
+    +empezar()
+}
+package datos {
+    class Almacenamiento {
+    -puntación: int
+    -númeroDeFrutasRecogidas: int
+    -vidaMáxima: int
+    -vida: int
+    -posX: int
+    -posY: int
+    }
+    class GuardarCargar {
+    +guardar(Nivel)
+    +cargar(Nivel)
+    }
+    package fuentes {
+/'    package bloque {}
+    package datosDeJuego {}
+    package enemigo {}
+    package entidades {}
+    package font {}
+    package frutas {}
+    package IU {}
+    package jugador {}
+    package sounds {}'/
+    }
+}
+package presentación {
+  package interfazDeUsuario {
+  class IU {}
+  class Configuración {}
+  }
+  package sonido {
+   class Sonido {
+   +configurarSonido()
+   +reproducir()
+   +parar()
+   }
+   }
+   class GestorDeImagen {
+   +{static}obtenerImagen()
+   }
+}
+package negocio {
+package Entidades {
+    class Entidad {
+    -mundoX: int
+    -mundoY: int
+    -velocidad: int
+    -colisión: boolean
+    }
+    class Jugador {
+    -puntación: int
+    -vida: int
+    -númeroDeFrutasRecogidas: int
+    -áreaSólida: Rectangle
+    +generarODestruirBloque()
+    +recolectarFruta()
+    }
+package enemigos {
+    abstract class Enemigo {
+    -daño: int
+    +establecerAcción()
+    }
+    class Toro {}
+    class Ogro {}
+}
+
+package frutas {
+    abstract class Fruta {}
+    class Mora {}
+    class Banana {}
+}
+package Objetos {
+    class Corazón
+}
+}
+package escenario {
+    class AdministradorDeBloque {
+    -mapa: int[][]
+    +inicializarBloque()
+    +cargarMapa()
+    }
+    class PanelDeJuego {
+    -TAMAÑO_BLOQUE_ORIGINAL: int
+    -ESCALA: int
+    -TAMAÑO_BLOQUE_ORIGINAL: int
+    -COLUMNA_MAX: int
+    -ALTO: int
+    -ANCHO: int
+    -FPS: int
+    -maxColumnasDeMundo: int
+    -maxFilasDeMundo: int
+    +configurarJuego()
+    +iniciarHiloDeJuego()
+    +reintentar()
+    +reestablecer()
+    +actualizar()
+    +romperBloqueDeHielo()
+    +crearBloqueDeHielo()
+    +reproducirMúsica()
+    +pararMúsica()
+
+    }
+
+package bloques {
+    abstract class Bloque {}
+    class BloqueDeHielo {}
+    class BloqueEstático {}
+}
+}
+package mecánicas {
+    class Control {
+    -espacioPresionado: boolean
+    -arribaPresionado: boolean
+    -abajoPresionado: boolean
+    -derechaPresionado: boolean
+    -izquierdaPresionado: boolean
+    -enterPresionado: boolean
+    +keyPressed()
+    +keyReleased()
+    +estadoTítulo()
+    +estadoJuego()
+    +estadoPausa()
+    +estadoOpciones()
+    +estadoDerrota()
+    +estadoVictoria()
+    }
+    enum Dirección {
+    ARRIBA
+    ABAJO
+    IZQUIERDA
+    DERECHA
+    }
+    enum EstadoDeJuego {
+    TITULO
+    JUEGO
+    PAUSA
+    VICTORIA
+    DERROTA
+    NEUTRO
+    OPCIONES
+    }
+    class ColocadorDeObjetos {
+    +colocarFrutas()
+    +colocarEnemigos()
+    }
+    class LectorEntidades {
+    +leerFrutas()
+    +leerEnemigos()
+    }
+    class VerificadorDeColisión {
+    +verificarBloque()
+    +verificarObjeto()
+    +verificarEntidad()
+    +verificarJugador()
+    +moverEntidad()
+    }
+}
+package niveles {
+   abstract class Nivel {
+   -númeroNivel: int
+   -rutaMapa: String
+   -rutaFrutas: String
+   -rutaEnemigo: String
+   }
+   class Nivel1 {}
+   class Nivel2 {}
+}
+
+}
+
+BadIceCream -> PanelDeJuego
+Bloque <|-- BloqueEstático
+Bloque <|-- BloqueDeHielo
+
+Entidad <|-down-Jugador
+Entidad <|-down--Enemigo
+Entidad <|-up- Fruta
+Fruta <|- Mora
+Fruta <|-up- Banana
+Enemigo <|-- Toro
+Enemigo <|-- Ogro
+AdministradorDeBloque <-> PanelDeJuego
+AdministradorDeBloque --> Nivel
+AdministradorDeBloque -> "*" Bloque: bloques
+
+PanelDeJuego <-> Control
+PanelDeJuego -right> "*" Entidad
+PanelDeJuego -left> "*" Bloque: bloques
+PanelDeJuego <-> VerificadorDeColisión
+PanelDeJuego <-> ColocadorDeObjetos
+PanelDeJuego -> EstadoDeJuego
+
+ColocadorDeObjetos -> LectorEntidades
+
+Nivel <|--Nivel1
+Nivel <|--Nivel2
+
+Control --> Dirección
+Entidad -> Control
+/'Objeto -> GestorDeImagen: <<access>>
+Jugador -> GestorDeImagen: <<access>>
+Enemigo -> GestorDeImagen: <<access>>
+Fruta -> GestorDeImagen: <<access>>'/
+
+presentación .up.>negocio
+negocio ..> datos
+GuardarCargar -> Almacenamiento
+GuardarCargar -up-> PanelDeJuego
+
+Configuración -> PanelDeJuego
+IU -> PanelDeJuego
+@enduml
