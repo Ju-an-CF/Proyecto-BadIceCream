@@ -11,9 +11,6 @@ import Negocio.niveles.Nivel2;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class BadIceCreamTest extends TestCase {
     @Test
     public void testDeberíaCambiarDePosiciónAlApretarUnaTecla(){
