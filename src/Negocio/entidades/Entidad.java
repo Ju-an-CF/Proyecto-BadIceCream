@@ -1,13 +1,10 @@
 package Negocio.entidades;
 
-import Negocio.escenario.HerramientaUtilidad;
 import Negocio.escenario.PanelDeJuego;
 import Negocio.mecánicas.Dirección;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -38,7 +35,7 @@ public class Entidad implements Serializable {
     //Dirección por defecto
     private Dirección dirección = Dirección.ABAJO;
 
-    //Imágenes que usarán las Negocio.entidades
+    //Imágenes que usarán las entidades
     public transient BufferedImage imagen1, imagen2, imagen3, imagen4, imagen5;
     public transient BufferedImage arriba1, arriba2, arriba3, arriba4, abajo1, abajo2, abajo3, abajo4, izquierda1, izquierda2, izquierda3, izquierda4, derecha1, derecha2, derecha3, derecha4;
 
@@ -101,18 +98,6 @@ public class Entidad implements Serializable {
             }
             contadorMovimiento = 0;
         }
-    }
-
-    public BufferedImage configurarImagen(String nombreImagen) {
-        HerramientaUtilidad ut = new HerramientaUtilidad();
-        BufferedImage imagen = null;
-        try {
-            imagen = ImageIO.read(getClass().getResourceAsStream(nombreImagen + ".png"));
-            imagen = ut.escalarImagen(imagen, 42, 42);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return imagen;
     }
 
     /**
